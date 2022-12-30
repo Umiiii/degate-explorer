@@ -47,6 +47,16 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           <Head>
             <title>Loopring Layer2 Explorer</title>
             <link rel="icon" href="/favicon.png" />
+              <script async src="https://www.googletagmanager.com/gtag/js?id=G-030VYCVBNK"></script>
+              <script>
+                {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+              
+                gtag('config', 'G-030VYCVBNK');
+                `}
+              </script>
           </Head>
           <header className="bg-white w-screen px-4 py-2 dark:bg-loopring-dark-background">
             <div className="container h-full w-full lg:w-11/12 m-auto flex md:items-center justify-between">
