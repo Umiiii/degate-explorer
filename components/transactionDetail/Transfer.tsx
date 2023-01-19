@@ -15,12 +15,14 @@ interface ITransferProps {
 
 const Transfer: React.FC<ITransferProps> = ({ transaction, isPending = false }) => {
   const { block, fromAccount, toAccount, token, amount, feeToken, fee, data, __typename } = transaction;
+  console.log('transaction', transaction)
   const { data: tokens } = useTokens();
-
+  
   let tokenDetails = null;
   if (!token.symbol) {
     tokenDetails = tokens.find(({ tokenId }) => tokenId === parseInt(token.id));
   }
+  
 
   return (
     <>

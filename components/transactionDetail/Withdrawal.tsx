@@ -23,6 +23,7 @@ const Withdrawal: React.FC<IWithdrawalProps> = ({ transaction, isPending = false
     data,
     __typename,
   } = transaction;
+  
 
   return (
     <>

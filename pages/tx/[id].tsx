@@ -21,16 +21,18 @@ import DataNFT from '../../components/transactionDetail/DataNFT';
 import PendingTx from '../../components/transactionDetail/PendingTx';
 import NoTransactionFound from '../../components/transactionDetail/NoTransactionFound';
 import { useTransactionQuery } from '../../generated/loopringExplorer';
+import { useTransaction } from '../../hooks/useTransaction';
 
 export const Transaction: React.FC<{ txId: string }> = ({ txId }) => {
-  const { data, loading } = useTransactionQuery({
-    variables: {
-      id: txId,
-    },
-  });
+  const {data, loading} = useTransaction({txId})
+
+  // const { data, loading } = useTransactionQuery({
+  //   variables: {
+  //     id: txId,
+  //   },
+  // });
 
   const { __typename, block } = (data && data.transaction) || {};
-
   const renderTransactionDetails = (type) => {
     switch (type) {
       case 'Add':
