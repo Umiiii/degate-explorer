@@ -1,4 +1,5 @@
 import { BigNumber } from "ethers"
+import { formatUnits } from "ethers/lib/utils";
 import { dataByBlockIdAndIndex } from 'loopring36-block-parser';
 
 export const getBlock = (blockId: number) => fetch(`https://api3.loopring.io/api/v3/block/getBlock?id=${blockId}`)
@@ -70,8 +71,8 @@ const convertTransactionData_Withdraw = async (origin: any) => {
 const convertTransactionData_Swap = async (origin: any) => {
   const tokens = await getTokens()
   // const tokenInfo = tokens.find(x => x.tokenId === origin.tokenID)
-  const tokenAInfo = tokens.find(x => x.tokenId === origin.tokenIdA)
-  const tokenBInfo = tokens.find(x => x.tokenId === origin.tokenIdB)
+  const tokenAInfo = tokens.find(x => x.tokenId === origin.tokenAB)
+  const tokenBInfo = tokens.find(x => x.tokenId === origin.tokenBB)
 
   const accountAddress = (await getAccount(origin.accountIdA)).owner
   // const {
@@ -107,17 +108,84 @@ const convertTransactionData_Swap = async (origin: any) => {
       fillSA: origin.fillSA,
       fillSB: origin.fillSB,
 
-      tokenAPrice: '1', //todo
-      tokenBPrice: '1', //todo
-      pair: '0x111', //todo
+      tokenAPrice: formatUnits(origin.fillSA.toString(), tokenAInfo.decimals), //todo
+      tokenBPrice: formatUnits(origin.fillSB.toString(), tokenBInfo.decimals), //todo
+      pair: '0x0000000000000000000000000000000000000000', //todo
       feeA: origin.feeA,
       feeB: origin.feeB,
-      pool: '0x111', //todo
+      pool: {
+        address: '0x0000000000000000000000000000000000000000', //todo
+      },
       __typename: "Swap",
       data: origin.txData,
     }
   }
 }
+const convertTransactionData_Trade = async (origin: any) => {
+  const tokens = await getTokens()
+  // const tokenInfo = tokens.find(x => x.tokenId === origin.tokenID)
+  const tokenAInfo = tokens.find(x => x.tokenId === origin.tokenAS)
+  const tokenBInfo = tokens.find(x => x.tokenId === origin.tokenBS)
+
+  const accountAddressA = (await getAccount(origin.accountIdA)).owner
+  const accountAddressB = (await getAccount(origin.accountIdB)).owner
+
+  // const {
+  //   block,
+  //   accountA,
+  //   accountB,
+  //   tokenA,
+  //   tokenB,
+  //   data,
+  //   fillSA,
+  //   fillSB,
+  //   feeA,
+  //   feeB,
+  //   tokenAPrice,
+  //   tokenBPrice,
+  // } = transaction;
+  return {
+    transaction: {
+      accountA: {
+        address: accountAddressA,
+        id: origin.accountIdA,
+      },
+      accountB: {
+        address: accountAddressB,
+        id: origin.accountIdB,
+      },
+      tokenA: {
+        decimals: tokenAInfo.decimals,
+        symbol: tokenAInfo.symbol,
+      },
+      tokenB: {
+        decimals: tokenBInfo.decimals,
+        symbol: tokenBInfo.symbol,
+      },
+      fillSA: origin.fillSA,
+      fillSB: origin.fillSB,
+      // BN
+      tokenBPrice: BigNumber.from(origin.fillSA.toString())
+        .mul('1' + '0'.repeat(tokenBInfo.decimals))
+        .div(origin.fillSB.toString()), //todo
+      tokenAPrice: BigNumber.from(origin.fillSB.toString())
+        .mul('1' + '0'.repeat(tokenAInfo.decimals))
+        .div(origin.fillSA.toString()), //todo
+      // tokenBPrice: origin.fillSB.mul('1' + '0'.repeat(tokenAInfo.decimals)).div(origin.fillSA), //todo
+      // tokenAPrice: formatUnits(origin.fillSA.toString(), tokenAInfo.decimals), //todo
+      // tokenBPrice: formatUnits(origin.fillSB.toString(), tokenBInfo.decimals), //todo
+      // pair: '0x0000000000000000000000000000000000000000', //todo
+      feeA: origin.feeA,
+      feeB: origin.feeB,
+      // pool: {
+      //   address: '0x0000000000000000000000000000000000000000', //todo
+      // },
+      __typename: "OrderbookTrade",
+      data: origin.txData,
+    }
+  }
+}
+// 040002a6ea000e62d800002cff000267e00006000019aee56156c61900000000000000000000000000000000000000000000000000000000000000000000000000000000
 const convertTransactionData_Deposit = async (origin: any) => {
   const tokens = await getTokens()
   const tokenInfo = tokens.find(x => x.tokenId === origin.tokenID)
@@ -237,6 +305,7 @@ const convertTransactionData_Pre = (origin: any) => {
   }
 }
 export const convertTransactionData = async (origin: any) => {
+  // debugger
   const nextOrigin = convertTransactionData_Pre(origin)
   if (nextOrigin.type === 'TRANSFER') {
     return convertTransactionData_Transfer(nextOrigin)
@@ -244,6 +313,8 @@ export const convertTransactionData = async (origin: any) => {
     return convertTransactionData_Withdraw(nextOrigin)
   } else if (nextOrigin.type === 'SWAP') {
     return convertTransactionData_Swap(nextOrigin)
+  } else if (nextOrigin.type === 'TRADE') {
+    return convertTransactionData_Trade(nextOrigin)
   } else if (nextOrigin.type === 'DEPOSIT') {
     return convertTransactionData_Deposit(nextOrigin)
   } else if (nextOrigin.type === 'ACCOUNT_UPDATE') {

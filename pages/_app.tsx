@@ -122,6 +122,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
                 <button onClick={toggleDarkMode} className="self-start p-2 lg:p-0">
                   <DarkModeToggle isDarkModeOn={darkMode} />
                 </button>
+                <button onClick={toggleDarkMode} className="self-start p-2 lg:p-0">
+                  <DarkModeToggle isDarkModeOn={darkMode} />
+                </button>
               </nav>
             </div>
           </header>

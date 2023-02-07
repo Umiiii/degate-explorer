@@ -31,7 +31,6 @@ const OrderbookTrade: React.FC<IOrderbookTradeProps> = ({
     tokenAPrice,
     tokenBPrice,
   } = transaction;
-
   return (
     <>
       {block && (

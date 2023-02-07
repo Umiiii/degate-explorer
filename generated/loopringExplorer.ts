@@ -42,7 +42,6 @@ export type Account = {
   transactions: Array<Transaction>;
 };
 
-
 export type AccountBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountTokenBalance_OrderBy>;
@@ -51,7 +50,6 @@ export type AccountBalancesArgs = {
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
 
-
 export type AccountSlotsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
@@ -59,7 +57,6 @@ export type AccountSlotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountNftSlot_Filter>;
 };
-
 
 export type AccountTransactionsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -90,7 +87,6 @@ export type AccountNftSlot = {
   /** List of all the transactions that this particular NFT was a part of */
   transactions: Array<TransactionNft>;
 };
-
 
 export type AccountNftSlotTransactionsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -124,6 +120,7 @@ export type AccountNftSlot_Filter = {
   account_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   account_starts_with?: InputMaybe<Scalars['String']>;
   account_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  and?: InputMaybe<Array<InputMaybe<AccountNftSlot_Filter>>>;
   balance?: InputMaybe<Scalars['BigInt']>;
   balance_gt?: InputMaybe<Scalars['BigInt']>;
   balance_gte?: InputMaybe<Scalars['BigInt']>;
@@ -219,6 +216,7 @@ export type AccountNftSlot_Filter = {
   nft_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   nft_starts_with?: InputMaybe<Scalars['String']>;
   nft_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  or?: InputMaybe<Array<InputMaybe<AccountNftSlot_Filter>>>;
   transactions_?: InputMaybe<TransactionNft_Filter>;
 };
 
@@ -231,7 +229,7 @@ export enum AccountNftSlot_OrderBy {
   LastUpdatedAt = 'lastUpdatedAt',
   LastUpdatedAtTransaction = 'lastUpdatedAtTransaction',
   Nft = 'nft',
-  Transactions = 'transactions'
+  Transactions = 'transactions',
 }
 
 export type AccountTokenBalance = {
@@ -248,7 +246,6 @@ export type AccountTokenBalance = {
   weeklyData: Array<AccountTokenBalanceWeeklyData>;
 };
 
-
 export type AccountTokenBalanceDailyDataArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountTokenBalanceDailyData_OrderBy>;
@@ -257,7 +254,6 @@ export type AccountTokenBalanceDailyDataArgs = {
   where?: InputMaybe<AccountTokenBalanceDailyData_Filter>;
 };
 
-
 export type AccountTokenBalanceTransactionsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Transaction_OrderBy>;
@@ -265,7 +261,6 @@ export type AccountTokenBalanceTransactionsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Transaction_Filter>;
 };
-
 
 export type AccountTokenBalanceWeeklyDataArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -348,6 +343,7 @@ export type AccountTokenBalanceDailyData_Filter = {
   account_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   account_starts_with?: InputMaybe<Scalars['String']>;
   account_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  and?: InputMaybe<Array<InputMaybe<AccountTokenBalanceDailyData_Filter>>>;
   balance?: InputMaybe<Scalars['BigInt']>;
   balanceClose?: InputMaybe<Scalars['BigInt']>;
   balanceClose_gt?: InputMaybe<Scalars['BigInt']>;
@@ -420,6 +416,7 @@ export type AccountTokenBalanceDailyData_Filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  or?: InputMaybe<Array<InputMaybe<AccountTokenBalanceDailyData_Filter>>>;
   token?: InputMaybe<Scalars['String']>;
   token_?: InputMaybe<Token_Filter>;
   token_contains?: InputMaybe<Scalars['String']>;
@@ -455,7 +452,7 @@ export enum AccountTokenBalanceDailyData_OrderBy {
   DayNumber = 'dayNumber',
   DayStart = 'dayStart',
   Id = 'id',
-  Token = 'token'
+  Token = 'token',
 }
 
 export type AccountTokenBalanceWeeklyData = {
@@ -531,6 +528,7 @@ export type AccountTokenBalanceWeeklyData_Filter = {
   account_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   account_starts_with?: InputMaybe<Scalars['String']>;
   account_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  and?: InputMaybe<Array<InputMaybe<AccountTokenBalanceWeeklyData_Filter>>>;
   balance?: InputMaybe<Scalars['BigInt']>;
   balanceClose?: InputMaybe<Scalars['BigInt']>;
   balanceClose_gt?: InputMaybe<Scalars['BigInt']>;
@@ -579,6 +577,7 @@ export type AccountTokenBalanceWeeklyData_Filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  or?: InputMaybe<Array<InputMaybe<AccountTokenBalanceWeeklyData_Filter>>>;
   token?: InputMaybe<Scalars['String']>;
   token_?: InputMaybe<Token_Filter>;
   token_contains?: InputMaybe<Scalars['String']>;
@@ -638,7 +637,7 @@ export enum AccountTokenBalanceWeeklyData_OrderBy {
   Token = 'token',
   WeekEnd = 'weekEnd',
   WeekNumber = 'weekNumber',
-  WeekStart = 'weekStart'
+  WeekStart = 'weekStart',
 }
 
 export type AccountTokenBalance_Filter = {
@@ -665,6 +664,7 @@ export type AccountTokenBalance_Filter = {
   account_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   account_starts_with?: InputMaybe<Scalars['String']>;
   account_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  and?: InputMaybe<Array<InputMaybe<AccountTokenBalance_Filter>>>;
   balance?: InputMaybe<Scalars['BigInt']>;
   balance_gt?: InputMaybe<Scalars['BigInt']>;
   balance_gte?: InputMaybe<Scalars['BigInt']>;
@@ -682,6 +682,7 @@ export type AccountTokenBalance_Filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  or?: InputMaybe<Array<InputMaybe<AccountTokenBalance_Filter>>>;
   token?: InputMaybe<Scalars['String']>;
   token_?: InputMaybe<Token_Filter>;
   token_contains?: InputMaybe<Scalars['String']>;
@@ -714,7 +715,7 @@ export enum AccountTokenBalance_OrderBy {
   Id = 'id',
   Token = 'token',
   Transactions = 'transactions',
-  WeeklyData = 'weeklyData'
+  WeeklyData = 'weeklyData',
 }
 
 export type AccountUpdate = Transaction & {
@@ -748,7 +749,6 @@ export type AccountUpdate = Transaction & {
   user: User;
 };
 
-
 export type AccountUpdateAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Account_OrderBy>;
@@ -756,7 +756,6 @@ export type AccountUpdateAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Account_Filter>;
 };
-
 
 export type AccountUpdateTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -784,6 +783,7 @@ export type AccountUpdate_Filter = {
   accounts_not?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  and?: InputMaybe<Array<InputMaybe<AccountUpdate_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -886,6 +886,7 @@ export type AccountUpdate_Filter = {
   nonce_lte?: InputMaybe<Scalars['Int']>;
   nonce_not?: InputMaybe<Scalars['Int']>;
   nonce_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  or?: InputMaybe<Array<InputMaybe<AccountUpdate_Filter>>>;
   owner?: InputMaybe<Scalars['String']>;
   owner_contains?: InputMaybe<Scalars['String']>;
   owner_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -984,7 +985,7 @@ export enum AccountUpdate_OrderBy {
   TokenBalances = 'tokenBalances',
   Typename = 'typename',
   UpdateType = 'updateType',
-  User = 'user'
+  User = 'user',
 }
 
 export type Account_Filter = {
@@ -1000,6 +1001,7 @@ export type Account_Filter = {
   address_not?: InputMaybe<Scalars['Bytes']>;
   address_not_contains?: InputMaybe<Scalars['Bytes']>;
   address_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
+  and?: InputMaybe<Array<InputMaybe<Account_Filter>>>;
   balances_?: InputMaybe<AccountTokenBalance_Filter>;
   createdAt?: InputMaybe<Scalars['BigDecimal']>;
   createdAtTransaction?: InputMaybe<Scalars['String']>;
@@ -1075,6 +1077,7 @@ export type Account_Filter = {
   lastUpdatedAt_lte?: InputMaybe<Scalars['BigDecimal']>;
   lastUpdatedAt_not?: InputMaybe<Scalars['BigDecimal']>;
   lastUpdatedAt_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  or?: InputMaybe<Array<InputMaybe<Account_Filter>>>;
   slots_?: InputMaybe<AccountNftSlot_Filter>;
   transactions_?: InputMaybe<Transaction_Filter>;
 };
@@ -1089,7 +1092,7 @@ export enum Account_OrderBy {
   LastUpdatedAt = 'lastUpdatedAt',
   LastUpdatedAtTransaction = 'lastUpdatedAtTransaction',
   Slots = 'slots',
-  Transactions = 'transactions'
+  Transactions = 'transactions',
 }
 
 export type Add = Transaction & {
@@ -1135,7 +1138,6 @@ export type Add = Transaction & {
   typename: TransactionType;
 };
 
-
 export type AddAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Account_OrderBy>;
@@ -1143,7 +1145,6 @@ export type AddAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Account_Filter>;
 };
-
 
 export type AddTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -1208,6 +1209,7 @@ export type Add_Filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  and?: InputMaybe<Array<InputMaybe<Add_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -1322,6 +1324,7 @@ export type Add_Filter = {
   internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  or?: InputMaybe<Array<InputMaybe<Add_Filter>>>;
   pool?: InputMaybe<Scalars['String']>;
   pool_?: InputMaybe<Pool_Filter>;
   pool_contains?: InputMaybe<Scalars['String']>;
@@ -1451,7 +1454,7 @@ export enum Add_OrderBy {
   TokenBalances = 'tokenBalances',
   TokenId = 'tokenID',
   Type = 'type',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export type AmmUpdate = Transaction & {
@@ -1478,7 +1481,6 @@ export type AmmUpdate = Transaction & {
   typename: TransactionType;
 };
 
-
 export type AmmUpdateAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Account_OrderBy>;
@@ -1486,7 +1488,6 @@ export type AmmUpdateAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Account_Filter>;
 };
-
 
 export type AmmUpdateTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -1514,6 +1515,7 @@ export type AmmUpdate_Filter = {
   accounts_not?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  and?: InputMaybe<Array<InputMaybe<AmmUpdate_Filter>>>;
   balance?: InputMaybe<Scalars['BigInt']>;
   balance_gt?: InputMaybe<Scalars['BigInt']>;
   balance_gte?: InputMaybe<Scalars['BigInt']>;
@@ -1595,6 +1597,7 @@ export type AmmUpdate_Filter = {
   nonce_lte?: InputMaybe<Scalars['Int']>;
   nonce_not?: InputMaybe<Scalars['Int']>;
   nonce_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  or?: InputMaybe<Array<InputMaybe<AmmUpdate_Filter>>>;
   owner?: InputMaybe<Scalars['String']>;
   owner_contains?: InputMaybe<Scalars['String']>;
   owner_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -1680,7 +1683,7 @@ export enum AmmUpdate_OrderBy {
   TokenBalances = 'tokenBalances',
   TokenId = 'tokenID',
   TokenWeight = 'tokenWeight',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export type Block = {
@@ -1759,7 +1762,6 @@ export type Block = {
   withdrawalNFTCount: Scalars['BigInt'];
 };
 
-
 export type BlockTransactionsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Transaction_OrderBy>;
@@ -1799,6 +1801,7 @@ export type Block_Filter = {
   ammUpdateCount_lte?: InputMaybe<Scalars['BigInt']>;
   ammUpdateCount_not?: InputMaybe<Scalars['BigInt']>;
   ammUpdateCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  and?: InputMaybe<Array<InputMaybe<Block_Filter>>>;
   blockHash?: InputMaybe<Scalars['String']>;
   blockHash_contains?: InputMaybe<Scalars['String']>;
   blockHash_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -1974,6 +1977,7 @@ export type Block_Filter = {
   operatorAccount_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   operatorAccount_starts_with?: InputMaybe<Scalars['String']>;
   operatorAccount_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  or?: InputMaybe<Array<InputMaybe<Block_Filter>>>;
   orderbookTradeCount?: InputMaybe<Scalars['BigInt']>;
   orderbookTradeCount_gt?: InputMaybe<Scalars['BigInt']>;
   orderbookTradeCount_gte?: InputMaybe<Scalars['BigInt']>;
@@ -2163,32 +2167,32 @@ export enum Block_OrderBy {
   TransferNftCount = 'transferNFTCount',
   TxHash = 'txHash',
   WithdrawalCount = 'withdrawalCount',
-  WithdrawalNftCount = 'withdrawalNFTCount'
+  WithdrawalNftCount = 'withdrawalNFTCount',
 }
 
-export type DataNft = Transaction & TransactionNft & {
-  __typename?: 'DataNFT';
-  accountID: Scalars['Int'];
-  accounts?: Maybe<Array<Account>>;
-  block: Block;
-  creatorFeeBips: Scalars['Int'];
-  data: Scalars['String'];
-  id: Scalars['ID'];
-  /** ID represented as a BigDecimal for sorting purposes */
-  internalID: Scalars['BigDecimal'];
-  minter?: Maybe<Scalars['String']>;
-  nftID: Scalars['String'];
-  nftType: Scalars['Int'];
-  nfts: Array<NonFungibleToken>;
-  slots: Array<AccountNftSlot>;
-  tokenAddress?: Maybe<Scalars['String']>;
-  tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-  tokenID: Scalars['Int'];
-  type: Scalars['Int'];
-  /** Explicit copy of __typename to make it usable when filtering */
-  typename: TransactionType;
-};
-
+export type DataNft = Transaction &
+  TransactionNft & {
+    __typename?: 'DataNFT';
+    accountID: Scalars['Int'];
+    accounts?: Maybe<Array<Account>>;
+    block: Block;
+    creatorFeeBips: Scalars['Int'];
+    data: Scalars['String'];
+    id: Scalars['ID'];
+    /** ID represented as a BigDecimal for sorting purposes */
+    internalID: Scalars['BigDecimal'];
+    minter?: Maybe<Scalars['String']>;
+    nftID: Scalars['String'];
+    nftType: Scalars['Int'];
+    nfts: Array<NonFungibleToken>;
+    slots: Array<AccountNftSlot>;
+    tokenAddress?: Maybe<Scalars['String']>;
+    tokenBalances?: Maybe<Array<AccountTokenBalance>>;
+    tokenID: Scalars['Int'];
+    type: Scalars['Int'];
+    /** Explicit copy of __typename to make it usable when filtering */
+    typename: TransactionType;
+  };
 
 export type DataNftAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -2198,7 +2202,6 @@ export type DataNftAccountsArgs = {
   where?: InputMaybe<Account_Filter>;
 };
 
-
 export type DataNftNftsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
@@ -2207,7 +2210,6 @@ export type DataNftNftsArgs = {
   where?: InputMaybe<NonFungibleToken_Filter>;
 };
 
-
 export type DataNftSlotsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
@@ -2215,7 +2217,6 @@ export type DataNftSlotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountNftSlot_Filter>;
 };
-
 
 export type DataNftTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -2243,6 +2244,7 @@ export type DataNft_Filter = {
   accounts_not?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  and?: InputMaybe<Array<InputMaybe<DataNft_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -2363,6 +2365,7 @@ export type DataNft_Filter = {
   nfts_not?: InputMaybe<Array<Scalars['String']>>;
   nfts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   nfts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  or?: InputMaybe<Array<InputMaybe<DataNft_Filter>>>;
   slots?: InputMaybe<Array<Scalars['String']>>;
   slots_?: InputMaybe<AccountNftSlot_Filter>;
   slots_contains?: InputMaybe<Array<Scalars['String']>>;
@@ -2436,7 +2439,7 @@ export enum DataNft_OrderBy {
   TokenBalances = 'tokenBalances',
   TokenId = 'tokenID',
   Type = 'type',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export type Deposit = Transaction & {
@@ -2464,7 +2467,6 @@ export type Deposit = Transaction & {
   typename: TransactionType;
 };
 
-
 export type DepositAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Account_OrderBy>;
@@ -2472,7 +2474,6 @@ export type DepositAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Account_Filter>;
 };
-
 
 export type DepositTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -2500,6 +2501,7 @@ export type Deposit_Filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  and?: InputMaybe<Array<InputMaybe<Deposit_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -2557,6 +2559,7 @@ export type Deposit_Filter = {
   internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  or?: InputMaybe<Array<InputMaybe<Deposit_Filter>>>;
   to?: InputMaybe<Scalars['String']>;
   toAccount?: InputMaybe<Scalars['String']>;
   toAccountID?: InputMaybe<Scalars['Int']>;
@@ -2661,7 +2664,7 @@ export enum Deposit_OrderBy {
   Token = 'token',
   TokenBalances = 'tokenBalances',
   TokenId = 'tokenID',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export type Exchange = {
@@ -2674,7 +2677,6 @@ export type Exchange = {
   tokens: Array<Token>;
 };
 
-
 export type ExchangeTokensArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Token_OrderBy>;
@@ -2686,6 +2688,7 @@ export type ExchangeTokensArgs = {
 export type Exchange_Filter = {
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<Exchange_Filter>>>;
   id?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
   id_gte?: InputMaybe<Scalars['ID']>;
@@ -2694,6 +2697,7 @@ export type Exchange_Filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  or?: InputMaybe<Array<InputMaybe<Exchange_Filter>>>;
   proxy?: InputMaybe<Scalars['String']>;
   proxy_?: InputMaybe<Proxy_Filter>;
   proxy_contains?: InputMaybe<Scalars['String']>;
@@ -2721,46 +2725,46 @@ export type Exchange_Filter = {
 export enum Exchange_OrderBy {
   Id = 'id',
   Proxy = 'proxy',
-  Tokens = 'tokens'
+  Tokens = 'tokens',
 }
 
-export type MintNft = Transaction & TransactionNft & {
-  __typename?: 'MintNFT';
-  accounts?: Maybe<Array<Account>>;
-  amount: Scalars['BigInt'];
-  block: Block;
-  creatorFeeBips: Scalars['Int'];
-  data: Scalars['String'];
-  /** Data from the NFTData transactions that follow the mint */
-  extraData?: Maybe<Scalars['String']>;
-  fee: Scalars['BigInt'];
-  /** Token entity with information about the token used to pay the operator fees */
-  feeToken: Token;
-  feeTokenID: Scalars['Int'];
-  id: Scalars['ID'];
-  /** ID represented as a BigDecimal for sorting purposes */
-  internalID: Scalars['BigDecimal'];
-  minter: Account;
-  minterAccountID: Scalars['Int'];
-  nft: NonFungibleToken;
-  nftID: Scalars['String'];
-  nftType: Scalars['Int'];
-  nfts: Array<NonFungibleToken>;
-  receiver: Account;
-  receiverSlot: AccountNftSlot;
-  slots: Array<AccountNftSlot>;
-  storageID?: Maybe<Scalars['Int']>;
-  to?: Maybe<Scalars['String']>;
-  toAccountID?: Maybe<Scalars['Int']>;
-  toTokenID: Scalars['Int'];
-  tokenAccountID?: Maybe<Scalars['Int']>;
-  tokenAddress: Scalars['String'];
-  tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-  type: Scalars['Int'];
-  /** Explicit copy of __typename to make it usable when filtering */
-  typename: TransactionType;
-};
-
+export type MintNft = Transaction &
+  TransactionNft & {
+    __typename?: 'MintNFT';
+    accounts?: Maybe<Array<Account>>;
+    amount: Scalars['BigInt'];
+    block: Block;
+    creatorFeeBips: Scalars['Int'];
+    data: Scalars['String'];
+    /** Data from the NFTData transactions that follow the mint */
+    extraData?: Maybe<Scalars['String']>;
+    fee: Scalars['BigInt'];
+    /** Token entity with information about the token used to pay the operator fees */
+    feeToken: Token;
+    feeTokenID: Scalars['Int'];
+    id: Scalars['ID'];
+    /** ID represented as a BigDecimal for sorting purposes */
+    internalID: Scalars['BigDecimal'];
+    minter: Account;
+    minterAccountID: Scalars['Int'];
+    nft: NonFungibleToken;
+    nftID: Scalars['String'];
+    nftType: Scalars['Int'];
+    nfts: Array<NonFungibleToken>;
+    receiver: Account;
+    receiverSlot: AccountNftSlot;
+    slots: Array<AccountNftSlot>;
+    storageID?: Maybe<Scalars['Int']>;
+    to?: Maybe<Scalars['String']>;
+    toAccountID?: Maybe<Scalars['Int']>;
+    toTokenID: Scalars['Int'];
+    tokenAccountID?: Maybe<Scalars['Int']>;
+    tokenAddress: Scalars['String'];
+    tokenBalances?: Maybe<Array<AccountTokenBalance>>;
+    type: Scalars['Int'];
+    /** Explicit copy of __typename to make it usable when filtering */
+    typename: TransactionType;
+  };
 
 export type MintNftAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -2770,7 +2774,6 @@ export type MintNftAccountsArgs = {
   where?: InputMaybe<Account_Filter>;
 };
 
-
 export type MintNftNftsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
@@ -2779,7 +2782,6 @@ export type MintNftNftsArgs = {
   where?: InputMaybe<NonFungibleToken_Filter>;
 };
 
-
 export type MintNftSlotsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
@@ -2787,7 +2789,6 @@ export type MintNftSlotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountNftSlot_Filter>;
 };
-
 
 export type MintNftTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -2815,6 +2816,7 @@ export type MintNft_Filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  and?: InputMaybe<Array<InputMaybe<MintNft_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -3022,6 +3024,7 @@ export type MintNft_Filter = {
   nfts_not?: InputMaybe<Array<Scalars['String']>>;
   nfts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   nfts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  or?: InputMaybe<Array<InputMaybe<MintNft_Filter>>>;
   receiver?: InputMaybe<Scalars['String']>;
   receiverSlot?: InputMaybe<Scalars['String']>;
   receiverSlot_?: InputMaybe<AccountNftSlot_Filter>;
@@ -3193,7 +3196,7 @@ export enum MintNft_OrderBy {
   TokenAddress = 'tokenAddress',
   TokenBalances = 'tokenBalances',
   Type = 'type',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export type NonFungibleToken = {
@@ -3215,7 +3218,6 @@ export type NonFungibleToken = {
   transactions: Array<TransactionNft>;
 };
 
-
 export type NonFungibleTokenSlotsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
@@ -3223,7 +3225,6 @@ export type NonFungibleTokenSlotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountNftSlot_Filter>;
 };
-
 
 export type NonFungibleTokenTransactionsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -3236,6 +3237,7 @@ export type NonFungibleTokenTransactionsArgs = {
 export type NonFungibleToken_Filter = {
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<NonFungibleToken_Filter>>>;
   creatorFeeBips?: InputMaybe<Scalars['Int']>;
   creatorFeeBips_gt?: InputMaybe<Scalars['Int']>;
   creatorFeeBips_gte?: InputMaybe<Scalars['Int']>;
@@ -3330,6 +3332,7 @@ export type NonFungibleToken_Filter = {
   nftType_lte?: InputMaybe<Scalars['Int']>;
   nftType_not?: InputMaybe<Scalars['Int']>;
   nftType_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  or?: InputMaybe<Array<InputMaybe<NonFungibleToken_Filter>>>;
   slots_?: InputMaybe<AccountNftSlot_Filter>;
   token?: InputMaybe<Scalars['String']>;
   token_contains?: InputMaybe<Scalars['String']>;
@@ -3364,13 +3367,13 @@ export enum NonFungibleToken_OrderBy {
   NftType = 'nftType',
   Slots = 'slots',
   Token = 'token',
-  Transactions = 'transactions'
+  Transactions = 'transactions',
 }
 
 /** Defines the order direction, either ascending or descending */
 export enum OrderDirection {
   Asc = 'asc',
-  Desc = 'desc'
+  Desc = 'desc',
 }
 
 export type OrderbookTrade = Transaction & {
@@ -3456,7 +3459,6 @@ export type OrderbookTrade = Transaction & {
   typename: TransactionType;
 };
 
-
 export type OrderbookTradeAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Account_OrderBy>;
@@ -3464,7 +3466,6 @@ export type OrderbookTradeAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Account_Filter>;
 };
-
 
 export type OrderbookTradeTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -3542,6 +3543,7 @@ export type OrderbookTrade_Filter = {
   accounts_not?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  and?: InputMaybe<Array<InputMaybe<OrderbookTrade_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -3719,6 +3721,7 @@ export type OrderbookTrade_Filter = {
   limitMaskB_lte?: InputMaybe<Scalars['BigInt']>;
   limitMaskB_not?: InputMaybe<Scalars['BigInt']>;
   limitMaskB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  or?: InputMaybe<Array<InputMaybe<OrderbookTrade_Filter>>>;
   orderDataA?: InputMaybe<Scalars['BigInt']>;
   orderDataA_gt?: InputMaybe<Scalars['BigInt']>;
   orderDataA_gte?: InputMaybe<Scalars['BigInt']>;
@@ -3933,7 +3936,7 @@ export enum OrderbookTrade_OrderBy {
   TokenIdas = 'tokenIDAS',
   TokenIdbb = 'tokenIDBB',
   TokenIdbs = 'tokenIDBS',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export type Pair = {
@@ -3966,7 +3969,6 @@ export type Pair = {
   weeklyEntities: Array<PairWeeklyData>;
 };
 
-
 export type PairDailyEntitiesArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<PairDailyData_OrderBy>;
@@ -3974,7 +3976,6 @@ export type PairDailyEntitiesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PairDailyData_Filter>;
 };
-
 
 export type PairSwapsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -3984,7 +3985,6 @@ export type PairSwapsArgs = {
   where?: InputMaybe<Swap_Filter>;
 };
 
-
 export type PairTradesArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<OrderbookTrade_OrderBy>;
@@ -3992,7 +3992,6 @@ export type PairTradesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<OrderbookTrade_Filter>;
 };
-
 
 export type PairWeeklyEntitiesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -4046,6 +4045,7 @@ export type PairDailyData = {
 export type PairDailyData_Filter = {
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<PairDailyData_Filter>>>;
   dayEnd?: InputMaybe<Scalars['BigInt']>;
   dayEnd_gt?: InputMaybe<Scalars['BigInt']>;
   dayEnd_gte?: InputMaybe<Scalars['BigInt']>;
@@ -4078,6 +4078,7 @@ export type PairDailyData_Filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  or?: InputMaybe<Array<InputMaybe<PairDailyData_Filter>>>;
   pair?: InputMaybe<Scalars['String']>;
   pair_?: InputMaybe<Pair_Filter>;
   pair_contains?: InputMaybe<Scalars['String']>;
@@ -4232,7 +4233,7 @@ export enum PairDailyData_OrderBy {
   TradedVolumeToken0Swap = 'tradedVolumeToken0Swap',
   TradedVolumeToken1 = 'tradedVolumeToken1',
   TradedVolumeToken1Orderbook = 'tradedVolumeToken1Orderbook',
-  TradedVolumeToken1Swap = 'tradedVolumeToken1Swap'
+  TradedVolumeToken1Swap = 'tradedVolumeToken1Swap',
 }
 
 export type PairWeeklyData = {
@@ -4279,6 +4280,7 @@ export type PairWeeklyData = {
 export type PairWeeklyData_Filter = {
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<PairWeeklyData_Filter>>>;
   id?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
   id_gte?: InputMaybe<Scalars['ID']>;
@@ -4287,6 +4289,7 @@ export type PairWeeklyData_Filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  or?: InputMaybe<Array<InputMaybe<PairWeeklyData_Filter>>>;
   pair?: InputMaybe<Scalars['String']>;
   pair_?: InputMaybe<Pair_Filter>;
   pair_contains?: InputMaybe<Scalars['String']>;
@@ -4465,12 +4468,13 @@ export enum PairWeeklyData_OrderBy {
   TradedVolumeToken1Swap = 'tradedVolumeToken1Swap',
   WeekEnd = 'weekEnd',
   WeekNumber = 'weekNumber',
-  WeekStart = 'weekStart'
+  WeekStart = 'weekStart',
 }
 
 export type Pair_Filter = {
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<Pair_Filter>>>;
   dailyEntities_?: InputMaybe<PairDailyData_Filter>;
   id?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
@@ -4488,6 +4492,7 @@ export type Pair_Filter = {
   internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  or?: InputMaybe<Array<InputMaybe<Pair_Filter>>>;
   swaps_?: InputMaybe<Swap_Filter>;
   token0?: InputMaybe<Scalars['String']>;
   token0Price?: InputMaybe<Scalars['BigInt']>;
@@ -4615,7 +4620,7 @@ export enum Pair_OrderBy {
   TradedVolumeToken1Orderbook = 'tradedVolumeToken1Orderbook',
   TradedVolumeToken1Swap = 'tradedVolumeToken1Swap',
   Trades = 'trades',
-  WeeklyEntities = 'weeklyEntities'
+  WeeklyEntities = 'weeklyEntities',
 }
 
 export type Pool = Account & {
@@ -4641,7 +4646,6 @@ export type Pool = Account & {
   transactions: Array<Transaction>;
 };
 
-
 export type PoolBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountTokenBalance_OrderBy>;
@@ -4650,7 +4654,6 @@ export type PoolBalancesArgs = {
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
 
-
 export type PoolSlotsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
@@ -4658,7 +4661,6 @@ export type PoolSlotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountNftSlot_Filter>;
 };
-
 
 export type PoolTransactionsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -4681,6 +4683,7 @@ export type Pool_Filter = {
   address_not?: InputMaybe<Scalars['Bytes']>;
   address_not_contains?: InputMaybe<Scalars['Bytes']>;
   address_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
+  and?: InputMaybe<Array<InputMaybe<Pool_Filter>>>;
   balances_?: InputMaybe<AccountTokenBalance_Filter>;
   createdAt?: InputMaybe<Scalars['BigDecimal']>;
   createdAtTransaction?: InputMaybe<Scalars['String']>;
@@ -4764,6 +4767,7 @@ export type Pool_Filter = {
   lastUpdatedAt_lte?: InputMaybe<Scalars['BigDecimal']>;
   lastUpdatedAt_not?: InputMaybe<Scalars['BigDecimal']>;
   lastUpdatedAt_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  or?: InputMaybe<Array<InputMaybe<Pool_Filter>>>;
   slots_?: InputMaybe<AccountNftSlot_Filter>;
   transactions_?: InputMaybe<Transaction_Filter>;
 };
@@ -4779,7 +4783,7 @@ export enum Pool_OrderBy {
   LastUpdatedAt = 'lastUpdatedAt',
   LastUpdatedAtTransaction = 'lastUpdatedAtTransaction',
   Slots = 'slots',
-  Transactions = 'transactions'
+  Transactions = 'transactions',
 }
 
 export type ProtocolAccount = Account & {
@@ -4804,7 +4808,6 @@ export type ProtocolAccount = Account & {
   transactions: Array<Transaction>;
 };
 
-
 export type ProtocolAccountBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountTokenBalance_OrderBy>;
@@ -4813,7 +4816,6 @@ export type ProtocolAccountBalancesArgs = {
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
 
-
 export type ProtocolAccountSlotsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
@@ -4821,7 +4823,6 @@ export type ProtocolAccountSlotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountNftSlot_Filter>;
 };
-
 
 export type ProtocolAccountTransactionsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -4844,6 +4845,7 @@ export type ProtocolAccount_Filter = {
   address_not?: InputMaybe<Scalars['Bytes']>;
   address_not_contains?: InputMaybe<Scalars['Bytes']>;
   address_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
+  and?: InputMaybe<Array<InputMaybe<ProtocolAccount_Filter>>>;
   balances_?: InputMaybe<AccountTokenBalance_Filter>;
   createdAt?: InputMaybe<Scalars['BigDecimal']>;
   createdAtTransaction?: InputMaybe<Scalars['String']>;
@@ -4919,6 +4921,7 @@ export type ProtocolAccount_Filter = {
   lastUpdatedAt_lte?: InputMaybe<Scalars['BigDecimal']>;
   lastUpdatedAt_not?: InputMaybe<Scalars['BigDecimal']>;
   lastUpdatedAt_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  or?: InputMaybe<Array<InputMaybe<ProtocolAccount_Filter>>>;
   slots_?: InputMaybe<AccountNftSlot_Filter>;
   transactions_?: InputMaybe<Transaction_Filter>;
 };
@@ -4933,7 +4936,7 @@ export enum ProtocolAccount_OrderBy {
   LastUpdatedAt = 'lastUpdatedAt',
   LastUpdatedAtTransaction = 'lastUpdatedAtTransaction',
   Slots = 'slots',
-  Transactions = 'transactions'
+  Transactions = 'transactions',
 }
 
 export type Proxy = {
@@ -4990,7 +4993,6 @@ export type Proxy = {
   withdrawalNFTCount: Scalars['BigInt'];
 };
 
-
 export type ProxyImplementationsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Exchange_OrderBy>;
@@ -5026,6 +5028,7 @@ export type Proxy_Filter = {
   ammUpdateCount_lte?: InputMaybe<Scalars['BigInt']>;
   ammUpdateCount_not?: InputMaybe<Scalars['BigInt']>;
   ammUpdateCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  and?: InputMaybe<Array<InputMaybe<Proxy_Filter>>>;
   blockCount?: InputMaybe<Scalars['BigInt']>;
   blockCount_gt?: InputMaybe<Scalars['BigInt']>;
   blockCount_gte?: InputMaybe<Scalars['BigInt']>;
@@ -5096,6 +5099,7 @@ export type Proxy_Filter = {
   nftMintCount_lte?: InputMaybe<Scalars['BigInt']>;
   nftMintCount_not?: InputMaybe<Scalars['BigInt']>;
   nftMintCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  or?: InputMaybe<Array<InputMaybe<Proxy_Filter>>>;
   orderbookTradeCount?: InputMaybe<Scalars['BigInt']>;
   orderbookTradeCount_gt?: InputMaybe<Scalars['BigInt']>;
   orderbookTradeCount_gte?: InputMaybe<Scalars['BigInt']>;
@@ -5235,7 +5239,7 @@ export enum Proxy_OrderBy {
   TransferNftCount = 'transferNFTCount',
   UserCount = 'userCount',
   WithdrawalCount = 'withdrawalCount',
-  WithdrawalNftCount = 'withdrawalNFTCount'
+  WithdrawalNftCount = 'withdrawalNFTCount',
 }
 
 export type Query = {
@@ -5316,11 +5320,9 @@ export type Query = {
   withdrawals: Array<Withdrawal>;
 };
 
-
 export type Query_MetaArgs = {
   block?: InputMaybe<Block_Height>;
 };
-
 
 export type QueryAccountArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5328,13 +5330,11 @@ export type QueryAccountArgs = {
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type QueryAccountNftSlotArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryAccountNftSlotsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5346,20 +5346,17 @@ export type QueryAccountNftSlotsArgs = {
   where?: InputMaybe<AccountNftSlot_Filter>;
 };
 
-
 export type QueryAccountTokenBalanceArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type QueryAccountTokenBalanceDailyDataArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryAccountTokenBalanceDailyDatasArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5371,13 +5368,11 @@ export type QueryAccountTokenBalanceDailyDatasArgs = {
   where?: InputMaybe<AccountTokenBalanceDailyData_Filter>;
 };
 
-
 export type QueryAccountTokenBalanceWeeklyDataArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryAccountTokenBalanceWeeklyDatasArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5389,7 +5384,6 @@ export type QueryAccountTokenBalanceWeeklyDatasArgs = {
   where?: InputMaybe<AccountTokenBalanceWeeklyData_Filter>;
 };
 
-
 export type QueryAccountTokenBalancesArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -5400,13 +5394,11 @@ export type QueryAccountTokenBalancesArgs = {
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
 
-
 export type QueryAccountUpdateArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryAccountUpdatesArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5418,7 +5410,6 @@ export type QueryAccountUpdatesArgs = {
   where?: InputMaybe<AccountUpdate_Filter>;
 };
 
-
 export type QueryAccountsArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -5429,13 +5420,11 @@ export type QueryAccountsArgs = {
   where?: InputMaybe<Account_Filter>;
 };
 
-
 export type QueryAddArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryAddsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5447,13 +5436,11 @@ export type QueryAddsArgs = {
   where?: InputMaybe<Add_Filter>;
 };
 
-
 export type QueryAmmUpdateArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryAmmUpdatesArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5465,13 +5452,11 @@ export type QueryAmmUpdatesArgs = {
   where?: InputMaybe<AmmUpdate_Filter>;
 };
 
-
 export type QueryBlockArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryBlocksArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5483,13 +5468,11 @@ export type QueryBlocksArgs = {
   where?: InputMaybe<Block_Filter>;
 };
 
-
 export type QueryDataNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryDataNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5501,13 +5484,11 @@ export type QueryDataNfTsArgs = {
   where?: InputMaybe<DataNft_Filter>;
 };
 
-
 export type QueryDepositArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryDepositsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5519,13 +5500,11 @@ export type QueryDepositsArgs = {
   where?: InputMaybe<Deposit_Filter>;
 };
 
-
 export type QueryExchangeArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryExchangesArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5537,13 +5516,11 @@ export type QueryExchangesArgs = {
   where?: InputMaybe<Exchange_Filter>;
 };
 
-
 export type QueryMintNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryMintNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5555,13 +5532,11 @@ export type QueryMintNfTsArgs = {
   where?: InputMaybe<MintNft_Filter>;
 };
 
-
 export type QueryNonFungibleTokenArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryNonFungibleTokensArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5573,13 +5548,11 @@ export type QueryNonFungibleTokensArgs = {
   where?: InputMaybe<NonFungibleToken_Filter>;
 };
 
-
 export type QueryOrderbookTradeArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryOrderbookTradesArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5591,20 +5564,17 @@ export type QueryOrderbookTradesArgs = {
   where?: InputMaybe<OrderbookTrade_Filter>;
 };
 
-
 export type QueryPairArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type QueryPairDailyDataArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryPairDailyDatasArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5616,13 +5586,11 @@ export type QueryPairDailyDatasArgs = {
   where?: InputMaybe<PairDailyData_Filter>;
 };
 
-
 export type QueryPairWeeklyDataArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryPairWeeklyDatasArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5634,7 +5602,6 @@ export type QueryPairWeeklyDatasArgs = {
   where?: InputMaybe<PairWeeklyData_Filter>;
 };
 
-
 export type QueryPairsArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -5645,13 +5612,11 @@ export type QueryPairsArgs = {
   where?: InputMaybe<Pair_Filter>;
 };
 
-
 export type QueryPoolArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryPoolsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5663,13 +5628,11 @@ export type QueryPoolsArgs = {
   where?: InputMaybe<Pool_Filter>;
 };
 
-
 export type QueryProtocolAccountArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryProtocolAccountsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5681,7 +5644,6 @@ export type QueryProtocolAccountsArgs = {
   where?: InputMaybe<ProtocolAccount_Filter>;
 };
 
-
 export type QueryProxiesArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -5692,20 +5654,17 @@ export type QueryProxiesArgs = {
   where?: InputMaybe<Proxy_Filter>;
 };
 
-
 export type QueryProxyArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type QueryRemoveArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryRemovesArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5717,13 +5676,11 @@ export type QueryRemovesArgs = {
   where?: InputMaybe<Remove_Filter>;
 };
 
-
 export type QuerySignatureVerificationArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QuerySignatureVerificationsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5735,20 +5692,17 @@ export type QuerySignatureVerificationsArgs = {
   where?: InputMaybe<SignatureVerification_Filter>;
 };
 
-
 export type QuerySwapArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type QuerySwapNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QuerySwapNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5760,7 +5714,6 @@ export type QuerySwapNfTsArgs = {
   where?: InputMaybe<SwapNft_Filter>;
 };
 
-
 export type QuerySwapsArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -5771,20 +5724,17 @@ export type QuerySwapsArgs = {
   where?: InputMaybe<Swap_Filter>;
 };
 
-
 export type QueryTokenArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type QueryTokenDailyDataArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryTokenDailyDatasArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5796,13 +5746,11 @@ export type QueryTokenDailyDatasArgs = {
   where?: InputMaybe<TokenDailyData_Filter>;
 };
 
-
 export type QueryTokenWeeklyDataArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryTokenWeeklyDatasArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5814,7 +5762,6 @@ export type QueryTokenWeeklyDatasArgs = {
   where?: InputMaybe<TokenWeeklyData_Filter>;
 };
 
-
 export type QueryTokensArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -5825,13 +5772,11 @@ export type QueryTokensArgs = {
   where?: InputMaybe<Token_Filter>;
 };
 
-
 export type QueryTradeNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryTradeNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5843,20 +5788,17 @@ export type QueryTradeNfTsArgs = {
   where?: InputMaybe<TradeNft_Filter>;
 };
 
-
 export type QueryTransactionArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type QueryTransactionNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryTransactionNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5868,7 +5810,6 @@ export type QueryTransactionNfTsArgs = {
   where?: InputMaybe<TransactionNft_Filter>;
 };
 
-
 export type QueryTransactionsArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -5879,20 +5820,17 @@ export type QueryTransactionsArgs = {
   where?: InputMaybe<Transaction_Filter>;
 };
 
-
 export type QueryTransferArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type QueryTransferNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryTransferNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5904,7 +5842,6 @@ export type QueryTransferNfTsArgs = {
   where?: InputMaybe<TransferNft_Filter>;
 };
 
-
 export type QueryTransfersArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -5915,13 +5852,11 @@ export type QueryTransfersArgs = {
   where?: InputMaybe<Transfer_Filter>;
 };
 
-
 export type QueryUserArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryUsersArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5933,20 +5868,17 @@ export type QueryUsersArgs = {
   where?: InputMaybe<User_Filter>;
 };
 
-
 export type QueryWithdrawalArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type QueryWithdrawalNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type QueryWithdrawalNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -5957,7 +5889,6 @@ export type QueryWithdrawalNfTsArgs = {
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<WithdrawalNft_Filter>;
 };
-
 
 export type QueryWithdrawalsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6012,7 +5943,6 @@ export type Remove = Transaction & {
   typename: TransactionType;
 };
 
-
 export type RemoveAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Account_OrderBy>;
@@ -6020,7 +5950,6 @@ export type RemoveAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Account_Filter>;
 };
-
 
 export type RemoveTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -6085,6 +6014,7 @@ export type Remove_Filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  and?: InputMaybe<Array<InputMaybe<Remove_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -6199,6 +6129,7 @@ export type Remove_Filter = {
   internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  or?: InputMaybe<Array<InputMaybe<Remove_Filter>>>;
   pool?: InputMaybe<Scalars['String']>;
   pool_?: InputMaybe<Pool_Filter>;
   pool_contains?: InputMaybe<Scalars['String']>;
@@ -6328,7 +6259,7 @@ export enum Remove_OrderBy {
   TokenBalances = 'tokenBalances',
   TokenId = 'tokenID',
   Type = 'type',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export type SignatureVerification = Transaction & {
@@ -6352,7 +6283,6 @@ export type SignatureVerification = Transaction & {
   verificationData: Scalars['String'];
 };
 
-
 export type SignatureVerificationAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Account_OrderBy>;
@@ -6360,7 +6290,6 @@ export type SignatureVerificationAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Account_Filter>;
 };
-
 
 export type SignatureVerificationTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -6409,6 +6338,7 @@ export type SignatureVerification_Filter = {
   accounts_not?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  and?: InputMaybe<Array<InputMaybe<SignatureVerification_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -6466,6 +6396,7 @@ export type SignatureVerification_Filter = {
   internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  or?: InputMaybe<Array<InputMaybe<SignatureVerification_Filter>>>;
   owner?: InputMaybe<Scalars['String']>;
   owner_contains?: InputMaybe<Scalars['String']>;
   owner_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -6530,7 +6461,7 @@ export enum SignatureVerification_OrderBy {
   Owner = 'owner',
   TokenBalances = 'tokenBalances',
   Typename = 'typename',
-  VerificationData = 'verificationData'
+  VerificationData = 'verificationData',
 }
 
 export type Subscription = {
@@ -6611,11 +6542,9 @@ export type Subscription = {
   withdrawals: Array<Withdrawal>;
 };
 
-
 export type Subscription_MetaArgs = {
   block?: InputMaybe<Block_Height>;
 };
-
 
 export type SubscriptionAccountArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6623,13 +6552,11 @@ export type SubscriptionAccountArgs = {
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type SubscriptionAccountNftSlotArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionAccountNftSlotsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6641,20 +6568,17 @@ export type SubscriptionAccountNftSlotsArgs = {
   where?: InputMaybe<AccountNftSlot_Filter>;
 };
 
-
 export type SubscriptionAccountTokenBalanceArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type SubscriptionAccountTokenBalanceDailyDataArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionAccountTokenBalanceDailyDatasArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6666,13 +6590,11 @@ export type SubscriptionAccountTokenBalanceDailyDatasArgs = {
   where?: InputMaybe<AccountTokenBalanceDailyData_Filter>;
 };
 
-
 export type SubscriptionAccountTokenBalanceWeeklyDataArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionAccountTokenBalanceWeeklyDatasArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6684,7 +6606,6 @@ export type SubscriptionAccountTokenBalanceWeeklyDatasArgs = {
   where?: InputMaybe<AccountTokenBalanceWeeklyData_Filter>;
 };
 
-
 export type SubscriptionAccountTokenBalancesArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -6695,13 +6616,11 @@ export type SubscriptionAccountTokenBalancesArgs = {
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
 
-
 export type SubscriptionAccountUpdateArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionAccountUpdatesArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6713,7 +6632,6 @@ export type SubscriptionAccountUpdatesArgs = {
   where?: InputMaybe<AccountUpdate_Filter>;
 };
 
-
 export type SubscriptionAccountsArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -6724,13 +6642,11 @@ export type SubscriptionAccountsArgs = {
   where?: InputMaybe<Account_Filter>;
 };
 
-
 export type SubscriptionAddArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionAddsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6742,13 +6658,11 @@ export type SubscriptionAddsArgs = {
   where?: InputMaybe<Add_Filter>;
 };
 
-
 export type SubscriptionAmmUpdateArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionAmmUpdatesArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6760,13 +6674,11 @@ export type SubscriptionAmmUpdatesArgs = {
   where?: InputMaybe<AmmUpdate_Filter>;
 };
 
-
 export type SubscriptionBlockArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionBlocksArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6778,13 +6690,11 @@ export type SubscriptionBlocksArgs = {
   where?: InputMaybe<Block_Filter>;
 };
 
-
 export type SubscriptionDataNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionDataNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6796,13 +6706,11 @@ export type SubscriptionDataNfTsArgs = {
   where?: InputMaybe<DataNft_Filter>;
 };
 
-
 export type SubscriptionDepositArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionDepositsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6814,13 +6722,11 @@ export type SubscriptionDepositsArgs = {
   where?: InputMaybe<Deposit_Filter>;
 };
 
-
 export type SubscriptionExchangeArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionExchangesArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6832,13 +6738,11 @@ export type SubscriptionExchangesArgs = {
   where?: InputMaybe<Exchange_Filter>;
 };
 
-
 export type SubscriptionMintNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionMintNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6850,13 +6754,11 @@ export type SubscriptionMintNfTsArgs = {
   where?: InputMaybe<MintNft_Filter>;
 };
 
-
 export type SubscriptionNonFungibleTokenArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionNonFungibleTokensArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6868,13 +6770,11 @@ export type SubscriptionNonFungibleTokensArgs = {
   where?: InputMaybe<NonFungibleToken_Filter>;
 };
 
-
 export type SubscriptionOrderbookTradeArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionOrderbookTradesArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6886,20 +6786,17 @@ export type SubscriptionOrderbookTradesArgs = {
   where?: InputMaybe<OrderbookTrade_Filter>;
 };
 
-
 export type SubscriptionPairArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type SubscriptionPairDailyDataArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionPairDailyDatasArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6911,13 +6808,11 @@ export type SubscriptionPairDailyDatasArgs = {
   where?: InputMaybe<PairDailyData_Filter>;
 };
 
-
 export type SubscriptionPairWeeklyDataArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionPairWeeklyDatasArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6929,7 +6824,6 @@ export type SubscriptionPairWeeklyDatasArgs = {
   where?: InputMaybe<PairWeeklyData_Filter>;
 };
 
-
 export type SubscriptionPairsArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -6940,13 +6834,11 @@ export type SubscriptionPairsArgs = {
   where?: InputMaybe<Pair_Filter>;
 };
 
-
 export type SubscriptionPoolArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionPoolsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6958,13 +6850,11 @@ export type SubscriptionPoolsArgs = {
   where?: InputMaybe<Pool_Filter>;
 };
 
-
 export type SubscriptionProtocolAccountArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionProtocolAccountsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -6976,7 +6866,6 @@ export type SubscriptionProtocolAccountsArgs = {
   where?: InputMaybe<ProtocolAccount_Filter>;
 };
 
-
 export type SubscriptionProxiesArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -6987,20 +6876,17 @@ export type SubscriptionProxiesArgs = {
   where?: InputMaybe<Proxy_Filter>;
 };
 
-
 export type SubscriptionProxyArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type SubscriptionRemoveArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionRemovesArgs = {
   block?: InputMaybe<Block_Height>;
@@ -7012,13 +6898,11 @@ export type SubscriptionRemovesArgs = {
   where?: InputMaybe<Remove_Filter>;
 };
 
-
 export type SubscriptionSignatureVerificationArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionSignatureVerificationsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -7030,20 +6914,17 @@ export type SubscriptionSignatureVerificationsArgs = {
   where?: InputMaybe<SignatureVerification_Filter>;
 };
 
-
 export type SubscriptionSwapArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type SubscriptionSwapNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionSwapNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -7055,7 +6936,6 @@ export type SubscriptionSwapNfTsArgs = {
   where?: InputMaybe<SwapNft_Filter>;
 };
 
-
 export type SubscriptionSwapsArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -7066,20 +6946,17 @@ export type SubscriptionSwapsArgs = {
   where?: InputMaybe<Swap_Filter>;
 };
 
-
 export type SubscriptionTokenArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type SubscriptionTokenDailyDataArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionTokenDailyDatasArgs = {
   block?: InputMaybe<Block_Height>;
@@ -7091,13 +6968,11 @@ export type SubscriptionTokenDailyDatasArgs = {
   where?: InputMaybe<TokenDailyData_Filter>;
 };
 
-
 export type SubscriptionTokenWeeklyDataArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionTokenWeeklyDatasArgs = {
   block?: InputMaybe<Block_Height>;
@@ -7109,7 +6984,6 @@ export type SubscriptionTokenWeeklyDatasArgs = {
   where?: InputMaybe<TokenWeeklyData_Filter>;
 };
 
-
 export type SubscriptionTokensArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -7120,13 +6994,11 @@ export type SubscriptionTokensArgs = {
   where?: InputMaybe<Token_Filter>;
 };
 
-
 export type SubscriptionTradeNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionTradeNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -7138,20 +7010,17 @@ export type SubscriptionTradeNfTsArgs = {
   where?: InputMaybe<TradeNft_Filter>;
 };
 
-
 export type SubscriptionTransactionArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type SubscriptionTransactionNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionTransactionNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -7163,7 +7032,6 @@ export type SubscriptionTransactionNfTsArgs = {
   where?: InputMaybe<TransactionNft_Filter>;
 };
 
-
 export type SubscriptionTransactionsArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -7174,20 +7042,17 @@ export type SubscriptionTransactionsArgs = {
   where?: InputMaybe<Transaction_Filter>;
 };
 
-
 export type SubscriptionTransferArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type SubscriptionTransferNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionTransferNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -7199,7 +7064,6 @@ export type SubscriptionTransferNfTsArgs = {
   where?: InputMaybe<TransferNft_Filter>;
 };
 
-
 export type SubscriptionTransfersArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -7210,13 +7074,11 @@ export type SubscriptionTransfersArgs = {
   where?: InputMaybe<Transfer_Filter>;
 };
 
-
 export type SubscriptionUserArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionUsersArgs = {
   block?: InputMaybe<Block_Height>;
@@ -7228,20 +7090,17 @@ export type SubscriptionUsersArgs = {
   where?: InputMaybe<User_Filter>;
 };
 
-
 export type SubscriptionWithdrawalArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-
 export type SubscriptionWithdrawalNftArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
-
 
 export type SubscriptionWithdrawalNfTsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -7252,7 +7111,6 @@ export type SubscriptionWithdrawalNfTsArgs = {
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<WithdrawalNft_Filter>;
 };
-
 
 export type SubscriptionWithdrawalsArgs = {
   block?: InputMaybe<Block_Height>;
@@ -7347,7 +7205,6 @@ export type Swap = Transaction & {
   typename: TransactionType;
 };
 
-
 export type SwapAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Account_OrderBy>;
@@ -7355,7 +7212,6 @@ export type SwapAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Account_Filter>;
 };
-
 
 export type SwapTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -7365,81 +7221,81 @@ export type SwapTokenBalancesArgs = {
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
 
-export type SwapNft = Transaction & TransactionNft & {
-  __typename?: 'SwapNFT';
-  /** Account entity A */
-  accountA: Account;
-  /** Account entity B */
-  accountB: Account;
-  /** [RAW L2 DATA] Account ID of account A */
-  accountIdA: Scalars['Int'];
-  /** [RAW L2 DATA] Account ID of account B */
-  accountIdB: Scalars['Int'];
-  accounts?: Maybe<Array<Account>>;
-  block: Block;
-  data: Scalars['String'];
-  /** [RAW L2 DATA] Float encoded value for fillSA represented as an Int */
-  fFillSA: Scalars['Int'];
-  /** [RAW L2 DATA] Float encoded value for fillSB represented as an Int */
-  fFillSB: Scalars['Int'];
-  /** [RAW L2 DATA] Fee bips for order A */
-  feeBipsA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Fee bips for order B */
-  feeBipsB: Scalars['BigInt'];
-  /** [RAW L2 DATA] Order data A */
-  feeBipsHiA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Order data B */
-  feeBipsHiB: Scalars['BigInt'];
-  /** [RAW L2 DATA] Is fill amount for buy or sell for order A */
-  fillAmountBorSA: Scalars['Boolean'];
-  /** [RAW L2 DATA] Is fill amount for buy or sell for order B */
-  fillAmountBorSB: Scalars['Boolean'];
-  /** [RAW L2 DATA] Amount of token B bought by Account A */
-  fillBA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Amount of token A bought by Account B */
-  fillBB: Scalars['BigInt'];
-  /** [RAW L2 DATA] Amount of token A sold by Account A */
-  fillSA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Amount of token B sold by Account B */
-  fillSB: Scalars['BigInt'];
-  id: Scalars['ID'];
-  /** ID represented as a BigDecimal for sorting purposes */
-  internalID: Scalars['BigDecimal'];
-  /** [RAW L2 DATA] Limit mask value for order A */
-  limitMaskA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Limit mask value for order B */
-  limitMaskB: Scalars['BigInt'];
-  nfts: Array<NonFungibleToken>;
-  /** [RAW L2 DATA] Order data A */
-  orderDataA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Order data B */
-  orderDataB: Scalars['BigInt'];
-  /** Target slot of NFT B for Account A. */
-  slotABuyer: AccountNftSlot;
-  /** Original slot of NFT A for Account A. */
-  slotASeller: AccountNftSlot;
-  /** Target slot of NFT A for Account B. */
-  slotBBuyer: AccountNftSlot;
-  /** Original slot of NFT B for Account B. */
-  slotBSeller: AccountNftSlot;
-  slots: Array<AccountNftSlot>;
-  /** [RAW L2 DATA] StorageID for account A */
-  storageIdA: Scalars['Int'];
-  /** [RAW L2 DATA] StorageID for account B */
-  storageIdB: Scalars['Int'];
-  tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-  /** [RAW L2 DATA] Token ID of token bought by account A. Should coincide with tokenIDBS */
-  tokenIDAB: Scalars['Int'];
-  /** [RAW L2 DATA] Token ID of token sold by account A */
-  tokenIDAS: Scalars['Int'];
-  /** [RAW L2 DATA] Token ID of token bought by account B. Should coincide with tokenIDAS */
-  tokenIDBB: Scalars['Int'];
-  /** [RAW L2 DATA] Token ID of token sold by account B */
-  tokenIDBS: Scalars['Int'];
-  /** Explicit copy of __typename to make it usable when filtering */
-  typename: TransactionType;
-};
-
+export type SwapNft = Transaction &
+  TransactionNft & {
+    __typename?: 'SwapNFT';
+    /** Account entity A */
+    accountA: Account;
+    /** Account entity B */
+    accountB: Account;
+    /** [RAW L2 DATA] Account ID of account A */
+    accountIdA: Scalars['Int'];
+    /** [RAW L2 DATA] Account ID of account B */
+    accountIdB: Scalars['Int'];
+    accounts?: Maybe<Array<Account>>;
+    block: Block;
+    data: Scalars['String'];
+    /** [RAW L2 DATA] Float encoded value for fillSA represented as an Int */
+    fFillSA: Scalars['Int'];
+    /** [RAW L2 DATA] Float encoded value for fillSB represented as an Int */
+    fFillSB: Scalars['Int'];
+    /** [RAW L2 DATA] Fee bips for order A */
+    feeBipsA: Scalars['BigInt'];
+    /** [RAW L2 DATA] Fee bips for order B */
+    feeBipsB: Scalars['BigInt'];
+    /** [RAW L2 DATA] Order data A */
+    feeBipsHiA: Scalars['BigInt'];
+    /** [RAW L2 DATA] Order data B */
+    feeBipsHiB: Scalars['BigInt'];
+    /** [RAW L2 DATA] Is fill amount for buy or sell for order A */
+    fillAmountBorSA: Scalars['Boolean'];
+    /** [RAW L2 DATA] Is fill amount for buy or sell for order B */
+    fillAmountBorSB: Scalars['Boolean'];
+    /** [RAW L2 DATA] Amount of token B bought by Account A */
+    fillBA: Scalars['BigInt'];
+    /** [RAW L2 DATA] Amount of token A bought by Account B */
+    fillBB: Scalars['BigInt'];
+    /** [RAW L2 DATA] Amount of token A sold by Account A */
+    fillSA: Scalars['BigInt'];
+    /** [RAW L2 DATA] Amount of token B sold by Account B */
+    fillSB: Scalars['BigInt'];
+    id: Scalars['ID'];
+    /** ID represented as a BigDecimal for sorting purposes */
+    internalID: Scalars['BigDecimal'];
+    /** [RAW L2 DATA] Limit mask value for order A */
+    limitMaskA: Scalars['BigInt'];
+    /** [RAW L2 DATA] Limit mask value for order B */
+    limitMaskB: Scalars['BigInt'];
+    nfts: Array<NonFungibleToken>;
+    /** [RAW L2 DATA] Order data A */
+    orderDataA: Scalars['BigInt'];
+    /** [RAW L2 DATA] Order data B */
+    orderDataB: Scalars['BigInt'];
+    /** Target slot of NFT B for Account A. */
+    slotABuyer: AccountNftSlot;
+    /** Original slot of NFT A for Account A. */
+    slotASeller: AccountNftSlot;
+    /** Target slot of NFT A for Account B. */
+    slotBBuyer: AccountNftSlot;
+    /** Original slot of NFT B for Account B. */
+    slotBSeller: AccountNftSlot;
+    slots: Array<AccountNftSlot>;
+    /** [RAW L2 DATA] StorageID for account A */
+    storageIdA: Scalars['Int'];
+    /** [RAW L2 DATA] StorageID for account B */
+    storageIdB: Scalars['Int'];
+    tokenBalances?: Maybe<Array<AccountTokenBalance>>;
+    /** [RAW L2 DATA] Token ID of token bought by account A. Should coincide with tokenIDBS */
+    tokenIDAB: Scalars['Int'];
+    /** [RAW L2 DATA] Token ID of token sold by account A */
+    tokenIDAS: Scalars['Int'];
+    /** [RAW L2 DATA] Token ID of token bought by account B. Should coincide with tokenIDAS */
+    tokenIDBB: Scalars['Int'];
+    /** [RAW L2 DATA] Token ID of token sold by account B */
+    tokenIDBS: Scalars['Int'];
+    /** Explicit copy of __typename to make it usable when filtering */
+    typename: TransactionType;
+  };
 
 export type SwapNftAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -7449,7 +7305,6 @@ export type SwapNftAccountsArgs = {
   where?: InputMaybe<Account_Filter>;
 };
 
-
 export type SwapNftNftsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
@@ -7458,7 +7313,6 @@ export type SwapNftNftsArgs = {
   where?: InputMaybe<NonFungibleToken_Filter>;
 };
 
-
 export type SwapNftSlotsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
@@ -7466,7 +7320,6 @@ export type SwapNftSlotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountNftSlot_Filter>;
 };
-
 
 export type SwapNftTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -7544,6 +7397,7 @@ export type SwapNft_Filter = {
   accounts_not?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  and?: InputMaybe<Array<InputMaybe<SwapNft_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -7712,6 +7566,7 @@ export type SwapNft_Filter = {
   nfts_not?: InputMaybe<Array<Scalars['String']>>;
   nfts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   nfts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  or?: InputMaybe<Array<InputMaybe<SwapNft_Filter>>>;
   orderDataA?: InputMaybe<Scalars['BigInt']>;
   orderDataA_gt?: InputMaybe<Scalars['BigInt']>;
   orderDataA_gte?: InputMaybe<Scalars['BigInt']>;
@@ -7919,7 +7774,7 @@ export enum SwapNft_OrderBy {
   TokenIdas = 'tokenIDAS',
   TokenIdbb = 'tokenIDBB',
   TokenIdbs = 'tokenIDBS',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export type Swap_Filter = {
@@ -7969,6 +7824,7 @@ export type Swap_Filter = {
   accounts_not?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  and?: InputMaybe<Array<InputMaybe<Swap_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -8146,6 +8002,7 @@ export type Swap_Filter = {
   limitMaskB_lte?: InputMaybe<Scalars['BigInt']>;
   limitMaskB_not?: InputMaybe<Scalars['BigInt']>;
   limitMaskB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  or?: InputMaybe<Array<InputMaybe<Swap_Filter>>>;
   orderDataA?: InputMaybe<Scalars['BigInt']>;
   orderDataA_gt?: InputMaybe<Scalars['BigInt']>;
   orderDataA_gte?: InputMaybe<Scalars['BigInt']>;
@@ -8381,7 +8238,7 @@ export enum Swap_OrderBy {
   TokenIdas = 'tokenIDAS',
   TokenIdbb = 'tokenIDBB',
   TokenIdbs = 'tokenIDBS',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export type Token = {
@@ -8407,7 +8264,6 @@ export type Token = {
   weeklyEntities: Array<TokenWeeklyData>;
 };
 
-
 export type TokenDailyEntitiesArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<TokenDailyData_OrderBy>;
@@ -8415,7 +8271,6 @@ export type TokenDailyEntitiesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<TokenDailyData_Filter>;
 };
-
 
 export type TokenWeeklyEntitiesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -8447,6 +8302,7 @@ export type TokenDailyData = {
 export type TokenDailyData_Filter = {
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<TokenDailyData_Filter>>>;
   dayEnd?: InputMaybe<Scalars['BigInt']>;
   dayEnd_gt?: InputMaybe<Scalars['BigInt']>;
   dayEnd_gte?: InputMaybe<Scalars['BigInt']>;
@@ -8479,6 +8335,7 @@ export type TokenDailyData_Filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  or?: InputMaybe<Array<InputMaybe<TokenDailyData_Filter>>>;
   token?: InputMaybe<Scalars['String']>;
   token_?: InputMaybe<Token_Filter>;
   token_contains?: InputMaybe<Scalars['String']>;
@@ -8534,7 +8391,7 @@ export enum TokenDailyData_OrderBy {
   Token = 'token',
   TradedVolume = 'tradedVolume',
   TradedVolumeOrderbook = 'tradedVolumeOrderbook',
-  TradedVolumeSwap = 'tradedVolumeSwap'
+  TradedVolumeSwap = 'tradedVolumeSwap',
 }
 
 export type TokenWeeklyData = {
@@ -8559,6 +8416,7 @@ export type TokenWeeklyData = {
 export type TokenWeeklyData_Filter = {
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<TokenWeeklyData_Filter>>>;
   id?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
   id_gte?: InputMaybe<Scalars['ID']>;
@@ -8567,6 +8425,7 @@ export type TokenWeeklyData_Filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  or?: InputMaybe<Array<InputMaybe<TokenWeeklyData_Filter>>>;
   token?: InputMaybe<Scalars['String']>;
   token_?: InputMaybe<Token_Filter>;
   token_contains?: InputMaybe<Scalars['String']>;
@@ -8646,7 +8505,7 @@ export enum TokenWeeklyData_OrderBy {
   TradedVolumeSwap = 'tradedVolumeSwap',
   WeekEnd = 'weekEnd',
   WeekNumber = 'weekNumber',
-  WeekStart = 'weekStart'
+  WeekStart = 'weekStart',
 }
 
 export type Token_Filter = {
@@ -8662,6 +8521,7 @@ export type Token_Filter = {
   address_not?: InputMaybe<Scalars['Bytes']>;
   address_not_contains?: InputMaybe<Scalars['Bytes']>;
   address_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
+  and?: InputMaybe<Array<InputMaybe<Token_Filter>>>;
   dailyEntities_?: InputMaybe<TokenDailyData_Filter>;
   decimals?: InputMaybe<Scalars['Int']>;
   decimals_gt?: InputMaybe<Scalars['Int']>;
@@ -8728,6 +8588,7 @@ export type Token_Filter = {
   name_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   name_starts_with?: InputMaybe<Scalars['String']>;
   name_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  or?: InputMaybe<Array<InputMaybe<Token_Filter>>>;
   symbol?: InputMaybe<Scalars['String']>;
   symbol_contains?: InputMaybe<Scalars['String']>;
   symbol_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -8787,92 +8648,92 @@ export enum Token_OrderBy {
   TradedVolume = 'tradedVolume',
   TradedVolumeOrderbook = 'tradedVolumeOrderbook',
   TradedVolumeSwap = 'tradedVolumeSwap',
-  WeeklyEntities = 'weeklyEntities'
+  WeeklyEntities = 'weeklyEntities',
 }
 
-export type TradeNft = Transaction & TransactionNft & {
-  __typename?: 'TradeNFT';
-  /** Account entity that bought the NFT */
-  accountBuyer: Account;
-  /** [RAW L2 DATA] Account ID of account A */
-  accountIdA: Scalars['Int'];
-  /** [RAW L2 DATA] Account ID of account B */
-  accountIdB: Scalars['Int'];
-  /** Account entity that sold the NFT */
-  accountSeller: Account;
-  accounts?: Maybe<Array<Account>>;
-  block: Block;
-  data: Scalars['String'];
-  /** [RAW L2 DATA] Float encoded value for fillSA represented as an Int */
-  fFillSA: Scalars['Int'];
-  /** [RAW L2 DATA] Float encoded value for fillSB represented as an Int */
-  fFillSB: Scalars['Int'];
-  /** [RAW L2 DATA] Fee bips for order A */
-  feeBipsA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Fee bips for order B */
-  feeBipsB: Scalars['BigInt'];
-  /** [RAW L2 DATA] Order data A */
-  feeBipsHiA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Order data B */
-  feeBipsHiB: Scalars['BigInt'];
-  /** [RAW L2 DATA] Fee paid by Account B with token A */
-  feeBuyer: Scalars['BigInt'];
-  /** [RAW L2 DATA] Fee paid by Account A with Token B */
-  feeSeller: Scalars['BigInt'];
-  /** [RAW L2 DATA] Is fill amount for buy or sell for order A */
-  fillAmountBorSA: Scalars['Boolean'];
-  /** [RAW L2 DATA] Is fill amount for buy or sell for order B */
-  fillAmountBorSB: Scalars['Boolean'];
-  /** [RAW L2 DATA] Amount of token B bought by Account A */
-  fillBA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Amount of token A bought by Account B */
-  fillBB: Scalars['BigInt'];
-  /** [RAW L2 DATA] Amount of token A sold by Account A */
-  fillSA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Amount of token B sold by Account B */
-  fillSB: Scalars['BigInt'];
-  id: Scalars['ID'];
-  /** ID represented as a BigDecimal for sorting purposes */
-  internalID: Scalars['BigDecimal'];
-  /** [RAW L2 DATA] Limit mask value for order A */
-  limitMaskA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Limit mask value for order B */
-  limitMaskB: Scalars['BigInt'];
-  nfts: Array<NonFungibleToken>;
-  /** [RAW L2 DATA] Order data A */
-  orderDataA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Order data B */
-  orderDataB: Scalars['BigInt'];
-  /** [RAW L2 DATA] Protocol fees paid by Account B */
-  protocolFeeBuyer: Scalars['BigInt'];
-  /** [RAW L2 DATA] Protocol fees paid by Account A */
-  protocolFeeSeller: Scalars['BigInt'];
-  /** Price paid for the NFT during this trade. Expressed as a BigInt. Denominated in units of token */
-  realizedNFTPrice: Scalars['BigInt'];
-  /** Target slot of the NFT being traded. Represents the slot where the NFT is stored once transferred to the buyer */
-  slotBuyer: AccountNftSlot;
-  /** Original slot of the NFT being traded. Represents the slot where the NFT was stored for the seller */
-  slotSeller: AccountNftSlot;
-  slots: Array<AccountNftSlot>;
-  /** [RAW L2 DATA] StorageID for account A */
-  storageIdA: Scalars['Int'];
-  /** [RAW L2 DATA] StorageID for account B */
-  storageIdB: Scalars['Int'];
-  /** Token used to pay for the NFT and fees */
-  token: Token;
-  tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-  /** [RAW L2 DATA] Token ID of token bought by account A. Should coincide with tokenIDBS */
-  tokenIDAB: Scalars['Int'];
-  /** [RAW L2 DATA] Token ID of token sold by account A */
-  tokenIDAS: Scalars['Int'];
-  /** [RAW L2 DATA] Token ID of token bought by account B. Should coincide with tokenIDAS */
-  tokenIDBB: Scalars['Int'];
-  /** [RAW L2 DATA] Token ID of token sold by account B */
-  tokenIDBS: Scalars['Int'];
-  /** Explicit copy of __typename to make it usable when filtering */
-  typename: TransactionType;
-};
-
+export type TradeNft = Transaction &
+  TransactionNft & {
+    __typename?: 'TradeNFT';
+    /** Account entity that bought the NFT */
+    accountBuyer: Account;
+    /** [RAW L2 DATA] Account ID of account A */
+    accountIdA: Scalars['Int'];
+    /** [RAW L2 DATA] Account ID of account B */
+    accountIdB: Scalars['Int'];
+    /** Account entity that sold the NFT */
+    accountSeller: Account;
+    accounts?: Maybe<Array<Account>>;
+    block: Block;
+    data: Scalars['String'];
+    /** [RAW L2 DATA] Float encoded value for fillSA represented as an Int */
+    fFillSA: Scalars['Int'];
+    /** [RAW L2 DATA] Float encoded value for fillSB represented as an Int */
+    fFillSB: Scalars['Int'];
+    /** [RAW L2 DATA] Fee bips for order A */
+    feeBipsA: Scalars['BigInt'];
+    /** [RAW L2 DATA] Fee bips for order B */
+    feeBipsB: Scalars['BigInt'];
+    /** [RAW L2 DATA] Order data A */
+    feeBipsHiA: Scalars['BigInt'];
+    /** [RAW L2 DATA] Order data B */
+    feeBipsHiB: Scalars['BigInt'];
+    /** [RAW L2 DATA] Fee paid by Account B with token A */
+    feeBuyer: Scalars['BigInt'];
+    /** [RAW L2 DATA] Fee paid by Account A with Token B */
+    feeSeller: Scalars['BigInt'];
+    /** [RAW L2 DATA] Is fill amount for buy or sell for order A */
+    fillAmountBorSA: Scalars['Boolean'];
+    /** [RAW L2 DATA] Is fill amount for buy or sell for order B */
+    fillAmountBorSB: Scalars['Boolean'];
+    /** [RAW L2 DATA] Amount of token B bought by Account A */
+    fillBA: Scalars['BigInt'];
+    /** [RAW L2 DATA] Amount of token A bought by Account B */
+    fillBB: Scalars['BigInt'];
+    /** [RAW L2 DATA] Amount of token A sold by Account A */
+    fillSA: Scalars['BigInt'];
+    /** [RAW L2 DATA] Amount of token B sold by Account B */
+    fillSB: Scalars['BigInt'];
+    id: Scalars['ID'];
+    /** ID represented as a BigDecimal for sorting purposes */
+    internalID: Scalars['BigDecimal'];
+    /** [RAW L2 DATA] Limit mask value for order A */
+    limitMaskA: Scalars['BigInt'];
+    /** [RAW L2 DATA] Limit mask value for order B */
+    limitMaskB: Scalars['BigInt'];
+    nfts: Array<NonFungibleToken>;
+    /** [RAW L2 DATA] Order data A */
+    orderDataA: Scalars['BigInt'];
+    /** [RAW L2 DATA] Order data B */
+    orderDataB: Scalars['BigInt'];
+    /** [RAW L2 DATA] Protocol fees paid by Account B */
+    protocolFeeBuyer: Scalars['BigInt'];
+    /** [RAW L2 DATA] Protocol fees paid by Account A */
+    protocolFeeSeller: Scalars['BigInt'];
+    /** Price paid for the NFT during this trade. Expressed as a BigInt. Denominated in units of token */
+    realizedNFTPrice: Scalars['BigInt'];
+    /** Target slot of the NFT being traded. Represents the slot where the NFT is stored once transferred to the buyer */
+    slotBuyer: AccountNftSlot;
+    /** Original slot of the NFT being traded. Represents the slot where the NFT was stored for the seller */
+    slotSeller: AccountNftSlot;
+    slots: Array<AccountNftSlot>;
+    /** [RAW L2 DATA] StorageID for account A */
+    storageIdA: Scalars['Int'];
+    /** [RAW L2 DATA] StorageID for account B */
+    storageIdB: Scalars['Int'];
+    /** Token used to pay for the NFT and fees */
+    token: Token;
+    tokenBalances?: Maybe<Array<AccountTokenBalance>>;
+    /** [RAW L2 DATA] Token ID of token bought by account A. Should coincide with tokenIDBS */
+    tokenIDAB: Scalars['Int'];
+    /** [RAW L2 DATA] Token ID of token sold by account A */
+    tokenIDAS: Scalars['Int'];
+    /** [RAW L2 DATA] Token ID of token bought by account B. Should coincide with tokenIDAS */
+    tokenIDBB: Scalars['Int'];
+    /** [RAW L2 DATA] Token ID of token sold by account B */
+    tokenIDBS: Scalars['Int'];
+    /** Explicit copy of __typename to make it usable when filtering */
+    typename: TransactionType;
+  };
 
 export type TradeNftAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -8882,7 +8743,6 @@ export type TradeNftAccountsArgs = {
   where?: InputMaybe<Account_Filter>;
 };
 
-
 export type TradeNftNftsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
@@ -8891,7 +8751,6 @@ export type TradeNftNftsArgs = {
   where?: InputMaybe<NonFungibleToken_Filter>;
 };
 
-
 export type TradeNftSlotsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
@@ -8899,7 +8758,6 @@ export type TradeNftSlotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountNftSlot_Filter>;
 };
-
 
 export type TradeNftTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -8977,6 +8835,7 @@ export type TradeNft_Filter = {
   accounts_not?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  and?: InputMaybe<Array<InputMaybe<TradeNft_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -9161,6 +9020,7 @@ export type TradeNft_Filter = {
   nfts_not?: InputMaybe<Array<Scalars['String']>>;
   nfts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   nfts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  or?: InputMaybe<Array<InputMaybe<TradeNft_Filter>>>;
   orderDataA?: InputMaybe<Scalars['BigInt']>;
   orderDataA_gt?: InputMaybe<Scalars['BigInt']>;
   orderDataA_gte?: InputMaybe<Scalars['BigInt']>;
@@ -9375,7 +9235,7 @@ export enum TradeNft_OrderBy {
   TokenIdas = 'tokenIDAS',
   TokenIdbb = 'tokenIDBB',
   TokenIdbs = 'tokenIDBS',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export type Transaction = {
@@ -9393,7 +9253,6 @@ export type Transaction = {
   typename: TransactionType;
 };
 
-
 export type TransactionAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Account_OrderBy>;
@@ -9401,7 +9260,6 @@ export type TransactionAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Account_Filter>;
 };
-
 
 export type TransactionTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -9426,7 +9284,6 @@ export type TransactionNft = {
   typename: TransactionType;
 };
 
-
 export type TransactionNftNftsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
@@ -9434,7 +9291,6 @@ export type TransactionNftNftsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<NonFungibleToken_Filter>;
 };
-
 
 export type TransactionNftSlotsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -9447,6 +9303,7 @@ export type TransactionNftSlotsArgs = {
 export type TransactionNft_Filter = {
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<TransactionNft_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -9511,6 +9368,7 @@ export type TransactionNft_Filter = {
   nfts_not?: InputMaybe<Array<Scalars['String']>>;
   nfts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   nfts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  or?: InputMaybe<Array<InputMaybe<TransactionNft_Filter>>>;
   slots?: InputMaybe<Array<Scalars['String']>>;
   slots_?: InputMaybe<AccountNftSlot_Filter>;
   slots_contains?: InputMaybe<Array<Scalars['String']>>;
@@ -9531,7 +9389,7 @@ export enum TransactionNft_OrderBy {
   InternalId = 'internalID',
   Nfts = 'nfts',
   Slots = 'slots',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export enum TransactionType {
@@ -9550,7 +9408,7 @@ export enum TransactionType {
   Transfer = 'Transfer',
   TransferNft = 'TransferNFT',
   Withdrawal = 'Withdrawal',
-  WithdrawalNft = 'WithdrawalNFT'
+  WithdrawalNft = 'WithdrawalNFT',
 }
 
 export type Transaction_Filter = {
@@ -9563,6 +9421,7 @@ export type Transaction_Filter = {
   accounts_not?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  and?: InputMaybe<Array<InputMaybe<Transaction_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -9620,6 +9479,7 @@ export type Transaction_Filter = {
   internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  or?: InputMaybe<Array<InputMaybe<Transaction_Filter>>>;
   tokenBalances?: InputMaybe<Array<Scalars['String']>>;
   tokenBalances_?: InputMaybe<AccountTokenBalance_Filter>;
   tokenBalances_contains?: InputMaybe<Array<Scalars['String']>>;
@@ -9640,7 +9500,7 @@ export enum Transaction_OrderBy {
   Id = 'id',
   InternalId = 'internalID',
   TokenBalances = 'tokenBalances',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export type Transfer = Transaction & {
@@ -9686,7 +9546,6 @@ export type Transfer = Transaction & {
   typename: TransactionType;
 };
 
-
 export type TransferAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Account_OrderBy>;
@@ -9694,7 +9553,6 @@ export type TransferAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Account_Filter>;
 };
-
 
 export type TransferTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -9704,53 +9562,53 @@ export type TransferTokenBalancesArgs = {
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
 
-export type TransferNft = Transaction & TransactionNft & {
-  __typename?: 'TransferNFT';
-  /** [RAW L2 DATA] Account ID for the account that sent the tokens */
-  accountFromID: Scalars['Int'];
-  /** [RAW L2 DATA] Account ID for the account that received the tokens */
-  accountToID: Scalars['Int'];
-  accounts?: Maybe<Array<Account>>;
-  /** [RAW L2 DATA] Amount transfered */
-  amount: Scalars['BigInt'];
-  block: Block;
-  data: Scalars['String'];
-  /** [RAW L2 DATA] Fee amount paid */
-  fee: Scalars['BigInt'];
-  /** Token entity with information about the token used to pay the operator fees */
-  feeToken: Token;
-  /** [RAW L2 DATA] Token ID of token used to pay the operator fees */
-  feeTokenID: Scalars['Int'];
-  /** [RAW L2 DATA] Address string of the account that sent the tokens */
-  from: Scalars['String'];
-  /** Account entity that sent the tokens */
-  fromAccount: Account;
-  /** Slot entity from where the NFT is moved */
-  fromSlot: AccountNftSlot;
-  id: Scalars['ID'];
-  /** ID represented as a BigDecimal for sorting purposes */
-  internalID: Scalars['BigDecimal'];
-  nfts: Array<NonFungibleToken>;
-  slots: Array<AccountNftSlot>;
-  /** [RAW L2 DATA] StorageID */
-  storageID: Scalars['Int'];
-  /** [RAW L2 DATA] Address string of the account that received the tokens */
-  to: Scalars['String'];
-  /** Account entity that received the tokens */
-  toAccount: Account;
-  /** Slot entity to where the NFT is moved */
-  toSlot: AccountNftSlot;
-  /** [RAW L2 DATA] Token ID of the token transfered. Mainly used for NFT transfers */
-  toTokenID: Scalars['Int'];
-  tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-  /** [RAW L2 DATA] Token ID of the token transfered */
-  tokenID: Scalars['Int'];
-  /** [RAW L2 DATA] Transfer type */
-  type: Scalars['Int'];
-  /** Explicit copy of __typename to make it usable when filtering */
-  typename: TransactionType;
-};
-
+export type TransferNft = Transaction &
+  TransactionNft & {
+    __typename?: 'TransferNFT';
+    /** [RAW L2 DATA] Account ID for the account that sent the tokens */
+    accountFromID: Scalars['Int'];
+    /** [RAW L2 DATA] Account ID for the account that received the tokens */
+    accountToID: Scalars['Int'];
+    accounts?: Maybe<Array<Account>>;
+    /** [RAW L2 DATA] Amount transfered */
+    amount: Scalars['BigInt'];
+    block: Block;
+    data: Scalars['String'];
+    /** [RAW L2 DATA] Fee amount paid */
+    fee: Scalars['BigInt'];
+    /** Token entity with information about the token used to pay the operator fees */
+    feeToken: Token;
+    /** [RAW L2 DATA] Token ID of token used to pay the operator fees */
+    feeTokenID: Scalars['Int'];
+    /** [RAW L2 DATA] Address string of the account that sent the tokens */
+    from: Scalars['String'];
+    /** Account entity that sent the tokens */
+    fromAccount: Account;
+    /** Slot entity from where the NFT is moved */
+    fromSlot: AccountNftSlot;
+    id: Scalars['ID'];
+    /** ID represented as a BigDecimal for sorting purposes */
+    internalID: Scalars['BigDecimal'];
+    nfts: Array<NonFungibleToken>;
+    slots: Array<AccountNftSlot>;
+    /** [RAW L2 DATA] StorageID */
+    storageID: Scalars['Int'];
+    /** [RAW L2 DATA] Address string of the account that received the tokens */
+    to: Scalars['String'];
+    /** Account entity that received the tokens */
+    toAccount: Account;
+    /** Slot entity to where the NFT is moved */
+    toSlot: AccountNftSlot;
+    /** [RAW L2 DATA] Token ID of the token transfered. Mainly used for NFT transfers */
+    toTokenID: Scalars['Int'];
+    tokenBalances?: Maybe<Array<AccountTokenBalance>>;
+    /** [RAW L2 DATA] Token ID of the token transfered */
+    tokenID: Scalars['Int'];
+    /** [RAW L2 DATA] Transfer type */
+    type: Scalars['Int'];
+    /** Explicit copy of __typename to make it usable when filtering */
+    typename: TransactionType;
+  };
 
 export type TransferNftAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -9760,7 +9618,6 @@ export type TransferNftAccountsArgs = {
   where?: InputMaybe<Account_Filter>;
 };
 
-
 export type TransferNftNftsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
@@ -9769,7 +9626,6 @@ export type TransferNftNftsArgs = {
   where?: InputMaybe<NonFungibleToken_Filter>;
 };
 
-
 export type TransferNftSlotsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
@@ -9777,7 +9633,6 @@ export type TransferNftSlotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountNftSlot_Filter>;
 };
-
 
 export type TransferNftTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -9821,6 +9676,7 @@ export type TransferNft_Filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  and?: InputMaybe<Array<InputMaybe<TransferNft_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -9984,6 +9840,7 @@ export type TransferNft_Filter = {
   nfts_not?: InputMaybe<Array<Scalars['String']>>;
   nfts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   nfts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
+  or?: InputMaybe<Array<InputMaybe<TransferNft_Filter>>>;
   slots?: InputMaybe<Array<Scalars['String']>>;
   slots_?: InputMaybe<AccountNftSlot_Filter>;
   slots_contains?: InputMaybe<Array<Scalars['String']>>;
@@ -10123,7 +9980,7 @@ export enum TransferNft_OrderBy {
   TokenBalances = 'tokenBalances',
   TokenId = 'tokenID',
   Type = 'type',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export type Transfer_Filter = {
@@ -10160,6 +10017,7 @@ export type Transfer_Filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  and?: InputMaybe<Array<InputMaybe<Transfer_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -10295,6 +10153,7 @@ export type Transfer_Filter = {
   internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  or?: InputMaybe<Array<InputMaybe<Transfer_Filter>>>;
   storageID?: InputMaybe<Scalars['Int']>;
   storageID_gt?: InputMaybe<Scalars['Int']>;
   storageID_gte?: InputMaybe<Scalars['Int']>;
@@ -10424,7 +10283,7 @@ export enum Transfer_OrderBy {
   TokenBalances = 'tokenBalances',
   TokenId = 'tokenID',
   Type = 'type',
-  Typename = 'typename'
+  Typename = 'typename',
 }
 
 export type User = Account & {
@@ -10451,7 +10310,6 @@ export type User = Account & {
   transactions: Array<Transaction>;
 };
 
-
 export type UserBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountTokenBalance_OrderBy>;
@@ -10460,7 +10318,6 @@ export type UserBalancesArgs = {
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
 
-
 export type UserSlotsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
@@ -10468,7 +10325,6 @@ export type UserSlotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountNftSlot_Filter>;
 };
-
 
 export type UserTransactionsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -10491,6 +10347,7 @@ export type User_Filter = {
   address_not?: InputMaybe<Scalars['Bytes']>;
   address_not_contains?: InputMaybe<Scalars['Bytes']>;
   address_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
+  and?: InputMaybe<Array<InputMaybe<User_Filter>>>;
   balances_?: InputMaybe<AccountTokenBalance_Filter>;
   createdAt?: InputMaybe<Scalars['BigDecimal']>;
   createdAtTransaction?: InputMaybe<Scalars['String']>;
@@ -10566,6 +10423,7 @@ export type User_Filter = {
   lastUpdatedAt_lte?: InputMaybe<Scalars['BigDecimal']>;
   lastUpdatedAt_not?: InputMaybe<Scalars['BigDecimal']>;
   lastUpdatedAt_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
+  or?: InputMaybe<Array<InputMaybe<User_Filter>>>;
   publicKey?: InputMaybe<Scalars['String']>;
   publicKey_contains?: InputMaybe<Scalars['String']>;
   publicKey_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -10601,7 +10459,7 @@ export enum User_OrderBy {
   LastUpdatedAtTransaction = 'lastUpdatedAtTransaction',
   PublicKey = 'publicKey',
   Slots = 'slots',
-  Transactions = 'transactions'
+  Transactions = 'transactions',
 }
 
 export type Withdrawal = Transaction & {
@@ -10643,7 +10501,6 @@ export type Withdrawal = Transaction & {
   valid: Scalars['Boolean'];
 };
 
-
 export type WithdrawalAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Account_OrderBy>;
@@ -10651,7 +10508,6 @@ export type WithdrawalAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Account_Filter>;
 };
-
 
 export type WithdrawalTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -10661,47 +10517,47 @@ export type WithdrawalTokenBalancesArgs = {
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
 
-export type WithdrawalNft = Transaction & TransactionNft & {
-  __typename?: 'WithdrawalNFT';
-  accounts?: Maybe<Array<Account>>;
-  /** [RAW L2 DATA] Amount withdrawn */
-  amount: Scalars['BigInt'];
-  block: Block;
-  data: Scalars['String'];
-  /** [RAW L2 DATA] Fee amount paid */
-  fee: Scalars['BigInt'];
-  /** Token entity with information about the token used to pay the operator fees */
-  feeToken?: Maybe<Token>;
-  /** [RAW L2 DATA] Token ID of token used to pay the operator fees */
-  feeTokenID: Scalars['Int'];
-  /** [RAW L2 DATA] Address string of the account that withdrew */
-  from: Scalars['String'];
-  /** Account entity that withdrew the tokens */
-  fromAccount: Account;
-  /** [RAW L2 DATA] Account ID for the account that withdrew */
-  fromAccountID: Scalars['Int'];
-  id: Scalars['ID'];
-  /** ID represented as a BigDecimal for sorting purposes */
-  internalID: Scalars['BigDecimal'];
-  nfts: Array<NonFungibleToken>;
-  /** [RAW L2 DATA] On-chain data hash */
-  onchainDataHash: Scalars['String'];
-  /** Slot entity with information about the withdrawn NFT */
-  slot: AccountNftSlot;
-  slots: Array<AccountNftSlot>;
-  /** [RAW L2 DATA] StorageID */
-  storageID: Scalars['Int'];
-  tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-  /** [RAW L2 DATA] Token ID of the withdrawn token */
-  tokenID: Scalars['Int'];
-  /** [RAW L2 DATA] Withdrawal type */
-  type: Scalars['Int'];
-  /** Explicit copy of __typename to make it usable when filtering */
-  typename: TransactionType;
-  /** Whether the withdrawal transaction is valid. Only type 3 withdrawals are invalid. */
-  valid: Scalars['Boolean'];
-};
-
+export type WithdrawalNft = Transaction &
+  TransactionNft & {
+    __typename?: 'WithdrawalNFT';
+    accounts?: Maybe<Array<Account>>;
+    /** [RAW L2 DATA] Amount withdrawn */
+    amount: Scalars['BigInt'];
+    block: Block;
+    data: Scalars['String'];
+    /** [RAW L2 DATA] Fee amount paid */
+    fee: Scalars['BigInt'];
+    /** Token entity with information about the token used to pay the operator fees */
+    feeToken?: Maybe<Token>;
+    /** [RAW L2 DATA] Token ID of token used to pay the operator fees */
+    feeTokenID: Scalars['Int'];
+    /** [RAW L2 DATA] Address string of the account that withdrew */
+    from: Scalars['String'];
+    /** Account entity that withdrew the tokens */
+    fromAccount: Account;
+    /** [RAW L2 DATA] Account ID for the account that withdrew */
+    fromAccountID: Scalars['Int'];
+    id: Scalars['ID'];
+    /** ID represented as a BigDecimal for sorting purposes */
+    internalID: Scalars['BigDecimal'];
+    nfts: Array<NonFungibleToken>;
+    /** [RAW L2 DATA] On-chain data hash */
+    onchainDataHash: Scalars['String'];
+    /** Slot entity with information about the withdrawn NFT */
+    slot: AccountNftSlot;
+    slots: Array<AccountNftSlot>;
+    /** [RAW L2 DATA] StorageID */
+    storageID: Scalars['Int'];
+    tokenBalances?: Maybe<Array<AccountTokenBalance>>;
+    /** [RAW L2 DATA] Token ID of the withdrawn token */
+    tokenID: Scalars['Int'];
+    /** [RAW L2 DATA] Withdrawal type */
+    type: Scalars['Int'];
+    /** Explicit copy of __typename to make it usable when filtering */
+    typename: TransactionType;
+    /** Whether the withdrawal transaction is valid. Only type 3 withdrawals are invalid. */
+    valid: Scalars['Boolean'];
+  };
 
 export type WithdrawalNftAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -10711,7 +10567,6 @@ export type WithdrawalNftAccountsArgs = {
   where?: InputMaybe<Account_Filter>;
 };
 
-
 export type WithdrawalNftNftsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
@@ -10720,7 +10575,6 @@ export type WithdrawalNftNftsArgs = {
   where?: InputMaybe<NonFungibleToken_Filter>;
 };
 
-
 export type WithdrawalNftSlotsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
@@ -10728,7 +10582,6 @@ export type WithdrawalNftSlotsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountNftSlot_Filter>;
 };
-
 
 export type WithdrawalNftTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
@@ -10756,6 +10609,7 @@ export type WithdrawalNft_Filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  and?: InputMaybe<Array<InputMaybe<WithdrawalNft_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -10926,6 +10780,7 @@ export type WithdrawalNft_Filter = {
   onchainDataHash_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   onchainDataHash_starts_with?: InputMaybe<Scalars['String']>;
   onchainDataHash_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  or?: InputMaybe<Array<InputMaybe<WithdrawalNft_Filter>>>;
   slot?: InputMaybe<Scalars['String']>;
   slot_?: InputMaybe<AccountNftSlot_Filter>;
   slot_contains?: InputMaybe<Scalars['String']>;
@@ -11017,7 +10872,7 @@ export enum WithdrawalNft_OrderBy {
   TokenId = 'tokenID',
   Type = 'type',
   Typename = 'typename',
-  Valid = 'valid'
+  Valid = 'valid',
 }
 
 export type Withdrawal_Filter = {
@@ -11038,6 +10893,7 @@ export type Withdrawal_Filter = {
   amount_lte?: InputMaybe<Scalars['BigInt']>;
   amount_not?: InputMaybe<Scalars['BigInt']>;
   amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  and?: InputMaybe<Array<InputMaybe<Withdrawal_Filter>>>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -11201,6 +11057,7 @@ export type Withdrawal_Filter = {
   onchainDataHash_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   onchainDataHash_starts_with?: InputMaybe<Scalars['String']>;
   onchainDataHash_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  or?: InputMaybe<Array<InputMaybe<Withdrawal_Filter>>>;
   storageID?: InputMaybe<Scalars['Int']>;
   storageID_gt?: InputMaybe<Scalars['Int']>;
   storageID_gte?: InputMaybe<Scalars['Int']>;
@@ -11283,7 +11140,7 @@ export enum Withdrawal_OrderBy {
   TokenId = 'tokenID',
   Type = 'type',
   Typename = 'typename',
-  Valid = 'valid'
+  Valid = 'valid',
 }
 
 export type _Block_ = {
@@ -11317,80 +11174,546 @@ export enum _SubgraphErrorPolicy_ {
   /** Data will be returned even if the subgraph has indexing errors */
   Allow = 'allow',
   /** If the subgraph has indexing errors, data will be omitted. The default. */
-  Deny = 'deny'
+  Deny = 'deny',
 }
 
-type AccountFragment_Pool_Fragment = { __typename?: 'Pool', id: string, address: any };
+type AccountFragment_Pool_Fragment = { __typename?: 'Pool'; id: string; address: any };
 
-type AccountFragment_ProtocolAccount_Fragment = { __typename?: 'ProtocolAccount', id: string, address: any };
+type AccountFragment_ProtocolAccount_Fragment = { __typename?: 'ProtocolAccount'; id: string; address: any };
 
-type AccountFragment_User_Fragment = { __typename?: 'User', id: string, address: any };
+type AccountFragment_User_Fragment = { __typename?: 'User'; id: string; address: any };
 
-export type AccountFragmentFragment = AccountFragment_Pool_Fragment | AccountFragment_ProtocolAccount_Fragment | AccountFragment_User_Fragment;
+export type AccountFragmentFragment =
+  | AccountFragment_Pool_Fragment
+  | AccountFragment_ProtocolAccount_Fragment
+  | AccountFragment_User_Fragment;
 
-export type TokenFragmentFragment = { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any };
+export type TokenFragmentFragment = {
+  __typename?: 'Token';
+  id: string;
+  name: string;
+  symbol: string;
+  decimals: number;
+  address: any;
+};
 
-export type BlockFragmentFragment = { __typename?: 'Block', id: string, timestamp: any, txHash: string, gasLimit: any, gasPrice: any, height: any, blockHash: string, blockSize: number, operatorAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } };
+export type BlockFragmentFragment = {
+  __typename?: 'Block';
+  id: string;
+  timestamp: any;
+  txHash: string;
+  gasLimit: any;
+  gasPrice: any;
+  height: any;
+  blockHash: string;
+  blockSize: number;
+  operatorAccount:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+};
 
-export type PoolFragmentFragment = { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> };
+export type PoolFragmentFragment = {
+  __typename?: 'Pool';
+  id: string;
+  address: any;
+  balances: Array<{
+    __typename?: 'AccountTokenBalance';
+    id: string;
+    balance: any;
+    token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  }>;
+};
 
-export type NftFragmentFragment = { __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } };
+export type NftFragmentFragment = {
+  __typename?: 'NonFungibleToken';
+  id: string;
+  nftID: string;
+  nftType: number;
+  token: string;
+  minter:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+};
 
-export type AddFragmentFragment = { __typename: 'Add', id: string, amount: any, fee: any, account: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, pool: { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } };
+export type AddFragmentFragment = {
+  __typename: 'Add';
+  id: string;
+  amount: any;
+  fee: any;
+  account:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  pool: {
+    __typename?: 'Pool';
+    id: string;
+    address: any;
+    balances: Array<{
+      __typename?: 'AccountTokenBalance';
+      id: string;
+      balance: any;
+      token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+    }>;
+  };
+  token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+};
 
-export type RemoveFragmentFragment = { __typename: 'Remove', id: string, amount: any, fee: any, account: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, pool: { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } };
+export type RemoveFragmentFragment = {
+  __typename: 'Remove';
+  id: string;
+  amount: any;
+  fee: any;
+  account:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  pool: {
+    __typename?: 'Pool';
+    id: string;
+    address: any;
+    balances: Array<{
+      __typename?: 'AccountTokenBalance';
+      id: string;
+      balance: any;
+      token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+    }>;
+  };
+  token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+};
 
-export type SwapFragmentFragment = { __typename: 'Swap', id: string, tokenAPrice: any, tokenBPrice: any, fillSA: any, fillSB: any, fillBA: any, protocolFeeA: any, protocolFeeB: any, feeA: any, feeB: any, account: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, pool: { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> }, tokenA: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, tokenB: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, pair: { __typename?: 'Pair', id: string, token0: { __typename?: 'Token', symbol: string }, token1: { __typename?: 'Token', symbol: string } } };
+export type SwapFragmentFragment = {
+  __typename: 'Swap';
+  id: string;
+  tokenAPrice: any;
+  tokenBPrice: any;
+  fillSA: any;
+  fillSB: any;
+  fillBA: any;
+  protocolFeeA: any;
+  protocolFeeB: any;
+  feeA: any;
+  feeB: any;
+  account:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  pool: {
+    __typename?: 'Pool';
+    id: string;
+    address: any;
+    balances: Array<{
+      __typename?: 'AccountTokenBalance';
+      id: string;
+      balance: any;
+      token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+    }>;
+  };
+  tokenA: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  tokenB: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  pair: {
+    __typename?: 'Pair';
+    id: string;
+    token0: { __typename?: 'Token'; symbol: string };
+    token1: { __typename?: 'Token'; symbol: string };
+  };
+};
 
-export type OrderbookTradeFragmentFragment = { __typename: 'OrderbookTrade', id: string, tokenAPrice: any, tokenBPrice: any, fillSA: any, fillSB: any, fillBA: any, fillBB: any, fillAmountBorSA: boolean, fillAmountBorSB: boolean, feeA: any, feeB: any, accountA: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, accountB: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, tokenA: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, tokenB: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, pair: { __typename?: 'Pair', id: string, token0: { __typename?: 'Token', symbol: string }, token1: { __typename?: 'Token', symbol: string } } };
+export type OrderbookTradeFragmentFragment = {
+  __typename: 'OrderbookTrade';
+  id: string;
+  tokenAPrice: any;
+  tokenBPrice: any;
+  fillSA: any;
+  fillSB: any;
+  fillBA: any;
+  fillBB: any;
+  fillAmountBorSA: boolean;
+  fillAmountBorSB: boolean;
+  feeA: any;
+  feeB: any;
+  accountA:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  accountB:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  tokenA: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  tokenB: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  pair: {
+    __typename?: 'Pair';
+    id: string;
+    token0: { __typename?: 'Token'; symbol: string };
+    token1: { __typename?: 'Token'; symbol: string };
+  };
+};
 
-export type DepositFragmentFragment = { __typename: 'Deposit', id: string, amount: any, toAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } };
+export type DepositFragmentFragment = {
+  __typename: 'Deposit';
+  id: string;
+  amount: any;
+  toAccount:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+};
 
-export type WithdrawalFragmentFragment = { __typename: 'Withdrawal', amount: any, fee: any, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, withdrawalToken?: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } | null, withdrawalFeeToken?: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } | null };
+export type WithdrawalFragmentFragment = {
+  __typename: 'Withdrawal';
+  amount: any;
+  fee: any;
+  fromAccount:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  withdrawalToken?: {
+    __typename?: 'Token';
+    id: string;
+    name: string;
+    symbol: string;
+    decimals: number;
+    address: any;
+  } | null;
+  withdrawalFeeToken?: {
+    __typename?: 'Token';
+    id: string;
+    name: string;
+    symbol: string;
+    decimals: number;
+    address: any;
+  } | null;
+};
 
-export type TransferFragmentFragment = { __typename: 'Transfer', amount: any, fee: any, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, toAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } };
+export type TransferFragmentFragment = {
+  __typename: 'Transfer';
+  amount: any;
+  fee: any;
+  fromAccount:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  toAccount:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+};
 
-export type AccountUpdateFragmentFragment = { __typename: 'AccountUpdate', fee: any, nonce: number, user: { __typename?: 'User', id: string, address: any, publicKey?: string | null }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } };
+export type AccountUpdateFragmentFragment = {
+  __typename: 'AccountUpdate';
+  fee: any;
+  nonce: number;
+  user: { __typename?: 'User'; id: string; address: any; publicKey?: string | null };
+  feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+};
 
-export type AmmUpdateFragmentFragment = { __typename: 'AmmUpdate', tokenID: number, feeBips: number, tokenWeight: any, nonce: number, balance: any, pool: { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> }, tokenBalances?: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> | null };
+export type AmmUpdateFragmentFragment = {
+  __typename: 'AmmUpdate';
+  tokenID: number;
+  feeBips: number;
+  tokenWeight: any;
+  nonce: number;
+  balance: any;
+  pool: {
+    __typename?: 'Pool';
+    id: string;
+    address: any;
+    balances: Array<{
+      __typename?: 'AccountTokenBalance';
+      id: string;
+      balance: any;
+      token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+    }>;
+  };
+  tokenBalances?: Array<{
+    __typename?: 'AccountTokenBalance';
+    id: string;
+    balance: any;
+    token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  }> | null;
+};
 
-export type SignatureVerificationFragmentFragment = { __typename: 'SignatureVerification', verificationData: string, account: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } };
+export type SignatureVerificationFragmentFragment = {
+  __typename: 'SignatureVerification';
+  verificationData: string;
+  account:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+};
 
-export type TradeNftFragmentFragment = { __typename: 'TradeNFT', accountIdA: number, accountIdB: number, storageIdA: number, storageIdB: number, tokenIDAS: number, tokenIDAB: number, tokenIDBS: number, tokenIDBB: number, realizedNFTPrice: any, feeBuyer: any, feeSeller: any, protocolFeeBuyer: any, accountSeller: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, accountBuyer: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> };
+export type TradeNftFragmentFragment = {
+  __typename: 'TradeNFT';
+  accountIdA: number;
+  accountIdB: number;
+  storageIdA: number;
+  storageIdB: number;
+  tokenIDAS: number;
+  tokenIDAB: number;
+  tokenIDBS: number;
+  tokenIDBB: number;
+  realizedNFTPrice: any;
+  feeBuyer: any;
+  feeSeller: any;
+  protocolFeeBuyer: any;
+  accountSeller:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  accountBuyer:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  nfts: Array<{
+    __typename?: 'NonFungibleToken';
+    id: string;
+    nftID: string;
+    nftType: number;
+    token: string;
+    minter:
+      | { __typename?: 'Pool'; id: string; address: any }
+      | { __typename?: 'ProtocolAccount'; id: string; address: any }
+      | { __typename?: 'User'; id: string; address: any };
+  }>;
+};
 
-export type SwapNftFragmentFragment = { __typename: 'SwapNFT', accountA: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, accountB: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> };
+export type SwapNftFragmentFragment = {
+  __typename: 'SwapNFT';
+  accountA:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  accountB:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  nfts: Array<{
+    __typename?: 'NonFungibleToken';
+    id: string;
+    nftID: string;
+    nftType: number;
+    token: string;
+    minter:
+      | { __typename?: 'Pool'; id: string; address: any }
+      | { __typename?: 'ProtocolAccount'; id: string; address: any }
+      | { __typename?: 'User'; id: string; address: any };
+  }>;
+};
 
-export type WithdrawalNftFragmentFragment = { __typename: 'WithdrawalNFT', fee: any, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, withdrawalNFTFeeToken?: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } | null, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> };
+export type WithdrawalNftFragmentFragment = {
+  __typename: 'WithdrawalNFT';
+  fee: any;
+  fromAccount:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  withdrawalNFTFeeToken?: {
+    __typename?: 'Token';
+    id: string;
+    name: string;
+    symbol: string;
+    decimals: number;
+    address: any;
+  } | null;
+  nfts: Array<{
+    __typename?: 'NonFungibleToken';
+    id: string;
+    nftID: string;
+    nftType: number;
+    token: string;
+    minter:
+      | { __typename?: 'Pool'; id: string; address: any }
+      | { __typename?: 'ProtocolAccount'; id: string; address: any }
+      | { __typename?: 'User'; id: string; address: any };
+  }>;
+};
 
-export type TransferNftFragmentFragment = { __typename: 'TransferNFT', fee: any, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, toAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> };
+export type TransferNftFragmentFragment = {
+  __typename: 'TransferNFT';
+  fee: any;
+  fromAccount:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  toAccount:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  nfts: Array<{
+    __typename?: 'NonFungibleToken';
+    id: string;
+    nftID: string;
+    nftType: number;
+    token: string;
+    minter:
+      | { __typename?: 'Pool'; id: string; address: any }
+      | { __typename?: 'ProtocolAccount'; id: string; address: any }
+      | { __typename?: 'User'; id: string; address: any };
+  }>;
+};
 
-export type MintNftFragmentFragment = { __typename: 'MintNFT', fee: any, amount: any, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, receiver: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, receiverSlot: { __typename?: 'AccountNFTSlot', id: string }, nft: { __typename?: 'NonFungibleToken', id: string }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } };
+export type MintNftFragmentFragment = {
+  __typename: 'MintNFT';
+  fee: any;
+  amount: any;
+  minter:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  receiver:
+    | { __typename?: 'Pool'; id: string; address: any }
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  receiverSlot: { __typename?: 'AccountNFTSlot'; id: string };
+  nft: { __typename?: 'NonFungibleToken'; id: string };
+  feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+};
 
-export type DataNftFragmentFragment = { __typename: 'DataNFT', id: string };
+export type DataNftFragmentFragment = { __typename: 'DataNFT'; id: string };
 
 export type AccountsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Account_Filter>;
 }>;
 
-
-export type AccountsQuery = { __typename?: 'Query', accounts: Array<{ __typename: 'Pool', feeBipsAMM?: number | null, id: string, address: any, createdAtTransaction: { __typename?: 'AccountUpdate', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Add', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'AmmUpdate', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'DataNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Deposit', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'MintNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'OrderbookTrade', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Remove', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'SignatureVerification', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Swap', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'SwapNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'TradeNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Transfer', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'TransferNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Withdrawal', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'WithdrawalNFT', id: string, block: { __typename?: 'Block', timestamp: any } } } | { __typename: 'ProtocolAccount', id: string, address: any, createdAtTransaction: { __typename?: 'AccountUpdate', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Add', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'AmmUpdate', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'DataNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Deposit', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'MintNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'OrderbookTrade', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Remove', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'SignatureVerification', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Swap', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'SwapNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'TradeNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Transfer', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'TransferNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Withdrawal', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'WithdrawalNFT', id: string, block: { __typename?: 'Block', timestamp: any } } } | { __typename: 'User', id: string, address: any, createdAtTransaction: { __typename?: 'AccountUpdate', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Add', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'AmmUpdate', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'DataNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Deposit', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'MintNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'OrderbookTrade', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Remove', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'SignatureVerification', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Swap', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'SwapNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'TradeNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Transfer', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'TransferNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Withdrawal', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'WithdrawalNFT', id: string, block: { __typename?: 'Block', timestamp: any } } }> };
+export type AccountsQuery = {
+  __typename?: 'Query';
+  accounts: Array<
+    | {
+        __typename: 'Pool';
+        feeBipsAMM?: number | null;
+        id: string;
+        address: any;
+        createdAtTransaction:
+          | { __typename?: 'AccountUpdate'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Add'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'AmmUpdate'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'DataNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Deposit'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'MintNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'OrderbookTrade'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Remove'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'SignatureVerification'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Swap'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'SwapNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'TradeNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Transfer'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'TransferNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Withdrawal'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'WithdrawalNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } };
+      }
+    | {
+        __typename: 'ProtocolAccount';
+        id: string;
+        address: any;
+        createdAtTransaction:
+          | { __typename?: 'AccountUpdate'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Add'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'AmmUpdate'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'DataNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Deposit'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'MintNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'OrderbookTrade'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Remove'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'SignatureVerification'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Swap'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'SwapNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'TradeNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Transfer'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'TransferNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Withdrawal'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'WithdrawalNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } };
+      }
+    | {
+        __typename: 'User';
+        id: string;
+        address: any;
+        createdAtTransaction:
+          | { __typename?: 'AccountUpdate'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Add'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'AmmUpdate'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'DataNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Deposit'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'MintNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'OrderbookTrade'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Remove'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'SignatureVerification'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Swap'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'SwapNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'TradeNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Transfer'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'TransferNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'Withdrawal'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'WithdrawalNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } };
+      }
+  >;
+};
 
 export type AccountTokenBalancesQueryVariables = Exact<{
   where?: InputMaybe<AccountTokenBalance_Filter>;
   orderDirection?: InputMaybe<OrderDirection>;
 }>;
 
-
-export type AccountTokenBalancesQuery = { __typename?: 'Query', accountTokenBalances: Array<{ __typename: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> };
+export type AccountTokenBalancesQuery = {
+  __typename?: 'Query';
+  accountTokenBalances: Array<{
+    __typename: 'AccountTokenBalance';
+    id: string;
+    balance: any;
+    token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  }>;
+};
 
 export type AccountNftSlotsQueryVariables = Exact<{
   where?: InputMaybe<AccountNftSlot_Filter>;
   orderDirection?: InputMaybe<OrderDirection>;
 }>;
 
-
-export type AccountNftSlotsQuery = { __typename?: 'Query', accountNFTSlots: Array<{ __typename?: 'AccountNFTSlot', id: string, balance: any, nft?: { __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } } | null, createdAtTransaction: { __typename?: 'AccountUpdate', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Add', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'AmmUpdate', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'DataNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Deposit', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'MintNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'OrderbookTrade', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Remove', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'SignatureVerification', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Swap', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'SwapNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'TradeNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Transfer', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'TransferNFT', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'Withdrawal', id: string, block: { __typename?: 'Block', timestamp: any } } | { __typename?: 'WithdrawalNFT', id: string, block: { __typename?: 'Block', timestamp: any } } }> };
+export type AccountNftSlotsQuery = {
+  __typename?: 'Query';
+  accountNFTSlots: Array<{
+    __typename?: 'AccountNFTSlot';
+    id: string;
+    balance: any;
+    nft?: {
+      __typename?: 'NonFungibleToken';
+      id: string;
+      nftID: string;
+      nftType: number;
+      token: string;
+      minter:
+        | { __typename?: 'Pool'; id: string; address: any }
+        | { __typename?: 'ProtocolAccount'; id: string; address: any }
+        | { __typename?: 'User'; id: string; address: any };
+    } | null;
+    createdAtTransaction:
+      | { __typename?: 'AccountUpdate'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'Add'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'AmmUpdate'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'DataNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'Deposit'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'MintNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'OrderbookTrade'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'Remove'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'SignatureVerification'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'Swap'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'SwapNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'TradeNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'Transfer'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'TransferNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'Withdrawal'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+      | { __typename?: 'WithdrawalNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } };
+  }>;
+};
 
 export type BlocksQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']>;
@@ -11398,35 +11721,239 @@ export type BlocksQueryVariables = Exact<{
   orderDirection?: InputMaybe<OrderDirection>;
 }>;
 
-
-export type BlocksQuery = { __typename?: 'Query', blocks: Array<{ __typename?: 'Block', transactionCount: any, id: string, timestamp: any, txHash: string, gasLimit: any, gasPrice: any, height: any, blockHash: string, blockSize: number, operatorAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> };
+export type BlocksQuery = {
+  __typename?: 'Query';
+  blocks: Array<{
+    __typename?: 'Block';
+    transactionCount: any;
+    id: string;
+    timestamp: any;
+    txHash: string;
+    gasLimit: any;
+    gasPrice: any;
+    height: any;
+    blockHash: string;
+    blockSize: number;
+    operatorAccount:
+      | { __typename?: 'Pool'; id: string; address: any }
+      | { __typename?: 'ProtocolAccount'; id: string; address: any }
+      | { __typename?: 'User'; id: string; address: any };
+  }>;
+};
 
 export type BlockQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
+export type BlockQuery = {
+  __typename?: 'Query';
+  proxy?: { __typename?: 'Proxy'; blockCount: any } | null;
+  block?: {
+    __typename?: 'Block';
+    data: string;
+    id: string;
+    timestamp: any;
+    txHash: string;
+    gasLimit: any;
+    gasPrice: any;
+    height: any;
+    blockHash: string;
+    blockSize: number;
+    operatorAccount:
+      | { __typename?: 'Pool'; id: string; address: any }
+      | { __typename?: 'ProtocolAccount'; id: string; address: any }
+      | { __typename?: 'User'; id: string; address: any };
+  } | null;
+};
 
-export type BlockQuery = { __typename?: 'Query', proxy?: { __typename?: 'Proxy', blockCount: any } | null, block?: { __typename?: 'Block', data: string, id: string, timestamp: any, txHash: string, gasLimit: any, gasPrice: any, height: any, blockHash: string, blockSize: number, operatorAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } } | null };
+export type NetworkStatsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type NetworkStatsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type NetworkStatsQuery = { __typename?: 'Query', proxy?: { __typename?: 'Proxy', blockCount: any, userCount: any, transactionCount: any } | null, blocks: Array<{ __typename?: 'Block', id: string, transactionCount: any, timestamp: any }> };
+export type NetworkStatsQuery = {
+  __typename?: 'Query';
+  proxy?: { __typename?: 'Proxy'; blockCount: any; userCount: any; transactionCount: any } | null;
+  blocks: Array<{ __typename?: 'Block'; id: string; transactionCount: any; timestamp: any }>;
+};
 
 export type NonFungibleTokenQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-
-export type NonFungibleTokenQuery = { __typename?: 'Query', nonFungibleToken?: { __typename: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } } | null };
+export type NonFungibleTokenQuery = {
+  __typename?: 'Query';
+  nonFungibleToken?: {
+    __typename: 'NonFungibleToken';
+    id: string;
+    nftID: string;
+    nftType: number;
+    token: string;
+    minter:
+      | { __typename?: 'Pool'; id: string; address: any }
+      | { __typename?: 'ProtocolAccount'; id: string; address: any }
+      | { __typename?: 'User'; id: string; address: any };
+  } | null;
+};
 
 export type TransactionNfTsQueryVariables = Exact<{
   orderDirection?: InputMaybe<OrderDirection>;
   where?: InputMaybe<TransactionNft_Filter>;
 }>;
 
-
-export type TransactionNfTsQuery = { __typename?: 'Query', transactionNFTs: Array<{ __typename: 'DataNFT', id: string, internalID: any, data: string, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any } } | { __typename: 'MintNFT', id: string, internalID: any, data: string, fee: any, amount: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any }, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, receiver: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, receiverSlot: { __typename?: 'AccountNFTSlot', id: string }, nft: { __typename?: 'NonFungibleToken', id: string }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } } | { __typename: 'SwapNFT', id: string, internalID: any, data: string, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any }, accountA: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, accountB: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> } | { __typename: 'TradeNFT', id: string, internalID: any, data: string, accountIdA: number, accountIdB: number, storageIdA: number, storageIdB: number, tokenIDAS: number, tokenIDAB: number, tokenIDBS: number, tokenIDBB: number, realizedNFTPrice: any, feeBuyer: any, feeSeller: any, protocolFeeBuyer: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any }, accountSeller: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, accountBuyer: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> } | { __typename: 'TransferNFT', id: string, internalID: any, data: string, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any }, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, toAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> } | { __typename: 'WithdrawalNFT', id: string, internalID: any, data: string, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any }, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, withdrawalNFTFeeToken?: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } | null, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> }> };
+export type TransactionNfTsQuery = {
+  __typename?: 'Query';
+  transactionNFTs: Array<
+    | {
+        __typename: 'DataNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any };
+      }
+    | {
+        __typename: 'MintNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        fee: any;
+        amount: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any };
+        minter:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        receiver:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        receiverSlot: { __typename?: 'AccountNFTSlot'; id: string };
+        nft: { __typename?: 'NonFungibleToken'; id: string };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }
+    | {
+        __typename: 'SwapNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any };
+        accountA:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        accountB:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        nfts: Array<{
+          __typename?: 'NonFungibleToken';
+          id: string;
+          nftID: string;
+          nftType: number;
+          token: string;
+          minter:
+            | { __typename?: 'Pool'; id: string; address: any }
+            | { __typename?: 'ProtocolAccount'; id: string; address: any }
+            | { __typename?: 'User'; id: string; address: any };
+        }>;
+      }
+    | {
+        __typename: 'TradeNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        accountIdA: number;
+        accountIdB: number;
+        storageIdA: number;
+        storageIdB: number;
+        tokenIDAS: number;
+        tokenIDAB: number;
+        tokenIDBS: number;
+        tokenIDBB: number;
+        realizedNFTPrice: any;
+        feeBuyer: any;
+        feeSeller: any;
+        protocolFeeBuyer: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any };
+        accountSeller:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        accountBuyer:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        nfts: Array<{
+          __typename?: 'NonFungibleToken';
+          id: string;
+          nftID: string;
+          nftType: number;
+          token: string;
+          minter:
+            | { __typename?: 'Pool'; id: string; address: any }
+            | { __typename?: 'ProtocolAccount'; id: string; address: any }
+            | { __typename?: 'User'; id: string; address: any };
+        }>;
+      }
+    | {
+        __typename: 'TransferNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        fee: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any };
+        fromAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        toAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        nfts: Array<{
+          __typename?: 'NonFungibleToken';
+          id: string;
+          nftID: string;
+          nftType: number;
+          token: string;
+          minter:
+            | { __typename?: 'Pool'; id: string; address: any }
+            | { __typename?: 'ProtocolAccount'; id: string; address: any }
+            | { __typename?: 'User'; id: string; address: any };
+        }>;
+      }
+    | {
+        __typename: 'WithdrawalNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        fee: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any };
+        fromAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        withdrawalNFTFeeToken?: {
+          __typename?: 'Token';
+          id: string;
+          name: string;
+          symbol: string;
+          decimals: number;
+          address: any;
+        } | null;
+        nfts: Array<{
+          __typename?: 'NonFungibleToken';
+          id: string;
+          nftID: string;
+          nftType: number;
+          token: string;
+          minter:
+            | { __typename?: 'Pool'; id: string; address: any }
+            | { __typename?: 'ProtocolAccount'; id: string; address: any }
+            | { __typename?: 'User'; id: string; address: any };
+        }>;
+      }
+  >;
+};
 
 export type NonFungibleTokensQueryVariables = Exact<{
   where?: InputMaybe<NonFungibleToken_Filter>;
@@ -11434,8 +11961,20 @@ export type NonFungibleTokensQueryVariables = Exact<{
   orderDirection?: InputMaybe<OrderDirection>;
 }>;
 
-
-export type NonFungibleTokensQuery = { __typename?: 'Query', nonFungibleTokens: Array<{ __typename: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> };
+export type NonFungibleTokensQuery = {
+  __typename?: 'Query';
+  nonFungibleTokens: Array<{
+    __typename: 'NonFungibleToken';
+    id: string;
+    nftID: string;
+    nftType: number;
+    token: string;
+    minter:
+      | { __typename?: 'Pool'; id: string; address: any }
+      | { __typename?: 'ProtocolAccount'; id: string; address: any }
+      | { __typename?: 'User'; id: string; address: any };
+  }>;
+};
 
 export type PairsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']>;
@@ -11443,8 +11982,29 @@ export type PairsQueryVariables = Exact<{
   orderDirection?: InputMaybe<OrderDirection>;
 }>;
 
-
-export type PairsQuery = { __typename?: 'Query', pairs: Array<{ __typename?: 'Pair', id: string, internalID: any, tradedVolumeToken0Swap: any, token0: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, token1: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, dailyEntities: Array<{ __typename?: 'PairDailyData', tradedVolumeToken1Swap: any, tradedVolumeToken0Swap: any, id: string }>, weeklyEntities: Array<{ __typename?: 'PairWeeklyData', tradedVolumeToken1Swap: any, tradedVolumeToken0Swap: any, id: string }> }> };
+export type PairsQuery = {
+  __typename?: 'Query';
+  pairs: Array<{
+    __typename?: 'Pair';
+    id: string;
+    internalID: any;
+    tradedVolumeToken0Swap: any;
+    token0: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+    token1: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+    dailyEntities: Array<{
+      __typename?: 'PairDailyData';
+      tradedVolumeToken1Swap: any;
+      tradedVolumeToken0Swap: any;
+      id: string;
+    }>;
+    weeklyEntities: Array<{
+      __typename?: 'PairWeeklyData';
+      tradedVolumeToken1Swap: any;
+      tradedVolumeToken0Swap: any;
+      id: string;
+    }>;
+  }>;
+};
 
 export type PairQueryVariables = Exact<{
   id: Scalars['ID'];
@@ -11454,24 +12014,161 @@ export type PairQueryVariables = Exact<{
   orderbookFirst?: InputMaybe<Scalars['Int']>;
 }>;
 
-
-export type PairQuery = { __typename?: 'Query', pair?: { __typename: 'Pair', id: string, internalID: any, token0Price: any, token1Price: any, tradedVolumeToken0Swap: any, tradedVolumeToken1Swap: any, tradedVolumeToken0Orderbook: any, tradedVolumeToken1Orderbook: any, token0: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, token1: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, trades: Array<{ __typename: 'OrderbookTrade', id: string, tokenAPrice: any, tokenBPrice: any, fillSA: any, fillSB: any, fillBA: any, fillBB: any, fillAmountBorSA: boolean, fillAmountBorSB: boolean, feeA: any, feeB: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any }, accountA: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, accountB: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, tokenA: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, tokenB: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, pair: { __typename?: 'Pair', id: string, token0: { __typename?: 'Token', symbol: string }, token1: { __typename?: 'Token', symbol: string } } }>, dailyEntities: Array<{ __typename?: 'PairDailyData', dayEnd: any, tradedVolumeToken0: any, tradedVolumeToken1: any, tradedVolumeToken0Swap: any, tradedVolumeToken1Swap: any, tradedVolumeToken0Orderbook: any, tradedVolumeToken1Orderbook: any }>, weeklyEntities: Array<{ __typename?: 'PairWeeklyData', weekEnd: any, tradedVolumeToken0: any, tradedVolumeToken1: any, tradedVolumeToken0Swap: any, tradedVolumeToken1Swap: any, tradedVolumeToken0Orderbook: any, tradedVolumeToken1Orderbook: any }> } | null };
+export type PairQuery = {
+  __typename?: 'Query';
+  pair?: {
+    __typename: 'Pair';
+    id: string;
+    internalID: any;
+    token0Price: any;
+    token1Price: any;
+    tradedVolumeToken0Swap: any;
+    tradedVolumeToken1Swap: any;
+    tradedVolumeToken0Orderbook: any;
+    tradedVolumeToken1Orderbook: any;
+    token0: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+    token1: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+    trades: Array<{
+      __typename: 'OrderbookTrade';
+      id: string;
+      tokenAPrice: any;
+      tokenBPrice: any;
+      fillSA: any;
+      fillSB: any;
+      fillBA: any;
+      fillBB: any;
+      fillAmountBorSA: boolean;
+      fillAmountBorSB: boolean;
+      feeA: any;
+      feeB: any;
+      block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any };
+      accountA:
+        | { __typename?: 'Pool'; id: string; address: any }
+        | { __typename?: 'ProtocolAccount'; id: string; address: any }
+        | { __typename?: 'User'; id: string; address: any };
+      accountB:
+        | { __typename?: 'Pool'; id: string; address: any }
+        | { __typename?: 'ProtocolAccount'; id: string; address: any }
+        | { __typename?: 'User'; id: string; address: any };
+      tokenA: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      tokenB: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      pair: {
+        __typename?: 'Pair';
+        id: string;
+        token0: { __typename?: 'Token'; symbol: string };
+        token1: { __typename?: 'Token'; symbol: string };
+      };
+    }>;
+    dailyEntities: Array<{
+      __typename?: 'PairDailyData';
+      dayEnd: any;
+      tradedVolumeToken0: any;
+      tradedVolumeToken1: any;
+      tradedVolumeToken0Swap: any;
+      tradedVolumeToken1Swap: any;
+      tradedVolumeToken0Orderbook: any;
+      tradedVolumeToken1Orderbook: any;
+    }>;
+    weeklyEntities: Array<{
+      __typename?: 'PairWeeklyData';
+      weekEnd: any;
+      tradedVolumeToken0: any;
+      tradedVolumeToken1: any;
+      tradedVolumeToken0Swap: any;
+      tradedVolumeToken1Swap: any;
+      tradedVolumeToken0Orderbook: any;
+      tradedVolumeToken1Orderbook: any;
+    }>;
+  } | null;
+};
 
 export type PairSwapsQueryVariables = Exact<{
   where?: InputMaybe<Swap_Filter>;
   orderDirection?: InputMaybe<OrderDirection>;
 }>;
 
-
-export type PairSwapsQuery = { __typename?: 'Query', swaps: Array<{ __typename: 'Swap', internalID: any, id: string, tokenAPrice: any, tokenBPrice: any, fillSA: any, fillSB: any, fillBA: any, protocolFeeA: any, protocolFeeB: any, feeA: any, feeB: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any }, account: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, pool: { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> }, tokenA: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, tokenB: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, pair: { __typename?: 'Pair', id: string, token0: { __typename?: 'Token', symbol: string }, token1: { __typename?: 'Token', symbol: string } } }> };
+export type PairSwapsQuery = {
+  __typename?: 'Query';
+  swaps: Array<{
+    __typename: 'Swap';
+    internalID: any;
+    id: string;
+    tokenAPrice: any;
+    tokenBPrice: any;
+    fillSA: any;
+    fillSB: any;
+    fillBA: any;
+    protocolFeeA: any;
+    protocolFeeB: any;
+    feeA: any;
+    feeB: any;
+    block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any };
+    account:
+      | { __typename?: 'Pool'; id: string; address: any }
+      | { __typename?: 'ProtocolAccount'; id: string; address: any }
+      | { __typename?: 'User'; id: string; address: any };
+    pool: {
+      __typename?: 'Pool';
+      id: string;
+      address: any;
+      balances: Array<{
+        __typename?: 'AccountTokenBalance';
+        id: string;
+        balance: any;
+        token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }>;
+    };
+    tokenA: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+    tokenB: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+    pair: {
+      __typename?: 'Pair';
+      id: string;
+      token0: { __typename?: 'Token'; symbol: string };
+      token1: { __typename?: 'Token'; symbol: string };
+    };
+  }>;
+};
 
 export type PairTradesQueryVariables = Exact<{
   where?: InputMaybe<OrderbookTrade_Filter>;
   orderDirection?: InputMaybe<OrderDirection>;
 }>;
 
-
-export type PairTradesQuery = { __typename?: 'Query', orderbookTrades: Array<{ __typename: 'OrderbookTrade', internalID: any, id: string, tokenAPrice: any, tokenBPrice: any, fillSA: any, fillSB: any, fillBA: any, fillBB: any, fillAmountBorSA: boolean, fillAmountBorSB: boolean, feeA: any, feeB: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any }, accountA: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, accountB: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, tokenA: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, tokenB: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, pair: { __typename?: 'Pair', id: string, token0: { __typename?: 'Token', symbol: string }, token1: { __typename?: 'Token', symbol: string } } }> };
+export type PairTradesQuery = {
+  __typename?: 'Query';
+  orderbookTrades: Array<{
+    __typename: 'OrderbookTrade';
+    internalID: any;
+    id: string;
+    tokenAPrice: any;
+    tokenBPrice: any;
+    fillSA: any;
+    fillSB: any;
+    fillBA: any;
+    fillBB: any;
+    fillAmountBorSA: boolean;
+    fillAmountBorSB: boolean;
+    feeA: any;
+    feeB: any;
+    block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any };
+    accountA:
+      | { __typename?: 'Pool'; id: string; address: any }
+      | { __typename?: 'ProtocolAccount'; id: string; address: any }
+      | { __typename?: 'User'; id: string; address: any };
+    accountB:
+      | { __typename?: 'Pool'; id: string; address: any }
+      | { __typename?: 'ProtocolAccount'; id: string; address: any }
+      | { __typename?: 'User'; id: string; address: any };
+    tokenA: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+    tokenB: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+    pair: {
+      __typename?: 'Pair';
+      id: string;
+      token0: { __typename?: 'Token'; symbol: string };
+      token1: { __typename?: 'Token'; symbol: string };
+    };
+  }>;
+};
 
 export type TransactionsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']>;
@@ -11480,15 +12177,909 @@ export type TransactionsQueryVariables = Exact<{
   where?: InputMaybe<Transaction_Filter>;
 }>;
 
-
-export type TransactionsQuery = { __typename?: 'Query', transactions: Array<{ __typename: 'AccountUpdate', id: string, internalID: any, data: string, fee: any, nonce: number, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, user: { __typename?: 'User', id: string, address: any, publicKey?: string | null }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } } | { __typename: 'Add', id: string, internalID: any, data: string, amount: any, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, account: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, pool: { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } } | { __typename: 'AmmUpdate', id: string, internalID: any, data: string, tokenID: number, feeBips: number, tokenWeight: any, nonce: number, balance: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, pool: { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> }, tokenBalances?: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> | null } | { __typename: 'DataNFT', id: string, internalID: any, data: string, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string } } | { __typename: 'Deposit', id: string, internalID: any, data: string, amount: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, toAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } } | { __typename: 'MintNFT', id: string, internalID: any, data: string, fee: any, amount: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, receiver: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, receiverSlot: { __typename?: 'AccountNFTSlot', id: string }, nft: { __typename?: 'NonFungibleToken', id: string }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } } | { __typename: 'OrderbookTrade', id: string, internalID: any, data: string, tokenAPrice: any, tokenBPrice: any, fillSA: any, fillSB: any, fillBA: any, fillBB: any, fillAmountBorSA: boolean, fillAmountBorSB: boolean, feeA: any, feeB: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, accountA: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, accountB: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, tokenA: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, tokenB: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, pair: { __typename?: 'Pair', id: string, token0: { __typename?: 'Token', symbol: string }, token1: { __typename?: 'Token', symbol: string } } } | { __typename: 'Remove', id: string, internalID: any, data: string, amount: any, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, account: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, pool: { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } } | { __typename: 'SignatureVerification', id: string, internalID: any, data: string, verificationData: string, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, account: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } } | { __typename: 'Swap', id: string, internalID: any, data: string, tokenAPrice: any, tokenBPrice: any, fillSA: any, fillSB: any, fillBA: any, protocolFeeA: any, protocolFeeB: any, feeA: any, feeB: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, account: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, pool: { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> }, tokenA: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, tokenB: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, pair: { __typename?: 'Pair', id: string, token0: { __typename?: 'Token', symbol: string }, token1: { __typename?: 'Token', symbol: string } } } | { __typename: 'SwapNFT', id: string, internalID: any, data: string, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, accountA: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, accountB: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> } | { __typename: 'TradeNFT', id: string, internalID: any, data: string, accountIdA: number, accountIdB: number, storageIdA: number, storageIdB: number, tokenIDAS: number, tokenIDAB: number, tokenIDBS: number, tokenIDBB: number, realizedNFTPrice: any, feeBuyer: any, feeSeller: any, protocolFeeBuyer: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, accountSeller: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, accountBuyer: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> } | { __typename: 'Transfer', id: string, internalID: any, data: string, amount: any, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, toAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } } | { __typename: 'TransferNFT', id: string, internalID: any, data: string, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, toAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> } | { __typename: 'Withdrawal', id: string, internalID: any, data: string, amount: any, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, withdrawalToken?: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } | null, withdrawalFeeToken?: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } | null } | { __typename: 'WithdrawalNFT', id: string, internalID: any, data: string, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, txHash: string }, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, withdrawalNFTFeeToken?: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } | null, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> }> };
+export type TransactionsQuery = {
+  __typename?: 'Query';
+  transactions: Array<
+    | {
+        __typename: 'AccountUpdate';
+        id: string;
+        internalID: any;
+        data: string;
+        fee: any;
+        nonce: number;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        user: { __typename?: 'User'; id: string; address: any; publicKey?: string | null };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }
+    | {
+        __typename: 'Add';
+        id: string;
+        internalID: any;
+        data: string;
+        amount: any;
+        fee: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        account:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        pool: {
+          __typename?: 'Pool';
+          id: string;
+          address: any;
+          balances: Array<{
+            __typename?: 'AccountTokenBalance';
+            id: string;
+            balance: any;
+            token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+          }>;
+        };
+        token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }
+    | {
+        __typename: 'AmmUpdate';
+        id: string;
+        internalID: any;
+        data: string;
+        tokenID: number;
+        feeBips: number;
+        tokenWeight: any;
+        nonce: number;
+        balance: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        pool: {
+          __typename?: 'Pool';
+          id: string;
+          address: any;
+          balances: Array<{
+            __typename?: 'AccountTokenBalance';
+            id: string;
+            balance: any;
+            token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+          }>;
+        };
+        tokenBalances?: Array<{
+          __typename?: 'AccountTokenBalance';
+          id: string;
+          balance: any;
+          token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        }> | null;
+      }
+    | {
+        __typename: 'DataNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+      }
+    | {
+        __typename: 'Deposit';
+        id: string;
+        internalID: any;
+        data: string;
+        amount: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        toAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }
+    | {
+        __typename: 'MintNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        fee: any;
+        amount: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        minter:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        receiver:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        receiverSlot: { __typename?: 'AccountNFTSlot'; id: string };
+        nft: { __typename?: 'NonFungibleToken'; id: string };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }
+    | {
+        __typename: 'OrderbookTrade';
+        id: string;
+        internalID: any;
+        data: string;
+        tokenAPrice: any;
+        tokenBPrice: any;
+        fillSA: any;
+        fillSB: any;
+        fillBA: any;
+        fillBB: any;
+        fillAmountBorSA: boolean;
+        fillAmountBorSB: boolean;
+        feeA: any;
+        feeB: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        accountA:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        accountB:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        tokenA: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        tokenB: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        pair: {
+          __typename?: 'Pair';
+          id: string;
+          token0: { __typename?: 'Token'; symbol: string };
+          token1: { __typename?: 'Token'; symbol: string };
+        };
+      }
+    | {
+        __typename: 'Remove';
+        id: string;
+        internalID: any;
+        data: string;
+        amount: any;
+        fee: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        account:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        pool: {
+          __typename?: 'Pool';
+          id: string;
+          address: any;
+          balances: Array<{
+            __typename?: 'AccountTokenBalance';
+            id: string;
+            balance: any;
+            token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+          }>;
+        };
+        token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }
+    | {
+        __typename: 'SignatureVerification';
+        id: string;
+        internalID: any;
+        data: string;
+        verificationData: string;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        account:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+      }
+    | {
+        __typename: 'Swap';
+        id: string;
+        internalID: any;
+        data: string;
+        tokenAPrice: any;
+        tokenBPrice: any;
+        fillSA: any;
+        fillSB: any;
+        fillBA: any;
+        protocolFeeA: any;
+        protocolFeeB: any;
+        feeA: any;
+        feeB: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        account:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        pool: {
+          __typename?: 'Pool';
+          id: string;
+          address: any;
+          balances: Array<{
+            __typename?: 'AccountTokenBalance';
+            id: string;
+            balance: any;
+            token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+          }>;
+        };
+        tokenA: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        tokenB: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        pair: {
+          __typename?: 'Pair';
+          id: string;
+          token0: { __typename?: 'Token'; symbol: string };
+          token1: { __typename?: 'Token'; symbol: string };
+        };
+      }
+    | {
+        __typename: 'SwapNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        accountA:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        accountB:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        nfts: Array<{
+          __typename?: 'NonFungibleToken';
+          id: string;
+          nftID: string;
+          nftType: number;
+          token: string;
+          minter:
+            | { __typename?: 'Pool'; id: string; address: any }
+            | { __typename?: 'ProtocolAccount'; id: string; address: any }
+            | { __typename?: 'User'; id: string; address: any };
+        }>;
+      }
+    | {
+        __typename: 'TradeNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        accountIdA: number;
+        accountIdB: number;
+        storageIdA: number;
+        storageIdB: number;
+        tokenIDAS: number;
+        tokenIDAB: number;
+        tokenIDBS: number;
+        tokenIDBB: number;
+        realizedNFTPrice: any;
+        feeBuyer: any;
+        feeSeller: any;
+        protocolFeeBuyer: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        accountSeller:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        accountBuyer:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        nfts: Array<{
+          __typename?: 'NonFungibleToken';
+          id: string;
+          nftID: string;
+          nftType: number;
+          token: string;
+          minter:
+            | { __typename?: 'Pool'; id: string; address: any }
+            | { __typename?: 'ProtocolAccount'; id: string; address: any }
+            | { __typename?: 'User'; id: string; address: any };
+        }>;
+      }
+    | {
+        __typename: 'Transfer';
+        id: string;
+        internalID: any;
+        data: string;
+        amount: any;
+        fee: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        fromAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        toAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }
+    | {
+        __typename: 'TransferNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        fee: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        fromAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        toAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        nfts: Array<{
+          __typename?: 'NonFungibleToken';
+          id: string;
+          nftID: string;
+          nftType: number;
+          token: string;
+          minter:
+            | { __typename?: 'Pool'; id: string; address: any }
+            | { __typename?: 'ProtocolAccount'; id: string; address: any }
+            | { __typename?: 'User'; id: string; address: any };
+        }>;
+      }
+    | {
+        __typename: 'Withdrawal';
+        id: string;
+        internalID: any;
+        data: string;
+        amount: any;
+        fee: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        fromAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        withdrawalToken?: {
+          __typename?: 'Token';
+          id: string;
+          name: string;
+          symbol: string;
+          decimals: number;
+          address: any;
+        } | null;
+        withdrawalFeeToken?: {
+          __typename?: 'Token';
+          id: string;
+          name: string;
+          symbol: string;
+          decimals: number;
+          address: any;
+        } | null;
+      }
+    | {
+        __typename: 'WithdrawalNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        fee: any;
+        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        fromAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        withdrawalNFTFeeToken?: {
+          __typename?: 'Token';
+          id: string;
+          name: string;
+          symbol: string;
+          decimals: number;
+          address: any;
+        } | null;
+        nfts: Array<{
+          __typename?: 'NonFungibleToken';
+          id: string;
+          nftID: string;
+          nftType: number;
+          token: string;
+          minter:
+            | { __typename?: 'Pool'; id: string; address: any }
+            | { __typename?: 'ProtocolAccount'; id: string; address: any }
+            | { __typename?: 'User'; id: string; address: any };
+        }>;
+      }
+  >;
+};
 
 export type TransactionQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-
-export type TransactionQuery = { __typename?: 'Query', transaction?: { __typename: 'AccountUpdate', id: string, internalID: any, data: string, fee: any, nonce: number, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, user: { __typename?: 'User', id: string, address: any, publicKey?: string | null }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } } | { __typename: 'Add', id: string, internalID: any, data: string, amount: any, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, account: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, pool: { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } } | { __typename: 'AmmUpdate', id: string, internalID: any, data: string, tokenID: number, feeBips: number, tokenWeight: any, nonce: number, balance: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, pool: { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> }, tokenBalances?: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> | null } | { __typename: 'DataNFT', id: string, internalID: any, data: string, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string } } | { __typename: 'Deposit', id: string, internalID: any, data: string, amount: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, toAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } } | { __typename: 'MintNFT', id: string, internalID: any, data: string, fee: any, amount: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, receiver: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, receiverSlot: { __typename?: 'AccountNFTSlot', id: string }, nft: { __typename?: 'NonFungibleToken', id: string }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } } | { __typename: 'OrderbookTrade', id: string, internalID: any, data: string, tokenAPrice: any, tokenBPrice: any, fillSA: any, fillSB: any, fillBA: any, fillBB: any, fillAmountBorSA: boolean, fillAmountBorSB: boolean, feeA: any, feeB: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, accountA: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, accountB: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, tokenA: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, tokenB: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, pair: { __typename?: 'Pair', id: string, token0: { __typename?: 'Token', symbol: string }, token1: { __typename?: 'Token', symbol: string } } } | { __typename: 'Remove', id: string, internalID: any, data: string, amount: any, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, account: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, pool: { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } } | { __typename: 'SignatureVerification', id: string, internalID: any, data: string, verificationData: string, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, account: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } } | { __typename: 'Swap', id: string, internalID: any, data: string, tokenAPrice: any, tokenBPrice: any, fillSA: any, fillSB: any, fillBA: any, protocolFeeA: any, protocolFeeB: any, feeA: any, feeB: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, account: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, pool: { __typename?: 'Pool', id: string, address: any, balances: Array<{ __typename?: 'AccountTokenBalance', id: string, balance: any, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } }> }, tokenA: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, tokenB: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, pair: { __typename?: 'Pair', id: string, token0: { __typename?: 'Token', symbol: string }, token1: { __typename?: 'Token', symbol: string } } } | { __typename: 'SwapNFT', id: string, internalID: any, data: string, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, accountA: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, accountB: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> } | { __typename: 'TradeNFT', id: string, internalID: any, data: string, accountIdA: number, accountIdB: number, storageIdA: number, storageIdB: number, tokenIDAS: number, tokenIDAB: number, tokenIDBS: number, tokenIDBB: number, realizedNFTPrice: any, feeBuyer: any, feeSeller: any, protocolFeeBuyer: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, accountSeller: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, accountBuyer: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> } | { __typename: 'Transfer', id: string, internalID: any, data: string, amount: any, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, toAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, token: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } } | { __typename: 'TransferNFT', id: string, internalID: any, data: string, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, toAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, feeToken: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any }, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> } | { __typename: 'Withdrawal', id: string, internalID: any, data: string, amount: any, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, withdrawalToken?: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } | null, withdrawalFeeToken?: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } | null } | { __typename: 'WithdrawalNFT', id: string, internalID: any, data: string, fee: any, block: { __typename?: 'Block', id: string, blockHash: string, timestamp: any, transactionCount: any, txHash: string }, fromAccount: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any }, withdrawalNFTFeeToken?: { __typename?: 'Token', id: string, name: string, symbol: string, decimals: number, address: any } | null, nfts: Array<{ __typename?: 'NonFungibleToken', id: string, nftID: string, nftType: number, token: string, minter: { __typename?: 'Pool', id: string, address: any } | { __typename?: 'ProtocolAccount', id: string, address: any } | { __typename?: 'User', id: string, address: any } }> } | null };
+export type TransactionQuery = {
+  __typename?: 'Query';
+  transaction?:
+    | {
+        __typename: 'AccountUpdate';
+        id: string;
+        internalID: any;
+        data: string;
+        fee: any;
+        nonce: number;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        user: { __typename?: 'User'; id: string; address: any; publicKey?: string | null };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }
+    | {
+        __typename: 'Add';
+        id: string;
+        internalID: any;
+        data: string;
+        amount: any;
+        fee: any;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        account:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        pool: {
+          __typename?: 'Pool';
+          id: string;
+          address: any;
+          balances: Array<{
+            __typename?: 'AccountTokenBalance';
+            id: string;
+            balance: any;
+            token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+          }>;
+        };
+        token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }
+    | {
+        __typename: 'AmmUpdate';
+        id: string;
+        internalID: any;
+        data: string;
+        tokenID: number;
+        feeBips: number;
+        tokenWeight: any;
+        nonce: number;
+        balance: any;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        pool: {
+          __typename?: 'Pool';
+          id: string;
+          address: any;
+          balances: Array<{
+            __typename?: 'AccountTokenBalance';
+            id: string;
+            balance: any;
+            token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+          }>;
+        };
+        tokenBalances?: Array<{
+          __typename?: 'AccountTokenBalance';
+          id: string;
+          balance: any;
+          token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        }> | null;
+      }
+    | {
+        __typename: 'DataNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+      }
+    | {
+        __typename: 'Deposit';
+        id: string;
+        internalID: any;
+        data: string;
+        amount: any;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        toAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }
+    | {
+        __typename: 'MintNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        fee: any;
+        amount: any;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        minter:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        receiver:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        receiverSlot: { __typename?: 'AccountNFTSlot'; id: string };
+        nft: { __typename?: 'NonFungibleToken'; id: string };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }
+    | {
+        __typename: 'OrderbookTrade';
+        id: string;
+        internalID: any;
+        data: string;
+        tokenAPrice: any;
+        tokenBPrice: any;
+        fillSA: any;
+        fillSB: any;
+        fillBA: any;
+        fillBB: any;
+        fillAmountBorSA: boolean;
+        fillAmountBorSB: boolean;
+        feeA: any;
+        feeB: any;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        accountA:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        accountB:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        tokenA: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        tokenB: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        pair: {
+          __typename?: 'Pair';
+          id: string;
+          token0: { __typename?: 'Token'; symbol: string };
+          token1: { __typename?: 'Token'; symbol: string };
+        };
+      }
+    | {
+        __typename: 'Remove';
+        id: string;
+        internalID: any;
+        data: string;
+        amount: any;
+        fee: any;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        account:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        pool: {
+          __typename?: 'Pool';
+          id: string;
+          address: any;
+          balances: Array<{
+            __typename?: 'AccountTokenBalance';
+            id: string;
+            balance: any;
+            token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+          }>;
+        };
+        token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }
+    | {
+        __typename: 'SignatureVerification';
+        id: string;
+        internalID: any;
+        data: string;
+        verificationData: string;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        account:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+      }
+    | {
+        __typename: 'Swap';
+        id: string;
+        internalID: any;
+        data: string;
+        tokenAPrice: any;
+        tokenBPrice: any;
+        fillSA: any;
+        fillSB: any;
+        fillBA: any;
+        protocolFeeA: any;
+        protocolFeeB: any;
+        feeA: any;
+        feeB: any;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        account:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        pool: {
+          __typename?: 'Pool';
+          id: string;
+          address: any;
+          balances: Array<{
+            __typename?: 'AccountTokenBalance';
+            id: string;
+            balance: any;
+            token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+          }>;
+        };
+        tokenA: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        tokenB: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        pair: {
+          __typename?: 'Pair';
+          id: string;
+          token0: { __typename?: 'Token'; symbol: string };
+          token1: { __typename?: 'Token'; symbol: string };
+        };
+      }
+    | {
+        __typename: 'SwapNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        accountA:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        accountB:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        nfts: Array<{
+          __typename?: 'NonFungibleToken';
+          id: string;
+          nftID: string;
+          nftType: number;
+          token: string;
+          minter:
+            | { __typename?: 'Pool'; id: string; address: any }
+            | { __typename?: 'ProtocolAccount'; id: string; address: any }
+            | { __typename?: 'User'; id: string; address: any };
+        }>;
+      }
+    | {
+        __typename: 'TradeNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        accountIdA: number;
+        accountIdB: number;
+        storageIdA: number;
+        storageIdB: number;
+        tokenIDAS: number;
+        tokenIDAB: number;
+        tokenIDBS: number;
+        tokenIDBB: number;
+        realizedNFTPrice: any;
+        feeBuyer: any;
+        feeSeller: any;
+        protocolFeeBuyer: any;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        accountSeller:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        accountBuyer:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        nfts: Array<{
+          __typename?: 'NonFungibleToken';
+          id: string;
+          nftID: string;
+          nftType: number;
+          token: string;
+          minter:
+            | { __typename?: 'Pool'; id: string; address: any }
+            | { __typename?: 'ProtocolAccount'; id: string; address: any }
+            | { __typename?: 'User'; id: string; address: any };
+        }>;
+      }
+    | {
+        __typename: 'Transfer';
+        id: string;
+        internalID: any;
+        data: string;
+        amount: any;
+        fee: any;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        fromAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        toAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+      }
+    | {
+        __typename: 'TransferNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        fee: any;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        fromAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        toAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        nfts: Array<{
+          __typename?: 'NonFungibleToken';
+          id: string;
+          nftID: string;
+          nftType: number;
+          token: string;
+          minter:
+            | { __typename?: 'Pool'; id: string; address: any }
+            | { __typename?: 'ProtocolAccount'; id: string; address: any }
+            | { __typename?: 'User'; id: string; address: any };
+        }>;
+      }
+    | {
+        __typename: 'Withdrawal';
+        id: string;
+        internalID: any;
+        data: string;
+        amount: any;
+        fee: any;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        fromAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        withdrawalToken?: {
+          __typename?: 'Token';
+          id: string;
+          name: string;
+          symbol: string;
+          decimals: number;
+          address: any;
+        } | null;
+        withdrawalFeeToken?: {
+          __typename?: 'Token';
+          id: string;
+          name: string;
+          symbol: string;
+          decimals: number;
+          address: any;
+        } | null;
+      }
+    | {
+        __typename: 'WithdrawalNFT';
+        id: string;
+        internalID: any;
+        data: string;
+        fee: any;
+        block: {
+          __typename?: 'Block';
+          id: string;
+          blockHash: string;
+          timestamp: any;
+          transactionCount: any;
+          txHash: string;
+        };
+        fromAccount:
+          | { __typename?: 'Pool'; id: string; address: any }
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        withdrawalNFTFeeToken?: {
+          __typename?: 'Token';
+          id: string;
+          name: string;
+          symbol: string;
+          decimals: number;
+          address: any;
+        } | null;
+        nfts: Array<{
+          __typename?: 'NonFungibleToken';
+          id: string;
+          nftID: string;
+          nftType: number;
+          token: string;
+          minter:
+            | { __typename?: 'Pool'; id: string; address: any }
+            | { __typename?: 'ProtocolAccount'; id: string; address: any }
+            | { __typename?: 'User'; id: string; address: any };
+        }>;
+      }
+    | null;
+};
 
 export type PendingTransactionsQueryVariables = Exact<{
   transferWhere?: InputMaybe<Transfer_Filter>;
@@ -11505,410 +13096,441 @@ export type PendingTransactionsQueryVariables = Exact<{
   accountUpdateWhere?: InputMaybe<AccountUpdate_Filter>;
 }>;
 
-
-export type PendingTransactionsQuery = { __typename?: 'Query', transfers: Array<{ __typename?: 'Transfer', id: string }>, withdrawals: Array<{ __typename?: 'Withdrawal', id: string }>, adds: Array<{ __typename?: 'Add', id: string }>, removes: Array<{ __typename?: 'Remove', id: string }>, orderbookTrades: Array<{ __typename?: 'OrderbookTrade', id: string }>, mintNFTs: Array<{ __typename?: 'MintNFT', id: string }>, withdrawalNFTs: Array<{ __typename?: 'WithdrawalNFT', id: string }>, transferNFTs: Array<{ __typename?: 'TransferNFT', id: string }>, swaps: Array<{ __typename?: 'Swap', id: string }>, tradeNFTs: Array<{ __typename?: 'TradeNFT', id: string }>, tradeNFTsB: Array<{ __typename?: 'TradeNFT', id: string }>, accountUpdates: Array<{ __typename?: 'AccountUpdate', id: string }> };
+export type PendingTransactionsQuery = {
+  __typename?: 'Query';
+  transfers: Array<{ __typename?: 'Transfer'; id: string }>;
+  withdrawals: Array<{ __typename?: 'Withdrawal'; id: string }>;
+  adds: Array<{ __typename?: 'Add'; id: string }>;
+  removes: Array<{ __typename?: 'Remove'; id: string }>;
+  orderbookTrades: Array<{ __typename?: 'OrderbookTrade'; id: string }>;
+  mintNFTs: Array<{ __typename?: 'MintNFT'; id: string }>;
+  withdrawalNFTs: Array<{ __typename?: 'WithdrawalNFT'; id: string }>;
+  transferNFTs: Array<{ __typename?: 'TransferNFT'; id: string }>;
+  swaps: Array<{ __typename?: 'Swap'; id: string }>;
+  tradeNFTs: Array<{ __typename?: 'TradeNFT'; id: string }>;
+  tradeNFTsB: Array<{ __typename?: 'TradeNFT'; id: string }>;
+  accountUpdates: Array<{ __typename?: 'AccountUpdate'; id: string }>;
+};
 
 export const AccountFragmentFragmentDoc = gql`
-    fragment AccountFragment on Account {
-  id
-  address
-}
-    `;
+  fragment AccountFragment on Account {
+    id
+    address
+  }
+`;
 export const BlockFragmentFragmentDoc = gql`
-    fragment BlockFragment on Block {
-  id
-  timestamp
-  txHash
-  gasLimit
-  gasPrice
-  height
-  blockHash
-  blockSize
-  gasPrice
-  operatorAccount {
-    ...AccountFragment
+  fragment BlockFragment on Block {
+    id
+    timestamp
+    txHash
+    gasLimit
+    gasPrice
+    height
+    blockHash
+    blockSize
+    gasPrice
+    operatorAccount {
+      ...AccountFragment
+    }
   }
-}
-    ${AccountFragmentFragmentDoc}`;
+  ${AccountFragmentFragmentDoc}
+`;
 export const TokenFragmentFragmentDoc = gql`
-    fragment TokenFragment on Token {
-  id
-  name
-  symbol
-  decimals
-  address
-}
-    `;
+  fragment TokenFragment on Token {
+    id
+    name
+    symbol
+    decimals
+    address
+  }
+`;
 export const PoolFragmentFragmentDoc = gql`
-    fragment PoolFragment on Pool {
-  id
-  address
-  balances {
-    id
-    balance
-    token {
-      ...TokenFragment
-    }
-  }
-}
-    ${TokenFragmentFragmentDoc}`;
-export const AddFragmentFragmentDoc = gql`
-    fragment AddFragment on Add {
-  id
-  account {
-    ...AccountFragment
-  }
-  pool {
-    ...PoolFragment
-  }
-  token {
-    ...TokenFragment
-  }
-  feeToken {
-    ...TokenFragment
-  }
-  amount
-  fee
-  __typename
-}
-    ${AccountFragmentFragmentDoc}
-${PoolFragmentFragmentDoc}
-${TokenFragmentFragmentDoc}`;
-export const RemoveFragmentFragmentDoc = gql`
-    fragment RemoveFragment on Remove {
-  id
-  account {
-    ...AccountFragment
-  }
-  pool {
-    ...PoolFragment
-  }
-  token {
-    ...TokenFragment
-  }
-  feeToken {
-    ...TokenFragment
-  }
-  amount
-  fee
-  __typename
-}
-    ${AccountFragmentFragmentDoc}
-${PoolFragmentFragmentDoc}
-${TokenFragmentFragmentDoc}`;
-export const SwapFragmentFragmentDoc = gql`
-    fragment SwapFragment on Swap {
-  id
-  account {
-    ...AccountFragment
-  }
-  pool {
-    ...PoolFragment
-  }
-  tokenA {
-    ...TokenFragment
-  }
-  tokenB {
-    ...TokenFragment
-  }
-  pair {
-    id
-    token0 {
-      symbol
-    }
-    token1 {
-      symbol
-    }
-  }
-  tokenAPrice
-  tokenBPrice
-  fillSA
-  fillSB
-  fillBA
-  protocolFeeA
-  protocolFeeB
-  feeA
-  feeB
-  __typename
-}
-    ${AccountFragmentFragmentDoc}
-${PoolFragmentFragmentDoc}
-${TokenFragmentFragmentDoc}`;
-export const OrderbookTradeFragmentFragmentDoc = gql`
-    fragment OrderbookTradeFragment on OrderbookTrade {
-  id
-  accountA {
-    ...AccountFragment
-  }
-  accountB {
-    ...AccountFragment
-  }
-  tokenA {
-    ...TokenFragment
-  }
-  tokenB {
-    ...TokenFragment
-  }
-  pair {
-    id
-    token0 {
-      symbol
-    }
-    token1 {
-      symbol
-    }
-  }
-  tokenAPrice
-  tokenBPrice
-  fillSA
-  fillSB
-  fillBA
-  fillBB
-  fillAmountBorSA
-  fillAmountBorSB
-  feeA
-  feeB
-  __typename
-}
-    ${AccountFragmentFragmentDoc}
-${TokenFragmentFragmentDoc}`;
-export const DepositFragmentFragmentDoc = gql`
-    fragment DepositFragment on Deposit {
-  id
-  toAccount {
-    ...AccountFragment
-  }
-  token {
-    ...TokenFragment
-  }
-  amount
-  __typename
-}
-    ${AccountFragmentFragmentDoc}
-${TokenFragmentFragmentDoc}`;
-export const WithdrawalFragmentFragmentDoc = gql`
-    fragment WithdrawalFragment on Withdrawal {
-  fromAccount {
-    ...AccountFragment
-  }
-  withdrawalToken: token {
-    ...TokenFragment
-  }
-  withdrawalFeeToken: feeToken {
-    ...TokenFragment
-  }
-  amount
-  fee
-  __typename
-}
-    ${AccountFragmentFragmentDoc}
-${TokenFragmentFragmentDoc}`;
-export const TransferFragmentFragmentDoc = gql`
-    fragment TransferFragment on Transfer {
-  fromAccount {
-    ...AccountFragment
-  }
-  toAccount {
-    ...AccountFragment
-  }
-  token {
-    ...TokenFragment
-  }
-  feeToken {
-    ...TokenFragment
-  }
-  amount
-  fee
-  __typename
-}
-    ${AccountFragmentFragmentDoc}
-${TokenFragmentFragmentDoc}`;
-export const AccountUpdateFragmentFragmentDoc = gql`
-    fragment AccountUpdateFragment on AccountUpdate {
-  user {
+  fragment PoolFragment on Pool {
     id
     address
-    publicKey
-  }
-  feeToken {
-    ...TokenFragment
-  }
-  fee
-  nonce
-  __typename
-}
-    ${TokenFragmentFragmentDoc}`;
-export const AmmUpdateFragmentFragmentDoc = gql`
-    fragment AmmUpdateFragment on AmmUpdate {
-  pool {
-    ...PoolFragment
-  }
-  tokenID
-  feeBips
-  tokenWeight
-  nonce
-  balance
-  tokenBalances {
-    id
-    balance
-    token {
-      ...TokenFragment
-    }
-  }
-  __typename
-}
-    ${PoolFragmentFragmentDoc}
-${TokenFragmentFragmentDoc}`;
-export const SignatureVerificationFragmentFragmentDoc = gql`
-    fragment SignatureVerificationFragment on SignatureVerification {
-  account {
-    ...AccountFragment
-  }
-  verificationData
-  __typename
-}
-    ${AccountFragmentFragmentDoc}`;
-export const NftFragmentFragmentDoc = gql`
-    fragment NFTFragment on NonFungibleToken {
-  id
-  minter {
-    ...AccountFragment
-  }
-  nftID
-  nftType
-  token
-}
-    ${AccountFragmentFragmentDoc}`;
-export const TradeNftFragmentFragmentDoc = gql`
-    fragment TradeNFTFragment on TradeNFT {
-  accountSeller {
-    ...AccountFragment
-  }
-  accountIdA
-  accountIdB
-  storageIdA
-  storageIdB
-  tokenIDAS
-  tokenIDAB
-  tokenIDBS
-  tokenIDBB
-  accountBuyer {
-    ...AccountFragment
-  }
-  token {
-    ...TokenFragment
-  }
-  nfts {
-    ...NFTFragment
-  }
-  realizedNFTPrice
-  feeBuyer
-  feeSeller
-  protocolFeeBuyer
-  __typename
-}
-    ${AccountFragmentFragmentDoc}
-${TokenFragmentFragmentDoc}
-${NftFragmentFragmentDoc}`;
-export const SwapNftFragmentFragmentDoc = gql`
-    fragment SwapNFTFragment on SwapNFT {
-  accountA {
-    ...AccountFragment
-  }
-  accountB {
-    ...AccountFragment
-  }
-  nfts {
-    ...NFTFragment
-  }
-  __typename
-}
-    ${AccountFragmentFragmentDoc}
-${NftFragmentFragmentDoc}`;
-export const WithdrawalNftFragmentFragmentDoc = gql`
-    fragment WithdrawalNFTFragment on WithdrawalNFT {
-  fromAccount {
-    ...AccountFragment
-  }
-  fee
-  withdrawalNFTFeeToken: feeToken {
-    ...TokenFragment
-  }
-  nfts {
-    ...NFTFragment
-  }
-  __typename
-}
-    ${AccountFragmentFragmentDoc}
-${TokenFragmentFragmentDoc}
-${NftFragmentFragmentDoc}`;
-export const TransferNftFragmentFragmentDoc = gql`
-    fragment TransferNFTFragment on TransferNFT {
-  fromAccount {
-    ...AccountFragment
-  }
-  toAccount {
-    ...AccountFragment
-  }
-  feeToken {
-    ...TokenFragment
-  }
-  nfts {
-    ...NFTFragment
-  }
-  fee
-  __typename
-}
-    ${AccountFragmentFragmentDoc}
-${TokenFragmentFragmentDoc}
-${NftFragmentFragmentDoc}`;
-export const MintNftFragmentFragmentDoc = gql`
-    fragment MintNFTFragment on MintNFT {
-  minter {
-    ...AccountFragment
-  }
-  receiver {
-    ...AccountFragment
-  }
-  receiverSlot {
-    id
-  }
-  nft {
-    id
-  }
-  fee
-  feeToken {
-    ...TokenFragment
-  }
-  amount
-  __typename
-}
-    ${AccountFragmentFragmentDoc}
-${TokenFragmentFragmentDoc}`;
-export const DataNftFragmentFragmentDoc = gql`
-    fragment DataNFTFragment on DataNFT {
-  id
-  __typename
-}
-    `;
-export const AccountsDocument = gql`
-    query accounts($first: Int, $where: Account_filter) {
-  accounts(first: $first, where: $where) {
-    id
-    address
-    createdAtTransaction {
+    balances {
       id
-      block {
-        timestamp
+      balance
+      token {
+        ...TokenFragment
       }
     }
-    ... on Pool {
-      feeBipsAMM
+  }
+  ${TokenFragmentFragmentDoc}
+`;
+export const AddFragmentFragmentDoc = gql`
+  fragment AddFragment on Add {
+    id
+    account {
+      ...AccountFragment
+    }
+    pool {
+      ...PoolFragment
+    }
+    token {
+      ...TokenFragment
+    }
+    feeToken {
+      ...TokenFragment
+    }
+    amount
+    fee
+    __typename
+  }
+  ${AccountFragmentFragmentDoc}
+  ${PoolFragmentFragmentDoc}
+  ${TokenFragmentFragmentDoc}
+`;
+export const RemoveFragmentFragmentDoc = gql`
+  fragment RemoveFragment on Remove {
+    id
+    account {
+      ...AccountFragment
+    }
+    pool {
+      ...PoolFragment
+    }
+    token {
+      ...TokenFragment
+    }
+    feeToken {
+      ...TokenFragment
+    }
+    amount
+    fee
+    __typename
+  }
+  ${AccountFragmentFragmentDoc}
+  ${PoolFragmentFragmentDoc}
+  ${TokenFragmentFragmentDoc}
+`;
+export const SwapFragmentFragmentDoc = gql`
+  fragment SwapFragment on Swap {
+    id
+    account {
+      ...AccountFragment
+    }
+    pool {
+      ...PoolFragment
+    }
+    tokenA {
+      ...TokenFragment
+    }
+    tokenB {
+      ...TokenFragment
+    }
+    pair {
+      id
+      token0 {
+        symbol
+      }
+      token1 {
+        symbol
+      }
+    }
+    tokenAPrice
+    tokenBPrice
+    fillSA
+    fillSB
+    fillBA
+    protocolFeeA
+    protocolFeeB
+    feeA
+    feeB
+    __typename
+  }
+  ${AccountFragmentFragmentDoc}
+  ${PoolFragmentFragmentDoc}
+  ${TokenFragmentFragmentDoc}
+`;
+export const OrderbookTradeFragmentFragmentDoc = gql`
+  fragment OrderbookTradeFragment on OrderbookTrade {
+    id
+    accountA {
+      ...AccountFragment
+    }
+    accountB {
+      ...AccountFragment
+    }
+    tokenA {
+      ...TokenFragment
+    }
+    tokenB {
+      ...TokenFragment
+    }
+    pair {
+      id
+      token0 {
+        symbol
+      }
+      token1 {
+        symbol
+      }
+    }
+    tokenAPrice
+    tokenBPrice
+    fillSA
+    fillSB
+    fillBA
+    fillBB
+    fillAmountBorSA
+    fillAmountBorSB
+    feeA
+    feeB
+    __typename
+  }
+  ${AccountFragmentFragmentDoc}
+  ${TokenFragmentFragmentDoc}
+`;
+export const DepositFragmentFragmentDoc = gql`
+  fragment DepositFragment on Deposit {
+    id
+    toAccount {
+      ...AccountFragment
+    }
+    token {
+      ...TokenFragment
+    }
+    amount
+    __typename
+  }
+  ${AccountFragmentFragmentDoc}
+  ${TokenFragmentFragmentDoc}
+`;
+export const WithdrawalFragmentFragmentDoc = gql`
+  fragment WithdrawalFragment on Withdrawal {
+    fromAccount {
+      ...AccountFragment
+    }
+    withdrawalToken: token {
+      ...TokenFragment
+    }
+    withdrawalFeeToken: feeToken {
+      ...TokenFragment
+    }
+    amount
+    fee
+    __typename
+  }
+  ${AccountFragmentFragmentDoc}
+  ${TokenFragmentFragmentDoc}
+`;
+export const TransferFragmentFragmentDoc = gql`
+  fragment TransferFragment on Transfer {
+    fromAccount {
+      ...AccountFragment
+    }
+    toAccount {
+      ...AccountFragment
+    }
+    token {
+      ...TokenFragment
+    }
+    feeToken {
+      ...TokenFragment
+    }
+    amount
+    fee
+    __typename
+  }
+  ${AccountFragmentFragmentDoc}
+  ${TokenFragmentFragmentDoc}
+`;
+export const AccountUpdateFragmentFragmentDoc = gql`
+  fragment AccountUpdateFragment on AccountUpdate {
+    user {
+      id
+      address
+      publicKey
+    }
+    feeToken {
+      ...TokenFragment
+    }
+    fee
+    nonce
+    __typename
+  }
+  ${TokenFragmentFragmentDoc}
+`;
+export const AmmUpdateFragmentFragmentDoc = gql`
+  fragment AmmUpdateFragment on AmmUpdate {
+    pool {
+      ...PoolFragment
+    }
+    tokenID
+    feeBips
+    tokenWeight
+    nonce
+    balance
+    tokenBalances {
+      id
+      balance
+      token {
+        ...TokenFragment
+      }
     }
     __typename
   }
-}
-    `;
+  ${PoolFragmentFragmentDoc}
+  ${TokenFragmentFragmentDoc}
+`;
+export const SignatureVerificationFragmentFragmentDoc = gql`
+  fragment SignatureVerificationFragment on SignatureVerification {
+    account {
+      ...AccountFragment
+    }
+    verificationData
+    __typename
+  }
+  ${AccountFragmentFragmentDoc}
+`;
+export const NftFragmentFragmentDoc = gql`
+  fragment NFTFragment on NonFungibleToken {
+    id
+    minter {
+      ...AccountFragment
+    }
+    nftID
+    nftType
+    token
+  }
+  ${AccountFragmentFragmentDoc}
+`;
+export const TradeNftFragmentFragmentDoc = gql`
+  fragment TradeNFTFragment on TradeNFT {
+    accountSeller {
+      ...AccountFragment
+    }
+    accountIdA
+    accountIdB
+    storageIdA
+    storageIdB
+    tokenIDAS
+    tokenIDAB
+    tokenIDBS
+    tokenIDBB
+    accountBuyer {
+      ...AccountFragment
+    }
+    token {
+      ...TokenFragment
+    }
+    nfts {
+      ...NFTFragment
+    }
+    realizedNFTPrice
+    feeBuyer
+    feeSeller
+    protocolFeeBuyer
+    __typename
+  }
+  ${AccountFragmentFragmentDoc}
+  ${TokenFragmentFragmentDoc}
+  ${NftFragmentFragmentDoc}
+`;
+export const SwapNftFragmentFragmentDoc = gql`
+  fragment SwapNFTFragment on SwapNFT {
+    accountA {
+      ...AccountFragment
+    }
+    accountB {
+      ...AccountFragment
+    }
+    nfts {
+      ...NFTFragment
+    }
+    __typename
+  }
+  ${AccountFragmentFragmentDoc}
+  ${NftFragmentFragmentDoc}
+`;
+export const WithdrawalNftFragmentFragmentDoc = gql`
+  fragment WithdrawalNFTFragment on WithdrawalNFT {
+    fromAccount {
+      ...AccountFragment
+    }
+    fee
+    withdrawalNFTFeeToken: feeToken {
+      ...TokenFragment
+    }
+    nfts {
+      ...NFTFragment
+    }
+    __typename
+  }
+  ${AccountFragmentFragmentDoc}
+  ${TokenFragmentFragmentDoc}
+  ${NftFragmentFragmentDoc}
+`;
+export const TransferNftFragmentFragmentDoc = gql`
+  fragment TransferNFTFragment on TransferNFT {
+    fromAccount {
+      ...AccountFragment
+    }
+    toAccount {
+      ...AccountFragment
+    }
+    feeToken {
+      ...TokenFragment
+    }
+    nfts {
+      ...NFTFragment
+    }
+    fee
+    __typename
+  }
+  ${AccountFragmentFragmentDoc}
+  ${TokenFragmentFragmentDoc}
+  ${NftFragmentFragmentDoc}
+`;
+export const MintNftFragmentFragmentDoc = gql`
+  fragment MintNFTFragment on MintNFT {
+    minter {
+      ...AccountFragment
+    }
+    receiver {
+      ...AccountFragment
+    }
+    receiverSlot {
+      id
+    }
+    nft {
+      id
+    }
+    fee
+    feeToken {
+      ...TokenFragment
+    }
+    amount
+    __typename
+  }
+  ${AccountFragmentFragmentDoc}
+  ${TokenFragmentFragmentDoc}
+`;
+export const DataNftFragmentFragmentDoc = gql`
+  fragment DataNFTFragment on DataNFT {
+    id
+    __typename
+  }
+`;
+export const AccountsDocument = gql`
+  query accounts($first: Int, $where: Account_filter) {
+    accounts(first: $first, where: $where) {
+      id
+      address
+      createdAtTransaction {
+        id
+        block {
+          timestamp
+        }
+      }
+      ... on Pool {
+        feeBipsAMM
+      }
+      __typename
+    }
+  }
+`;
 
 /**
  * __useAccountsQuery__
@@ -11928,36 +13550,32 @@ export const AccountsDocument = gql`
  * });
  */
 export function useAccountsQuery(baseOptions?: Apollo.QueryHookOptions<AccountsQuery, AccountsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<AccountsQuery, AccountsQueryVariables>(AccountsDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<AccountsQuery, AccountsQueryVariables>(AccountsDocument, options);
+}
 export function useAccountsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AccountsQuery, AccountsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<AccountsQuery, AccountsQueryVariables>(AccountsDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<AccountsQuery, AccountsQueryVariables>(AccountsDocument, options);
+}
 export type AccountsQueryHookResult = ReturnType<typeof useAccountsQuery>;
 export type AccountsLazyQueryHookResult = ReturnType<typeof useAccountsLazyQuery>;
 export type AccountsQueryResult = Apollo.QueryResult<AccountsQuery, AccountsQueryVariables>;
 export function refetchAccountsQuery(variables?: AccountsQueryVariables) {
-      return { query: AccountsDocument, variables: variables }
-    }
-export const AccountTokenBalancesDocument = gql`
-    query accountTokenBalances($where: AccountTokenBalance_filter, $orderDirection: OrderDirection) {
-  accountTokenBalances(
-    orderDirection: $orderDirection
-    orderBy: id
-    first: 10
-    where: $where
-  ) {
-    id
-    balance
-    token {
-      ...TokenFragment
-    }
-    __typename
-  }
+  return { query: AccountsDocument, variables: variables };
 }
-    ${TokenFragmentFragmentDoc}`;
+export const AccountTokenBalancesDocument = gql`
+  query accountTokenBalances($where: AccountTokenBalance_filter, $orderDirection: OrderDirection) {
+    accountTokenBalances(orderDirection: $orderDirection, orderBy: id, first: 10, where: $where) {
+      id
+      balance
+      token {
+        ...TokenFragment
+      }
+      __typename
+    }
+  }
+  ${TokenFragmentFragmentDoc}
+`;
 
 /**
  * __useAccountTokenBalancesQuery__
@@ -11976,42 +13594,51 @@ export const AccountTokenBalancesDocument = gql`
  *   },
  * });
  */
-export function useAccountTokenBalancesQuery(baseOptions?: Apollo.QueryHookOptions<AccountTokenBalancesQuery, AccountTokenBalancesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<AccountTokenBalancesQuery, AccountTokenBalancesQueryVariables>(AccountTokenBalancesDocument, options);
-      }
-export function useAccountTokenBalancesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AccountTokenBalancesQuery, AccountTokenBalancesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<AccountTokenBalancesQuery, AccountTokenBalancesQueryVariables>(AccountTokenBalancesDocument, options);
-        }
+export function useAccountTokenBalancesQuery(
+  baseOptions?: Apollo.QueryHookOptions<AccountTokenBalancesQuery, AccountTokenBalancesQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<AccountTokenBalancesQuery, AccountTokenBalancesQueryVariables>(
+    AccountTokenBalancesDocument,
+    options
+  );
+}
+export function useAccountTokenBalancesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<AccountTokenBalancesQuery, AccountTokenBalancesQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<AccountTokenBalancesQuery, AccountTokenBalancesQueryVariables>(
+    AccountTokenBalancesDocument,
+    options
+  );
+}
 export type AccountTokenBalancesQueryHookResult = ReturnType<typeof useAccountTokenBalancesQuery>;
 export type AccountTokenBalancesLazyQueryHookResult = ReturnType<typeof useAccountTokenBalancesLazyQuery>;
-export type AccountTokenBalancesQueryResult = Apollo.QueryResult<AccountTokenBalancesQuery, AccountTokenBalancesQueryVariables>;
+export type AccountTokenBalancesQueryResult = Apollo.QueryResult<
+  AccountTokenBalancesQuery,
+  AccountTokenBalancesQueryVariables
+>;
 export function refetchAccountTokenBalancesQuery(variables?: AccountTokenBalancesQueryVariables) {
-      return { query: AccountTokenBalancesDocument, variables: variables }
-    }
+  return { query: AccountTokenBalancesDocument, variables: variables };
+}
 export const AccountNftSlotsDocument = gql`
-    query accountNFTSlots($where: AccountNFTSlot_filter, $orderDirection: OrderDirection) {
-  accountNFTSlots(
-    orderDirection: $orderDirection
-    orderBy: id
-    first: 8
-    where: $where
-  ) {
-    id
-    nft {
-      ...NFTFragment
-    }
-    balance
-    createdAtTransaction {
+  query accountNFTSlots($where: AccountNFTSlot_filter, $orderDirection: OrderDirection) {
+    accountNFTSlots(orderDirection: $orderDirection, orderBy: id, first: 8, where: $where) {
       id
-      block {
-        timestamp
+      nft {
+        ...NFTFragment
+      }
+      balance
+      createdAtTransaction {
+        id
+        block {
+          timestamp
+        }
       }
     }
   }
-}
-    ${NftFragmentFragmentDoc}`;
+  ${NftFragmentFragmentDoc}
+`;
 
 /**
  * __useAccountNftSlotsQuery__
@@ -12030,33 +13657,33 @@ export const AccountNftSlotsDocument = gql`
  *   },
  * });
  */
-export function useAccountNftSlotsQuery(baseOptions?: Apollo.QueryHookOptions<AccountNftSlotsQuery, AccountNftSlotsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<AccountNftSlotsQuery, AccountNftSlotsQueryVariables>(AccountNftSlotsDocument, options);
-      }
-export function useAccountNftSlotsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AccountNftSlotsQuery, AccountNftSlotsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<AccountNftSlotsQuery, AccountNftSlotsQueryVariables>(AccountNftSlotsDocument, options);
-        }
+export function useAccountNftSlotsQuery(
+  baseOptions?: Apollo.QueryHookOptions<AccountNftSlotsQuery, AccountNftSlotsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<AccountNftSlotsQuery, AccountNftSlotsQueryVariables>(AccountNftSlotsDocument, options);
+}
+export function useAccountNftSlotsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<AccountNftSlotsQuery, AccountNftSlotsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<AccountNftSlotsQuery, AccountNftSlotsQueryVariables>(AccountNftSlotsDocument, options);
+}
 export type AccountNftSlotsQueryHookResult = ReturnType<typeof useAccountNftSlotsQuery>;
 export type AccountNftSlotsLazyQueryHookResult = ReturnType<typeof useAccountNftSlotsLazyQuery>;
 export type AccountNftSlotsQueryResult = Apollo.QueryResult<AccountNftSlotsQuery, AccountNftSlotsQueryVariables>;
 export function refetchAccountNftSlotsQuery(variables?: AccountNftSlotsQueryVariables) {
-      return { query: AccountNftSlotsDocument, variables: variables }
-    }
-export const BlocksDocument = gql`
-    query blocks($first: Int, $where: Block_filter, $orderDirection: OrderDirection) {
-  blocks(
-    first: $first
-    where: $where
-    orderBy: internalID
-    orderDirection: $orderDirection
-  ) {
-    ...BlockFragment
-    transactionCount
-  }
+  return { query: AccountNftSlotsDocument, variables: variables };
 }
-    ${BlockFragmentFragmentDoc}`;
+export const BlocksDocument = gql`
+  query blocks($first: Int, $where: Block_filter, $orderDirection: OrderDirection) {
+    blocks(first: $first, where: $where, orderBy: internalID, orderDirection: $orderDirection) {
+      ...BlockFragment
+      transactionCount
+    }
+  }
+  ${BlockFragmentFragmentDoc}
+`;
 
 /**
  * __useBlocksQuery__
@@ -12077,30 +13704,31 @@ export const BlocksDocument = gql`
  * });
  */
 export function useBlocksQuery(baseOptions?: Apollo.QueryHookOptions<BlocksQuery, BlocksQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<BlocksQuery, BlocksQueryVariables>(BlocksDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<BlocksQuery, BlocksQueryVariables>(BlocksDocument, options);
+}
 export function useBlocksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlocksQuery, BlocksQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<BlocksQuery, BlocksQueryVariables>(BlocksDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<BlocksQuery, BlocksQueryVariables>(BlocksDocument, options);
+}
 export type BlocksQueryHookResult = ReturnType<typeof useBlocksQuery>;
 export type BlocksLazyQueryHookResult = ReturnType<typeof useBlocksLazyQuery>;
 export type BlocksQueryResult = Apollo.QueryResult<BlocksQuery, BlocksQueryVariables>;
 export function refetchBlocksQuery(variables?: BlocksQueryVariables) {
-      return { query: BlocksDocument, variables: variables }
-    }
-export const BlockDocument = gql`
-    query block($id: ID!) {
-  proxy(id: 0) {
-    blockCount
-  }
-  block(id: $id) {
-    ...BlockFragment
-    data
-  }
+  return { query: BlocksDocument, variables: variables };
 }
-    ${BlockFragmentFragmentDoc}`;
+export const BlockDocument = gql`
+  query block($id: ID!) {
+    proxy(id: 0) {
+      blockCount
+    }
+    block(id: $id) {
+      ...BlockFragment
+      data
+    }
+  }
+  ${BlockFragmentFragmentDoc}
+`;
 
 /**
  * __useBlockQuery__
@@ -12119,33 +13747,33 @@ export const BlockDocument = gql`
  * });
  */
 export function useBlockQuery(baseOptions: Apollo.QueryHookOptions<BlockQuery, BlockQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<BlockQuery, BlockQueryVariables>(BlockDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<BlockQuery, BlockQueryVariables>(BlockDocument, options);
+}
 export function useBlockLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlockQuery, BlockQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<BlockQuery, BlockQueryVariables>(BlockDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<BlockQuery, BlockQueryVariables>(BlockDocument, options);
+}
 export type BlockQueryHookResult = ReturnType<typeof useBlockQuery>;
 export type BlockLazyQueryHookResult = ReturnType<typeof useBlockLazyQuery>;
 export type BlockQueryResult = Apollo.QueryResult<BlockQuery, BlockQueryVariables>;
 export function refetchBlockQuery(variables: BlockQueryVariables) {
-      return { query: BlockDocument, variables: variables }
-    }
-export const NetworkStatsDocument = gql`
-    query networkStats {
-  proxy(id: 0) {
-    blockCount
-    userCount
-    transactionCount
-  }
-  blocks(first: 10, orderBy: internalID, orderDirection: desc) {
-    id
-    transactionCount
-    timestamp
-  }
+  return { query: BlockDocument, variables: variables };
 }
-    `;
+export const NetworkStatsDocument = gql`
+  query networkStats {
+    proxy(id: 0) {
+      blockCount
+      userCount
+      transactionCount
+    }
+    blocks(first: 10, orderBy: internalID, orderDirection: desc) {
+      id
+      transactionCount
+      timestamp
+    }
+  }
+`;
 
 /**
  * __useNetworkStatsQuery__
@@ -12162,28 +13790,33 @@ export const NetworkStatsDocument = gql`
  *   },
  * });
  */
-export function useNetworkStatsQuery(baseOptions?: Apollo.QueryHookOptions<NetworkStatsQuery, NetworkStatsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<NetworkStatsQuery, NetworkStatsQueryVariables>(NetworkStatsDocument, options);
-      }
-export function useNetworkStatsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NetworkStatsQuery, NetworkStatsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<NetworkStatsQuery, NetworkStatsQueryVariables>(NetworkStatsDocument, options);
-        }
+export function useNetworkStatsQuery(
+  baseOptions?: Apollo.QueryHookOptions<NetworkStatsQuery, NetworkStatsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<NetworkStatsQuery, NetworkStatsQueryVariables>(NetworkStatsDocument, options);
+}
+export function useNetworkStatsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<NetworkStatsQuery, NetworkStatsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<NetworkStatsQuery, NetworkStatsQueryVariables>(NetworkStatsDocument, options);
+}
 export type NetworkStatsQueryHookResult = ReturnType<typeof useNetworkStatsQuery>;
 export type NetworkStatsLazyQueryHookResult = ReturnType<typeof useNetworkStatsLazyQuery>;
 export type NetworkStatsQueryResult = Apollo.QueryResult<NetworkStatsQuery, NetworkStatsQueryVariables>;
 export function refetchNetworkStatsQuery(variables?: NetworkStatsQueryVariables) {
-      return { query: NetworkStatsDocument, variables: variables }
-    }
-export const NonFungibleTokenDocument = gql`
-    query nonFungibleToken($id: ID!) {
-  nonFungibleToken(id: $id) {
-    ...NFTFragment
-    __typename
-  }
+  return { query: NetworkStatsDocument, variables: variables };
 }
-    ${NftFragmentFragmentDoc}`;
+export const NonFungibleTokenDocument = gql`
+  query nonFungibleToken($id: ID!) {
+    nonFungibleToken(id: $id) {
+      ...NFTFragment
+      __typename
+    }
+  }
+  ${NftFragmentFragmentDoc}
+`;
 
 /**
  * __useNonFungibleTokenQuery__
@@ -12201,50 +13834,50 @@ export const NonFungibleTokenDocument = gql`
  *   },
  * });
  */
-export function useNonFungibleTokenQuery(baseOptions: Apollo.QueryHookOptions<NonFungibleTokenQuery, NonFungibleTokenQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<NonFungibleTokenQuery, NonFungibleTokenQueryVariables>(NonFungibleTokenDocument, options);
-      }
-export function useNonFungibleTokenLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NonFungibleTokenQuery, NonFungibleTokenQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<NonFungibleTokenQuery, NonFungibleTokenQueryVariables>(NonFungibleTokenDocument, options);
-        }
+export function useNonFungibleTokenQuery(
+  baseOptions: Apollo.QueryHookOptions<NonFungibleTokenQuery, NonFungibleTokenQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<NonFungibleTokenQuery, NonFungibleTokenQueryVariables>(NonFungibleTokenDocument, options);
+}
+export function useNonFungibleTokenLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<NonFungibleTokenQuery, NonFungibleTokenQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<NonFungibleTokenQuery, NonFungibleTokenQueryVariables>(NonFungibleTokenDocument, options);
+}
 export type NonFungibleTokenQueryHookResult = ReturnType<typeof useNonFungibleTokenQuery>;
 export type NonFungibleTokenLazyQueryHookResult = ReturnType<typeof useNonFungibleTokenLazyQuery>;
 export type NonFungibleTokenQueryResult = Apollo.QueryResult<NonFungibleTokenQuery, NonFungibleTokenQueryVariables>;
 export function refetchNonFungibleTokenQuery(variables: NonFungibleTokenQueryVariables) {
-      return { query: NonFungibleTokenDocument, variables: variables }
-    }
-export const TransactionNfTsDocument = gql`
-    query transactionNFTs($orderDirection: OrderDirection, $where: TransactionNFT_filter) {
-  transactionNFTs(
-    first: 10
-    orderBy: internalID
-    orderDirection: $orderDirection
-    where: $where
-  ) {
-    id
-    internalID
-    block {
-      id
-      blockHash
-      timestamp
-    }
-    data
-    ...TradeNFTFragment
-    ...SwapNFTFragment
-    ...WithdrawalNFTFragment
-    ...TransferNFTFragment
-    ...MintNFTFragment
-    ...DataNFTFragment
-  }
+  return { query: NonFungibleTokenDocument, variables: variables };
 }
-    ${TradeNftFragmentFragmentDoc}
-${SwapNftFragmentFragmentDoc}
-${WithdrawalNftFragmentFragmentDoc}
-${TransferNftFragmentFragmentDoc}
-${MintNftFragmentFragmentDoc}
-${DataNftFragmentFragmentDoc}`;
+export const TransactionNfTsDocument = gql`
+  query transactionNFTs($orderDirection: OrderDirection, $where: TransactionNFT_filter) {
+    transactionNFTs(first: 10, orderBy: internalID, orderDirection: $orderDirection, where: $where) {
+      id
+      internalID
+      block {
+        id
+        blockHash
+        timestamp
+      }
+      data
+      ...TradeNFTFragment
+      ...SwapNFTFragment
+      ...WithdrawalNFTFragment
+      ...TransferNFTFragment
+      ...MintNFTFragment
+      ...DataNFTFragment
+    }
+  }
+  ${TradeNftFragmentFragmentDoc}
+  ${SwapNftFragmentFragmentDoc}
+  ${WithdrawalNftFragmentFragmentDoc}
+  ${TransferNftFragmentFragmentDoc}
+  ${MintNftFragmentFragmentDoc}
+  ${DataNftFragmentFragmentDoc}
+`;
 
 /**
  * __useTransactionNfTsQuery__
@@ -12263,33 +13896,33 @@ ${DataNftFragmentFragmentDoc}`;
  *   },
  * });
  */
-export function useTransactionNfTsQuery(baseOptions?: Apollo.QueryHookOptions<TransactionNfTsQuery, TransactionNfTsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TransactionNfTsQuery, TransactionNfTsQueryVariables>(TransactionNfTsDocument, options);
-      }
-export function useTransactionNfTsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TransactionNfTsQuery, TransactionNfTsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TransactionNfTsQuery, TransactionNfTsQueryVariables>(TransactionNfTsDocument, options);
-        }
+export function useTransactionNfTsQuery(
+  baseOptions?: Apollo.QueryHookOptions<TransactionNfTsQuery, TransactionNfTsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<TransactionNfTsQuery, TransactionNfTsQueryVariables>(TransactionNfTsDocument, options);
+}
+export function useTransactionNfTsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<TransactionNfTsQuery, TransactionNfTsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<TransactionNfTsQuery, TransactionNfTsQueryVariables>(TransactionNfTsDocument, options);
+}
 export type TransactionNfTsQueryHookResult = ReturnType<typeof useTransactionNfTsQuery>;
 export type TransactionNfTsLazyQueryHookResult = ReturnType<typeof useTransactionNfTsLazyQuery>;
 export type TransactionNfTsQueryResult = Apollo.QueryResult<TransactionNfTsQuery, TransactionNfTsQueryVariables>;
 export function refetchTransactionNfTsQuery(variables?: TransactionNfTsQueryVariables) {
-      return { query: TransactionNfTsDocument, variables: variables }
-    }
-export const NonFungibleTokensDocument = gql`
-    query nonFungibleTokens($where: NonFungibleToken_filter, $first: Int, $orderDirection: OrderDirection) {
-  nonFungibleTokens(
-    where: $where
-    first: $first
-    orderDirection: $orderDirection
-    orderBy: nftID
-  ) {
-    ...NFTFragment
-    __typename
-  }
+  return { query: TransactionNfTsDocument, variables: variables };
 }
-    ${NftFragmentFragmentDoc}`;
+export const NonFungibleTokensDocument = gql`
+  query nonFungibleTokens($where: NonFungibleToken_filter, $first: Int, $orderDirection: OrderDirection) {
+    nonFungibleTokens(where: $where, first: $first, orderDirection: $orderDirection, orderBy: nftID) {
+      ...NFTFragment
+      __typename
+    }
+  }
+  ${NftFragmentFragmentDoc}
+`;
 
 /**
  * __useNonFungibleTokensQuery__
@@ -12309,50 +13942,53 @@ export const NonFungibleTokensDocument = gql`
  *   },
  * });
  */
-export function useNonFungibleTokensQuery(baseOptions?: Apollo.QueryHookOptions<NonFungibleTokensQuery, NonFungibleTokensQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<NonFungibleTokensQuery, NonFungibleTokensQueryVariables>(NonFungibleTokensDocument, options);
-      }
-export function useNonFungibleTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NonFungibleTokensQuery, NonFungibleTokensQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<NonFungibleTokensQuery, NonFungibleTokensQueryVariables>(NonFungibleTokensDocument, options);
-        }
+export function useNonFungibleTokensQuery(
+  baseOptions?: Apollo.QueryHookOptions<NonFungibleTokensQuery, NonFungibleTokensQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<NonFungibleTokensQuery, NonFungibleTokensQueryVariables>(NonFungibleTokensDocument, options);
+}
+export function useNonFungibleTokensLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<NonFungibleTokensQuery, NonFungibleTokensQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<NonFungibleTokensQuery, NonFungibleTokensQueryVariables>(
+    NonFungibleTokensDocument,
+    options
+  );
+}
 export type NonFungibleTokensQueryHookResult = ReturnType<typeof useNonFungibleTokensQuery>;
 export type NonFungibleTokensLazyQueryHookResult = ReturnType<typeof useNonFungibleTokensLazyQuery>;
 export type NonFungibleTokensQueryResult = Apollo.QueryResult<NonFungibleTokensQuery, NonFungibleTokensQueryVariables>;
 export function refetchNonFungibleTokensQuery(variables?: NonFungibleTokensQueryVariables) {
-      return { query: NonFungibleTokensDocument, variables: variables }
-    }
+  return { query: NonFungibleTokensDocument, variables: variables };
+}
 export const PairsDocument = gql`
-    query pairs($first: Int, $where: Pair_filter, $orderDirection: OrderDirection) {
-  pairs(
-    first: $first
-    where: $where
-    orderBy: tradedVolumeToken0Swap
-    orderDirection: $orderDirection
-  ) {
-    id
-    internalID
-    token0 {
-      ...TokenFragment
-    }
-    token1 {
-      ...TokenFragment
-    }
-    tradedVolumeToken0Swap
-    dailyEntities(skip: 1, first: 1, orderBy: dayEnd, orderDirection: desc) {
-      tradedVolumeToken1Swap
-      tradedVolumeToken0Swap
+  query pairs($first: Int, $where: Pair_filter, $orderDirection: OrderDirection) {
+    pairs(first: $first, where: $where, orderBy: tradedVolumeToken0Swap, orderDirection: $orderDirection) {
       id
-    }
-    weeklyEntities(skip: 0, first: 1, orderBy: weekEnd, orderDirection: desc) {
-      tradedVolumeToken1Swap
+      internalID
+      token0 {
+        ...TokenFragment
+      }
+      token1 {
+        ...TokenFragment
+      }
       tradedVolumeToken0Swap
-      id
+      dailyEntities(skip: 1, first: 1, orderBy: dayEnd, orderDirection: desc) {
+        tradedVolumeToken1Swap
+        tradedVolumeToken0Swap
+        id
+      }
+      weeklyEntities(skip: 0, first: 1, orderBy: weekEnd, orderDirection: desc) {
+        tradedVolumeToken1Swap
+        tradedVolumeToken0Swap
+        id
+      }
     }
   }
-}
-    ${TokenFragmentFragmentDoc}`;
+  ${TokenFragmentFragmentDoc}
+`;
 
 /**
  * __usePairsQuery__
@@ -12373,72 +14009,68 @@ export const PairsDocument = gql`
  * });
  */
 export function usePairsQuery(baseOptions?: Apollo.QueryHookOptions<PairsQuery, PairsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PairsQuery, PairsQueryVariables>(PairsDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<PairsQuery, PairsQueryVariables>(PairsDocument, options);
+}
 export function usePairsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PairsQuery, PairsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PairsQuery, PairsQueryVariables>(PairsDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<PairsQuery, PairsQueryVariables>(PairsDocument, options);
+}
 export type PairsQueryHookResult = ReturnType<typeof usePairsQuery>;
 export type PairsLazyQueryHookResult = ReturnType<typeof usePairsLazyQuery>;
 export type PairsQueryResult = Apollo.QueryResult<PairsQuery, PairsQueryVariables>;
 export function refetchPairsQuery(variables?: PairsQueryVariables) {
-      return { query: PairsDocument, variables: variables }
-    }
-export const PairDocument = gql`
-    query pair($id: ID!, $swapSkip: Int, $swapFirst: Int, $orderbookSkip: Int, $orderbookFirst: Int) {
-  pair(id: $id) {
-    id
-    internalID
-    token0 {
-      ...TokenFragment
-    }
-    token1 {
-      ...TokenFragment
-    }
-    token0Price
-    token1Price
-    tradedVolumeToken0Swap
-    tradedVolumeToken1Swap
-    tradedVolumeToken0Orderbook
-    tradedVolumeToken1Orderbook
-    trades(
-      skip: $orderbookSkip
-      first: $orderbookFirst
-      orderDirection: desc
-      orderBy: internalID
-    ) {
-      block {
-        id
-        blockHash
-        timestamp
-      }
-      ...OrderbookTradeFragment
-    }
-    dailyEntities(skip: 1, first: 90, orderDirection: desc, orderBy: dayEnd) {
-      dayEnd
-      tradedVolumeToken0
-      tradedVolumeToken1
-      tradedVolumeToken0Swap
-      tradedVolumeToken1Swap
-      tradedVolumeToken0Orderbook
-      tradedVolumeToken1Orderbook
-    }
-    weeklyEntities(skip: 1, first: 90, orderDirection: desc, orderBy: weekEnd) {
-      weekEnd
-      tradedVolumeToken0
-      tradedVolumeToken1
-      tradedVolumeToken0Swap
-      tradedVolumeToken1Swap
-      tradedVolumeToken0Orderbook
-      tradedVolumeToken1Orderbook
-    }
-    __typename
-  }
+  return { query: PairsDocument, variables: variables };
 }
-    ${TokenFragmentFragmentDoc}
-${OrderbookTradeFragmentFragmentDoc}`;
+export const PairDocument = gql`
+  query pair($id: ID!, $swapSkip: Int, $swapFirst: Int, $orderbookSkip: Int, $orderbookFirst: Int) {
+    pair(id: $id) {
+      id
+      internalID
+      token0 {
+        ...TokenFragment
+      }
+      token1 {
+        ...TokenFragment
+      }
+      token0Price
+      token1Price
+      tradedVolumeToken0Swap
+      tradedVolumeToken1Swap
+      tradedVolumeToken0Orderbook
+      tradedVolumeToken1Orderbook
+      trades(skip: $orderbookSkip, first: $orderbookFirst, orderDirection: desc, orderBy: internalID) {
+        block {
+          id
+          blockHash
+          timestamp
+        }
+        ...OrderbookTradeFragment
+      }
+      dailyEntities(skip: 1, first: 90, orderDirection: desc, orderBy: dayEnd) {
+        dayEnd
+        tradedVolumeToken0
+        tradedVolumeToken1
+        tradedVolumeToken0Swap
+        tradedVolumeToken1Swap
+        tradedVolumeToken0Orderbook
+        tradedVolumeToken1Orderbook
+      }
+      weeklyEntities(skip: 1, first: 90, orderDirection: desc, orderBy: weekEnd) {
+        weekEnd
+        tradedVolumeToken0
+        tradedVolumeToken1
+        tradedVolumeToken0Swap
+        tradedVolumeToken1Swap
+        tradedVolumeToken0Orderbook
+        tradedVolumeToken1Orderbook
+      }
+      __typename
+    }
+  }
+  ${TokenFragmentFragmentDoc}
+  ${OrderbookTradeFragmentFragmentDoc}
+`;
 
 /**
  * __usePairQuery__
@@ -12461,37 +14093,33 @@ ${OrderbookTradeFragmentFragmentDoc}`;
  * });
  */
 export function usePairQuery(baseOptions: Apollo.QueryHookOptions<PairQuery, PairQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PairQuery, PairQueryVariables>(PairDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<PairQuery, PairQueryVariables>(PairDocument, options);
+}
 export function usePairLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PairQuery, PairQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PairQuery, PairQueryVariables>(PairDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<PairQuery, PairQueryVariables>(PairDocument, options);
+}
 export type PairQueryHookResult = ReturnType<typeof usePairQuery>;
 export type PairLazyQueryHookResult = ReturnType<typeof usePairLazyQuery>;
 export type PairQueryResult = Apollo.QueryResult<PairQuery, PairQueryVariables>;
 export function refetchPairQuery(variables: PairQueryVariables) {
-      return { query: PairDocument, variables: variables }
-    }
-export const PairSwapsDocument = gql`
-    query pairSwaps($where: Swap_filter, $orderDirection: OrderDirection) {
-  swaps(
-    first: 10
-    orderDirection: $orderDirection
-    orderBy: internalID
-    where: $where
-  ) {
-    block {
-      id
-      blockHash
-      timestamp
-    }
-    internalID
-    ...SwapFragment
-  }
+  return { query: PairDocument, variables: variables };
 }
-    ${SwapFragmentFragmentDoc}`;
+export const PairSwapsDocument = gql`
+  query pairSwaps($where: Swap_filter, $orderDirection: OrderDirection) {
+    swaps(first: 10, orderDirection: $orderDirection, orderBy: internalID, where: $where) {
+      block {
+        id
+        blockHash
+        timestamp
+      }
+      internalID
+      ...SwapFragment
+    }
+  }
+  ${SwapFragmentFragmentDoc}
+`;
 
 /**
  * __usePairSwapsQuery__
@@ -12511,37 +14139,35 @@ export const PairSwapsDocument = gql`
  * });
  */
 export function usePairSwapsQuery(baseOptions?: Apollo.QueryHookOptions<PairSwapsQuery, PairSwapsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PairSwapsQuery, PairSwapsQueryVariables>(PairSwapsDocument, options);
-      }
-export function usePairSwapsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PairSwapsQuery, PairSwapsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PairSwapsQuery, PairSwapsQueryVariables>(PairSwapsDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<PairSwapsQuery, PairSwapsQueryVariables>(PairSwapsDocument, options);
+}
+export function usePairSwapsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<PairSwapsQuery, PairSwapsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<PairSwapsQuery, PairSwapsQueryVariables>(PairSwapsDocument, options);
+}
 export type PairSwapsQueryHookResult = ReturnType<typeof usePairSwapsQuery>;
 export type PairSwapsLazyQueryHookResult = ReturnType<typeof usePairSwapsLazyQuery>;
 export type PairSwapsQueryResult = Apollo.QueryResult<PairSwapsQuery, PairSwapsQueryVariables>;
 export function refetchPairSwapsQuery(variables?: PairSwapsQueryVariables) {
-      return { query: PairSwapsDocument, variables: variables }
-    }
-export const PairTradesDocument = gql`
-    query pairTrades($where: OrderbookTrade_filter, $orderDirection: OrderDirection) {
-  orderbookTrades(
-    first: 10
-    orderDirection: $orderDirection
-    orderBy: internalID
-    where: $where
-  ) {
-    block {
-      id
-      blockHash
-      timestamp
-    }
-    internalID
-    ...OrderbookTradeFragment
-  }
+  return { query: PairSwapsDocument, variables: variables };
 }
-    ${OrderbookTradeFragmentFragmentDoc}`;
+export const PairTradesDocument = gql`
+  query pairTrades($where: OrderbookTrade_filter, $orderDirection: OrderDirection) {
+    orderbookTrades(first: 10, orderDirection: $orderDirection, orderBy: internalID, where: $where) {
+      block {
+        id
+        blockHash
+        timestamp
+      }
+      internalID
+      ...OrderbookTradeFragment
+    }
+  }
+  ${OrderbookTradeFragmentFragmentDoc}
+`;
 
 /**
  * __usePairTradesQuery__
@@ -12561,70 +14187,73 @@ export const PairTradesDocument = gql`
  * });
  */
 export function usePairTradesQuery(baseOptions?: Apollo.QueryHookOptions<PairTradesQuery, PairTradesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PairTradesQuery, PairTradesQueryVariables>(PairTradesDocument, options);
-      }
-export function usePairTradesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PairTradesQuery, PairTradesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PairTradesQuery, PairTradesQueryVariables>(PairTradesDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<PairTradesQuery, PairTradesQueryVariables>(PairTradesDocument, options);
+}
+export function usePairTradesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<PairTradesQuery, PairTradesQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<PairTradesQuery, PairTradesQueryVariables>(PairTradesDocument, options);
+}
 export type PairTradesQueryHookResult = ReturnType<typeof usePairTradesQuery>;
 export type PairTradesLazyQueryHookResult = ReturnType<typeof usePairTradesLazyQuery>;
 export type PairTradesQueryResult = Apollo.QueryResult<PairTradesQuery, PairTradesQueryVariables>;
 export function refetchPairTradesQuery(variables?: PairTradesQueryVariables) {
-      return { query: PairTradesDocument, variables: variables }
-    }
-export const TransactionsDocument = gql`
-    query transactions($first: Int, $orderBy: Transaction_orderBy, $orderDirection: OrderDirection, $where: Transaction_filter) {
-  transactions(
-    first: $first
-    orderBy: $orderBy
-    orderDirection: $orderDirection
-    where: $where
-  ) {
-    id
-    internalID
-    block {
-      id
-      blockHash
-      timestamp
-      txHash
-    }
-    data
-    ...AddFragment
-    ...RemoveFragment
-    ...SwapFragment
-    ...OrderbookTradeFragment
-    ...DepositFragment
-    ...WithdrawalFragment
-    ...TransferFragment
-    ...AccountUpdateFragment
-    ...AmmUpdateFragment
-    ...SignatureVerificationFragment
-    ...TradeNFTFragment
-    ...SwapNFTFragment
-    ...WithdrawalNFTFragment
-    ...TransferNFTFragment
-    ...MintNFTFragment
-    ...DataNFTFragment
-  }
+  return { query: PairTradesDocument, variables: variables };
 }
-    ${AddFragmentFragmentDoc}
-${RemoveFragmentFragmentDoc}
-${SwapFragmentFragmentDoc}
-${OrderbookTradeFragmentFragmentDoc}
-${DepositFragmentFragmentDoc}
-${WithdrawalFragmentFragmentDoc}
-${TransferFragmentFragmentDoc}
-${AccountUpdateFragmentFragmentDoc}
-${AmmUpdateFragmentFragmentDoc}
-${SignatureVerificationFragmentFragmentDoc}
-${TradeNftFragmentFragmentDoc}
-${SwapNftFragmentFragmentDoc}
-${WithdrawalNftFragmentFragmentDoc}
-${TransferNftFragmentFragmentDoc}
-${MintNftFragmentFragmentDoc}
-${DataNftFragmentFragmentDoc}`;
+export const TransactionsDocument = gql`
+  query transactions(
+    $first: Int
+    $orderBy: Transaction_orderBy
+    $orderDirection: OrderDirection
+    $where: Transaction_filter
+  ) {
+    transactions(first: $first, orderBy: $orderBy, orderDirection: $orderDirection, where: $where) {
+      id
+      internalID
+      block {
+        id
+        blockHash
+        timestamp
+        txHash
+      }
+      data
+      ...AddFragment
+      ...RemoveFragment
+      ...SwapFragment
+      ...OrderbookTradeFragment
+      ...DepositFragment
+      ...WithdrawalFragment
+      ...TransferFragment
+      ...AccountUpdateFragment
+      ...AmmUpdateFragment
+      ...SignatureVerificationFragment
+      ...TradeNFTFragment
+      ...SwapNFTFragment
+      ...WithdrawalNFTFragment
+      ...TransferNFTFragment
+      ...MintNFTFragment
+      ...DataNFTFragment
+    }
+  }
+  ${AddFragmentFragmentDoc}
+  ${RemoveFragmentFragmentDoc}
+  ${SwapFragmentFragmentDoc}
+  ${OrderbookTradeFragmentFragmentDoc}
+  ${DepositFragmentFragmentDoc}
+  ${WithdrawalFragmentFragmentDoc}
+  ${TransferFragmentFragmentDoc}
+  ${AccountUpdateFragmentFragmentDoc}
+  ${AmmUpdateFragmentFragmentDoc}
+  ${SignatureVerificationFragmentFragmentDoc}
+  ${TradeNftFragmentFragmentDoc}
+  ${SwapNftFragmentFragmentDoc}
+  ${WithdrawalNftFragmentFragmentDoc}
+  ${TransferNftFragmentFragmentDoc}
+  ${MintNftFragmentFragmentDoc}
+  ${DataNftFragmentFragmentDoc}
+`;
 
 /**
  * __useTransactionsQuery__
@@ -12645,67 +14274,72 @@ ${DataNftFragmentFragmentDoc}`;
  *   },
  * });
  */
-export function useTransactionsQuery(baseOptions?: Apollo.QueryHookOptions<TransactionsQuery, TransactionsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TransactionsQuery, TransactionsQueryVariables>(TransactionsDocument, options);
-      }
-export function useTransactionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TransactionsQuery, TransactionsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TransactionsQuery, TransactionsQueryVariables>(TransactionsDocument, options);
-        }
+export function useTransactionsQuery(
+  baseOptions?: Apollo.QueryHookOptions<TransactionsQuery, TransactionsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<TransactionsQuery, TransactionsQueryVariables>(TransactionsDocument, options);
+}
+export function useTransactionsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<TransactionsQuery, TransactionsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<TransactionsQuery, TransactionsQueryVariables>(TransactionsDocument, options);
+}
 export type TransactionsQueryHookResult = ReturnType<typeof useTransactionsQuery>;
 export type TransactionsLazyQueryHookResult = ReturnType<typeof useTransactionsLazyQuery>;
 export type TransactionsQueryResult = Apollo.QueryResult<TransactionsQuery, TransactionsQueryVariables>;
 export function refetchTransactionsQuery(variables?: TransactionsQueryVariables) {
-      return { query: TransactionsDocument, variables: variables }
-    }
-export const TransactionDocument = gql`
-    query transaction($id: ID!) {
-  transaction(id: $id) {
-    id
-    internalID
-    block {
-      id
-      blockHash
-      timestamp
-      transactionCount
-      txHash
-    }
-    data
-    ...AddFragment
-    ...RemoveFragment
-    ...SwapFragment
-    ...OrderbookTradeFragment
-    ...DepositFragment
-    ...WithdrawalFragment
-    ...TransferFragment
-    ...AccountUpdateFragment
-    ...AmmUpdateFragment
-    ...SignatureVerificationFragment
-    ...TradeNFTFragment
-    ...SwapNFTFragment
-    ...WithdrawalNFTFragment
-    ...TransferNFTFragment
-    ...MintNFTFragment
-    ...DataNFTFragment
-  }
+  return { query: TransactionsDocument, variables: variables };
 }
-    ${AddFragmentFragmentDoc}
-${RemoveFragmentFragmentDoc}
-${SwapFragmentFragmentDoc}
-${OrderbookTradeFragmentFragmentDoc}
-${DepositFragmentFragmentDoc}
-${WithdrawalFragmentFragmentDoc}
-${TransferFragmentFragmentDoc}
-${AccountUpdateFragmentFragmentDoc}
-${AmmUpdateFragmentFragmentDoc}
-${SignatureVerificationFragmentFragmentDoc}
-${TradeNftFragmentFragmentDoc}
-${SwapNftFragmentFragmentDoc}
-${WithdrawalNftFragmentFragmentDoc}
-${TransferNftFragmentFragmentDoc}
-${MintNftFragmentFragmentDoc}
-${DataNftFragmentFragmentDoc}`;
+export const TransactionDocument = gql`
+  query transaction($id: ID!) {
+    transaction(id: $id) {
+      id
+      internalID
+      block {
+        id
+        blockHash
+        timestamp
+        transactionCount
+        txHash
+      }
+      data
+      ...AddFragment
+      ...RemoveFragment
+      ...SwapFragment
+      ...OrderbookTradeFragment
+      ...DepositFragment
+      ...WithdrawalFragment
+      ...TransferFragment
+      ...AccountUpdateFragment
+      ...AmmUpdateFragment
+      ...SignatureVerificationFragment
+      ...TradeNFTFragment
+      ...SwapNFTFragment
+      ...WithdrawalNFTFragment
+      ...TransferNFTFragment
+      ...MintNFTFragment
+      ...DataNFTFragment
+    }
+  }
+  ${AddFragmentFragmentDoc}
+  ${RemoveFragmentFragmentDoc}
+  ${SwapFragmentFragmentDoc}
+  ${OrderbookTradeFragmentFragmentDoc}
+  ${DepositFragmentFragmentDoc}
+  ${WithdrawalFragmentFragmentDoc}
+  ${TransferFragmentFragmentDoc}
+  ${AccountUpdateFragmentFragmentDoc}
+  ${AmmUpdateFragmentFragmentDoc}
+  ${SignatureVerificationFragmentFragmentDoc}
+  ${TradeNftFragmentFragmentDoc}
+  ${SwapNftFragmentFragmentDoc}
+  ${WithdrawalNftFragmentFragmentDoc}
+  ${TransferNftFragmentFragmentDoc}
+  ${MintNftFragmentFragmentDoc}
+  ${DataNftFragmentFragmentDoc}
+`;
 
 /**
  * __useTransactionQuery__
@@ -12724,59 +14358,74 @@ ${DataNftFragmentFragmentDoc}`;
  * });
  */
 export function useTransactionQuery(baseOptions: Apollo.QueryHookOptions<TransactionQuery, TransactionQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TransactionQuery, TransactionQueryVariables>(TransactionDocument, options);
-      }
-export function useTransactionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TransactionQuery, TransactionQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TransactionQuery, TransactionQueryVariables>(TransactionDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<TransactionQuery, TransactionQueryVariables>(TransactionDocument, options);
+}
+export function useTransactionLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<TransactionQuery, TransactionQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<TransactionQuery, TransactionQueryVariables>(TransactionDocument, options);
+}
 export type TransactionQueryHookResult = ReturnType<typeof useTransactionQuery>;
 export type TransactionLazyQueryHookResult = ReturnType<typeof useTransactionLazyQuery>;
 export type TransactionQueryResult = Apollo.QueryResult<TransactionQuery, TransactionQueryVariables>;
 export function refetchTransactionQuery(variables: TransactionQueryVariables) {
-      return { query: TransactionDocument, variables: variables }
-    }
-export const PendingTransactionsDocument = gql`
-    query pendingTransactions($transferWhere: Transfer_filter, $withdrawalWhere: Withdrawal_filter, $addWhere: Add_filter, $removeWhere: Remove_filter, $orderBookTradeWhere: OrderbookTrade_filter, $mintNFTWhere: MintNFT_filter, $withdrawNFTWhere: WithdrawalNFT_filter, $transferNFTWhere: TransferNFT_filter, $swapWhere: Swap_filter, $tradeNFTWhereA: TradeNFT_filter, $tradeNFTWhereB: TradeNFT_filter, $accountUpdateWhere: AccountUpdate_filter) {
-  transfers(where: $transferWhere) {
-    id
-  }
-  withdrawals(where: $withdrawalWhere) {
-    id
-  }
-  adds(where: $addWhere) {
-    id
-  }
-  removes(where: $removeWhere) {
-    id
-  }
-  orderbookTrades(where: $orderBookTradeWhere) {
-    id
-  }
-  mintNFTs(where: $mintNFTWhere) {
-    id
-  }
-  withdrawalNFTs(where: $withdrawNFTWhere) {
-    id
-  }
-  transferNFTs(where: $transferNFTWhere) {
-    id
-  }
-  swaps(where: $swapWhere) {
-    id
-  }
-  tradeNFTs(where: $tradeNFTWhereA) {
-    id
-  }
-  tradeNFTsB: tradeNFTs(where: $tradeNFTWhereB) {
-    id
-  }
-  accountUpdates(where: $accountUpdateWhere) {
-    id
-  }
+  return { query: TransactionDocument, variables: variables };
 }
-    `;
+export const PendingTransactionsDocument = gql`
+  query pendingTransactions(
+    $transferWhere: Transfer_filter
+    $withdrawalWhere: Withdrawal_filter
+    $addWhere: Add_filter
+    $removeWhere: Remove_filter
+    $orderBookTradeWhere: OrderbookTrade_filter
+    $mintNFTWhere: MintNFT_filter
+    $withdrawNFTWhere: WithdrawalNFT_filter
+    $transferNFTWhere: TransferNFT_filter
+    $swapWhere: Swap_filter
+    $tradeNFTWhereA: TradeNFT_filter
+    $tradeNFTWhereB: TradeNFT_filter
+    $accountUpdateWhere: AccountUpdate_filter
+  ) {
+    transfers(where: $transferWhere) {
+      id
+    }
+    withdrawals(where: $withdrawalWhere) {
+      id
+    }
+    adds(where: $addWhere) {
+      id
+    }
+    removes(where: $removeWhere) {
+      id
+    }
+    orderbookTrades(where: $orderBookTradeWhere) {
+      id
+    }
+    mintNFTs(where: $mintNFTWhere) {
+      id
+    }
+    withdrawalNFTs(where: $withdrawNFTWhere) {
+      id
+    }
+    transferNFTs(where: $transferNFTWhere) {
+      id
+    }
+    swaps(where: $swapWhere) {
+      id
+    }
+    tradeNFTs(where: $tradeNFTWhereA) {
+      id
+    }
+    tradeNFTsB: tradeNFTs(where: $tradeNFTWhereB) {
+      id
+    }
+    accountUpdates(where: $accountUpdateWhere) {
+      id
+    }
+  }
+`;
 
 /**
  * __usePendingTransactionsQuery__
@@ -12805,17 +14454,30 @@ export const PendingTransactionsDocument = gql`
  *   },
  * });
  */
-export function usePendingTransactionsQuery(baseOptions?: Apollo.QueryHookOptions<PendingTransactionsQuery, PendingTransactionsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PendingTransactionsQuery, PendingTransactionsQueryVariables>(PendingTransactionsDocument, options);
-      }
-export function usePendingTransactionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PendingTransactionsQuery, PendingTransactionsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PendingTransactionsQuery, PendingTransactionsQueryVariables>(PendingTransactionsDocument, options);
-        }
+export function usePendingTransactionsQuery(
+  baseOptions?: Apollo.QueryHookOptions<PendingTransactionsQuery, PendingTransactionsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<PendingTransactionsQuery, PendingTransactionsQueryVariables>(
+    PendingTransactionsDocument,
+    options
+  );
+}
+export function usePendingTransactionsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<PendingTransactionsQuery, PendingTransactionsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<PendingTransactionsQuery, PendingTransactionsQueryVariables>(
+    PendingTransactionsDocument,
+    options
+  );
+}
 export type PendingTransactionsQueryHookResult = ReturnType<typeof usePendingTransactionsQuery>;
 export type PendingTransactionsLazyQueryHookResult = ReturnType<typeof usePendingTransactionsLazyQuery>;
-export type PendingTransactionsQueryResult = Apollo.QueryResult<PendingTransactionsQuery, PendingTransactionsQueryVariables>;
+export type PendingTransactionsQueryResult = Apollo.QueryResult<
+  PendingTransactionsQuery,
+  PendingTransactionsQueryVariables
+>;
 export function refetchPendingTransactionsQuery(variables?: PendingTransactionsQueryVariables) {
-      return { query: PendingTransactionsDocument, variables: variables }
-    }
+  return { query: PendingTransactionsDocument, variables: variables };
+}
