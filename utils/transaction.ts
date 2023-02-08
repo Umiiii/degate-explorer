@@ -1,5 +1,5 @@
 import { BigNumber } from "ethers"
-import { dataByBlockIdAndIndex } from 'loopring36-block-parser';
+import { dataByBlockIdAndIndex } from "loopring36-block-parser2";
 
 export const getBlock = (blockId: number) => fetch(`https://api3.loopring.io/api/v3/block/getBlock?id=${blockId}`)
   .then(x => x.json())
@@ -80,7 +80,6 @@ const convertTransactionData_Swap = async (origin: any) => {
     return (origin.tokenAB === t1Id && origin.tokenBB === t2Id) 
       || (origin.tokenAB === t2Id && origin.tokenBB === t1Id)
   })
-  // debugger
   const accountAddress = (await getAccount(origin.accountIdA)).owner
   return {
     transaction: {
