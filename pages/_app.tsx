@@ -11,6 +11,7 @@ import '../styles/globals.scss';
 import DarkModeToggle from '../components/DarkModeToggle';
 import ConsentContextProvider from '../components/ConsentContextProvider';
 import apolloClient from '../graphql';
+import APISourceToggle from '../components/APISourceToggle';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -61,7 +62,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           <header className="bg-white w-screen px-4 py-2 dark:bg-loopring-dark-background">
             <div className="container h-full w-full lg:w-11/12 m-auto flex md:items-center justify-between">
               <Link href="/">
-                <a className="h-full flex items-center w-4/6 cursor-pointer">
+                <a className="h-full flex items-center w-3/6 cursor-pointer">
                   <Image
                     src={darkMode ? '/logo-white.svg' : '/logo-blue.svg'}
                     width="100"
@@ -119,9 +120,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
                     Smart Wallet
                   </a>
                 </Link>
-                <button onClick={toggleDarkMode} className="self-start p-2 lg:p-0">
-                  <DarkModeToggle isDarkModeOn={darkMode} />
-                </button>
+                <APISourceToggle />
                 <button onClick={toggleDarkMode} className="self-start p-2 lg:p-0">
                   <DarkModeToggle isDarkModeOn={darkMode} />
                 </button>

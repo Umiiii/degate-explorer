@@ -1,21 +1,25 @@
 
 
 import React  from "react";
-import { useTransactionQuery } from "../generated/loopringExplorer";
-import { convertTransactionData, getBlock, getTransactionData } from "../utils/transaction";
-import { dataByBlockIdAndIndex } from 'loopring36-block-parser';
+import { getTransactionData } from "../utils/transaction";
+
 export const useTransaction = ({ txId }: { txId: string }) => {
   const [blockId, index] = txId.split('-');
   const [data, setData] = React.useState(undefined as any | undefined)
   const [loading, setLoading] = React.useState(false)
+  const [failed, setFailed] = React.useState(false)
   React.useEffect(() => {
     setLoading(true)
     getTransactionData(Number(blockId), Number(index))
       .then(setData)
+      .catch(() => {
+        setFailed(true)
+      })
   }, [])
 
   return {
     loading,
-    data
+    data,
+    failed
   }
 }

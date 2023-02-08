@@ -23,8 +23,11 @@ import NoTransactionFound from '../../components/transactionDetail/NoTransaction
 import { useTransactionQuery } from '../../generated/loopringExplorer';
 import { useTransaction } from '../../hooks/useTransaction';
 
-export const Transaction: React.FC<{ txId: string }> = ({ txId }) => {
-  const {data, loading} = useTransaction({txId})
+
+
+
+const TransactionRaw: React.FC<{ txId: string, data, loading }> = ({ txId, data, loading }) => {
+  // const {data, loading} = useTransaction({txId})
 
   // const { data, loading } = useTransactionQuery({
   //   variables: {
@@ -101,6 +104,23 @@ export const Transaction: React.FC<{ txId: string }> = ({ txId }) => {
     </div>
   );
 };
+
+const TransactionBySubgraph: React.FC<{ txId: string }> = ({txId}) => {
+  const { data, loading } = useTransactionQuery({
+    variables: {
+      id: txId,
+    },
+  });
+  return <TransactionRaw data={data} loading={loading} txId={txId}/>
+}
+export const Transaction: React.FC<{ txId: string }> = ({ txId }) => {
+  const {data, loading, failed} = useTransaction({txId})
+  const useLegacy = failed || localStorage.getItem('apiUsingLoopring') === 'false'
+  console.log('useLegacy', useLegacy)
+  return useLegacy
+    ? <TransactionBySubgraph txId={txId}/>
+    : <TransactionRaw data={data} loading={loading} txId={txId}/> 
+}
 
 const TransactionPage: React.FC<{}> = () => {
   const router = useRouter();

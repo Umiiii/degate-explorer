@@ -1,5 +1,4 @@
 import { BigNumber } from "ethers"
-import { formatUnits } from "ethers/lib/utils";
 import { dataByBlockIdAndIndex } from 'loopring36-block-parser';
 
 export const getBlock = (blockId: number) => fetch(`https://api3.loopring.io/api/v3/block/getBlock?id=${blockId}`)
@@ -10,6 +9,9 @@ export const getAccount = (accountId: number) => fetch(`https://api3.loopring.io
 
 export const getTokens = () => fetch(`https://api3.loopring.io/api/v3/exchange/tokens`)
   .then(x => x.json())
+
+export const getPools = () => fetch(`https://api3.loopring.io/api/v3/amm/pools`)
+  .then(x => x.json())  
 
 const convertTransactionData_Transfer = async (origin: any) => {
   const fromAddress = (await getAccount(origin.accountFromID)).owner
@@ -67,30 +69,19 @@ const convertTransactionData_Withdraw = async (origin: any) => {
     }
   }
 }
-// todo
+
 const convertTransactionData_Swap = async (origin: any) => {
   const tokens = await getTokens()
-  // const tokenInfo = tokens.find(x => x.tokenId === origin.tokenID)
-  const tokenAInfo = tokens.find(x => x.tokenId === origin.tokenAB)
-  const tokenBInfo = tokens.find(x => x.tokenId === origin.tokenBB)
-
+  const { pools } = await getPools()
+  const tokenAInfo = tokens.find(x => x.tokenId === origin.tokenAS)
+  const tokenBInfo = tokens.find(x => x.tokenId === origin.tokenBS)
+  const found = pools.find(x => {
+    const [t1Id, t2Id] = x.tokens.pooled
+    return (origin.tokenAB === t1Id && origin.tokenBB === t2Id) 
+      || (origin.tokenAB === t2Id && origin.tokenBB === t1Id)
+  })
+  // debugger
   const accountAddress = (await getAccount(origin.accountIdA)).owner
-  // const {
-  //   block,
-  //   account,
-  //   tokenA,
-  //   tokenB,
-  //   data,
-  //   fillSA,
-  //   fillSB,
-  //   tokenAPrice,
-  //   tokenBPrice,
-  //   pair,
-  //   feeA,
-  //   feeB,
-  //   pool,
-  //   __typename,
-  // }
   return {
     transaction: {
       account: {
@@ -107,14 +98,19 @@ const convertTransactionData_Swap = async (origin: any) => {
       },
       fillSA: origin.fillSA,
       fillSB: origin.fillSB,
-
-      tokenAPrice: formatUnits(origin.fillSA.toString(), tokenAInfo.decimals), //todo
-      tokenBPrice: formatUnits(origin.fillSB.toString(), tokenBInfo.decimals), //todo
-      pair: '0x0000000000000000000000000000000000000000', //todo
-      feeA: origin.feeA,
+      tokenBPrice: BigNumber.from(origin.fillSA.toString())
+        .mul('1' + '0'.repeat(tokenBInfo.decimals))
+        .div(origin.fillSB.toString()),
+      tokenAPrice: BigNumber.from(origin.fillSB.toString())
+        .mul('1' + '0'.repeat(tokenAInfo.decimals))
+        .div(origin.fillSA.toString()),
+      pair: {
+        id: found.tokens.pooled.join('-')
+      },
+      feeA: origin.feeA, 
       feeB: origin.feeB,
       pool: {
-        address: '0x0000000000000000000000000000000000000000', //todo
+        address: found.address,
       },
       __typename: "Swap",
       data: origin.txData,
@@ -123,27 +119,12 @@ const convertTransactionData_Swap = async (origin: any) => {
 }
 const convertTransactionData_Trade = async (origin: any) => {
   const tokens = await getTokens()
-  // const tokenInfo = tokens.find(x => x.tokenId === origin.tokenID)
   const tokenAInfo = tokens.find(x => x.tokenId === origin.tokenAS)
   const tokenBInfo = tokens.find(x => x.tokenId === origin.tokenBS)
 
   const accountAddressA = (await getAccount(origin.accountIdA)).owner
   const accountAddressB = (await getAccount(origin.accountIdB)).owner
 
-  // const {
-  //   block,
-  //   accountA,
-  //   accountB,
-  //   tokenA,
-  //   tokenB,
-  //   data,
-  //   fillSA,
-  //   fillSB,
-  //   feeA,
-  //   feeB,
-  //   tokenAPrice,
-  //   tokenBPrice,
-  // } = transaction;
   return {
     transaction: {
       accountA: {
@@ -164,28 +145,20 @@ const convertTransactionData_Trade = async (origin: any) => {
       },
       fillSA: origin.fillSA,
       fillSB: origin.fillSB,
-      // BN
       tokenBPrice: BigNumber.from(origin.fillSA.toString())
         .mul('1' + '0'.repeat(tokenBInfo.decimals))
-        .div(origin.fillSB.toString()), //todo
+        .div(origin.fillSB.toString()),
       tokenAPrice: BigNumber.from(origin.fillSB.toString())
         .mul('1' + '0'.repeat(tokenAInfo.decimals))
-        .div(origin.fillSA.toString()), //todo
-      // tokenBPrice: origin.fillSB.mul('1' + '0'.repeat(tokenAInfo.decimals)).div(origin.fillSA), //todo
-      // tokenAPrice: formatUnits(origin.fillSA.toString(), tokenAInfo.decimals), //todo
-      // tokenBPrice: formatUnits(origin.fillSB.toString(), tokenBInfo.decimals), //todo
-      // pair: '0x0000000000000000000000000000000000000000', //todo
-      feeA: origin.feeA,
-      feeB: origin.feeB,
-      // pool: {
-      //   address: '0x0000000000000000000000000000000000000000', //todo
-      // },
+        .div(origin.fillSA.toString()),
+      feeA: origin.feeA, 
+      feeB: origin.feeB, 
       __typename: "OrderbookTrade",
       data: origin.txData,
     }
   }
 }
-// 040002a6ea000e62d800002cff000267e00006000019aee56156c61900000000000000000000000000000000000000000000000000000000000000000000000000000000
+
 const convertTransactionData_Deposit = async (origin: any) => {
   const tokens = await getTokens()
   const tokenInfo = tokens.find(x => x.tokenId === origin.tokenID)
@@ -305,7 +278,6 @@ const convertTransactionData_Pre = (origin: any) => {
   }
 }
 export const convertTransactionData = async (origin: any) => {
-  // debugger
   const nextOrigin = convertTransactionData_Pre(origin)
   if (nextOrigin.type === 'TRANSFER') {
     return convertTransactionData_Transfer(nextOrigin)
@@ -332,7 +304,7 @@ export const convertTransactionData = async (origin: any) => {
 export const getTransactionData = (blockId: number, index: number) => {
   return Promise.all([
     getBlock(blockId),
-    dataByBlockIdAndIndex('mainnet')(blockId, Number(index))
+    dataByBlockIdAndIndex('mainnet', 'https://mainnet.infura.io/v3/a06ed9c6b5424b61beafff27ecc3abf3')(blockId, Number(index))
       .then(convertTransactionData)
   ]).then(([blockRaw, data]) => {
     const block = {

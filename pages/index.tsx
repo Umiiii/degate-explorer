@@ -10,17 +10,7 @@ import Pairs from '../components/Pairs';
 import Transactions from '../components/Transactions';
 import NetworkStats from '../components/NetworkStats';
 import { useNetworkStatsQuery } from '../generated/loopringExplorer';
-import { dataByBlockIdAndIndex } from 'loopring36-block-parser';
 
-// dataByBlockIdAndIndex('mainnet')(11431, 2)
-// .then(x => {
-//   console.log('sdjksdjsk', JSON.stringify(x))
-//   // debugger
-// })
-// .catch(x => {
-//   debugger
-// })
-// console.log('aaaa', JSON.stringify(a))
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const res = await client.query({ query: FETCH_NETWORK_STATS });
