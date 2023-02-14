@@ -122,7 +122,7 @@ export const getCSVTransactionDetailFields = (tx, account) => {
     case 'AmmUpdate':
       return ['', '', '', '', '', '', ''];
     case 'SignatureVerification':
-      return [makeCSVLink(tx.account), '', '', '', '', '', ''];
+      return [makeCSVLink(tx.account), '', '', '', '', '', '', ''];
     case 'TradeNFT':
       return [
         makeCSVLink(tx.accountSeller),
