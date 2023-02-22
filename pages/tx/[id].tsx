@@ -27,14 +27,6 @@ import { useTransaction } from '../../hooks/useTransaction';
 
 
 const TransactionRaw: React.FC<{ txId: string, data, loading }> = ({ txId, data, loading }) => {
-  // const {data, loading} = useTransaction({txId})
-
-  // const { data, loading } = useTransactionQuery({
-  //   variables: {
-  //     id: txId,
-  //   },
-  // });
-
   const { __typename, block } = (data && data.transaction) || {};
   const renderTransactionDetails = (type) => {
     switch (type) {
@@ -77,32 +69,42 @@ const TransactionRaw: React.FC<{ txId: string, data, loading }> = ({ txId, data,
 
   const transactionCount = block ? block.transactionCount - 1 : null;
   const txInBlock = txId && parseInt((txId as string).split('-')[1]);
-
-  return (
-    <div className="bg-white dark:bg-loopring-dark-background rounded p-4">
-      <h1 className="text-3xl mb-5 flex items-center">
-        Transaction #{txId}
-        {txInBlock > 0 && (
-          <Link href={block ? `/tx/${block.id}-${txInBlock - 1}` : ''}>
-            <a className="text-sm bg-loopring-lightBlue px-2 text-white relative h-5 rounded ml-2">‹</a>
-          </Link>
-        )}
-        {transactionCount && txInBlock < transactionCount && (
-          <Link href={block ? `/tx/${block.id}-${txInBlock + 1}` : ''}>
-            <a className="text-sm bg-loopring-lightBlue px-2 text-white relative h-5 rounded ml-2">›</a>
-          </Link>
-        )}
-      </h1>
-      <div className="border dark:border-loopring-dark-darkBlue rounded w-full mb-10 overflow-auto">
-        {data && data.transaction && (
-          <table className="w-full table-auto table-fixed">
-            <tbody>{renderTransactionDetails(__typename)}</tbody>
-          </table>
-        )}
-      </div>
-      {data && !loading && !data.transaction && <NoTransactionFound />}
+  if (loading) {
+    return <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "70vh",
+    }}>
+      <img width="80px" src="/loading-line.gif" />
     </div>
-  );
+  } else {
+    return (
+      <div className="bg-white dark:bg-loopring-dark-background rounded p-4">
+        <h1 className="text-3xl mb-5 flex items-center">
+          Transaction #{txId}
+          {txInBlock > 0 && (
+            <Link href={block ? `/tx/${block.id}-${txInBlock - 1}` : ''}>
+              <a className="text-sm bg-loopring-lightBlue px-2 text-white relative h-5 rounded ml-2">‹</a>
+            </Link>
+          )}
+          {transactionCount && txInBlock < transactionCount && (
+            <Link href={block ? `/tx/${block.id}-${txInBlock + 1}` : ''}>
+              <a className="text-sm bg-loopring-lightBlue px-2 text-white relative h-5 rounded ml-2">›</a>
+            </Link>
+          )}
+        </h1>
+        <div className="border dark:border-loopring-dark-darkBlue rounded w-full mb-10 overflow-auto">
+          {data && data.transaction && (
+            <table className="w-full table-auto table-fixed">
+              <tbody>{renderTransactionDetails(__typename)}</tbody>
+            </table>
+          )}
+        </div>
+        {data && !loading && !data.transaction && <NoTransactionFound />}
+      </div>
+    );
+  }
 };
 
 const TransactionBySubgraph: React.FC<{ txId: string }> = ({txId}) => {
@@ -116,7 +118,6 @@ const TransactionBySubgraph: React.FC<{ txId: string }> = ({txId}) => {
 export const Transaction: React.FC<{ txId: string }> = ({ txId }) => {
   const {data, loading, failed} = useTransaction({txId})
   const useLegacy = failed || localStorage.getItem('apiUsingLoopring') === 'false'
-  console.log('useLegacy', useLegacy)
   return useLegacy
     ? <TransactionBySubgraph txId={txId}/>
     : <TransactionRaw data={data} loading={loading} txId={txId}/> 

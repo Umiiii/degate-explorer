@@ -1,22 +1,29 @@
 import { BigNumber } from "ethers"
 import { dataByBlockIdAndIndex } from "loopring36-block-parser2";
+import { INFURA_ENDPOINT, LOOPRING_API } from "./config";
 
-export const getBlock = (blockId: number) => fetch(`https://api3.loopring.io/api/v3/block/getBlock?id=${blockId}`)
+export const getBlock = (blockId: number) => fetch(`${LOOPRING_API}block/getBlock?id=${blockId}`)
   .then(x => x.json())
 
-export const getAccount = (accountId: number) => fetch(`https://api3.loopring.io/api/v3/account?accountId=${accountId}`)
+export const getAccount = (accountId: number) => fetch(`${LOOPRING_API}account?accountId=${accountId}`)
   .then(x => x.json())
 
-export const getTokens = () => fetch(`https://api3.loopring.io/api/v3/exchange/tokens`)
+export const getTokens = () => fetch(`${LOOPRING_API}exchange/tokens`)
   .then(x => x.json())
 
-export const getPools = () => fetch(`https://api3.loopring.io/api/v3/amm/pools`)
+export const getPools = () => fetch(`${LOOPRING_API}amm/pools`)
   .then(x => x.json())  
 
 const convertTransactionData_Transfer = async (origin: any) => {
-  const fromAddress = (await getAccount(origin.accountFromID)).owner
-  const toAddress = (await getAccount(origin.accountToID)).owner
-  const tokens = await getTokens()
+  const [
+    fromAddress,
+    toAddress,
+    tokens,
+  ] = await Promise.all([
+    getAccount(origin.accountFromID).then(x => x.owner),
+    getAccount(origin.accountToID).then(x => x.owner),
+    getTokens(),
+  ])
   const tokenInfo = tokens.find(x => x.tokenId === origin.tokenID)
   if (!tokenInfo) {
     return Promise.reject("Can't find token, maybe an NFT")
@@ -71,8 +78,13 @@ const convertTransactionData_Withdraw = async (origin: any) => {
 }
 
 const convertTransactionData_Swap = async (origin: any) => {
-  const tokens = await getTokens()
-  const { pools } = await getPools()
+  const [
+    tokens,
+    { pools },
+  ] = await Promise.all([
+    getTokens(),
+    getPools(),
+  ])
   const tokenAInfo = tokens.find(x => x.tokenId === origin.tokenAS)
   const tokenBInfo = tokens.find(x => x.tokenId === origin.tokenBS)
   const found = pools.find(x => {
@@ -117,13 +129,19 @@ const convertTransactionData_Swap = async (origin: any) => {
   }
 }
 const convertTransactionData_Trade = async (origin: any) => {
-  const tokens = await getTokens()
+  
+  const [
+    tokens,
+    accountAddressA,
+    accountAddressB,
+  ] = await Promise.all([
+    getTokens(),
+    getAccount(origin.accountIdA).then(x => x.owner),
+    getAccount(origin.accountIdB).then(x => x.owner),
+  ])
+
   const tokenAInfo = tokens.find(x => x.tokenId === origin.tokenAS)
   const tokenBInfo = tokens.find(x => x.tokenId === origin.tokenBS)
-
-  const accountAddressA = (await getAccount(origin.accountIdA)).owner
-  const accountAddressB = (await getAccount(origin.accountIdB)).owner
-
   return {
     transaction: {
       accountA: {
@@ -159,9 +177,15 @@ const convertTransactionData_Trade = async (origin: any) => {
 }
 
 const convertTransactionData_Deposit = async (origin: any) => {
-  const tokens = await getTokens()
+  const [
+    tokens,
+    toAccountAddress,
+  ] = await Promise.all([
+    getTokens(),
+    getAccount(origin.toAccountID).then(x => x.owner)
+  ])
   const tokenInfo = tokens.find(x => x.tokenId === origin.tokenID)
-  const toAccountAddress = (await getAccount(origin.toAccountID)).owner
+  
   return {
     transaction: {
       toAccount: {
@@ -303,7 +327,7 @@ export const convertTransactionData = async (origin: any) => {
 export const getTransactionData = (blockId: number, index: number) => {
   return Promise.all([
     getBlock(blockId),
-    dataByBlockIdAndIndex('mainnet', 'https://mainnet.infura.io/v3/a06ed9c6b5424b61beafff27ecc3abf3')(blockId, Number(index))
+    dataByBlockIdAndIndex('mainnet', INFURA_ENDPOINT)(blockId, Number(index))
       .then(convertTransactionData)
   ]).then(([blockRaw, data]) => {
     const block = {
@@ -319,5 +343,8 @@ export const getTransactionData = (blockId: number, index: number) => {
         block
       }
     }
+  }).catch(e => {
+    debugger
+    throw e
   })
 }

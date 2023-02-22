@@ -14,6 +14,8 @@ export const useTransaction = ({ txId }: { txId: string }) => {
       .then(setData)
       .catch(() => {
         setFailed(true)
+      }).finally(() => {
+        setLoading(false)
       })
   }, [])
 
