@@ -11,7 +11,7 @@ generates:
         - prettier --write
     plugins:
       - add:
-          content: '/* eslint-disable */'
+          content: '// @ts-nocheck'
       - 'typescript'
       - 'typescript-operations'
       - 'typescript-react-apollo'
