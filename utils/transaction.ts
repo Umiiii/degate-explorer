@@ -203,7 +203,7 @@ const convertTransactionData_Deposit = async (origin: any) => {
   }
 }
 const publickeyDecimalToHex128 = (decimalPublicKey: string) => {
-  const hex = BigNumber.from(decimalPublicKey).toHexString()
+  const hex = BigNumber.from(decimalPublicKey).toHexString().slice(2)
   const n = 64 - hex.length
   return '0'.repeat(n) + hex
 }
@@ -215,7 +215,8 @@ const convertTransactionData_AccountUpdate = async (origin: any) => {
       user: {
         address: origin.owner,        
         id: origin.accountID,
-        publicKey: publickeyDecimalToHex128(origin.publicKeyY)
+        publicKey: origin.publicKey
+        // publickeyDecimalToHex128(origin.publicKeyY)
       },
       feeToken: {
         decimals: feeTokenInfo.decimals,

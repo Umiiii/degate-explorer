@@ -6323,10 +6323,10 @@ log-update@^4.0.0:
     slice-ansi "^4.0.0"
     wrap-ansi "^6.2.0"
 
-loopring36-block-parser2@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/loopring36-block-parser2/-/loopring36-block-parser2-0.0.4.tgz#ef219cebc4b5a3dca4324ee1ed8d5b8b842be2e1"
-  integrity sha512-499vt7z/C51xTepjocsYlkALiYJD2W6YUlAFFcrit0Ke7yR/nA9itkfqUs5jsWA/I4iK+ISijfv/QLUARpTfYA==
+loopring36-block-parser2@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/loopring36-block-parser2/-/loopring36-block-parser2-0.0.5.tgz#2ef3310f32fcfcb971ecdb120571f99efe694796"
+  integrity sha512-DhgGVOOOdblf+6iYwvo2EZ4l0hxyYbzsulB10tXfz+j7c4zNAUugGK+oxsQlImuqZDyyjzuzKSowCUKZaVt7ZQ==
   dependencies:
     axios "^0.21.0"
     bignumber.js "^9.1.1"
