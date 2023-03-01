@@ -203,7 +203,7 @@ const convertTransactionData_Deposit = async (origin: any) => {
   }
 }
 const publickeyDecimalToHex128 = (decimalPublicKey: string) => {
-  const hex = BigNumber.from(decimalPublicKey).toHexString().slice(2)
+  const hex = BigNumber.from(decimalPublicKey).toHexString()
   const n = 64 - hex.length
   return '0'.repeat(n) + hex
 }
@@ -260,20 +260,19 @@ const convertTransactionData_AmmExit = async (origin: any) => {
   const tokens = await getTokens()
   const feeTokenInfo = tokens.find(x => x.tokenId === origin.feeTokenID)
   const tokenInfo = tokens.find(x => x.tokenId === origin.tokenID)
-
   return {
     transaction: {
       account: {
-        address: origin.from,        
-        id: origin.accountID,
+        address: origin.to,
+        id: origin.accountToID
       },
       token: {
         decimals: tokenInfo.decimals,
         symbol: tokenInfo.symbol,
       },
       pool: {
-        address: origin.to,
-        id: origin.toTokenID
+        address: origin.from,        
+        id: origin.accountFromID,
       },
       amount: origin.amount,
       feeToken: {
