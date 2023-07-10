@@ -19,7 +19,7 @@ const useSearch = (query: string) => {
     fetchPolicy: 'no-cache',
     variables: {
       where: {
-        token: query,
+        or: [{token: query}, {token: query.toLowerCase()}]
       },
       first: 1,
     },
