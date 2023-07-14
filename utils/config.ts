@@ -4,7 +4,7 @@ export const LOOPRING_SUBGRAPH =
   'https://api.thegraph.com/subgraphs/name/loopring/loopring';
 export const EXPLORER_URL = 'https://etherscan.io/';
 export const INFURA_ENDPOINT =
-  process.env.NEXT_PUBLIC_INFURA_ENDPOINT ?? 'https://mainnet.infura.io/v3/873030883ea1405898041be94ab2bfd5';
+  process.env.NEXT_PUBLIC_INFURA_ENDPOINT ?? 'https://mainneteth.loopring.io';
 export const UNISWAP_SUBGRAPH = 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2';
 export const LOOPRING_API = 'https://api3.loopring.io/api/v3/';
 export const apiEndpointByTxType = {

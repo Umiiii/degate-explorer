@@ -8,7 +8,7 @@ export interface NFTInfo {
   nftType: number
 }
 
-export const IPFS_URL = 'https://ipfs.loopring1.io/ipfs/';
+export const IPFS_URL = 'https://ipfs.loopring.io/ipfs/';
 export const FALLBACK_IPFS_URL = 'https://ipfs.io/ipfs/';
 
 // Two caches need to maintained
