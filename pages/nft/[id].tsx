@@ -10,6 +10,7 @@ import { INFURA_ENDPOINT, NFT_DISALLOW_LIST } from '../../utils/config';
 import useConsentContext from '../../hooks/useConsentContext';
 import { useNonFungibleTokenQuery } from '../../generated/loopringExplorer';
 import NFTAnimation from '../../components/nftDetail/NFTAnimation';
+import FallBackImg from '../../components/FallBackImg';
 
 const provider = new ethers.providers.JsonRpcProvider(INFURA_ENDPOINT);
 
@@ -42,7 +43,7 @@ const NFTDetail: React.FC<{}> = () => {
   const [hideConsentButton, setHideConsentButton] = React.useState<boolean>(false);
   const [animationType, setAnimationType] = React.useState<string>();
   const metadata = useCachedNFT(nft);
-  const { image, name, animation_url } = metadata;
+  const { image, name, animation_url, fallBackImage } = metadata;
 
   React.useEffect(() => {
     if (nft) {
@@ -54,10 +55,10 @@ const NFTDetail: React.FC<{}> = () => {
   }, [nft]);
 
   React.useEffect(() => {
-    if (image && image === '/error') {
+    if (image && image === '/error' && fallBackImage && fallBackImage === '/error') {
       setIsLoaded(true);
     }
-  }, [image]);
+  }, [image, fallBackImage]);
 
   React.useEffect(() => {
     if (animation_url) {
@@ -94,21 +95,23 @@ const NFTDetail: React.FC<{}> = () => {
               animationURL={animation_url as string}
               animationType={animationType}
               image={image as string}
+              fallBackImage={fallBackImage as string}
             />
           ) : animation_url === '/error' ? (
             <img
               src="/nft-error.svg"
               className="top-0 right-0 h-full w-full object-contain object-center bg-white rounded-xl"
             />
-          ) : image ? (
-            image === '/error' ? (
+          ) : (image || fallBackImage) ? (
+            (image === '/error' && fallBackImage === '/error') ? (
               <img
                 src="/nft-error.svg"
                 className="top-0 right-0 h-full w-full object-contain object-center bg-white rounded-xl"
               />
             ) : (
-              <img
+              <FallBackImg
                 src={image as string}
+                fallBackSrc={fallBackImage as string}
                 alt={name as string}
                 className={`z-10 object-contain object-center m-auto h-full rounded-xl ${
                   NFT_DISALLOW_LIST.includes(nft.id) || !hasConsent ? 'filter blur-xl' : ''

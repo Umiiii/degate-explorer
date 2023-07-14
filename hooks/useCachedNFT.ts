@@ -3,12 +3,13 @@ import { ethers } from 'ethers';
 
 import { INFURA_ENDPOINT } from '../utils/config';
 import LRUCache from '../utils/cache';
+import { FALLBACK_IPFS_URL, IPFS_URL } from '../utils/nft';
 
 interface NFTMetadata {
   [index: string]: unknown;
 }
 
-const IPFS_URL = 'https://loopring.mypinata.cloud/ipfs/';
+// const IPFS_URL = 'https://ipfs.loopring.io/ipfs/';
 
 // Two caches need to maintained
 // NFT URI cache {key-> token_address:nft_id}
@@ -89,6 +90,7 @@ const getNFTURI = async (nft) => {
 };
 
 const getNFTMetadata = async (uri, nft, isErrorFallback = false) => {
+  
   const cacheKey = nft.id;
   let cacheResult = metadataCache.get(cacheKey);
   if (cacheResult) {
@@ -102,10 +104,17 @@ const getNFTMetadata = async (uri, nft, isErrorFallback = false) => {
       };
     }
     try {
-      const metadata = await fetch(uri.replace('ipfs://', IPFS_URL)).then((res) => res.json());
+      
+      const metadata = await fetch(uri.replace('ipfs://', IPFS_URL))
+      .catch(() => {
+        
+        return fetch(uri.replace('ipfs://', FALLBACK_IPFS_URL))
+      })
+      .then((res) => res.json());
       metadataCache.set(cacheKey, metadata);
       return metadata;
     } catch (error) {
+      
       if (!isErrorFallback) {
         return getNFTMetadata(`${uri}/metadata.json`, nft, true);
       }
@@ -132,7 +141,9 @@ const useCachedNFT = (nft) => {
             ...metadata,
             uri: uri?.replace('ipfs://', IPFS_URL),
             image: metadata?.image?.replace('ipfs://', IPFS_URL),
+            fallBackImage: metadata?.image?.replace('ipfs://', FALLBACK_IPFS_URL),
             animation_url: metadata?.animation_url?.replace('ipfs://', IPFS_URL),
+            fallBackAnimation_url: metadata?.animation_url?.replace('ipfs://', FALLBACK_IPFS_URL),
           });
       })();
     }

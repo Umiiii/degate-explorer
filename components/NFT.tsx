@@ -3,6 +3,7 @@ import React from "react";
 import useCachedNFT from "../hooks/useCachedNFT";
 import useConsentContext from "../hooks/useConsentContext";
 import { NFT_DISALLOW_LIST } from "../utils/config";
+import FallBackImg from "./FallBackImg";
 
 interface NFTData {
   id: string;
@@ -19,7 +20,7 @@ const NFT: React.FC<{ nft: NFTData }> = ({ nft }) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
   const { hasConsent, askUserForConsent } = useConsentContext();
 
-  const { image, name } = metadata;
+  const { image, fallBackImage, name } = metadata;
   React.useEffect(() => {
     if (image && image === "/error") {
       setIsLoaded(true);
@@ -46,8 +47,9 @@ const NFT: React.FC<{ nft: NFTData }> = ({ nft }) => {
             className="top-0 right-0 h-full w-full object-contain object-center bg-white"
           />
         ) : (
-          <img
+          <FallBackImg
             src={image as string}
+            fallBackSrc={fallBackImage as string}
             alt={name as string}
             className={`z-10 object-cover object-center w-full ${
               NFT_DISALLOW_LIST.includes(nft.id) || !hasConsent

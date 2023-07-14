@@ -1,10 +1,12 @@
 import Script from 'next/script';
 import React from 'react';
+import FallBackImg from '../FallBackImg';
 
-const NFTAnimation: React.FC<{ animationURL: string; animationType: string; image: string }> = ({
+const NFTAnimation: React.FC<{ animationURL: string; animationType: string; image: string, fallBackImage: string }> = ({
   animationURL,
   animationType,
   image,
+  fallBackImage
 }) => {
   if (animationType?.startsWith('video')) {
     return (
@@ -31,7 +33,7 @@ const NFTAnimation: React.FC<{ animationURL: string; animationType: string; imag
   } else if (animationType?.startsWith('audio')) {
     return (
       <div className="z-10 h-full w-[400px] flex flex-col">
-        <img src={image as string} className="object-contain object-center" />
+        <FallBackImg src={image as string} fallBackSrc={fallBackImage} className="object-contain object-center" />
         <audio
           src={animationURL as string}
           controls
@@ -65,7 +67,7 @@ const NFTAnimation: React.FC<{ animationURL: string; animationType: string; imag
       </>
     );
   } else {
-    return <img src={image as string} />;
+    return <FallBackImg fallBackSrc={fallBackImage} src={image as string} />;
   }
 };
 

@@ -8,7 +8,8 @@ export interface NFTInfo {
   nftType: number
 }
 
-export const IPFS_URL = 'https://loopring.mypinata.cloud/ipfs/';
+export const IPFS_URL = 'https://ipfs.loopring1.io/ipfs/';
+export const FALLBACK_IPFS_URL = 'https://ipfs.io/ipfs/';
 
 // Two caches need to maintained
 // NFT URI cache {key-> token_address:nft_id}
