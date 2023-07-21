@@ -55,7 +55,6 @@ const NFTAnimation: React.FC<{ animationURL: string; animationType: string; imag
           className="z-10 h-full"
           bounds="tight"
           enable-pan
-          autoplay
           src={animationURL}
           ar
           ar-modes="webxr scene-viewer quick-look"
