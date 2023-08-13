@@ -55,7 +55,7 @@ const NFTDetail: React.FC<{}> = () => {
   }, [nft]);
 
   React.useEffect(() => {
-    if (image && image === '/error' && fallBackImage && fallBackImage === '/error') {
+    if (image || image === '/error' || fallBackImage || fallBackImage === '/error') {
       setIsLoaded(true);
     }
   }, [image, fallBackImage]);
