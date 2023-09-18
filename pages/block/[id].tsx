@@ -83,15 +83,17 @@ const Block: React.FC<{}> = () => {
       </div>
       {data && data.block && (
         <div className="p-4">
-          <Transactions
-            blockIDFilter={blockId as string}
-            title={<h2 className="text-2xl font-semibold">Transactions in block #{blockId}</h2>}
-          />
+          {/*<Transactions*/}
+          {/*  blockIDFilter={blockId as string}*/}
+          {/*  title={<h2 className="text-2xl font-semibold">Transactions in block #{blockId}</h2>}*/}
+          {/*/>*/}
         </div>
       )}
-      {data && !loading && !data.block && (
         <div className="text-gray-400 text-2xl h-40 flex items-center justify-center w-full border">No block found</div>
-      )}
+
+      {/*{data && !loading && !data.block && (*/}
+      {/*  */}
+      {/*)}*/}
     </div>
   );
 };

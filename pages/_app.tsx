@@ -46,7 +46,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       <ConsentContextProvider>
         <main className="w-screen h-screen text-loopring-gray dark:text-loopring-dark-gray overflow-x-hidden">
           <Head>
-            <title>Loopring Layer2 Explorer</title>
+            <title>Degate Layer2 Explorer</title>
             <link rel="icon" href="/favicon.png" />
               <script async src="https://www.googletagmanager.com/gtag/js?id=G-030VYCVBNK"></script>
               <script>
@@ -64,9 +64,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
               <Link href="/">
                 <a className="h-full flex items-center w-3/6 cursor-pointer">
                   <Image
-                    src={darkMode ? '/logo-white.svg' : '/logo-blue.svg'}
+                    src={darkMode ? '/logo.png' : '/logo.png'}
                     width="100"
-                    height="40"
+                    height="100"
                     className="h-full"
                     alt="Loopring Logo"
                   />
@@ -93,37 +93,29 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
                     Home
                   </a>
                 </Link>
-                <Link href="https://loopring.org">
+                <Link href="https://docs.degate.com/what-is-degate/master">
                   <a
                     target="_blank"
                     className="border-b border-t p-2 lg:border-none lg:p-0"
                     onClick={() => setShowNav(false)}
                   >
-                    About
+                    About Degate
                   </a>
                 </Link>
-                <Link href="https://loopring.io/#/layer2">
+                <Link href="https://app.degate.com/">
                   <a
                     target="_blank"
                     className="border-b border-t p-2 lg:border-none lg:p-0"
                     onClick={() => setShowNav(false)}
                   >
-                    Layer2 App
+                    Degate App
                   </a>
                 </Link>
-                <Link href="https://loopring.io/#/wallet">
-                  <a
-                    target="_blank"
-                    className="border-b border-t p-2 lg:border-none lg:p-0"
-                    onClick={() => setShowNav(false)}
-                  >
-                    Smart Wallet
-                  </a>
-                </Link>
-                <APISourceToggle />
-                <button onClick={toggleDarkMode} className="self-start p-2 lg:p-0">
-                  <DarkModeToggle isDarkModeOn={darkMode} />
-                </button>
+                <div> API Source: <Link href="https://testnet.thegraph.com/explorer/subgraphs/MshsFffHztwpJJfQjDs5m29qdBwMuuJZAnKVKAYVPEY?view=Indexers&chain=goerli"> Subgraph (Goerli) </Link> </div>
+                {/*<APISourceToggle />*/}
+                {/*<button onClick={toggleDarkMode} className="self-start p-2 lg:p-0">*/}
+                {/*  <DarkModeToggle isDarkModeOn={darkMode} />*/}
+                {/*</button>*/}
               </nav>
             </div>
           </header>
@@ -131,7 +123,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
             {isHomePage ? (
               <div className="px-10 py-8 bg-loopring-blue pb-20 dark:bg-loopring-dark-darkBlue">
                 <div className="lg:w-11/12 m-auto">
-                  <h1 className="text-4xl text-white">Loopring zkRollup Explorer</h1>
+                  <h1 className="text-4xl text-white">Degate zkRollup Explorer</h1>
                   <SearchForm className="flex md:w-3/5 mt-4" />
                 </div>
               </div>
