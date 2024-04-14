@@ -18,6 +18,7 @@ export type Scalars = {
   BigInt: any;
   Bytes: any;
   Int8: any;
+  Timestamp: any;
 };
 
 export type Account = {
@@ -1040,40 +1041,36 @@ export enum AccountUpdate_OrderBy {
   Accounts = 'accounts',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   Fee = 'fee',
   FeeToken = 'feeToken',
@@ -1569,40 +1566,36 @@ export enum Add_OrderBy {
   Amount = 'amount',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   Fee = 'fee',
   FeeToken = 'feeToken',
@@ -1643,6 +1636,11 @@ export enum Add_OrderBy {
   TokenTradedVolumeSwap = 'token__tradedVolumeSwap',
   Type = 'type',
   Typename = 'typename',
+}
+
+export enum Aggregation_Interval {
+  Day = 'day',
+  Hour = 'hour',
 }
 
 export type AmmUpdate = Transaction & {
@@ -1862,40 +1860,36 @@ export enum AmmUpdate_OrderBy {
   Balance = 'balance',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   FeeBips = 'feeBips',
   Id = 'id',
@@ -1919,10 +1913,10 @@ export type Block = {
   __typename?: 'Block';
   /** Total amount of AccountUpdate transactions processed on this block */
   accountUpdateCount: Scalars['BigInt'];
+  /** AccountUpdateSize */
+  accountUpdateSize: Scalars['Int'];
   /** Total amount of Add transactions processed on this block */
   addCount: Scalars['BigInt'];
-  /** Total amount of AMMUpdate transactions processed on this block */
-  ammUpdateCount: Scalars['BigInt'];
   /** Hash of the L1 Block where the L2 block was submitted */
   blockHash: Scalars['String'];
   /** L2 Block size. Represents the maximum amount of L2 transactions that it could handle. */
@@ -1935,6 +1929,10 @@ export type Block = {
   data: Scalars['String'];
   /** Total amount of Deposit transactions processed on this block */
   depositCount: Scalars['BigInt'];
+  /** Deposit Size */
+  depositSize: Scalars['Int'];
+  /** Exhange Address */
+  exchange: Scalars['String'];
   /** Amount of gas limit used */
   gasLimit: Scalars['BigInt'];
   /** Gas price for the L1 transaction */
@@ -1944,10 +1942,6 @@ export type Block = {
   id: Scalars['ID'];
   /** Same as ID but expressed as a BigInt so it can be used for sorting properly */
   internalID: Scalars['BigInt'];
-  /** Total amount of NFT Data transactions processed on this block */
-  nftDataCount: Scalars['BigInt'];
-  /** Total amount of NFT Mint transactions processed on this block */
-  nftMintCount: Scalars['BigInt'];
   numConditionalTransactions: Scalars['Int'];
   offchainData: Scalars['Bytes'];
   /** Account entity for the operator of this L2 Block */
@@ -1958,10 +1952,8 @@ export type Block = {
   orderbookTradeCount: Scalars['BigInt'];
   /** L2 proof data */
   proof: Array<Scalars['BigInt']>;
-  /** Protocol fee applied to the 'maker' for L2 transactions within this block */
-  protocolFeeMakerBips: Scalars['Int'];
-  /** Protocol fee applied to the 'taker' for L2 transactions within this block */
-  protocolFeeTakerBips: Scalars['Int'];
+  /** Protocol fee applied for L2 transactions within this block */
+  protocolFeeBips: Scalars['Int'];
   /** Total amount of Remove transactions processed on this block */
   removeCount: Scalars['BigInt'];
   /** Total amount of SignatureVerification transactions processed on this block */
@@ -1969,26 +1961,20 @@ export type Block = {
   storeBlockInfoOnchain: Scalars['Boolean'];
   /** Total amount of Swap transactions processed on this block */
   swapCount: Scalars['BigInt'];
-  /** Total amount of SwapNFT transactions processed on this block */
-  swapNFTCount: Scalars['BigInt'];
   /** L1 Block timestamp when the L2 Block was submitted */
   timestamp: Scalars['BigInt'];
-  /** Total amount of TradeNFT transactions processed on this block */
-  tradeNFTCount: Scalars['BigInt'];
   /** Total amount of transactions processed on this block. Should coincide with the lenght of the transactions list */
   transactionCount: Scalars['BigInt'];
   /** List of L2 Transactions for this L2 Block */
   transactions: Array<Transaction>;
   /** Total amount of Transfer transactions processed on this block */
   transferCount: Scalars['BigInt'];
-  /** Total amount of Transfer transactions processed on this block */
-  transferNFTCount: Scalars['BigInt'];
   /** Transaction hash for the L1 Transaction where the L2 Block was submitted */
   txHash: Scalars['String'];
+  /** Withdraw Size */
+  withdrawSize: Scalars['Int'];
   /** Total amount of Withdrawal transactions processed on this block */
   withdrawalCount: Scalars['BigInt'];
-  /** Total amount of WithdrawalNFT transactions processed on this block */
-  withdrawalNFTCount: Scalars['BigInt'];
 };
 
 export type BlockTransactionsArgs = {
@@ -2014,6 +2000,14 @@ export type Block_Filter = {
   accountUpdateCount_lte?: InputMaybe<Scalars['BigInt']>;
   accountUpdateCount_not?: InputMaybe<Scalars['BigInt']>;
   accountUpdateCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountUpdateSize?: InputMaybe<Scalars['Int']>;
+  accountUpdateSize_gt?: InputMaybe<Scalars['Int']>;
+  accountUpdateSize_gte?: InputMaybe<Scalars['Int']>;
+  accountUpdateSize_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountUpdateSize_lt?: InputMaybe<Scalars['Int']>;
+  accountUpdateSize_lte?: InputMaybe<Scalars['Int']>;
+  accountUpdateSize_not?: InputMaybe<Scalars['Int']>;
+  accountUpdateSize_not_in?: InputMaybe<Array<Scalars['Int']>>;
   addCount?: InputMaybe<Scalars['BigInt']>;
   addCount_gt?: InputMaybe<Scalars['BigInt']>;
   addCount_gte?: InputMaybe<Scalars['BigInt']>;
@@ -2022,14 +2016,6 @@ export type Block_Filter = {
   addCount_lte?: InputMaybe<Scalars['BigInt']>;
   addCount_not?: InputMaybe<Scalars['BigInt']>;
   addCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  ammUpdateCount?: InputMaybe<Scalars['BigInt']>;
-  ammUpdateCount_gt?: InputMaybe<Scalars['BigInt']>;
-  ammUpdateCount_gte?: InputMaybe<Scalars['BigInt']>;
-  ammUpdateCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  ammUpdateCount_lt?: InputMaybe<Scalars['BigInt']>;
-  ammUpdateCount_lte?: InputMaybe<Scalars['BigInt']>;
-  ammUpdateCount_not?: InputMaybe<Scalars['BigInt']>;
-  ammUpdateCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   and?: InputMaybe<Array<InputMaybe<Block_Filter>>>;
   blockHash?: InputMaybe<Scalars['String']>;
   blockHash_contains?: InputMaybe<Scalars['String']>;
@@ -2103,6 +2089,34 @@ export type Block_Filter = {
   depositCount_lte?: InputMaybe<Scalars['BigInt']>;
   depositCount_not?: InputMaybe<Scalars['BigInt']>;
   depositCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  depositSize?: InputMaybe<Scalars['Int']>;
+  depositSize_gt?: InputMaybe<Scalars['Int']>;
+  depositSize_gte?: InputMaybe<Scalars['Int']>;
+  depositSize_in?: InputMaybe<Array<Scalars['Int']>>;
+  depositSize_lt?: InputMaybe<Scalars['Int']>;
+  depositSize_lte?: InputMaybe<Scalars['Int']>;
+  depositSize_not?: InputMaybe<Scalars['Int']>;
+  depositSize_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  exchange?: InputMaybe<Scalars['String']>;
+  exchange_contains?: InputMaybe<Scalars['String']>;
+  exchange_contains_nocase?: InputMaybe<Scalars['String']>;
+  exchange_ends_with?: InputMaybe<Scalars['String']>;
+  exchange_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  exchange_gt?: InputMaybe<Scalars['String']>;
+  exchange_gte?: InputMaybe<Scalars['String']>;
+  exchange_in?: InputMaybe<Array<Scalars['String']>>;
+  exchange_lt?: InputMaybe<Scalars['String']>;
+  exchange_lte?: InputMaybe<Scalars['String']>;
+  exchange_not?: InputMaybe<Scalars['String']>;
+  exchange_not_contains?: InputMaybe<Scalars['String']>;
+  exchange_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  exchange_not_ends_with?: InputMaybe<Scalars['String']>;
+  exchange_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  exchange_not_in?: InputMaybe<Array<Scalars['String']>>;
+  exchange_not_starts_with?: InputMaybe<Scalars['String']>;
+  exchange_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  exchange_starts_with?: InputMaybe<Scalars['String']>;
+  exchange_starts_with_nocase?: InputMaybe<Scalars['String']>;
   gasLimit?: InputMaybe<Scalars['BigInt']>;
   gasLimit_gt?: InputMaybe<Scalars['BigInt']>;
   gasLimit_gte?: InputMaybe<Scalars['BigInt']>;
@@ -2143,22 +2157,6 @@ export type Block_Filter = {
   internalID_lte?: InputMaybe<Scalars['BigInt']>;
   internalID_not?: InputMaybe<Scalars['BigInt']>;
   internalID_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  nftDataCount?: InputMaybe<Scalars['BigInt']>;
-  nftDataCount_gt?: InputMaybe<Scalars['BigInt']>;
-  nftDataCount_gte?: InputMaybe<Scalars['BigInt']>;
-  nftDataCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  nftDataCount_lt?: InputMaybe<Scalars['BigInt']>;
-  nftDataCount_lte?: InputMaybe<Scalars['BigInt']>;
-  nftDataCount_not?: InputMaybe<Scalars['BigInt']>;
-  nftDataCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  nftMintCount?: InputMaybe<Scalars['BigInt']>;
-  nftMintCount_gt?: InputMaybe<Scalars['BigInt']>;
-  nftMintCount_gte?: InputMaybe<Scalars['BigInt']>;
-  nftMintCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  nftMintCount_lt?: InputMaybe<Scalars['BigInt']>;
-  nftMintCount_lte?: InputMaybe<Scalars['BigInt']>;
-  nftMintCount_not?: InputMaybe<Scalars['BigInt']>;
-  nftMintCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   numConditionalTransactions?: InputMaybe<Scalars['Int']>;
   numConditionalTransactions_gt?: InputMaybe<Scalars['Int']>;
   numConditionalTransactions_gte?: InputMaybe<Scalars['Int']>;
@@ -2221,22 +2219,14 @@ export type Block_Filter = {
   proof_not?: InputMaybe<Array<Scalars['BigInt']>>;
   proof_not_contains?: InputMaybe<Array<Scalars['BigInt']>>;
   proof_not_contains_nocase?: InputMaybe<Array<Scalars['BigInt']>>;
-  protocolFeeMakerBips?: InputMaybe<Scalars['Int']>;
-  protocolFeeMakerBips_gt?: InputMaybe<Scalars['Int']>;
-  protocolFeeMakerBips_gte?: InputMaybe<Scalars['Int']>;
-  protocolFeeMakerBips_in?: InputMaybe<Array<Scalars['Int']>>;
-  protocolFeeMakerBips_lt?: InputMaybe<Scalars['Int']>;
-  protocolFeeMakerBips_lte?: InputMaybe<Scalars['Int']>;
-  protocolFeeMakerBips_not?: InputMaybe<Scalars['Int']>;
-  protocolFeeMakerBips_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  protocolFeeTakerBips?: InputMaybe<Scalars['Int']>;
-  protocolFeeTakerBips_gt?: InputMaybe<Scalars['Int']>;
-  protocolFeeTakerBips_gte?: InputMaybe<Scalars['Int']>;
-  protocolFeeTakerBips_in?: InputMaybe<Array<Scalars['Int']>>;
-  protocolFeeTakerBips_lt?: InputMaybe<Scalars['Int']>;
-  protocolFeeTakerBips_lte?: InputMaybe<Scalars['Int']>;
-  protocolFeeTakerBips_not?: InputMaybe<Scalars['Int']>;
-  protocolFeeTakerBips_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  protocolFeeBips?: InputMaybe<Scalars['Int']>;
+  protocolFeeBips_gt?: InputMaybe<Scalars['Int']>;
+  protocolFeeBips_gte?: InputMaybe<Scalars['Int']>;
+  protocolFeeBips_in?: InputMaybe<Array<Scalars['Int']>>;
+  protocolFeeBips_lt?: InputMaybe<Scalars['Int']>;
+  protocolFeeBips_lte?: InputMaybe<Scalars['Int']>;
+  protocolFeeBips_not?: InputMaybe<Scalars['Int']>;
+  protocolFeeBips_not_in?: InputMaybe<Array<Scalars['Int']>>;
   removeCount?: InputMaybe<Scalars['BigInt']>;
   removeCount_gt?: InputMaybe<Scalars['BigInt']>;
   removeCount_gte?: InputMaybe<Scalars['BigInt']>;
@@ -2265,14 +2255,6 @@ export type Block_Filter = {
   swapCount_lte?: InputMaybe<Scalars['BigInt']>;
   swapCount_not?: InputMaybe<Scalars['BigInt']>;
   swapCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  swapNFTCount?: InputMaybe<Scalars['BigInt']>;
-  swapNFTCount_gt?: InputMaybe<Scalars['BigInt']>;
-  swapNFTCount_gte?: InputMaybe<Scalars['BigInt']>;
-  swapNFTCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  swapNFTCount_lt?: InputMaybe<Scalars['BigInt']>;
-  swapNFTCount_lte?: InputMaybe<Scalars['BigInt']>;
-  swapNFTCount_not?: InputMaybe<Scalars['BigInt']>;
-  swapNFTCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   timestamp?: InputMaybe<Scalars['BigInt']>;
   timestamp_gt?: InputMaybe<Scalars['BigInt']>;
   timestamp_gte?: InputMaybe<Scalars['BigInt']>;
@@ -2281,14 +2263,6 @@ export type Block_Filter = {
   timestamp_lte?: InputMaybe<Scalars['BigInt']>;
   timestamp_not?: InputMaybe<Scalars['BigInt']>;
   timestamp_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  tradeNFTCount?: InputMaybe<Scalars['BigInt']>;
-  tradeNFTCount_gt?: InputMaybe<Scalars['BigInt']>;
-  tradeNFTCount_gte?: InputMaybe<Scalars['BigInt']>;
-  tradeNFTCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  tradeNFTCount_lt?: InputMaybe<Scalars['BigInt']>;
-  tradeNFTCount_lte?: InputMaybe<Scalars['BigInt']>;
-  tradeNFTCount_not?: InputMaybe<Scalars['BigInt']>;
-  tradeNFTCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   transactionCount?: InputMaybe<Scalars['BigInt']>;
   transactionCount_gt?: InputMaybe<Scalars['BigInt']>;
   transactionCount_gte?: InputMaybe<Scalars['BigInt']>;
@@ -2306,14 +2280,6 @@ export type Block_Filter = {
   transferCount_lte?: InputMaybe<Scalars['BigInt']>;
   transferCount_not?: InputMaybe<Scalars['BigInt']>;
   transferCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transferNFTCount?: InputMaybe<Scalars['BigInt']>;
-  transferNFTCount_gt?: InputMaybe<Scalars['BigInt']>;
-  transferNFTCount_gte?: InputMaybe<Scalars['BigInt']>;
-  transferNFTCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transferNFTCount_lt?: InputMaybe<Scalars['BigInt']>;
-  transferNFTCount_lte?: InputMaybe<Scalars['BigInt']>;
-  transferNFTCount_not?: InputMaybe<Scalars['BigInt']>;
-  transferNFTCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   txHash?: InputMaybe<Scalars['String']>;
   txHash_contains?: InputMaybe<Scalars['String']>;
   txHash_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -2334,6 +2300,14 @@ export type Block_Filter = {
   txHash_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   txHash_starts_with?: InputMaybe<Scalars['String']>;
   txHash_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  withdrawSize?: InputMaybe<Scalars['Int']>;
+  withdrawSize_gt?: InputMaybe<Scalars['Int']>;
+  withdrawSize_gte?: InputMaybe<Scalars['Int']>;
+  withdrawSize_in?: InputMaybe<Array<Scalars['Int']>>;
+  withdrawSize_lt?: InputMaybe<Scalars['Int']>;
+  withdrawSize_lte?: InputMaybe<Scalars['Int']>;
+  withdrawSize_not?: InputMaybe<Scalars['Int']>;
+  withdrawSize_not_in?: InputMaybe<Array<Scalars['Int']>>;
   withdrawalCount?: InputMaybe<Scalars['BigInt']>;
   withdrawalCount_gt?: InputMaybe<Scalars['BigInt']>;
   withdrawalCount_gte?: InputMaybe<Scalars['BigInt']>;
@@ -2342,14 +2316,6 @@ export type Block_Filter = {
   withdrawalCount_lte?: InputMaybe<Scalars['BigInt']>;
   withdrawalCount_not?: InputMaybe<Scalars['BigInt']>;
   withdrawalCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  withdrawalNFTCount?: InputMaybe<Scalars['BigInt']>;
-  withdrawalNFTCount_gt?: InputMaybe<Scalars['BigInt']>;
-  withdrawalNFTCount_gte?: InputMaybe<Scalars['BigInt']>;
-  withdrawalNFTCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  withdrawalNFTCount_lt?: InputMaybe<Scalars['BigInt']>;
-  withdrawalNFTCount_lte?: InputMaybe<Scalars['BigInt']>;
-  withdrawalNFTCount_not?: InputMaybe<Scalars['BigInt']>;
-  withdrawalNFTCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
 };
 
 export type Block_Height = {
@@ -2360,21 +2326,21 @@ export type Block_Height = {
 
 export enum Block_OrderBy {
   AccountUpdateCount = 'accountUpdateCount',
+  AccountUpdateSize = 'accountUpdateSize',
   AddCount = 'addCount',
-  AmmUpdateCount = 'ammUpdateCount',
   BlockHash = 'blockHash',
   BlockSize = 'blockSize',
   BlockType = 'blockType',
   BlockVersion = 'blockVersion',
   Data = 'data',
   DepositCount = 'depositCount',
+  DepositSize = 'depositSize',
+  Exchange = 'exchange',
   GasLimit = 'gasLimit',
   GasPrice = 'gasPrice',
   Height = 'height',
   Id = 'id',
   InternalId = 'internalID',
-  NftDataCount = 'nftDataCount',
-  NftMintCount = 'nftMintCount',
   NumConditionalTransactions = 'numConditionalTransactions',
   OffchainData = 'offchainData',
   OperatorAccount = 'operatorAccount',
@@ -2386,22 +2352,18 @@ export enum Block_OrderBy {
   OperatorAccountLastUpdatedAt = 'operatorAccount__lastUpdatedAt',
   OrderbookTradeCount = 'orderbookTradeCount',
   Proof = 'proof',
-  ProtocolFeeMakerBips = 'protocolFeeMakerBips',
-  ProtocolFeeTakerBips = 'protocolFeeTakerBips',
+  ProtocolFeeBips = 'protocolFeeBips',
   RemoveCount = 'removeCount',
   SignatureVerificationCount = 'signatureVerificationCount',
   StoreBlockInfoOnchain = 'storeBlockInfoOnchain',
   SwapCount = 'swapCount',
-  SwapNftCount = 'swapNFTCount',
   Timestamp = 'timestamp',
-  TradeNftCount = 'tradeNFTCount',
   TransactionCount = 'transactionCount',
   Transactions = 'transactions',
   TransferCount = 'transferCount',
-  TransferNftCount = 'transferNFTCount',
   TxHash = 'txHash',
+  WithdrawSize = 'withdrawSize',
   WithdrawalCount = 'withdrawalCount',
-  WithdrawalNftCount = 'withdrawalNFTCount',
 }
 
 export type DataNft = Transaction &
@@ -2661,40 +2623,36 @@ export enum DataNft_OrderBy {
   Accounts = 'accounts',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   CreatorFeeBips = 'creatorFeeBips',
   Data = 'data',
   Id = 'id',
@@ -2732,6 +2690,7 @@ export type Deposit = Transaction & {
   tokenBalances?: Maybe<Array<AccountTokenBalance>>;
   /** [RAW L2 DATA] Token ID of the deposited token */
   tokenID: Scalars['Int'];
+  type: Scalars['Int'];
   /** Explicit copy of __typename to make it usable when filtering */
   typename: TransactionType;
 };
@@ -2914,6 +2873,14 @@ export type Deposit_Filter = {
   token_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   token_starts_with?: InputMaybe<Scalars['String']>;
   token_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['Int']>;
+  type_gt?: InputMaybe<Scalars['Int']>;
+  type_gte?: InputMaybe<Scalars['Int']>;
+  type_in?: InputMaybe<Array<Scalars['Int']>>;
+  type_lt?: InputMaybe<Scalars['Int']>;
+  type_lte?: InputMaybe<Scalars['Int']>;
+  type_not?: InputMaybe<Scalars['Int']>;
+  type_not_in?: InputMaybe<Array<Scalars['Int']>>;
   typename?: InputMaybe<TransactionType>;
   typename_in?: InputMaybe<Array<TransactionType>>;
   typename_not?: InputMaybe<TransactionType>;
@@ -2925,40 +2892,36 @@ export enum Deposit_OrderBy {
   Amount = 'amount',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   Id = 'id',
   InternalId = 'internalID',
@@ -2982,6 +2945,7 @@ export enum Deposit_OrderBy {
   TokenTradedVolume = 'token__tradedVolume',
   TokenTradedVolumeOrderbook = 'token__tradedVolumeOrderbook',
   TokenTradedVolumeSwap = 'token__tradedVolumeSwap',
+  Type = 'type',
   Typename = 'typename',
 }
 
@@ -3045,27 +3009,19 @@ export enum Exchange_OrderBy {
   Proxy = 'proxy',
   ProxyAccountUpdateCount = 'proxy__accountUpdateCount',
   ProxyAddCount = 'proxy__addCount',
-  ProxyAmmUpdateCount = 'proxy__ammUpdateCount',
   ProxyBlockCount = 'proxy__blockCount',
   ProxyDepositCount = 'proxy__depositCount',
   ProxyId = 'proxy__id',
-  ProxyNftCount = 'proxy__nftCount',
-  ProxyNftDataCount = 'proxy__nftDataCount',
-  ProxyNftMintCount = 'proxy__nftMintCount',
   ProxyOrderbookTradeCount = 'proxy__orderbookTradeCount',
   ProxyPoolCount = 'proxy__poolCount',
   ProxyRemoveCount = 'proxy__removeCount',
   ProxySignatureVerificationCount = 'proxy__signatureVerificationCount',
   ProxySwapCount = 'proxy__swapCount',
-  ProxySwapNftCount = 'proxy__swapNFTCount',
   ProxyTokenCount = 'proxy__tokenCount',
-  ProxyTradeNftCount = 'proxy__tradeNFTCount',
   ProxyTransactionCount = 'proxy__transactionCount',
   ProxyTransferCount = 'proxy__transferCount',
-  ProxyTransferNftCount = 'proxy__transferNFTCount',
   ProxyUserCount = 'proxy__userCount',
   ProxyWithdrawalCount = 'proxy__withdrawalCount',
-  ProxyWithdrawalNftCount = 'proxy__withdrawalNFTCount',
   Tokens = 'tokens',
 }
 
@@ -3513,40 +3469,36 @@ export enum MintNft_OrderBy {
   Amount = 'amount',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   CreatorFeeBips = 'creatorFeeBips',
   Data = 'data',
   ExtraData = 'extraData',
@@ -4341,40 +4293,36 @@ export enum OrderbookTrade_OrderBy {
   Accounts = 'accounts',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   FFillSa = 'fFillSA',
   FFillSb = 'fFillSB',
@@ -5501,8 +5449,6 @@ export type Proxy = {
   accountUpdateCount: Scalars['BigInt'];
   /** Total amount of Add transactions processed across all blocks */
   addCount: Scalars['BigInt'];
-  /** Total amount of AMMUpdate transactions processed across all blocks */
-  ammUpdateCount: Scalars['BigInt'];
   /** Total amount of blocks processed */
   blockCount: Scalars['BigInt'];
   /** Current implementation is represented by a link to the current Exchange entity */
@@ -5513,12 +5459,6 @@ export type Proxy = {
   id: Scalars['ID'];
   /** List of all historical Exchange entities */
   implementations: Array<Exchange>;
-  /** Total amount of unique NFTs */
-  nftCount: Scalars['BigInt'];
-  /** Total amount of NFT Data transactions processed across all blocks */
-  nftDataCount: Scalars['BigInt'];
-  /** Total amount of NFT Mint transactions processed across all blocks */
-  nftMintCount: Scalars['BigInt'];
   /** Total amount of OrderbookTrade transactions processed across all blocks */
   orderbookTradeCount: Scalars['BigInt'];
   /** Total amount of unique Pool entities */
@@ -5529,24 +5469,16 @@ export type Proxy = {
   signatureVerificationCount: Scalars['BigInt'];
   /** Total amount of Swap transactions processed across all blocks */
   swapCount: Scalars['BigInt'];
-  /** Total amount of SwapNFT transactions processed across all blocks */
-  swapNFTCount: Scalars['BigInt'];
   /** Total amount of tokens supported */
   tokenCount: Scalars['BigInt'];
-  /** Total amount of TradeNFT transactions processed across all blocks */
-  tradeNFTCount: Scalars['BigInt'];
   /** Total amount of transactions processed across all blocks */
   transactionCount: Scalars['BigInt'];
   /** Total amount of Transfer transactions processed across all blocks */
   transferCount: Scalars['BigInt'];
-  /** Total amount of TransferNFT transactions processed across all blocks */
-  transferNFTCount: Scalars['BigInt'];
   /** Total amount of unique User entities */
   userCount: Scalars['BigInt'];
   /** Total amount of Withdrawal transactions processed across all blocks */
   withdrawalCount: Scalars['BigInt'];
-  /** Total amount of WithdrawalNFT transactions processed across all blocks */
-  withdrawalNFTCount: Scalars['BigInt'];
 };
 
 export type ProxyImplementationsArgs = {
@@ -5576,14 +5508,6 @@ export type Proxy_Filter = {
   addCount_lte?: InputMaybe<Scalars['BigInt']>;
   addCount_not?: InputMaybe<Scalars['BigInt']>;
   addCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  ammUpdateCount?: InputMaybe<Scalars['BigInt']>;
-  ammUpdateCount_gt?: InputMaybe<Scalars['BigInt']>;
-  ammUpdateCount_gte?: InputMaybe<Scalars['BigInt']>;
-  ammUpdateCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  ammUpdateCount_lt?: InputMaybe<Scalars['BigInt']>;
-  ammUpdateCount_lte?: InputMaybe<Scalars['BigInt']>;
-  ammUpdateCount_not?: InputMaybe<Scalars['BigInt']>;
-  ammUpdateCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   and?: InputMaybe<Array<InputMaybe<Proxy_Filter>>>;
   blockCount?: InputMaybe<Scalars['BigInt']>;
   blockCount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -5631,30 +5555,6 @@ export type Proxy_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   implementations_?: InputMaybe<Exchange_Filter>;
-  nftCount?: InputMaybe<Scalars['BigInt']>;
-  nftCount_gt?: InputMaybe<Scalars['BigInt']>;
-  nftCount_gte?: InputMaybe<Scalars['BigInt']>;
-  nftCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  nftCount_lt?: InputMaybe<Scalars['BigInt']>;
-  nftCount_lte?: InputMaybe<Scalars['BigInt']>;
-  nftCount_not?: InputMaybe<Scalars['BigInt']>;
-  nftCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  nftDataCount?: InputMaybe<Scalars['BigInt']>;
-  nftDataCount_gt?: InputMaybe<Scalars['BigInt']>;
-  nftDataCount_gte?: InputMaybe<Scalars['BigInt']>;
-  nftDataCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  nftDataCount_lt?: InputMaybe<Scalars['BigInt']>;
-  nftDataCount_lte?: InputMaybe<Scalars['BigInt']>;
-  nftDataCount_not?: InputMaybe<Scalars['BigInt']>;
-  nftDataCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  nftMintCount?: InputMaybe<Scalars['BigInt']>;
-  nftMintCount_gt?: InputMaybe<Scalars['BigInt']>;
-  nftMintCount_gte?: InputMaybe<Scalars['BigInt']>;
-  nftMintCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  nftMintCount_lt?: InputMaybe<Scalars['BigInt']>;
-  nftMintCount_lte?: InputMaybe<Scalars['BigInt']>;
-  nftMintCount_not?: InputMaybe<Scalars['BigInt']>;
-  nftMintCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   or?: InputMaybe<Array<InputMaybe<Proxy_Filter>>>;
   orderbookTradeCount?: InputMaybe<Scalars['BigInt']>;
   orderbookTradeCount_gt?: InputMaybe<Scalars['BigInt']>;
@@ -5696,14 +5596,6 @@ export type Proxy_Filter = {
   swapCount_lte?: InputMaybe<Scalars['BigInt']>;
   swapCount_not?: InputMaybe<Scalars['BigInt']>;
   swapCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  swapNFTCount?: InputMaybe<Scalars['BigInt']>;
-  swapNFTCount_gt?: InputMaybe<Scalars['BigInt']>;
-  swapNFTCount_gte?: InputMaybe<Scalars['BigInt']>;
-  swapNFTCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  swapNFTCount_lt?: InputMaybe<Scalars['BigInt']>;
-  swapNFTCount_lte?: InputMaybe<Scalars['BigInt']>;
-  swapNFTCount_not?: InputMaybe<Scalars['BigInt']>;
-  swapNFTCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   tokenCount?: InputMaybe<Scalars['BigInt']>;
   tokenCount_gt?: InputMaybe<Scalars['BigInt']>;
   tokenCount_gte?: InputMaybe<Scalars['BigInt']>;
@@ -5712,14 +5604,6 @@ export type Proxy_Filter = {
   tokenCount_lte?: InputMaybe<Scalars['BigInt']>;
   tokenCount_not?: InputMaybe<Scalars['BigInt']>;
   tokenCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  tradeNFTCount?: InputMaybe<Scalars['BigInt']>;
-  tradeNFTCount_gt?: InputMaybe<Scalars['BigInt']>;
-  tradeNFTCount_gte?: InputMaybe<Scalars['BigInt']>;
-  tradeNFTCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  tradeNFTCount_lt?: InputMaybe<Scalars['BigInt']>;
-  tradeNFTCount_lte?: InputMaybe<Scalars['BigInt']>;
-  tradeNFTCount_not?: InputMaybe<Scalars['BigInt']>;
-  tradeNFTCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   transactionCount?: InputMaybe<Scalars['BigInt']>;
   transactionCount_gt?: InputMaybe<Scalars['BigInt']>;
   transactionCount_gte?: InputMaybe<Scalars['BigInt']>;
@@ -5736,14 +5620,6 @@ export type Proxy_Filter = {
   transferCount_lte?: InputMaybe<Scalars['BigInt']>;
   transferCount_not?: InputMaybe<Scalars['BigInt']>;
   transferCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transferNFTCount?: InputMaybe<Scalars['BigInt']>;
-  transferNFTCount_gt?: InputMaybe<Scalars['BigInt']>;
-  transferNFTCount_gte?: InputMaybe<Scalars['BigInt']>;
-  transferNFTCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  transferNFTCount_lt?: InputMaybe<Scalars['BigInt']>;
-  transferNFTCount_lte?: InputMaybe<Scalars['BigInt']>;
-  transferNFTCount_not?: InputMaybe<Scalars['BigInt']>;
-  transferNFTCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   userCount?: InputMaybe<Scalars['BigInt']>;
   userCount_gt?: InputMaybe<Scalars['BigInt']>;
   userCount_gte?: InputMaybe<Scalars['BigInt']>;
@@ -5760,43 +5636,27 @@ export type Proxy_Filter = {
   withdrawalCount_lte?: InputMaybe<Scalars['BigInt']>;
   withdrawalCount_not?: InputMaybe<Scalars['BigInt']>;
   withdrawalCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  withdrawalNFTCount?: InputMaybe<Scalars['BigInt']>;
-  withdrawalNFTCount_gt?: InputMaybe<Scalars['BigInt']>;
-  withdrawalNFTCount_gte?: InputMaybe<Scalars['BigInt']>;
-  withdrawalNFTCount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  withdrawalNFTCount_lt?: InputMaybe<Scalars['BigInt']>;
-  withdrawalNFTCount_lte?: InputMaybe<Scalars['BigInt']>;
-  withdrawalNFTCount_not?: InputMaybe<Scalars['BigInt']>;
-  withdrawalNFTCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
 };
 
 export enum Proxy_OrderBy {
   AccountUpdateCount = 'accountUpdateCount',
   AddCount = 'addCount',
-  AmmUpdateCount = 'ammUpdateCount',
   BlockCount = 'blockCount',
   CurrentImplementation = 'currentImplementation',
   CurrentImplementationId = 'currentImplementation__id',
   DepositCount = 'depositCount',
   Id = 'id',
   Implementations = 'implementations',
-  NftCount = 'nftCount',
-  NftDataCount = 'nftDataCount',
-  NftMintCount = 'nftMintCount',
   OrderbookTradeCount = 'orderbookTradeCount',
   PoolCount = 'poolCount',
   RemoveCount = 'removeCount',
   SignatureVerificationCount = 'signatureVerificationCount',
   SwapCount = 'swapCount',
-  SwapNftCount = 'swapNFTCount',
   TokenCount = 'tokenCount',
-  TradeNftCount = 'tradeNFTCount',
   TransactionCount = 'transactionCount',
   TransferCount = 'transferCount',
-  TransferNftCount = 'transferNFTCount',
   UserCount = 'userCount',
   WithdrawalCount = 'withdrawalCount',
-  WithdrawalNftCount = 'withdrawalNFTCount',
 }
 
 export type Query = {
@@ -6807,40 +6667,36 @@ export enum Remove_OrderBy {
   Amount = 'amount',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   Fee = 'fee',
   FeeToken = 'feeToken',
@@ -7082,40 +6938,36 @@ export enum SignatureVerification_OrderBy {
   Accounts = 'accounts',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   Id = 'id',
   InternalId = 'internalID',
@@ -8414,40 +8266,36 @@ export enum SwapNft_OrderBy {
   Accounts = 'accounts',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   FFillSa = 'fFillSA',
   FFillSb = 'fFillSB',
@@ -8930,40 +8778,36 @@ export enum Swap_OrderBy {
   Accounts = 'accounts',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   FFillSa = 'fFillSA',
   FFillSb = 'fFillSB',
@@ -10025,40 +9869,36 @@ export enum TradeNft_OrderBy {
   Accounts = 'accounts',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   FFillSa = 'fFillSA',
   FFillSb = 'fFillSB',
@@ -10262,40 +10102,36 @@ export type TransactionNft_Filter = {
 export enum TransactionNft_OrderBy {
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   Id = 'id',
   InternalId = 'internalID',
@@ -10409,40 +10245,36 @@ export enum Transaction_OrderBy {
   Accounts = 'accounts',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   Id = 'id',
   InternalId = 'internalID',
@@ -10909,40 +10741,36 @@ export enum TransferNft_OrderBy {
   Amount = 'amount',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   Fee = 'fee',
   FeeToken = 'feeToken',
@@ -11277,40 +11105,36 @@ export enum Transfer_OrderBy {
   Amount = 'amount',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   Fee = 'fee',
   FeeToken = 'feeToken',
@@ -11935,40 +11759,36 @@ export enum WithdrawalNft_OrderBy {
   Amount = 'amount',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   Fee = 'fee',
   FeeToken = 'feeToken',
@@ -12258,40 +12078,36 @@ export enum Withdrawal_OrderBy {
   Amount = 'amount',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
+  BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
-  BlockAmmUpdateCount = 'block__ammUpdateCount',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
   BlockBlockVersion = 'block__blockVersion',
   BlockData = 'block__data',
   BlockDepositCount = 'block__depositCount',
+  BlockDepositSize = 'block__depositSize',
+  BlockExchange = 'block__exchange',
   BlockGasLimit = 'block__gasLimit',
   BlockGasPrice = 'block__gasPrice',
   BlockHeight = 'block__height',
   BlockId = 'block__id',
   BlockInternalId = 'block__internalID',
-  BlockNftDataCount = 'block__nftDataCount',
-  BlockNftMintCount = 'block__nftMintCount',
   BlockNumConditionalTransactions = 'block__numConditionalTransactions',
   BlockOffchainData = 'block__offchainData',
   BlockOperatorAccountId = 'block__operatorAccountID',
   BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeMakerBips = 'block__protocolFeeMakerBips',
-  BlockProtocolFeeTakerBips = 'block__protocolFeeTakerBips',
+  BlockProtocolFeeBips = 'block__protocolFeeBips',
   BlockRemoveCount = 'block__removeCount',
   BlockSignatureVerificationCount = 'block__signatureVerificationCount',
   BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
   BlockSwapCount = 'block__swapCount',
-  BlockSwapNftCount = 'block__swapNFTCount',
   BlockTimestamp = 'block__timestamp',
-  BlockTradeNftCount = 'block__tradeNFTCount',
   BlockTransactionCount = 'block__transactionCount',
   BlockTransferCount = 'block__transferCount',
-  BlockTransferNftCount = 'block__transferNFTCount',
   BlockTxHash = 'block__txHash',
+  BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
-  BlockWithdrawalNftCount = 'block__withdrawalNFTCount',
   Data = 'data',
   Fee = 'fee',
   FeeToken = 'feeToken',
@@ -12340,6 +12156,8 @@ export type _Block_ = {
   hash?: Maybe<Scalars['Bytes']>;
   /** The block number */
   number: Scalars['Int'];
+  /** The hash of the parent block */
+  parentHash?: Maybe<Scalars['Bytes']>;
   /** Integer representation of the timestamp stored in blocks for the chain */
   timestamp?: Maybe<Scalars['Int']>;
 };
@@ -12398,10 +12216,6 @@ export type BlockFragmentFragment = {
   height: any;
   blockHash: string;
   blockSize: number;
-  operatorAccount:
-    | { __typename?: 'Pool'; id: string; address: any }
-    | { __typename?: 'ProtocolAccount'; id: string; address: any }
-    | { __typename?: 'User'; id: string; address: any };
 };
 
 export type PoolFragmentFragment = {
@@ -12926,10 +12740,6 @@ export type BlocksQuery = {
     height: any;
     blockHash: string;
     blockSize: number;
-    operatorAccount:
-      | { __typename?: 'Pool'; id: string; address: any }
-      | { __typename?: 'ProtocolAccount'; id: string; address: any }
-      | { __typename?: 'User'; id: string; address: any };
   }>;
 };
 
@@ -12951,10 +12761,6 @@ export type BlockQuery = {
     height: any;
     blockHash: string;
     blockSize: number;
-    operatorAccount:
-      | { __typename?: 'Pool'; id: string; address: any }
-      | { __typename?: 'ProtocolAccount'; id: string; address: any }
-      | { __typename?: 'User'; id: string; address: any };
   } | null;
 };
 
@@ -14304,12 +14110,6 @@ export type PendingTransactionsQuery = {
   accountUpdates: Array<{ __typename?: 'AccountUpdate'; id: string }>;
 };
 
-export const AccountFragmentFragmentDoc = gql`
-  fragment AccountFragment on Account {
-    id
-    address
-  }
-`;
 export const BlockFragmentFragmentDoc = gql`
   fragment BlockFragment on Block {
     id
@@ -14321,11 +14121,13 @@ export const BlockFragmentFragmentDoc = gql`
     blockHash
     blockSize
     gasPrice
-    operatorAccount {
-      ...AccountFragment
-    }
   }
-  ${AccountFragmentFragmentDoc}
+`;
+export const AccountFragmentFragmentDoc = gql`
+  fragment AccountFragment on Account {
+    id
+    address
+  }
 `;
 export const TokenFragmentFragmentDoc = gql`
   fragment TokenFragment on Token {

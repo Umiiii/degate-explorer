@@ -63,9 +63,9 @@ const Block: React.FC<{}> = () => {
               <tr className="border dark:border-loopring-dark-darkBlue">
                 <td className="p-2">Operator Address</td>
                 <td className="break-all">
-                  <AppLink path="account" accountId={data.block.operatorAccount.id}>
-                    <span className="hidden lg:block">{data.block.operatorAccount.address}</span>
-                    <span className="lg:hidden">{getTrimmedTxHash(data.block.operatorAccount.address, 10, true)}</span>
+                  <AppLink path="account" accountId={0}>
+                    {/*<span className="hidden lg:block">{data.block.operatorAccount.address}</span>*/}
+                    {/*<span className="lg:hidden">{getTrimmedTxHash(data.block.operatorAccount.address, 10, true)}</span>*/}
                   </AppLink>
                 </td>
               </tr>

@@ -1,7 +1,8 @@
 overwrite: true
 generates:
   generated/loopringExplorer.ts:
-    schema: ['https://api.thegraph.com/subgraphs/name/loopring/loopring']
+    #schema: ['https://api.thegraph.com/subgraphs/name/loopring/loopring']
+    schema: ['https://api.studio.thegraph.com/query/52085/degate-mainnet/version/latest']
     documents:
       - ./hooks/useAccounts.ts
       - ./graphql/fragments.ts
