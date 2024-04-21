@@ -111,7 +111,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
                     Degate App
                   </a>
                 </Link>
-                <div> API Source: <Link href="https://testnet.thegraph.com/explorer/subgraphs/MshsFffHztwpJJfQjDs5m29qdBwMuuJZAnKVKAYVPEY?view=Indexers&chain=goerli"> Subgraph (Goerli) </Link> </div>
+                <div> API Source: Subgraph   </div>
                 {/*<APISourceToggle />*/}
                 {/*<button onClick={toggleDarkMode} className="self-start p-2 lg:p-0">*/}
                 {/*  <DarkModeToggle isDarkModeOn={darkMode} />*/}

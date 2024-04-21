@@ -1,5 +1,5 @@
 import React from 'react';
-import { useBlockQuery, useNonFungibleTokensQuery, useTransactionQuery } from '../generated/loopringExplorer';
+import { useBlockQuery, useTransactionQuery } from '../generated/loopringExplorer';
 import useAccounts from './useAccounts';
 
 const useSearch = (query: string) => {
@@ -15,15 +15,6 @@ const useSearch = (query: string) => {
   });
   const { data: accountData, isLoading: accountIsLoading } = useAccounts(query);
 
-  const { data: NFTCollectionData, loading: NFTCollectionLoading } = useNonFungibleTokensQuery({
-    fetchPolicy: 'no-cache',
-    variables: {
-      where: {
-        token_in: [query, query ? query.toLowerCase() : ""]
-      },
-      first: 1,
-    },
-  });  
 
   const [resultLoaded, setResultLoaded] = React.useState(false);
 
@@ -37,7 +28,7 @@ const useSearch = (query: string) => {
 
   React.useEffect(() => {
     // debugger
-    if (!blockIsLoading && !txIsLoading && !accountIsLoading && !NFTCollectionLoading) {
+    if (!blockIsLoading && !txIsLoading && !accountIsLoading) {
       const allResults = [];
       if (blockData && blockData.block) {
         allResults.push({
@@ -53,13 +44,7 @@ const useSearch = (query: string) => {
           tx: txData.transaction,
         });
       }
-      if (NFTCollectionData && NFTCollectionData.nonFungibleTokens[0]) {
-        allResults.push({
-          type: 'nftCollection',
-          link: `/collections/${NFTCollectionData.nonFungibleTokens[0].token}`,
-          nftCollection: NFTCollectionData.nonFungibleTokens[0].token,
-        });
-      }
+    
       if (accountData && accountData.accounts[0]) {
         allResults.push({
           type: 'account',
@@ -72,7 +57,7 @@ const useSearch = (query: string) => {
       setResults(allResults);
       setResultLoaded(true);
     }
-  }, [blockIsLoading, blockData, txIsLoading, txData, accountIsLoading, accountData, NFTCollectionData, NFTCollectionLoading, query]);
+  }, [blockIsLoading, blockData, txIsLoading, txData, accountIsLoading, accountData, query]);
 
   return {
     loaded: resultLoaded,

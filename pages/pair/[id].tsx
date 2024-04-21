@@ -164,8 +164,6 @@ const Pair: React.FC<{}> = () => {
         </ResponsiveContainer>
       </div>
 
-      <h3 className="text-2xl font-light mt-5">Swap Transactions</h3>
-      <Swaps pairId={pairId as string} token0USDPrice={token0USDPrice} token0={token0.symbol} />
       <h3 className="text-2xl font-light mt-5">Order Book Transactions</h3>
       <Trades pairId={pairId as string} token0USDPrice={token0USDPrice} token0={token0.symbol} />
     </div>
