@@ -6,7 +6,6 @@ import { ResponsiveContainer, Tooltip, XAxis, Bar, BarChart } from 'recharts';
 import useTokenUSDPrice from '../../hooks/useTokenUSDPrice';
 import getTokenAmount from '../../utils/getTokenAmount';
 import getDateString from '../../utils/getDateString';
-import Swaps from '../../components/pairDetail/Swaps';
 import Trades from '../../components/pairDetail/Trades';
 import { usePairQuery } from '../../generated/loopringExplorer';
 

@@ -15,50 +15,10 @@ const useCheckTxConfirmation = (accountID, tokenID, storageID) => {
         storageID: parseInt(storageID),
         tokenID: parseInt(tokenID),
       },
-      addWhere: {
-        accountFromID: parseInt(accountID),
-        storageID: parseInt(storageID),
-        tokenID: parseInt(tokenID),
-      },
-      removeWhere: {
-        accountFromID: parseInt(accountID),
-        storageID: parseInt(storageID),
-        tokenID: parseInt(tokenID),
-      },
       orderBookTradeWhere: {
         accountIdA: parseInt(accountID),
         storageIdA: parseInt(storageID),
         tokenIDAS: parseInt(tokenID),
-      },
-      swapWhere: {
-        accountIdA: parseInt(accountID),
-        storageIdA: parseInt(storageID),
-        tokenIDAS: parseInt(tokenID),
-      },
-      mintNFTWhere: {
-        minterAccountID: parseInt(accountID),
-        storageID: parseInt(storageID),
-        toTokenID: parseInt(tokenID),
-      },
-      withdrawNFTWhere: {
-        fromAccountID: parseInt(accountID),
-        storageID: parseInt(storageID),
-        tokenID: parseInt(tokenID),
-      },
-      transferNFTWhere: {
-        accountFromID: parseInt(accountID),
-        storageID: parseInt(storageID),
-        tokenID: parseInt(tokenID),
-      },
-      tradeNFTWhereA: {
-        accountIdA: parseInt(accountID),
-        storageIdA: parseInt(storageID),
-        tokenIDAS: parseInt(tokenID),
-      },
-      tradeNFTWhereB: {
-        accountIdB: parseInt(accountID),
-        storageIdB: parseInt(storageID),
-        tokenIDBS: parseInt(tokenID),
       },
       accountUpdateWhere: {
         accountID: parseInt(accountID),

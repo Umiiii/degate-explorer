@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-import { nft, token } from '../fragments';
+import { token } from '../fragments';
 
 export const FETCH_ACCOUNTS = gql`
   query accounts($first: Int, $where: Account_filter) {

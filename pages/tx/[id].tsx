@@ -7,17 +7,7 @@ import Withdrawal from '../../components/transactionDetail/Withdrawal';
 import Transfer from '../../components/transactionDetail/Transfer';
 import AccountUpdate from '../../components/transactionDetail/AccountUpdate';
 import SignatureVerification from '../../components/transactionDetail/SignatureVerification';
-import AmmUpdate from '../../components/transactionDetail/AmmUpdate';
-import Add from '../../components/transactionDetail/Add';
-import Remove from '../../components/transactionDetail/Remove';
-import Swap from '../../components/transactionDetail/Swap';
 import OrderbookTrade from '../../components/transactionDetail/OrderbookTrade';
-import TradeNFT from '../../components/transactionDetail/TradeNFT';
-import SwapNFT from '../../components/transactionDetail/SwapNFT';
-import WithdrawalNFT from '../../components/transactionDetail/WithdrawalNFT';
-import TransferNFT from '../../components/transactionDetail/TransferNFT';
-import MintNFT from '../../components/transactionDetail/MintNFT';
-import DataNFT from '../../components/transactionDetail/DataNFT';
 import PendingTx from '../../components/transactionDetail/PendingTx';
 import NoTransactionFound from '../../components/transactionDetail/NoTransactionFound';
 import { useTransactionQuery } from '../../generated/loopringExplorer';
@@ -30,12 +20,6 @@ const TransactionRaw: React.FC<{ txId: string, data, loading }> = ({ txId, data,
   const { __typename, block } = (data && data.transaction) || {};
   const renderTransactionDetails = (type) => {
     switch (type) {
-      case 'Add':
-        return <Add transaction={data.transaction} />;
-      case 'Remove':
-        return <Remove transaction={data.transaction} />;
-      case 'Swap':
-        return <Swap transaction={data.transaction} />;
       case 'OrderbookTrade':
         return <OrderbookTrade transaction={data.transaction} />;
       case 'Deposit':
@@ -48,20 +32,6 @@ const TransactionRaw: React.FC<{ txId: string, data, loading }> = ({ txId, data,
         return <AccountUpdate transaction={data.transaction} />;
       case 'SignatureVerification':
         return <SignatureVerification transaction={data.transaction} />;
-      case 'AmmUpdate':
-        return <AmmUpdate transaction={data.transaction} />;
-      case 'TradeNFT':
-        return <TradeNFT transaction={data.transaction} />;
-      case 'SwapNFT':
-        return <SwapNFT transaction={data.transaction} />;
-      case 'WithdrawalNFT':
-        return <WithdrawalNFT transaction={data.transaction} />;
-      case 'TransferNFT':
-        return <TransferNFT transaction={data.transaction} />;
-      case 'MintNFT':
-        return <MintNFT transaction={data.transaction} />;
-      case 'DataNFT':
-        return <DataNFT transaction={data.transaction} />;
       default:
         return type;
     }

@@ -13,10 +13,10 @@ const PendingTradeOrSwap: React.FC<{ trade: any }> = ({ trade }) => {
   );
   const isConfirmed =
     confirmedTx &&
-    (confirmedTx.orderbookTrades.length > 0 || confirmedTx.swaps.length > 0);
+    (confirmedTx.orderbookTrades.length > 0 );
 
   const tx =
-    isConfirmed && (confirmedTx.orderbookTrades[0] ?? confirmedTx.swaps[0]);
+    isConfirmed && (confirmedTx.orderbookTrades[0]);
   return (
     <tr>
       <td className="p-2 text-center">{trade[2]}</td>
