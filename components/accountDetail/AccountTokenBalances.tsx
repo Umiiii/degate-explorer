@@ -4,7 +4,7 @@ import getTokenAmount from '../../utils/getTokenAmount';
 import { OrderDirection, useAccountTokenBalancesQuery } from '../../generated/loopringExplorer';
 import CursorPagination from '../CursorPagination';
 import useTokens from '../../hooks/useTokens';
-
+import getTokenIcon from '../../utils/getTokenIcon';
 interface Props {
   accountId: string;
 }
@@ -83,9 +83,26 @@ const AccountTokenBalances: React.FC<Props> = ({ accountId }) => {
                 const { id, balance, token } = accountTokenBalance;
                 return (
                   <tr key={id} className="border rounded dark:border-loopring-dark-background">
-                    <td className="p-2 border-b dark:border-loopring-dark-darkBlue dark:text-white">{token.name}</td>
+                    
+                    <td className="p-2 border-b dark:border-loopring-dark-darkBlue dark:text-white items-stretch ">
+                 
+
+                          <div className="flex items-center justify-center">
+                          <img
+                            src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${getTokenIcon(
+                              token.address,
+                              token.symbol
+                            )}/logo.png`}
+                            className="flex token-icon items-center justify-center"
+                          />{token.name}
+                          </div>
+                         
+                          </td>
+
+
                     <td className="border-b dark:border-loopring-dark-darkBlue dark:text-white">
                       {getTokenAmount(balance, token.decimals)} {token.symbol}
+                      
                     </td>
                   </tr>
                 );
