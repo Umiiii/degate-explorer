@@ -64,6 +64,7 @@ const AccountTokenBalances: React.FC<Props> = ({ accountId }) => {
       {accountTokenBalancesWithSymbol.length === 0 ? (
         <div className="text-gray-400 text-2xl h-40 flex items-center justify-center w-full border">
           No token balances to show
+          {accountTokenBalancesWithSymbol.length}
         </div>
       ) : (
         <>

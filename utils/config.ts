@@ -1,7 +1,7 @@
 // TODO: remove once env variables are added to vercel.
 export const LOOPRING_SUBGRAPH =
   process.env.NEXT_PUBLIC_SUBGRAPH_ENDPOINT ??
-  'https://api.studio.thegraph.com/query/52085/degate-mainnet/version/latest';
+  'https://api.studio.thegraph.com/query/52085/degate-mainnet/v0.0.99';
 export const EXPLORER_URL = 'https://etherscan.io/';
 export const INFURA_ENDPOINT =
   process.env.NEXT_PUBLIC_INFURA_ENDPOINT ?? 'https://mainneteth.loopring.io';
@@ -12,13 +12,6 @@ export const apiEndpointByTxType = {
   deposit: 'user/transactions',
   withdraw: 'user/transactions',
   trade: 'user/trades',
-  nftMint: 'user/nft/mints',
-  joinAmm: 'user/amm/transactions',
-  exitAmm: 'user/amm/transactions',
-  nftWithdraw: 'user/nft/withdrawals',
-  nftTransfer: 'user/nft/transfers',
-  nftDeposit: 'user/nft/deposits',
-  nftTrade: 'user/nft/trades',
   accountUpdate: 'user/transactions',
 };
 export const loopringApiEndpoints = {

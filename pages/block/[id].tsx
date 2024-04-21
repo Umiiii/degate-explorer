@@ -63,10 +63,10 @@ const Block: React.FC<{}> = () => {
               <tr className="border dark:border-loopring-dark-darkBlue">
                 <td className="p-2">Operator Address</td>
                 <td className="break-all">
-                  {/*<AppLink path="account" accountId={0}>*/}
-                  {/*  /!*<span className="hidden lg:block">{data.block.operatorAccount.address}</span>*!/*/}
-                  {/*  /!*<span className="lg:hidden">{getTrimmedTxHash(data.block.operatorAccount.address, 10, true)}</span>*!/*/}
-                  {/*</AppLink>*/}
+                  <AppLink path="account" accountId={data.block.operatorAccount.id}>
+                   <span className="hidden lg:block">{data.block.operatorAccount.address}</span>*
+                   <span className="lg:hidden">{getTrimmedTxHash(data.block.operatorAccount.address, 10, true)}</span>
+                  </AppLink>
                 </td>
               </tr>
               <tr className="border dark:border-loopring-dark-darkBlue">
@@ -83,17 +83,14 @@ const Block: React.FC<{}> = () => {
       </div>
       {data && data.block && (
         <div className="p-4">
-          {/*<Transactions*/}
-          {/*  blockIDFilter={blockId as string}*/}
-          {/*  title={<h2 className="text-2xl font-semibold">Transactions in block #{blockId}</h2>}*/}
-          {/*/>*/}
+          <Transactions
+            title={<h2 className="text-2xl font-semibold">Transactions in block #{blockId}</h2>}
+          />
         </div>
       )}
-        <div className="text-gray-400 text-2xl h-40 flex items-center justify-center w-full border">No block found</div>
+        {/* <div className="text-gray-400 text-2xl h-40 flex items-center justify-center w-full border">No block found</div> */}
 
-      {/*{data && !loading && !data.block && (*/}
-      {/*  */}
-      {/*)}*/}
+    
     </div>
   );
 };

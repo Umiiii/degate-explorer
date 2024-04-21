@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { account, orderbookTrade, pool, swap, token } from '../fragments';
+import { account, orderbookTrade, token } from '../fragments';
 
 export const FETCH_PAIRS = gql`
   query pairs($first: Int, $where: Pair_filter, $orderDirection: OrderDirection) {
@@ -78,11 +78,11 @@ export const FETCH_PAIR = gql`
     }
   }
 
-  ${swap}
+
   ${orderbookTrade}
   ${token}
   ${account}
-  ${pool}
+
 `;
 
 export const FETCH_PAIR_SWAPS = gql`
@@ -95,10 +95,9 @@ export const FETCH_PAIR_SWAPS = gql`
       }
       internalID
 
-      ...SwapFragment
     }
   }
-  ${swap}
+
 `;
 
 export const FETCH_PAIR_TRADES = gql`

@@ -14,16 +14,11 @@ export const FETCH_ACCOUNTS = gql`
         }
       }
 
-      ... on Pool {
-        feeBipsAMM
-      }
-
       __typename
     }
   }
 
   ${token}
-  ${nft}
 `;
 
 export const FETCH_ACCOUNT_BALANCES = gql`
@@ -41,23 +36,3 @@ export const FETCH_ACCOUNT_BALANCES = gql`
   ${token}
 `;
 
-export const FETCH_ACCOUNT_SLOTS = gql`
-  query accountNFTSlots($where: AccountNFTSlot_filter, $orderDirection: OrderDirection, $first: Int) {
-    accountNFTSlots(orderDirection: $orderDirection, orderBy: id, first: $first, where: $where) {
-      id
-      nft {
-        ...NFTFragment
-      }
-      balance
-      createdAtTransaction {
-        id
-        block {
-          timestamp
-        }
-      }
-    }
-  }
-
-  ${token}
-  ${nft}
-`;

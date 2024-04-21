@@ -7,7 +7,6 @@ import getDateString from '../../utils/getDateString';
 import getTrimmedTxHash from '../../utils/getTrimmedTxHash';
 import AccountTokenBalances from '../../components/accountDetail/AccountTokenBalances';
 import TabbedView from '../../components/TabbedView';
-import AccountNFTs from '../../components/accountDetail/AccountNFTs';
 import { useAccountsQuery } from '../../generated/loopringExplorer';
 import { useRouter } from 'next/router';
 
@@ -21,8 +20,6 @@ const Account: React.FC<{}> = () => {
   const rawId = router.query.id;
   const list = (rawId as string)?.split('-')
   const id = list ? list[0] : undefined
-  const isNFT = list ? list[1] === 'nfts' : false
-
   const whereFilter: WhereFilter = {};
   if (id && (id as string).startsWith('0x')) {
     whereFilter.address = (id as string).toLowerCase();
@@ -39,8 +36,8 @@ const Account: React.FC<{}> = () => {
   });
   const [currentTab, setCurrentTab] = React.useState(0);
   useEffect(() => {
-    setCurrentTab(isNFT ? 1 : 0)
-  }, [isNFT])
+    setCurrentTab( 0)
+  }, [false])
 
   if (!data || !data.accounts) {
     return null;
@@ -104,10 +101,7 @@ const Account: React.FC<{}> = () => {
             title: 'Token Balances',
             view: <AccountTokenBalances accountId={accountId} />,
           },
-          {
-            title: 'NFTs',
-            view: <AccountNFTs accountId={accountId} />,
-          },
+         
         ]}
         currentTab={currentTab}
         setCurrentTab={(tab) => {

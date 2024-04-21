@@ -2,24 +2,12 @@ import { gql } from '@apollo/client';
 import {
   account,
   accountUpdate,
-  add,
-  ammUpdate,
   deposit,
   orderbookTrade,
-  pool,
-  remove,
   signatureVerification,
-  swap,
   token,
   transfer,
   withdrawal,
-  tradeNFT,
-  swapNFT,
-  withdrawalNFT,
-  transferNFT,
-  mintNFT,
-  dataNFT,
-  nft,
 } from '../fragments';
 
 export const FETCH_TXS = gql`
@@ -40,46 +28,24 @@ export const FETCH_TXS = gql`
       }
       data
 
-      ...AddFragment
-      ...RemoveFragment
-      ...SwapFragment
       ...OrderbookTradeFragment
       ...DepositFragment
       ...WithdrawalFragment
       ...TransferFragment
       ...AccountUpdateFragment
-      ...AmmUpdateFragment
       ...SignatureVerificationFragment
-      ...TradeNFTFragment
-      ...SwapNFTFragment
-      ...WithdrawalNFTFragment
-      ...TransferNFTFragment
-      ...MintNFTFragment
-      ...DataNFTFragment
+
     }
   }
 
   ${account}
   ${token}
-  ${pool}
-  ${nft}
-
-  ${add}
-  ${remove}
-  ${swap}
   ${orderbookTrade}
   ${deposit}
   ${withdrawal}
   ${transfer}
   ${accountUpdate}
-  ${ammUpdate}
   ${signatureVerification}
-  ${tradeNFT}
-  ${swapNFT}
-  ${withdrawalNFT}
-  ${transferNFT}
-  ${mintNFT}
-  ${dataNFT}
 `;
 
 export const FETCH_TX = gql`
@@ -96,61 +62,31 @@ export const FETCH_TX = gql`
       }
       data
 
-      ...AddFragment
-      ...RemoveFragment
-      ...SwapFragment
       ...OrderbookTradeFragment
       ...DepositFragment
       ...WithdrawalFragment
       ...TransferFragment
       ...AccountUpdateFragment
-      ...AmmUpdateFragment
       ...SignatureVerificationFragment
-      ...TradeNFTFragment
-      ...SwapNFTFragment
-      ...WithdrawalNFTFragment
-      ...TransferNFTFragment
-      ...MintNFTFragment
-      ...DataNFTFragment
     }
   }
 
   ${account}
   ${token}
-  ${pool}
-  ${nft}
-
-  ${add}
-  ${remove}
-  ${swap}
   ${orderbookTrade}
   ${deposit}
   ${withdrawal}
   ${transfer}
   ${accountUpdate}
-  ${ammUpdate}
   ${signatureVerification}
-  ${tradeNFT}
-  ${swapNFT}
-  ${withdrawalNFT}
-  ${transferNFT}
-  ${mintNFT}
-  ${dataNFT}
 `;
 
 export const FETCH_TX_CONFIRMATION = gql`
   query pendingTransactions(
     $transferWhere: Transfer_filter
     $withdrawalWhere: Withdrawal_filter
-    $addWhere: Add_filter
-    $removeWhere: Remove_filter
+    
     $orderBookTradeWhere: OrderbookTrade_filter
-    $mintNFTWhere: MintNFT_filter
-    $withdrawNFTWhere: WithdrawalNFT_filter
-    $transferNFTWhere: TransferNFT_filter
-    $swapWhere: Swap_filter
-    $tradeNFTWhereA: TradeNFT_filter
-    $tradeNFTWhereB: TradeNFT_filter
     $accountUpdateWhere: AccountUpdate_filter
   ) {
     transfers(where: $transferWhere) {
@@ -159,31 +95,7 @@ export const FETCH_TX_CONFIRMATION = gql`
     withdrawals(where: $withdrawalWhere) {
       id
     }
-    adds(where: $addWhere) {
-      id
-    }
-    removes(where: $removeWhere) {
-      id
-    }
     orderbookTrades(where: $orderBookTradeWhere) {
-      id
-    }
-    mintNFTs(where: $mintNFTWhere) {
-      id
-    }
-    withdrawalNFTs(where: $withdrawNFTWhere) {
-      id
-    }
-    transferNFTs(where: $transferNFTWhere) {
-      id
-    }
-    swaps(where: $swapWhere) {
-      id
-    }
-    tradeNFTs(where: $tradeNFTWhereA) {
-      id
-    }
-    tradeNFTsB: tradeNFTs(where: $tradeNFTWhereB) {
       id
     }
     accountUpdates(where: $accountUpdateWhere) {
