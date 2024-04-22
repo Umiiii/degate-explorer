@@ -36,7 +36,7 @@ const AccountTokenBalances: React.FC<Props> = ({ accountId }) => {
   }
 
   const accountTokenBalancesWithSymbol = data.accountTokenBalances
-    .filter(({ balance }) => balance > 0)
+  //  .filter(({ balance }) => balance != 0)
     .map((accountTokenBalance) => {
       const { token } = accountTokenBalance;
       if (token.name && token.symbol) {
