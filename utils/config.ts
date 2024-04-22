@@ -1,7 +1,7 @@
 // TODO: remove once env variables are added to vercel.
 export const LOOPRING_SUBGRAPH =
   process.env.NEXT_PUBLIC_SUBGRAPH_ENDPOINT ??
-  'https://api.studio.thegraph.com/query/52085/degate-mainnet/v0.0.118';
+  'https://api.studio.thegraph.com/query/52085/degate-mainnet/v0.0.119';
 export const EXPLORER_URL = 'https://etherscan.io/';
 export const INFURA_ENDPOINT =
   process.env.NEXT_PUBLIC_INFURA_ENDPOINT ?? 'https://mainneteth.loopring.io';
