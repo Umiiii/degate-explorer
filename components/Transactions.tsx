@@ -159,44 +159,17 @@ const Transactions: React.FC<{
               <option value="Withdrawal" selected={txType === 'Withdrawal'}>
                 Withdrawal
               </option>
-              <option value="Swap" selected={txType === 'Swap'}>
-                Swap
-              </option>
-              <option value="Add" selected={txType === 'Add'}>
-                Amm Join
-              </option>
-              <option value="Remove" selected={txType === 'Remove'}>
-                Amm Exit
-              </option>
-              <option value="OrderbookTrade" selected={txType === 'OrderbookTrade'}>
-                Trade
-              </option>
+              
               <option value="Transfer" selected={txType === 'Transfer'}>
                 Transfer
               </option>
-              <option value="MintNft" selected={txType === 'MintNft'}>
-                NFT Mint
-              </option>
-              <option value="WithdrawalNft" selected={txType === 'WithdrawalNft'}>
-                NFT Withdrawal
-              </option>
-              <option value="TransferNft" selected={txType === 'TransferNft'}>
-                NFT Transfer
-              </option>
-              <option value="TradeNft" selected={txType === 'TradeNft'}>
-                NFT Trade
-              </option>
-              <option value="DataNft" selected={txType === 'DataNft'}>
-                NFT Data
-              </option>
+             
               <option value="AccountUpdate" selected={txType === 'AccountUpdate'}>
                 AccountUpdate
               </option>
-              <option value="AmmUpdate" selected={txType === 'AmmUpdate'}>
-                AmmUpdate
-              </option>
-              <option value="SignatureVerification" selected={txType === 'SignatureVerification'}>
-                SignatureVerification
+             
+              <option value="BatchSpotTrade" selected={txType === 'BatchSpotTrade'}>
+              BatchSpotTrade
               </option>
             </select>
             {!blockIDFilter && !accountIdFilter && (

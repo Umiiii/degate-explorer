@@ -38,8 +38,6 @@ export type Account = {
   lastUpdatedAt: Scalars['BigDecimal'];
   /** L2 transaction that last updated the account entity */
   lastUpdatedAtTransaction: Transaction;
-  /** List of all the AccountNFTSlot entities that this account has. Those slots can be empty but will only exist if they held an NFT at some point. */
-  slots: Array<AccountNftSlot>;
   /** L2 transactions that involved this account */
   transactions: Array<Transaction>;
 };
@@ -52,14 +50,6 @@ export type AccountBalancesArgs = {
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
 
-export type AccountSlotsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountNftSlot_Filter>;
-};
-
 export type AccountTransactionsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Transaction_OrderBy>;
@@ -67,191 +57,6 @@ export type AccountTransactionsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<Transaction_Filter>;
 };
-
-export type AccountNftSlot = {
-  __typename?: 'AccountNFTSlot';
-  /** Owner of this slot */
-  account: Account;
-  /** Amount of copies of this NonFungibleToken saved in this slot. */
-  balance: Scalars['BigInt'];
-  /** L2 transaction internalID where the slot was first created. Useful for sorting and filtering purposes */
-  createdAt: Scalars['BigDecimal'];
-  /** L2 transaction where the slot was first created */
-  createdAtTransaction: Transaction;
-  /** ID is compounded from the account ID and the token ID used as an NFT slot. */
-  id: Scalars['ID'];
-  /** L2 transaction internalID that last updated the slot entity. Useful for sorting and filtering purposes */
-  lastUpdatedAt: Scalars['BigDecimal'];
-  /** L2 transaction that last updated the slot entity */
-  lastUpdatedAtTransaction: Transaction;
-  /** NonFungibleToken saved in this slot. Null if empty */
-  nft?: Maybe<NonFungibleToken>;
-  /** List of all the transactions that this particular NFT was a part of */
-  transactions: Array<TransactionNft>;
-};
-
-export type AccountNftSlotTransactionsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<TransactionNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<TransactionNft_Filter>;
-};
-
-export type AccountNftSlot_Filter = {
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  account?: InputMaybe<Scalars['String']>;
-  account_?: InputMaybe<Account_Filter>;
-  account_contains?: InputMaybe<Scalars['String']>;
-  account_contains_nocase?: InputMaybe<Scalars['String']>;
-  account_ends_with?: InputMaybe<Scalars['String']>;
-  account_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_gt?: InputMaybe<Scalars['String']>;
-  account_gte?: InputMaybe<Scalars['String']>;
-  account_in?: InputMaybe<Array<Scalars['String']>>;
-  account_lt?: InputMaybe<Scalars['String']>;
-  account_lte?: InputMaybe<Scalars['String']>;
-  account_not?: InputMaybe<Scalars['String']>;
-  account_not_contains?: InputMaybe<Scalars['String']>;
-  account_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  account_not_ends_with?: InputMaybe<Scalars['String']>;
-  account_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_not_in?: InputMaybe<Array<Scalars['String']>>;
-  account_not_starts_with?: InputMaybe<Scalars['String']>;
-  account_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  account_starts_with?: InputMaybe<Scalars['String']>;
-  account_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  and?: InputMaybe<Array<InputMaybe<AccountNftSlot_Filter>>>;
-  balance?: InputMaybe<Scalars['BigInt']>;
-  balance_gt?: InputMaybe<Scalars['BigInt']>;
-  balance_gte?: InputMaybe<Scalars['BigInt']>;
-  balance_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  balance_lt?: InputMaybe<Scalars['BigInt']>;
-  balance_lte?: InputMaybe<Scalars['BigInt']>;
-  balance_not?: InputMaybe<Scalars['BigInt']>;
-  balance_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  createdAt?: InputMaybe<Scalars['BigDecimal']>;
-  createdAtTransaction?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_?: InputMaybe<Transaction_Filter>;
-  createdAtTransaction_contains?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_contains_nocase?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_ends_with?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_gt?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_gte?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_in?: InputMaybe<Array<Scalars['String']>>;
-  createdAtTransaction_lt?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_lte?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_not?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_not_contains?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_not_ends_with?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_not_in?: InputMaybe<Array<Scalars['String']>>;
-  createdAtTransaction_not_starts_with?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_starts_with?: InputMaybe<Scalars['String']>;
-  createdAtTransaction_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  createdAt_gt?: InputMaybe<Scalars['BigDecimal']>;
-  createdAt_gte?: InputMaybe<Scalars['BigDecimal']>;
-  createdAt_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  createdAt_lt?: InputMaybe<Scalars['BigDecimal']>;
-  createdAt_lte?: InputMaybe<Scalars['BigDecimal']>;
-  createdAt_not?: InputMaybe<Scalars['BigDecimal']>;
-  createdAt_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  lastUpdatedAt?: InputMaybe<Scalars['BigDecimal']>;
-  lastUpdatedAtTransaction?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_?: InputMaybe<Transaction_Filter>;
-  lastUpdatedAtTransaction_contains?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_contains_nocase?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_ends_with?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_gt?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_gte?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_in?: InputMaybe<Array<Scalars['String']>>;
-  lastUpdatedAtTransaction_lt?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_lte?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_not?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_not_contains?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_not_ends_with?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_not_in?: InputMaybe<Array<Scalars['String']>>;
-  lastUpdatedAtTransaction_not_starts_with?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_starts_with?: InputMaybe<Scalars['String']>;
-  lastUpdatedAtTransaction_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  lastUpdatedAt_gt?: InputMaybe<Scalars['BigDecimal']>;
-  lastUpdatedAt_gte?: InputMaybe<Scalars['BigDecimal']>;
-  lastUpdatedAt_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  lastUpdatedAt_lt?: InputMaybe<Scalars['BigDecimal']>;
-  lastUpdatedAt_lte?: InputMaybe<Scalars['BigDecimal']>;
-  lastUpdatedAt_not?: InputMaybe<Scalars['BigDecimal']>;
-  lastUpdatedAt_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  nft?: InputMaybe<Scalars['String']>;
-  nft_?: InputMaybe<NonFungibleToken_Filter>;
-  nft_contains?: InputMaybe<Scalars['String']>;
-  nft_contains_nocase?: InputMaybe<Scalars['String']>;
-  nft_ends_with?: InputMaybe<Scalars['String']>;
-  nft_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  nft_gt?: InputMaybe<Scalars['String']>;
-  nft_gte?: InputMaybe<Scalars['String']>;
-  nft_in?: InputMaybe<Array<Scalars['String']>>;
-  nft_lt?: InputMaybe<Scalars['String']>;
-  nft_lte?: InputMaybe<Scalars['String']>;
-  nft_not?: InputMaybe<Scalars['String']>;
-  nft_not_contains?: InputMaybe<Scalars['String']>;
-  nft_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  nft_not_ends_with?: InputMaybe<Scalars['String']>;
-  nft_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  nft_not_in?: InputMaybe<Array<Scalars['String']>>;
-  nft_not_starts_with?: InputMaybe<Scalars['String']>;
-  nft_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  nft_starts_with?: InputMaybe<Scalars['String']>;
-  nft_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  or?: InputMaybe<Array<InputMaybe<AccountNftSlot_Filter>>>;
-  transactions_?: InputMaybe<TransactionNft_Filter>;
-};
-
-export enum AccountNftSlot_OrderBy {
-  Account = 'account',
-  AccountAddress = 'account__address',
-  AccountCreatedAt = 'account__createdAt',
-  AccountId = 'account__id',
-  AccountInternalId = 'account__internalID',
-  AccountLastUpdatedAt = 'account__lastUpdatedAt',
-  Balance = 'balance',
-  CreatedAt = 'createdAt',
-  CreatedAtTransaction = 'createdAtTransaction',
-  CreatedAtTransactionData = 'createdAtTransaction__data',
-  CreatedAtTransactionId = 'createdAtTransaction__id',
-  CreatedAtTransactionInternalId = 'createdAtTransaction__internalID',
-  CreatedAtTransactionTypename = 'createdAtTransaction__typename',
-  Id = 'id',
-  LastUpdatedAt = 'lastUpdatedAt',
-  LastUpdatedAtTransaction = 'lastUpdatedAtTransaction',
-  LastUpdatedAtTransactionData = 'lastUpdatedAtTransaction__data',
-  LastUpdatedAtTransactionId = 'lastUpdatedAtTransaction__id',
-  LastUpdatedAtTransactionInternalId = 'lastUpdatedAtTransaction__internalID',
-  LastUpdatedAtTransactionTypename = 'lastUpdatedAtTransaction__typename',
-  Nft = 'nft',
-  NftCreatorFeeBips = 'nft__creatorFeeBips',
-  NftId = 'nft__id',
-  NftMintedAt = 'nft__mintedAt',
-  NftNftId = 'nft__nftID',
-  NftNftType = 'nft__nftType',
-  NftToken = 'nft__token',
-  Transactions = 'transactions',
-}
 
 export type AccountTokenBalance = {
   __typename?: 'AccountTokenBalance';
@@ -1043,6 +848,7 @@ export enum AccountUpdate_OrderBy {
   BlockAccountUpdateCount = 'block__accountUpdateCount',
   BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
+  BlockAuxiliaryData = 'block__auxiliaryData',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
@@ -1191,7 +997,6 @@ export type Account_Filter = {
   lastUpdatedAt_not?: InputMaybe<Scalars['BigDecimal']>;
   lastUpdatedAt_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
   or?: InputMaybe<Array<InputMaybe<Account_Filter>>>;
-  slots_?: InputMaybe<AccountNftSlot_Filter>;
   transactions_?: InputMaybe<Transaction_Filter>;
 };
 
@@ -1212,52 +1017,93 @@ export enum Account_OrderBy {
   LastUpdatedAtTransactionId = 'lastUpdatedAtTransaction__id',
   LastUpdatedAtTransactionInternalId = 'lastUpdatedAtTransaction__internalID',
   LastUpdatedAtTransactionTypename = 'lastUpdatedAtTransaction__typename',
-  Slots = 'slots',
   Transactions = 'transactions',
 }
 
-export type Add = Transaction & {
-  __typename?: 'Add';
-  /** Account entity that triggered the addition of liquidity from the pool */
-  account: Account;
-  /** [RAW L2 DATA] Account ID for the account that sent the tokens */
-  accountFromID: Scalars['Int'];
-  /** [RAW L2 DATA] Account ID for the account that received the tokens */
-  accountToID: Scalars['Int'];
+export enum Aggregation_Interval {
+  Day = 'day',
+  Hour = 'hour',
+}
+
+export type BatchSpotTrade = Transaction & {
+  __typename?: 'BatchSpotTrade';
+  /** Account entity A */
+  accountA: Account;
+  accountAFirstTokenAmountExchange: Scalars['BigInt'];
+  accountASecondTokenAmountExchange: Scalars['BigInt'];
+  accountAThirdTokenAmountExchange: Scalars['BigInt'];
+  /** Account entity B */
+  accountB: Account;
+  accountBFirstToken?: Maybe<Token>;
+  accountBFirstTokenAmountExchange: Scalars['BigInt'];
+  accountBFirstTokenID?: Maybe<Scalars['Int']>;
+  accountBSecondToken?: Maybe<Token>;
+  accountBSecondTokenAmountExchange: Scalars['BigInt'];
+  accountBSecondTokenID?: Maybe<Scalars['Int']>;
+  /** Account entity C */
+  accountC?: Maybe<Account>;
+  accountCFirstToken?: Maybe<Token>;
+  accountCFirstTokenAmountExchange: Scalars['BigInt'];
+  accountCFirstTokenID?: Maybe<Scalars['Int']>;
+  accountCSecondToken?: Maybe<Token>;
+  accountCSecondTokenAmountExchange: Scalars['BigInt'];
+  accountCSecondTokenID?: Maybe<Scalars['Int']>;
+  /** Account entity D */
+  accountD?: Maybe<Account>;
+  accountDFirstToken?: Maybe<Token>;
+  accountDFirstTokenAmountExchange: Scalars['BigInt'];
+  accountDFirstTokenID?: Maybe<Scalars['Int']>;
+  accountDSecondToken?: Maybe<Token>;
+  accountDSecondTokenAmountExchange: Scalars['BigInt'];
+  accountDSecondTokenID?: Maybe<Scalars['Int']>;
+  /** Account entity E */
+  accountE?: Maybe<Account>;
+  accountEFirstToken?: Maybe<Token>;
+  accountEFirstTokenAmountExchange: Scalars['BigInt'];
+  accountEFirstTokenID?: Maybe<Scalars['Int']>;
+  accountESecondToken?: Maybe<Token>;
+  accountESecondTokenAmountExchange: Scalars['BigInt'];
+  accountESecondTokenID?: Maybe<Scalars['Int']>;
+  accountF?: Maybe<Account>;
+  accountFFirstToken?: Maybe<Token>;
+  accountFFirstTokenAmountExchange: Scalars['BigInt'];
+  accountFFirstTokenID?: Maybe<Scalars['Int']>;
+  accountFSecondToken?: Maybe<Token>;
+  accountFSecondTokenAmountExchange: Scalars['BigInt'];
+  accountFSecondTokenID?: Maybe<Scalars['Int']>;
+  /** [RAW L2 DATA] Account ID of account A */
+  accountIDA: Scalars['Int'];
+  /** [RAW L2 DATA] Account ID of account B */
+  accountIDB?: Maybe<Scalars['Int']>;
+  /** [RAW L2 DATA] Account ID of account C */
+  accountIDC?: Maybe<Scalars['Int']>;
+  /** [RAW L2 DATA] Account ID of account D */
+  accountIDD?: Maybe<Scalars['Int']>;
+  /** [RAW L2 DATA] Account ID of account E */
+  accountIDE?: Maybe<Scalars['Int']>;
+  /** [RAW L2 DATA] Account ID of account F */
+  accountIDF?: Maybe<Scalars['Int']>;
   accounts?: Maybe<Array<Account>>;
-  /** [RAW L2 DATA] Amount transfered */
-  amount: Scalars['BigInt'];
+  /** BindToken */
+  bindToken: Token;
+  bindTokenID: Scalars['Int'];
   block: Block;
   data: Scalars['String'];
-  /** [RAW L2 DATA] Fee amount paid */
-  fee: Scalars['BigInt'];
-  /** Token entity with information about the token used to pay the operator fees */
-  feeToken: Token;
-  /** [RAW L2 DATA] Token ID of token used to pay the operator fees */
-  feeTokenID: Scalars['Int'];
-  /** [RAW L2 DATA] Address string of the account that sent the tokens */
-  from: Scalars['String'];
   id: Scalars['ID'];
   /** ID represented as a BigDecimal for sorting purposes */
   internalID: Scalars['BigDecimal'];
-  /** [RAW L2 DATA] StorageID */
-  storageID: Scalars['Int'];
-  /** [RAW L2 DATA] Address string of the account that received the tokens */
-  to: Scalars['String'];
-  /** [RAW L2 DATA] Token ID of the token transfered. Mainly used for NFT transfers */
-  toTokenID: Scalars['Int'];
-  /** Token entity with information about the token transfered */
-  token: Token;
+  /** Token A */
+  tokenA: Token;
+  tokenAID: Scalars['Int'];
+  /** Token B */
+  tokenB: Token;
+  tokenBID: Scalars['Int'];
   tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-  /** [RAW L2 DATA] Token ID of the token transfered */
-  tokenID: Scalars['Int'];
-  /** [RAW L2 DATA] Transfer type */
-  type: Scalars['Int'];
   /** Explicit copy of __typename to make it usable when filtering */
   typename: TransactionType;
 };
 
-export type AddAccountsArgs = {
+export type BatchSpotTradeAccountsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<Account_OrderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
@@ -1265,7 +1111,7 @@ export type AddAccountsArgs = {
   where?: InputMaybe<Account_Filter>;
 };
 
-export type AddTokenBalancesArgs = {
+export type BatchSpotTradeTokenBalancesArgs = {
   first?: InputMaybe<Scalars['Int']>;
   orderBy?: InputMaybe<AccountTokenBalance_OrderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
@@ -1273,46 +1119,577 @@ export type AddTokenBalancesArgs = {
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
 
-export type Add_Filter = {
+export type BatchSpotTrade_Filter = {
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
-  account?: InputMaybe<Scalars['String']>;
-  accountFromID?: InputMaybe<Scalars['Int']>;
-  accountFromID_gt?: InputMaybe<Scalars['Int']>;
-  accountFromID_gte?: InputMaybe<Scalars['Int']>;
-  accountFromID_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountFromID_lt?: InputMaybe<Scalars['Int']>;
-  accountFromID_lte?: InputMaybe<Scalars['Int']>;
-  accountFromID_not?: InputMaybe<Scalars['Int']>;
-  accountFromID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountToID?: InputMaybe<Scalars['Int']>;
-  accountToID_gt?: InputMaybe<Scalars['Int']>;
-  accountToID_gte?: InputMaybe<Scalars['Int']>;
-  accountToID_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountToID_lt?: InputMaybe<Scalars['Int']>;
-  accountToID_lte?: InputMaybe<Scalars['Int']>;
-  accountToID_not?: InputMaybe<Scalars['Int']>;
-  accountToID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  account_?: InputMaybe<Account_Filter>;
-  account_contains?: InputMaybe<Scalars['String']>;
-  account_contains_nocase?: InputMaybe<Scalars['String']>;
-  account_ends_with?: InputMaybe<Scalars['String']>;
-  account_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_gt?: InputMaybe<Scalars['String']>;
-  account_gte?: InputMaybe<Scalars['String']>;
-  account_in?: InputMaybe<Array<Scalars['String']>>;
-  account_lt?: InputMaybe<Scalars['String']>;
-  account_lte?: InputMaybe<Scalars['String']>;
-  account_not?: InputMaybe<Scalars['String']>;
-  account_not_contains?: InputMaybe<Scalars['String']>;
-  account_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  account_not_ends_with?: InputMaybe<Scalars['String']>;
-  account_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_not_in?: InputMaybe<Array<Scalars['String']>>;
-  account_not_starts_with?: InputMaybe<Scalars['String']>;
-  account_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  account_starts_with?: InputMaybe<Scalars['String']>;
-  account_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountA?: InputMaybe<Scalars['String']>;
+  accountAFirstTokenAmountExchange?: InputMaybe<Scalars['BigInt']>;
+  accountAFirstTokenAmountExchange_gt?: InputMaybe<Scalars['BigInt']>;
+  accountAFirstTokenAmountExchange_gte?: InputMaybe<Scalars['BigInt']>;
+  accountAFirstTokenAmountExchange_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountAFirstTokenAmountExchange_lt?: InputMaybe<Scalars['BigInt']>;
+  accountAFirstTokenAmountExchange_lte?: InputMaybe<Scalars['BigInt']>;
+  accountAFirstTokenAmountExchange_not?: InputMaybe<Scalars['BigInt']>;
+  accountAFirstTokenAmountExchange_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountASecondTokenAmountExchange?: InputMaybe<Scalars['BigInt']>;
+  accountASecondTokenAmountExchange_gt?: InputMaybe<Scalars['BigInt']>;
+  accountASecondTokenAmountExchange_gte?: InputMaybe<Scalars['BigInt']>;
+  accountASecondTokenAmountExchange_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountASecondTokenAmountExchange_lt?: InputMaybe<Scalars['BigInt']>;
+  accountASecondTokenAmountExchange_lte?: InputMaybe<Scalars['BigInt']>;
+  accountASecondTokenAmountExchange_not?: InputMaybe<Scalars['BigInt']>;
+  accountASecondTokenAmountExchange_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountAThirdTokenAmountExchange?: InputMaybe<Scalars['BigInt']>;
+  accountAThirdTokenAmountExchange_gt?: InputMaybe<Scalars['BigInt']>;
+  accountAThirdTokenAmountExchange_gte?: InputMaybe<Scalars['BigInt']>;
+  accountAThirdTokenAmountExchange_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountAThirdTokenAmountExchange_lt?: InputMaybe<Scalars['BigInt']>;
+  accountAThirdTokenAmountExchange_lte?: InputMaybe<Scalars['BigInt']>;
+  accountAThirdTokenAmountExchange_not?: InputMaybe<Scalars['BigInt']>;
+  accountAThirdTokenAmountExchange_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountA_?: InputMaybe<Account_Filter>;
+  accountA_contains?: InputMaybe<Scalars['String']>;
+  accountA_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountA_ends_with?: InputMaybe<Scalars['String']>;
+  accountA_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountA_gt?: InputMaybe<Scalars['String']>;
+  accountA_gte?: InputMaybe<Scalars['String']>;
+  accountA_in?: InputMaybe<Array<Scalars['String']>>;
+  accountA_lt?: InputMaybe<Scalars['String']>;
+  accountA_lte?: InputMaybe<Scalars['String']>;
+  accountA_not?: InputMaybe<Scalars['String']>;
+  accountA_not_contains?: InputMaybe<Scalars['String']>;
+  accountA_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountA_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountA_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountA_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountA_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountA_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountA_starts_with?: InputMaybe<Scalars['String']>;
+  accountA_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountB?: InputMaybe<Scalars['String']>;
+  accountBFirstToken?: InputMaybe<Scalars['String']>;
+  accountBFirstTokenAmountExchange?: InputMaybe<Scalars['BigInt']>;
+  accountBFirstTokenAmountExchange_gt?: InputMaybe<Scalars['BigInt']>;
+  accountBFirstTokenAmountExchange_gte?: InputMaybe<Scalars['BigInt']>;
+  accountBFirstTokenAmountExchange_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountBFirstTokenAmountExchange_lt?: InputMaybe<Scalars['BigInt']>;
+  accountBFirstTokenAmountExchange_lte?: InputMaybe<Scalars['BigInt']>;
+  accountBFirstTokenAmountExchange_not?: InputMaybe<Scalars['BigInt']>;
+  accountBFirstTokenAmountExchange_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountBFirstTokenID?: InputMaybe<Scalars['Int']>;
+  accountBFirstTokenID_gt?: InputMaybe<Scalars['Int']>;
+  accountBFirstTokenID_gte?: InputMaybe<Scalars['Int']>;
+  accountBFirstTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountBFirstTokenID_lt?: InputMaybe<Scalars['Int']>;
+  accountBFirstTokenID_lte?: InputMaybe<Scalars['Int']>;
+  accountBFirstTokenID_not?: InputMaybe<Scalars['Int']>;
+  accountBFirstTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountBFirstToken_?: InputMaybe<Token_Filter>;
+  accountBFirstToken_contains?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_ends_with?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_gt?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_gte?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_in?: InputMaybe<Array<Scalars['String']>>;
+  accountBFirstToken_lt?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_lte?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_not?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_not_contains?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountBFirstToken_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_starts_with?: InputMaybe<Scalars['String']>;
+  accountBFirstToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountBSecondToken?: InputMaybe<Scalars['String']>;
+  accountBSecondTokenAmountExchange?: InputMaybe<Scalars['BigInt']>;
+  accountBSecondTokenAmountExchange_gt?: InputMaybe<Scalars['BigInt']>;
+  accountBSecondTokenAmountExchange_gte?: InputMaybe<Scalars['BigInt']>;
+  accountBSecondTokenAmountExchange_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountBSecondTokenAmountExchange_lt?: InputMaybe<Scalars['BigInt']>;
+  accountBSecondTokenAmountExchange_lte?: InputMaybe<Scalars['BigInt']>;
+  accountBSecondTokenAmountExchange_not?: InputMaybe<Scalars['BigInt']>;
+  accountBSecondTokenAmountExchange_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountBSecondTokenID?: InputMaybe<Scalars['Int']>;
+  accountBSecondTokenID_gt?: InputMaybe<Scalars['Int']>;
+  accountBSecondTokenID_gte?: InputMaybe<Scalars['Int']>;
+  accountBSecondTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountBSecondTokenID_lt?: InputMaybe<Scalars['Int']>;
+  accountBSecondTokenID_lte?: InputMaybe<Scalars['Int']>;
+  accountBSecondTokenID_not?: InputMaybe<Scalars['Int']>;
+  accountBSecondTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountBSecondToken_?: InputMaybe<Token_Filter>;
+  accountBSecondToken_contains?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_ends_with?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_gt?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_gte?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_in?: InputMaybe<Array<Scalars['String']>>;
+  accountBSecondToken_lt?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_lte?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_not?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_not_contains?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountBSecondToken_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_starts_with?: InputMaybe<Scalars['String']>;
+  accountBSecondToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountB_?: InputMaybe<Account_Filter>;
+  accountB_contains?: InputMaybe<Scalars['String']>;
+  accountB_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountB_ends_with?: InputMaybe<Scalars['String']>;
+  accountB_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountB_gt?: InputMaybe<Scalars['String']>;
+  accountB_gte?: InputMaybe<Scalars['String']>;
+  accountB_in?: InputMaybe<Array<Scalars['String']>>;
+  accountB_lt?: InputMaybe<Scalars['String']>;
+  accountB_lte?: InputMaybe<Scalars['String']>;
+  accountB_not?: InputMaybe<Scalars['String']>;
+  accountB_not_contains?: InputMaybe<Scalars['String']>;
+  accountB_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountB_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountB_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountB_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountB_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountB_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountB_starts_with?: InputMaybe<Scalars['String']>;
+  accountB_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountC?: InputMaybe<Scalars['String']>;
+  accountCFirstToken?: InputMaybe<Scalars['String']>;
+  accountCFirstTokenAmountExchange?: InputMaybe<Scalars['BigInt']>;
+  accountCFirstTokenAmountExchange_gt?: InputMaybe<Scalars['BigInt']>;
+  accountCFirstTokenAmountExchange_gte?: InputMaybe<Scalars['BigInt']>;
+  accountCFirstTokenAmountExchange_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountCFirstTokenAmountExchange_lt?: InputMaybe<Scalars['BigInt']>;
+  accountCFirstTokenAmountExchange_lte?: InputMaybe<Scalars['BigInt']>;
+  accountCFirstTokenAmountExchange_not?: InputMaybe<Scalars['BigInt']>;
+  accountCFirstTokenAmountExchange_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountCFirstTokenID?: InputMaybe<Scalars['Int']>;
+  accountCFirstTokenID_gt?: InputMaybe<Scalars['Int']>;
+  accountCFirstTokenID_gte?: InputMaybe<Scalars['Int']>;
+  accountCFirstTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountCFirstTokenID_lt?: InputMaybe<Scalars['Int']>;
+  accountCFirstTokenID_lte?: InputMaybe<Scalars['Int']>;
+  accountCFirstTokenID_not?: InputMaybe<Scalars['Int']>;
+  accountCFirstTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountCFirstToken_?: InputMaybe<Token_Filter>;
+  accountCFirstToken_contains?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_ends_with?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_gt?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_gte?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_in?: InputMaybe<Array<Scalars['String']>>;
+  accountCFirstToken_lt?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_lte?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_not?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_not_contains?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountCFirstToken_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_starts_with?: InputMaybe<Scalars['String']>;
+  accountCFirstToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountCSecondToken?: InputMaybe<Scalars['String']>;
+  accountCSecondTokenAmountExchange?: InputMaybe<Scalars['BigInt']>;
+  accountCSecondTokenAmountExchange_gt?: InputMaybe<Scalars['BigInt']>;
+  accountCSecondTokenAmountExchange_gte?: InputMaybe<Scalars['BigInt']>;
+  accountCSecondTokenAmountExchange_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountCSecondTokenAmountExchange_lt?: InputMaybe<Scalars['BigInt']>;
+  accountCSecondTokenAmountExchange_lte?: InputMaybe<Scalars['BigInt']>;
+  accountCSecondTokenAmountExchange_not?: InputMaybe<Scalars['BigInt']>;
+  accountCSecondTokenAmountExchange_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountCSecondTokenID?: InputMaybe<Scalars['Int']>;
+  accountCSecondTokenID_gt?: InputMaybe<Scalars['Int']>;
+  accountCSecondTokenID_gte?: InputMaybe<Scalars['Int']>;
+  accountCSecondTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountCSecondTokenID_lt?: InputMaybe<Scalars['Int']>;
+  accountCSecondTokenID_lte?: InputMaybe<Scalars['Int']>;
+  accountCSecondTokenID_not?: InputMaybe<Scalars['Int']>;
+  accountCSecondTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountCSecondToken_?: InputMaybe<Token_Filter>;
+  accountCSecondToken_contains?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_ends_with?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_gt?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_gte?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_in?: InputMaybe<Array<Scalars['String']>>;
+  accountCSecondToken_lt?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_lte?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_not?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_not_contains?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountCSecondToken_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_starts_with?: InputMaybe<Scalars['String']>;
+  accountCSecondToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountC_?: InputMaybe<Account_Filter>;
+  accountC_contains?: InputMaybe<Scalars['String']>;
+  accountC_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountC_ends_with?: InputMaybe<Scalars['String']>;
+  accountC_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountC_gt?: InputMaybe<Scalars['String']>;
+  accountC_gte?: InputMaybe<Scalars['String']>;
+  accountC_in?: InputMaybe<Array<Scalars['String']>>;
+  accountC_lt?: InputMaybe<Scalars['String']>;
+  accountC_lte?: InputMaybe<Scalars['String']>;
+  accountC_not?: InputMaybe<Scalars['String']>;
+  accountC_not_contains?: InputMaybe<Scalars['String']>;
+  accountC_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountC_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountC_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountC_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountC_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountC_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountC_starts_with?: InputMaybe<Scalars['String']>;
+  accountC_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountD?: InputMaybe<Scalars['String']>;
+  accountDFirstToken?: InputMaybe<Scalars['String']>;
+  accountDFirstTokenAmountExchange?: InputMaybe<Scalars['BigInt']>;
+  accountDFirstTokenAmountExchange_gt?: InputMaybe<Scalars['BigInt']>;
+  accountDFirstTokenAmountExchange_gte?: InputMaybe<Scalars['BigInt']>;
+  accountDFirstTokenAmountExchange_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountDFirstTokenAmountExchange_lt?: InputMaybe<Scalars['BigInt']>;
+  accountDFirstTokenAmountExchange_lte?: InputMaybe<Scalars['BigInt']>;
+  accountDFirstTokenAmountExchange_not?: InputMaybe<Scalars['BigInt']>;
+  accountDFirstTokenAmountExchange_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountDFirstTokenID?: InputMaybe<Scalars['Int']>;
+  accountDFirstTokenID_gt?: InputMaybe<Scalars['Int']>;
+  accountDFirstTokenID_gte?: InputMaybe<Scalars['Int']>;
+  accountDFirstTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountDFirstTokenID_lt?: InputMaybe<Scalars['Int']>;
+  accountDFirstTokenID_lte?: InputMaybe<Scalars['Int']>;
+  accountDFirstTokenID_not?: InputMaybe<Scalars['Int']>;
+  accountDFirstTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountDFirstToken_?: InputMaybe<Token_Filter>;
+  accountDFirstToken_contains?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_ends_with?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_gt?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_gte?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_in?: InputMaybe<Array<Scalars['String']>>;
+  accountDFirstToken_lt?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_lte?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_not?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_not_contains?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountDFirstToken_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_starts_with?: InputMaybe<Scalars['String']>;
+  accountDFirstToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountDSecondToken?: InputMaybe<Scalars['String']>;
+  accountDSecondTokenAmountExchange?: InputMaybe<Scalars['BigInt']>;
+  accountDSecondTokenAmountExchange_gt?: InputMaybe<Scalars['BigInt']>;
+  accountDSecondTokenAmountExchange_gte?: InputMaybe<Scalars['BigInt']>;
+  accountDSecondTokenAmountExchange_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountDSecondTokenAmountExchange_lt?: InputMaybe<Scalars['BigInt']>;
+  accountDSecondTokenAmountExchange_lte?: InputMaybe<Scalars['BigInt']>;
+  accountDSecondTokenAmountExchange_not?: InputMaybe<Scalars['BigInt']>;
+  accountDSecondTokenAmountExchange_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountDSecondTokenID?: InputMaybe<Scalars['Int']>;
+  accountDSecondTokenID_gt?: InputMaybe<Scalars['Int']>;
+  accountDSecondTokenID_gte?: InputMaybe<Scalars['Int']>;
+  accountDSecondTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountDSecondTokenID_lt?: InputMaybe<Scalars['Int']>;
+  accountDSecondTokenID_lte?: InputMaybe<Scalars['Int']>;
+  accountDSecondTokenID_not?: InputMaybe<Scalars['Int']>;
+  accountDSecondTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountDSecondToken_?: InputMaybe<Token_Filter>;
+  accountDSecondToken_contains?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_ends_with?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_gt?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_gte?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_in?: InputMaybe<Array<Scalars['String']>>;
+  accountDSecondToken_lt?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_lte?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_not?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_not_contains?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountDSecondToken_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_starts_with?: InputMaybe<Scalars['String']>;
+  accountDSecondToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountD_?: InputMaybe<Account_Filter>;
+  accountD_contains?: InputMaybe<Scalars['String']>;
+  accountD_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountD_ends_with?: InputMaybe<Scalars['String']>;
+  accountD_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountD_gt?: InputMaybe<Scalars['String']>;
+  accountD_gte?: InputMaybe<Scalars['String']>;
+  accountD_in?: InputMaybe<Array<Scalars['String']>>;
+  accountD_lt?: InputMaybe<Scalars['String']>;
+  accountD_lte?: InputMaybe<Scalars['String']>;
+  accountD_not?: InputMaybe<Scalars['String']>;
+  accountD_not_contains?: InputMaybe<Scalars['String']>;
+  accountD_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountD_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountD_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountD_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountD_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountD_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountD_starts_with?: InputMaybe<Scalars['String']>;
+  accountD_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountE?: InputMaybe<Scalars['String']>;
+  accountEFirstToken?: InputMaybe<Scalars['String']>;
+  accountEFirstTokenAmountExchange?: InputMaybe<Scalars['BigInt']>;
+  accountEFirstTokenAmountExchange_gt?: InputMaybe<Scalars['BigInt']>;
+  accountEFirstTokenAmountExchange_gte?: InputMaybe<Scalars['BigInt']>;
+  accountEFirstTokenAmountExchange_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountEFirstTokenAmountExchange_lt?: InputMaybe<Scalars['BigInt']>;
+  accountEFirstTokenAmountExchange_lte?: InputMaybe<Scalars['BigInt']>;
+  accountEFirstTokenAmountExchange_not?: InputMaybe<Scalars['BigInt']>;
+  accountEFirstTokenAmountExchange_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountEFirstTokenID?: InputMaybe<Scalars['Int']>;
+  accountEFirstTokenID_gt?: InputMaybe<Scalars['Int']>;
+  accountEFirstTokenID_gte?: InputMaybe<Scalars['Int']>;
+  accountEFirstTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountEFirstTokenID_lt?: InputMaybe<Scalars['Int']>;
+  accountEFirstTokenID_lte?: InputMaybe<Scalars['Int']>;
+  accountEFirstTokenID_not?: InputMaybe<Scalars['Int']>;
+  accountEFirstTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountEFirstToken_?: InputMaybe<Token_Filter>;
+  accountEFirstToken_contains?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_ends_with?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_gt?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_gte?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_in?: InputMaybe<Array<Scalars['String']>>;
+  accountEFirstToken_lt?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_lte?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_not?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_not_contains?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountEFirstToken_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_starts_with?: InputMaybe<Scalars['String']>;
+  accountEFirstToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountESecondToken?: InputMaybe<Scalars['String']>;
+  accountESecondTokenAmountExchange?: InputMaybe<Scalars['BigInt']>;
+  accountESecondTokenAmountExchange_gt?: InputMaybe<Scalars['BigInt']>;
+  accountESecondTokenAmountExchange_gte?: InputMaybe<Scalars['BigInt']>;
+  accountESecondTokenAmountExchange_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountESecondTokenAmountExchange_lt?: InputMaybe<Scalars['BigInt']>;
+  accountESecondTokenAmountExchange_lte?: InputMaybe<Scalars['BigInt']>;
+  accountESecondTokenAmountExchange_not?: InputMaybe<Scalars['BigInt']>;
+  accountESecondTokenAmountExchange_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountESecondTokenID?: InputMaybe<Scalars['Int']>;
+  accountESecondTokenID_gt?: InputMaybe<Scalars['Int']>;
+  accountESecondTokenID_gte?: InputMaybe<Scalars['Int']>;
+  accountESecondTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountESecondTokenID_lt?: InputMaybe<Scalars['Int']>;
+  accountESecondTokenID_lte?: InputMaybe<Scalars['Int']>;
+  accountESecondTokenID_not?: InputMaybe<Scalars['Int']>;
+  accountESecondTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountESecondToken_?: InputMaybe<Token_Filter>;
+  accountESecondToken_contains?: InputMaybe<Scalars['String']>;
+  accountESecondToken_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountESecondToken_ends_with?: InputMaybe<Scalars['String']>;
+  accountESecondToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountESecondToken_gt?: InputMaybe<Scalars['String']>;
+  accountESecondToken_gte?: InputMaybe<Scalars['String']>;
+  accountESecondToken_in?: InputMaybe<Array<Scalars['String']>>;
+  accountESecondToken_lt?: InputMaybe<Scalars['String']>;
+  accountESecondToken_lte?: InputMaybe<Scalars['String']>;
+  accountESecondToken_not?: InputMaybe<Scalars['String']>;
+  accountESecondToken_not_contains?: InputMaybe<Scalars['String']>;
+  accountESecondToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountESecondToken_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountESecondToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountESecondToken_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountESecondToken_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountESecondToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountESecondToken_starts_with?: InputMaybe<Scalars['String']>;
+  accountESecondToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountE_?: InputMaybe<Account_Filter>;
+  accountE_contains?: InputMaybe<Scalars['String']>;
+  accountE_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountE_ends_with?: InputMaybe<Scalars['String']>;
+  accountE_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountE_gt?: InputMaybe<Scalars['String']>;
+  accountE_gte?: InputMaybe<Scalars['String']>;
+  accountE_in?: InputMaybe<Array<Scalars['String']>>;
+  accountE_lt?: InputMaybe<Scalars['String']>;
+  accountE_lte?: InputMaybe<Scalars['String']>;
+  accountE_not?: InputMaybe<Scalars['String']>;
+  accountE_not_contains?: InputMaybe<Scalars['String']>;
+  accountE_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountE_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountE_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountE_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountE_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountE_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountE_starts_with?: InputMaybe<Scalars['String']>;
+  accountE_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountF?: InputMaybe<Scalars['String']>;
+  accountFFirstToken?: InputMaybe<Scalars['String']>;
+  accountFFirstTokenAmountExchange?: InputMaybe<Scalars['BigInt']>;
+  accountFFirstTokenAmountExchange_gt?: InputMaybe<Scalars['BigInt']>;
+  accountFFirstTokenAmountExchange_gte?: InputMaybe<Scalars['BigInt']>;
+  accountFFirstTokenAmountExchange_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountFFirstTokenAmountExchange_lt?: InputMaybe<Scalars['BigInt']>;
+  accountFFirstTokenAmountExchange_lte?: InputMaybe<Scalars['BigInt']>;
+  accountFFirstTokenAmountExchange_not?: InputMaybe<Scalars['BigInt']>;
+  accountFFirstTokenAmountExchange_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountFFirstTokenID?: InputMaybe<Scalars['Int']>;
+  accountFFirstTokenID_gt?: InputMaybe<Scalars['Int']>;
+  accountFFirstTokenID_gte?: InputMaybe<Scalars['Int']>;
+  accountFFirstTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountFFirstTokenID_lt?: InputMaybe<Scalars['Int']>;
+  accountFFirstTokenID_lte?: InputMaybe<Scalars['Int']>;
+  accountFFirstTokenID_not?: InputMaybe<Scalars['Int']>;
+  accountFFirstTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountFFirstToken_?: InputMaybe<Token_Filter>;
+  accountFFirstToken_contains?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_ends_with?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_gt?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_gte?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_in?: InputMaybe<Array<Scalars['String']>>;
+  accountFFirstToken_lt?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_lte?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_not?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_not_contains?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountFFirstToken_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_starts_with?: InputMaybe<Scalars['String']>;
+  accountFFirstToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountFSecondToken?: InputMaybe<Scalars['String']>;
+  accountFSecondTokenAmountExchange?: InputMaybe<Scalars['BigInt']>;
+  accountFSecondTokenAmountExchange_gt?: InputMaybe<Scalars['BigInt']>;
+  accountFSecondTokenAmountExchange_gte?: InputMaybe<Scalars['BigInt']>;
+  accountFSecondTokenAmountExchange_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountFSecondTokenAmountExchange_lt?: InputMaybe<Scalars['BigInt']>;
+  accountFSecondTokenAmountExchange_lte?: InputMaybe<Scalars['BigInt']>;
+  accountFSecondTokenAmountExchange_not?: InputMaybe<Scalars['BigInt']>;
+  accountFSecondTokenAmountExchange_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
+  accountFSecondTokenID?: InputMaybe<Scalars['Int']>;
+  accountFSecondTokenID_gt?: InputMaybe<Scalars['Int']>;
+  accountFSecondTokenID_gte?: InputMaybe<Scalars['Int']>;
+  accountFSecondTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountFSecondTokenID_lt?: InputMaybe<Scalars['Int']>;
+  accountFSecondTokenID_lte?: InputMaybe<Scalars['Int']>;
+  accountFSecondTokenID_not?: InputMaybe<Scalars['Int']>;
+  accountFSecondTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountFSecondToken_?: InputMaybe<Token_Filter>;
+  accountFSecondToken_contains?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_ends_with?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_gt?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_gte?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_in?: InputMaybe<Array<Scalars['String']>>;
+  accountFSecondToken_lt?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_lte?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_not?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_not_contains?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountFSecondToken_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_starts_with?: InputMaybe<Scalars['String']>;
+  accountFSecondToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountF_?: InputMaybe<Account_Filter>;
+  accountF_contains?: InputMaybe<Scalars['String']>;
+  accountF_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountF_ends_with?: InputMaybe<Scalars['String']>;
+  accountF_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountF_gt?: InputMaybe<Scalars['String']>;
+  accountF_gte?: InputMaybe<Scalars['String']>;
+  accountF_in?: InputMaybe<Array<Scalars['String']>>;
+  accountF_lt?: InputMaybe<Scalars['String']>;
+  accountF_lte?: InputMaybe<Scalars['String']>;
+  accountF_not?: InputMaybe<Scalars['String']>;
+  accountF_not_contains?: InputMaybe<Scalars['String']>;
+  accountF_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  accountF_not_ends_with?: InputMaybe<Scalars['String']>;
+  accountF_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  accountF_not_in?: InputMaybe<Array<Scalars['String']>>;
+  accountF_not_starts_with?: InputMaybe<Scalars['String']>;
+  accountF_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountF_starts_with?: InputMaybe<Scalars['String']>;
+  accountF_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  accountIDA?: InputMaybe<Scalars['Int']>;
+  accountIDA_gt?: InputMaybe<Scalars['Int']>;
+  accountIDA_gte?: InputMaybe<Scalars['Int']>;
+  accountIDA_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountIDA_lt?: InputMaybe<Scalars['Int']>;
+  accountIDA_lte?: InputMaybe<Scalars['Int']>;
+  accountIDA_not?: InputMaybe<Scalars['Int']>;
+  accountIDA_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountIDB?: InputMaybe<Scalars['Int']>;
+  accountIDB_gt?: InputMaybe<Scalars['Int']>;
+  accountIDB_gte?: InputMaybe<Scalars['Int']>;
+  accountIDB_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountIDB_lt?: InputMaybe<Scalars['Int']>;
+  accountIDB_lte?: InputMaybe<Scalars['Int']>;
+  accountIDB_not?: InputMaybe<Scalars['Int']>;
+  accountIDB_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountIDC?: InputMaybe<Scalars['Int']>;
+  accountIDC_gt?: InputMaybe<Scalars['Int']>;
+  accountIDC_gte?: InputMaybe<Scalars['Int']>;
+  accountIDC_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountIDC_lt?: InputMaybe<Scalars['Int']>;
+  accountIDC_lte?: InputMaybe<Scalars['Int']>;
+  accountIDC_not?: InputMaybe<Scalars['Int']>;
+  accountIDC_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountIDD?: InputMaybe<Scalars['Int']>;
+  accountIDD_gt?: InputMaybe<Scalars['Int']>;
+  accountIDD_gte?: InputMaybe<Scalars['Int']>;
+  accountIDD_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountIDD_lt?: InputMaybe<Scalars['Int']>;
+  accountIDD_lte?: InputMaybe<Scalars['Int']>;
+  accountIDD_not?: InputMaybe<Scalars['Int']>;
+  accountIDD_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountIDE?: InputMaybe<Scalars['Int']>;
+  accountIDE_gt?: InputMaybe<Scalars['Int']>;
+  accountIDE_gte?: InputMaybe<Scalars['Int']>;
+  accountIDE_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountIDE_lt?: InputMaybe<Scalars['Int']>;
+  accountIDE_lte?: InputMaybe<Scalars['Int']>;
+  accountIDE_not?: InputMaybe<Scalars['Int']>;
+  accountIDE_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountIDF?: InputMaybe<Scalars['Int']>;
+  accountIDF_gt?: InputMaybe<Scalars['Int']>;
+  accountIDF_gte?: InputMaybe<Scalars['Int']>;
+  accountIDF_in?: InputMaybe<Array<Scalars['Int']>>;
+  accountIDF_lt?: InputMaybe<Scalars['Int']>;
+  accountIDF_lte?: InputMaybe<Scalars['Int']>;
+  accountIDF_not?: InputMaybe<Scalars['Int']>;
+  accountIDF_not_in?: InputMaybe<Array<Scalars['Int']>>;
   accounts?: InputMaybe<Array<Scalars['String']>>;
   accounts_?: InputMaybe<Account_Filter>;
   accounts_contains?: InputMaybe<Array<Scalars['String']>>;
@@ -1320,15 +1697,36 @@ export type Add_Filter = {
   accounts_not?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
   accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  amount?: InputMaybe<Scalars['BigInt']>;
-  amount_gt?: InputMaybe<Scalars['BigInt']>;
-  amount_gte?: InputMaybe<Scalars['BigInt']>;
-  amount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  amount_lt?: InputMaybe<Scalars['BigInt']>;
-  amount_lte?: InputMaybe<Scalars['BigInt']>;
-  amount_not?: InputMaybe<Scalars['BigInt']>;
-  amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  and?: InputMaybe<Array<InputMaybe<Add_Filter>>>;
+  and?: InputMaybe<Array<InputMaybe<BatchSpotTrade_Filter>>>;
+  bindToken?: InputMaybe<Scalars['String']>;
+  bindTokenID?: InputMaybe<Scalars['Int']>;
+  bindTokenID_gt?: InputMaybe<Scalars['Int']>;
+  bindTokenID_gte?: InputMaybe<Scalars['Int']>;
+  bindTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
+  bindTokenID_lt?: InputMaybe<Scalars['Int']>;
+  bindTokenID_lte?: InputMaybe<Scalars['Int']>;
+  bindTokenID_not?: InputMaybe<Scalars['Int']>;
+  bindTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  bindToken_?: InputMaybe<Token_Filter>;
+  bindToken_contains?: InputMaybe<Scalars['String']>;
+  bindToken_contains_nocase?: InputMaybe<Scalars['String']>;
+  bindToken_ends_with?: InputMaybe<Scalars['String']>;
+  bindToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  bindToken_gt?: InputMaybe<Scalars['String']>;
+  bindToken_gte?: InputMaybe<Scalars['String']>;
+  bindToken_in?: InputMaybe<Array<Scalars['String']>>;
+  bindToken_lt?: InputMaybe<Scalars['String']>;
+  bindToken_lte?: InputMaybe<Scalars['String']>;
+  bindToken_not?: InputMaybe<Scalars['String']>;
+  bindToken_not_contains?: InputMaybe<Scalars['String']>;
+  bindToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  bindToken_not_ends_with?: InputMaybe<Scalars['String']>;
+  bindToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  bindToken_not_in?: InputMaybe<Array<Scalars['String']>>;
+  bindToken_not_starts_with?: InputMaybe<Scalars['String']>;
+  bindToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  bindToken_starts_with?: InputMaybe<Scalars['String']>;
+  bindToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
   block?: InputMaybe<Scalars['String']>;
   block_?: InputMaybe<Block_Filter>;
   block_contains?: InputMaybe<Scalars['String']>;
@@ -1370,63 +1768,6 @@ export type Add_Filter = {
   data_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   data_starts_with?: InputMaybe<Scalars['String']>;
   data_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fee?: InputMaybe<Scalars['BigInt']>;
-  feeToken?: InputMaybe<Scalars['String']>;
-  feeTokenID?: InputMaybe<Scalars['Int']>;
-  feeTokenID_gt?: InputMaybe<Scalars['Int']>;
-  feeTokenID_gte?: InputMaybe<Scalars['Int']>;
-  feeTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  feeTokenID_lt?: InputMaybe<Scalars['Int']>;
-  feeTokenID_lte?: InputMaybe<Scalars['Int']>;
-  feeTokenID_not?: InputMaybe<Scalars['Int']>;
-  feeTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  feeToken_?: InputMaybe<Token_Filter>;
-  feeToken_contains?: InputMaybe<Scalars['String']>;
-  feeToken_contains_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_ends_with?: InputMaybe<Scalars['String']>;
-  feeToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_gt?: InputMaybe<Scalars['String']>;
-  feeToken_gte?: InputMaybe<Scalars['String']>;
-  feeToken_in?: InputMaybe<Array<Scalars['String']>>;
-  feeToken_lt?: InputMaybe<Scalars['String']>;
-  feeToken_lte?: InputMaybe<Scalars['String']>;
-  feeToken_not?: InputMaybe<Scalars['String']>;
-  feeToken_not_contains?: InputMaybe<Scalars['String']>;
-  feeToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_not_ends_with?: InputMaybe<Scalars['String']>;
-  feeToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_not_in?: InputMaybe<Array<Scalars['String']>>;
-  feeToken_not_starts_with?: InputMaybe<Scalars['String']>;
-  feeToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_starts_with?: InputMaybe<Scalars['String']>;
-  feeToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fee_gt?: InputMaybe<Scalars['BigInt']>;
-  fee_gte?: InputMaybe<Scalars['BigInt']>;
-  fee_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fee_lt?: InputMaybe<Scalars['BigInt']>;
-  fee_lte?: InputMaybe<Scalars['BigInt']>;
-  fee_not?: InputMaybe<Scalars['BigInt']>;
-  fee_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  from?: InputMaybe<Scalars['String']>;
-  from_contains?: InputMaybe<Scalars['String']>;
-  from_contains_nocase?: InputMaybe<Scalars['String']>;
-  from_ends_with?: InputMaybe<Scalars['String']>;
-  from_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  from_gt?: InputMaybe<Scalars['String']>;
-  from_gte?: InputMaybe<Scalars['String']>;
-  from_in?: InputMaybe<Array<Scalars['String']>>;
-  from_lt?: InputMaybe<Scalars['String']>;
-  from_lte?: InputMaybe<Scalars['String']>;
-  from_not?: InputMaybe<Scalars['String']>;
-  from_not_contains?: InputMaybe<Scalars['String']>;
-  from_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  from_not_ends_with?: InputMaybe<Scalars['String']>;
-  from_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  from_not_in?: InputMaybe<Array<Scalars['String']>>;
-  from_not_starts_with?: InputMaybe<Scalars['String']>;
-  from_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  from_starts_with?: InputMaybe<Scalars['String']>;
-  from_starts_with_nocase?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
   id_gte?: InputMaybe<Scalars['ID']>;
@@ -1443,44 +1784,65 @@ export type Add_Filter = {
   internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  or?: InputMaybe<Array<InputMaybe<Add_Filter>>>;
-  storageID?: InputMaybe<Scalars['Int']>;
-  storageID_gt?: InputMaybe<Scalars['Int']>;
-  storageID_gte?: InputMaybe<Scalars['Int']>;
-  storageID_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageID_lt?: InputMaybe<Scalars['Int']>;
-  storageID_lte?: InputMaybe<Scalars['Int']>;
-  storageID_not?: InputMaybe<Scalars['Int']>;
-  storageID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  to?: InputMaybe<Scalars['String']>;
-  toTokenID?: InputMaybe<Scalars['Int']>;
-  toTokenID_gt?: InputMaybe<Scalars['Int']>;
-  toTokenID_gte?: InputMaybe<Scalars['Int']>;
-  toTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  toTokenID_lt?: InputMaybe<Scalars['Int']>;
-  toTokenID_lte?: InputMaybe<Scalars['Int']>;
-  toTokenID_not?: InputMaybe<Scalars['Int']>;
-  toTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  to_contains?: InputMaybe<Scalars['String']>;
-  to_contains_nocase?: InputMaybe<Scalars['String']>;
-  to_ends_with?: InputMaybe<Scalars['String']>;
-  to_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  to_gt?: InputMaybe<Scalars['String']>;
-  to_gte?: InputMaybe<Scalars['String']>;
-  to_in?: InputMaybe<Array<Scalars['String']>>;
-  to_lt?: InputMaybe<Scalars['String']>;
-  to_lte?: InputMaybe<Scalars['String']>;
-  to_not?: InputMaybe<Scalars['String']>;
-  to_not_contains?: InputMaybe<Scalars['String']>;
-  to_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  to_not_ends_with?: InputMaybe<Scalars['String']>;
-  to_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  to_not_in?: InputMaybe<Array<Scalars['String']>>;
-  to_not_starts_with?: InputMaybe<Scalars['String']>;
-  to_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  to_starts_with?: InputMaybe<Scalars['String']>;
-  to_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  token?: InputMaybe<Scalars['String']>;
+  or?: InputMaybe<Array<InputMaybe<BatchSpotTrade_Filter>>>;
+  tokenA?: InputMaybe<Scalars['String']>;
+  tokenAID?: InputMaybe<Scalars['Int']>;
+  tokenAID_gt?: InputMaybe<Scalars['Int']>;
+  tokenAID_gte?: InputMaybe<Scalars['Int']>;
+  tokenAID_in?: InputMaybe<Array<Scalars['Int']>>;
+  tokenAID_lt?: InputMaybe<Scalars['Int']>;
+  tokenAID_lte?: InputMaybe<Scalars['Int']>;
+  tokenAID_not?: InputMaybe<Scalars['Int']>;
+  tokenAID_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  tokenA_?: InputMaybe<Token_Filter>;
+  tokenA_contains?: InputMaybe<Scalars['String']>;
+  tokenA_contains_nocase?: InputMaybe<Scalars['String']>;
+  tokenA_ends_with?: InputMaybe<Scalars['String']>;
+  tokenA_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  tokenA_gt?: InputMaybe<Scalars['String']>;
+  tokenA_gte?: InputMaybe<Scalars['String']>;
+  tokenA_in?: InputMaybe<Array<Scalars['String']>>;
+  tokenA_lt?: InputMaybe<Scalars['String']>;
+  tokenA_lte?: InputMaybe<Scalars['String']>;
+  tokenA_not?: InputMaybe<Scalars['String']>;
+  tokenA_not_contains?: InputMaybe<Scalars['String']>;
+  tokenA_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  tokenA_not_ends_with?: InputMaybe<Scalars['String']>;
+  tokenA_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  tokenA_not_in?: InputMaybe<Array<Scalars['String']>>;
+  tokenA_not_starts_with?: InputMaybe<Scalars['String']>;
+  tokenA_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  tokenA_starts_with?: InputMaybe<Scalars['String']>;
+  tokenA_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  tokenB?: InputMaybe<Scalars['String']>;
+  tokenBID?: InputMaybe<Scalars['Int']>;
+  tokenBID_gt?: InputMaybe<Scalars['Int']>;
+  tokenBID_gte?: InputMaybe<Scalars['Int']>;
+  tokenBID_in?: InputMaybe<Array<Scalars['Int']>>;
+  tokenBID_lt?: InputMaybe<Scalars['Int']>;
+  tokenBID_lte?: InputMaybe<Scalars['Int']>;
+  tokenBID_not?: InputMaybe<Scalars['Int']>;
+  tokenBID_not_in?: InputMaybe<Array<Scalars['Int']>>;
+  tokenB_?: InputMaybe<Token_Filter>;
+  tokenB_contains?: InputMaybe<Scalars['String']>;
+  tokenB_contains_nocase?: InputMaybe<Scalars['String']>;
+  tokenB_ends_with?: InputMaybe<Scalars['String']>;
+  tokenB_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  tokenB_gt?: InputMaybe<Scalars['String']>;
+  tokenB_gte?: InputMaybe<Scalars['String']>;
+  tokenB_in?: InputMaybe<Array<Scalars['String']>>;
+  tokenB_lt?: InputMaybe<Scalars['String']>;
+  tokenB_lte?: InputMaybe<Scalars['String']>;
+  tokenB_not?: InputMaybe<Scalars['String']>;
+  tokenB_not_contains?: InputMaybe<Scalars['String']>;
+  tokenB_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  tokenB_not_ends_with?: InputMaybe<Scalars['String']>;
+  tokenB_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  tokenB_not_in?: InputMaybe<Array<Scalars['String']>>;
+  tokenB_not_starts_with?: InputMaybe<Scalars['String']>;
+  tokenB_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  tokenB_starts_with?: InputMaybe<Scalars['String']>;
+  tokenB_starts_with_nocase?: InputMaybe<Scalars['String']>;
   tokenBalances?: InputMaybe<Array<Scalars['String']>>;
   tokenBalances_?: InputMaybe<AccountTokenBalance_Filter>;
   tokenBalances_contains?: InputMaybe<Array<Scalars['String']>>;
@@ -1488,63 +1850,195 @@ export type Add_Filter = {
   tokenBalances_not?: InputMaybe<Array<Scalars['String']>>;
   tokenBalances_not_contains?: InputMaybe<Array<Scalars['String']>>;
   tokenBalances_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenID?: InputMaybe<Scalars['Int']>;
-  tokenID_gt?: InputMaybe<Scalars['Int']>;
-  tokenID_gte?: InputMaybe<Scalars['Int']>;
-  tokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenID_lt?: InputMaybe<Scalars['Int']>;
-  tokenID_lte?: InputMaybe<Scalars['Int']>;
-  tokenID_not?: InputMaybe<Scalars['Int']>;
-  tokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  token_?: InputMaybe<Token_Filter>;
-  token_contains?: InputMaybe<Scalars['String']>;
-  token_contains_nocase?: InputMaybe<Scalars['String']>;
-  token_ends_with?: InputMaybe<Scalars['String']>;
-  token_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  token_gt?: InputMaybe<Scalars['String']>;
-  token_gte?: InputMaybe<Scalars['String']>;
-  token_in?: InputMaybe<Array<Scalars['String']>>;
-  token_lt?: InputMaybe<Scalars['String']>;
-  token_lte?: InputMaybe<Scalars['String']>;
-  token_not?: InputMaybe<Scalars['String']>;
-  token_not_contains?: InputMaybe<Scalars['String']>;
-  token_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  token_not_ends_with?: InputMaybe<Scalars['String']>;
-  token_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  token_not_in?: InputMaybe<Array<Scalars['String']>>;
-  token_not_starts_with?: InputMaybe<Scalars['String']>;
-  token_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  token_starts_with?: InputMaybe<Scalars['String']>;
-  token_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['Int']>;
-  type_gt?: InputMaybe<Scalars['Int']>;
-  type_gte?: InputMaybe<Scalars['Int']>;
-  type_in?: InputMaybe<Array<Scalars['Int']>>;
-  type_lt?: InputMaybe<Scalars['Int']>;
-  type_lte?: InputMaybe<Scalars['Int']>;
-  type_not?: InputMaybe<Scalars['Int']>;
-  type_not_in?: InputMaybe<Array<Scalars['Int']>>;
   typename?: InputMaybe<TransactionType>;
   typename_in?: InputMaybe<Array<TransactionType>>;
   typename_not?: InputMaybe<TransactionType>;
   typename_not_in?: InputMaybe<Array<TransactionType>>;
 };
 
-export enum Add_OrderBy {
-  Account = 'account',
-  AccountFromId = 'accountFromID',
-  AccountToId = 'accountToID',
-  AccountAddress = 'account__address',
-  AccountCreatedAt = 'account__createdAt',
-  AccountId = 'account__id',
-  AccountInternalId = 'account__internalID',
-  AccountLastUpdatedAt = 'account__lastUpdatedAt',
+export enum BatchSpotTrade_OrderBy {
+  AccountA = 'accountA',
+  AccountAFirstTokenAmountExchange = 'accountAFirstTokenAmountExchange',
+  AccountASecondTokenAmountExchange = 'accountASecondTokenAmountExchange',
+  AccountAThirdTokenAmountExchange = 'accountAThirdTokenAmountExchange',
+  AccountAAddress = 'accountA__address',
+  AccountACreatedAt = 'accountA__createdAt',
+  AccountAId = 'accountA__id',
+  AccountAInternalId = 'accountA__internalID',
+  AccountALastUpdatedAt = 'accountA__lastUpdatedAt',
+  AccountB = 'accountB',
+  AccountBFirstToken = 'accountBFirstToken',
+  AccountBFirstTokenAmountExchange = 'accountBFirstTokenAmountExchange',
+  AccountBFirstTokenId = 'accountBFirstTokenID',
+  AccountBFirstTokenAddress = 'accountBFirstToken__address',
+  AccountBFirstTokenDecimals = 'accountBFirstToken__decimals',
+  AccountBFirstTokenId = 'accountBFirstToken__id',
+  AccountBFirstTokenInternalId = 'accountBFirstToken__internalID',
+  AccountBFirstTokenName = 'accountBFirstToken__name',
+  AccountBFirstTokenSymbol = 'accountBFirstToken__symbol',
+  AccountBFirstTokenTradedVolume = 'accountBFirstToken__tradedVolume',
+  AccountBFirstTokenTradedVolumeOrderbook = 'accountBFirstToken__tradedVolumeOrderbook',
+  AccountBFirstTokenTradedVolumeSwap = 'accountBFirstToken__tradedVolumeSwap',
+  AccountBSecondToken = 'accountBSecondToken',
+  AccountBSecondTokenAmountExchange = 'accountBSecondTokenAmountExchange',
+  AccountBSecondTokenId = 'accountBSecondTokenID',
+  AccountBSecondTokenAddress = 'accountBSecondToken__address',
+  AccountBSecondTokenDecimals = 'accountBSecondToken__decimals',
+  AccountBSecondTokenId = 'accountBSecondToken__id',
+  AccountBSecondTokenInternalId = 'accountBSecondToken__internalID',
+  AccountBSecondTokenName = 'accountBSecondToken__name',
+  AccountBSecondTokenSymbol = 'accountBSecondToken__symbol',
+  AccountBSecondTokenTradedVolume = 'accountBSecondToken__tradedVolume',
+  AccountBSecondTokenTradedVolumeOrderbook = 'accountBSecondToken__tradedVolumeOrderbook',
+  AccountBSecondTokenTradedVolumeSwap = 'accountBSecondToken__tradedVolumeSwap',
+  AccountBAddress = 'accountB__address',
+  AccountBCreatedAt = 'accountB__createdAt',
+  AccountBId = 'accountB__id',
+  AccountBInternalId = 'accountB__internalID',
+  AccountBLastUpdatedAt = 'accountB__lastUpdatedAt',
+  AccountC = 'accountC',
+  AccountCFirstToken = 'accountCFirstToken',
+  AccountCFirstTokenAmountExchange = 'accountCFirstTokenAmountExchange',
+  AccountCFirstTokenId = 'accountCFirstTokenID',
+  AccountCFirstTokenAddress = 'accountCFirstToken__address',
+  AccountCFirstTokenDecimals = 'accountCFirstToken__decimals',
+  AccountCFirstTokenId = 'accountCFirstToken__id',
+  AccountCFirstTokenInternalId = 'accountCFirstToken__internalID',
+  AccountCFirstTokenName = 'accountCFirstToken__name',
+  AccountCFirstTokenSymbol = 'accountCFirstToken__symbol',
+  AccountCFirstTokenTradedVolume = 'accountCFirstToken__tradedVolume',
+  AccountCFirstTokenTradedVolumeOrderbook = 'accountCFirstToken__tradedVolumeOrderbook',
+  AccountCFirstTokenTradedVolumeSwap = 'accountCFirstToken__tradedVolumeSwap',
+  AccountCSecondToken = 'accountCSecondToken',
+  AccountCSecondTokenAmountExchange = 'accountCSecondTokenAmountExchange',
+  AccountCSecondTokenId = 'accountCSecondTokenID',
+  AccountCSecondTokenAddress = 'accountCSecondToken__address',
+  AccountCSecondTokenDecimals = 'accountCSecondToken__decimals',
+  AccountCSecondTokenId = 'accountCSecondToken__id',
+  AccountCSecondTokenInternalId = 'accountCSecondToken__internalID',
+  AccountCSecondTokenName = 'accountCSecondToken__name',
+  AccountCSecondTokenSymbol = 'accountCSecondToken__symbol',
+  AccountCSecondTokenTradedVolume = 'accountCSecondToken__tradedVolume',
+  AccountCSecondTokenTradedVolumeOrderbook = 'accountCSecondToken__tradedVolumeOrderbook',
+  AccountCSecondTokenTradedVolumeSwap = 'accountCSecondToken__tradedVolumeSwap',
+  AccountCAddress = 'accountC__address',
+  AccountCCreatedAt = 'accountC__createdAt',
+  AccountCId = 'accountC__id',
+  AccountCInternalId = 'accountC__internalID',
+  AccountCLastUpdatedAt = 'accountC__lastUpdatedAt',
+  AccountD = 'accountD',
+  AccountDFirstToken = 'accountDFirstToken',
+  AccountDFirstTokenAmountExchange = 'accountDFirstTokenAmountExchange',
+  AccountDFirstTokenId = 'accountDFirstTokenID',
+  AccountDFirstTokenAddress = 'accountDFirstToken__address',
+  AccountDFirstTokenDecimals = 'accountDFirstToken__decimals',
+  AccountDFirstTokenId = 'accountDFirstToken__id',
+  AccountDFirstTokenInternalId = 'accountDFirstToken__internalID',
+  AccountDFirstTokenName = 'accountDFirstToken__name',
+  AccountDFirstTokenSymbol = 'accountDFirstToken__symbol',
+  AccountDFirstTokenTradedVolume = 'accountDFirstToken__tradedVolume',
+  AccountDFirstTokenTradedVolumeOrderbook = 'accountDFirstToken__tradedVolumeOrderbook',
+  AccountDFirstTokenTradedVolumeSwap = 'accountDFirstToken__tradedVolumeSwap',
+  AccountDSecondToken = 'accountDSecondToken',
+  AccountDSecondTokenAmountExchange = 'accountDSecondTokenAmountExchange',
+  AccountDSecondTokenId = 'accountDSecondTokenID',
+  AccountDSecondTokenAddress = 'accountDSecondToken__address',
+  AccountDSecondTokenDecimals = 'accountDSecondToken__decimals',
+  AccountDSecondTokenId = 'accountDSecondToken__id',
+  AccountDSecondTokenInternalId = 'accountDSecondToken__internalID',
+  AccountDSecondTokenName = 'accountDSecondToken__name',
+  AccountDSecondTokenSymbol = 'accountDSecondToken__symbol',
+  AccountDSecondTokenTradedVolume = 'accountDSecondToken__tradedVolume',
+  AccountDSecondTokenTradedVolumeOrderbook = 'accountDSecondToken__tradedVolumeOrderbook',
+  AccountDSecondTokenTradedVolumeSwap = 'accountDSecondToken__tradedVolumeSwap',
+  AccountDAddress = 'accountD__address',
+  AccountDCreatedAt = 'accountD__createdAt',
+  AccountDId = 'accountD__id',
+  AccountDInternalId = 'accountD__internalID',
+  AccountDLastUpdatedAt = 'accountD__lastUpdatedAt',
+  AccountE = 'accountE',
+  AccountEFirstToken = 'accountEFirstToken',
+  AccountEFirstTokenAmountExchange = 'accountEFirstTokenAmountExchange',
+  AccountEFirstTokenId = 'accountEFirstTokenID',
+  AccountEFirstTokenAddress = 'accountEFirstToken__address',
+  AccountEFirstTokenDecimals = 'accountEFirstToken__decimals',
+  AccountEFirstTokenId = 'accountEFirstToken__id',
+  AccountEFirstTokenInternalId = 'accountEFirstToken__internalID',
+  AccountEFirstTokenName = 'accountEFirstToken__name',
+  AccountEFirstTokenSymbol = 'accountEFirstToken__symbol',
+  AccountEFirstTokenTradedVolume = 'accountEFirstToken__tradedVolume',
+  AccountEFirstTokenTradedVolumeOrderbook = 'accountEFirstToken__tradedVolumeOrderbook',
+  AccountEFirstTokenTradedVolumeSwap = 'accountEFirstToken__tradedVolumeSwap',
+  AccountESecondToken = 'accountESecondToken',
+  AccountESecondTokenAmountExchange = 'accountESecondTokenAmountExchange',
+  AccountESecondTokenId = 'accountESecondTokenID',
+  AccountESecondTokenAddress = 'accountESecondToken__address',
+  AccountESecondTokenDecimals = 'accountESecondToken__decimals',
+  AccountESecondTokenId = 'accountESecondToken__id',
+  AccountESecondTokenInternalId = 'accountESecondToken__internalID',
+  AccountESecondTokenName = 'accountESecondToken__name',
+  AccountESecondTokenSymbol = 'accountESecondToken__symbol',
+  AccountESecondTokenTradedVolume = 'accountESecondToken__tradedVolume',
+  AccountESecondTokenTradedVolumeOrderbook = 'accountESecondToken__tradedVolumeOrderbook',
+  AccountESecondTokenTradedVolumeSwap = 'accountESecondToken__tradedVolumeSwap',
+  AccountEAddress = 'accountE__address',
+  AccountECreatedAt = 'accountE__createdAt',
+  AccountEId = 'accountE__id',
+  AccountEInternalId = 'accountE__internalID',
+  AccountELastUpdatedAt = 'accountE__lastUpdatedAt',
+  AccountF = 'accountF',
+  AccountFFirstToken = 'accountFFirstToken',
+  AccountFFirstTokenAmountExchange = 'accountFFirstTokenAmountExchange',
+  AccountFFirstTokenId = 'accountFFirstTokenID',
+  AccountFFirstTokenAddress = 'accountFFirstToken__address',
+  AccountFFirstTokenDecimals = 'accountFFirstToken__decimals',
+  AccountFFirstTokenId = 'accountFFirstToken__id',
+  AccountFFirstTokenInternalId = 'accountFFirstToken__internalID',
+  AccountFFirstTokenName = 'accountFFirstToken__name',
+  AccountFFirstTokenSymbol = 'accountFFirstToken__symbol',
+  AccountFFirstTokenTradedVolume = 'accountFFirstToken__tradedVolume',
+  AccountFFirstTokenTradedVolumeOrderbook = 'accountFFirstToken__tradedVolumeOrderbook',
+  AccountFFirstTokenTradedVolumeSwap = 'accountFFirstToken__tradedVolumeSwap',
+  AccountFSecondToken = 'accountFSecondToken',
+  AccountFSecondTokenAmountExchange = 'accountFSecondTokenAmountExchange',
+  AccountFSecondTokenId = 'accountFSecondTokenID',
+  AccountFSecondTokenAddress = 'accountFSecondToken__address',
+  AccountFSecondTokenDecimals = 'accountFSecondToken__decimals',
+  AccountFSecondTokenId = 'accountFSecondToken__id',
+  AccountFSecondTokenInternalId = 'accountFSecondToken__internalID',
+  AccountFSecondTokenName = 'accountFSecondToken__name',
+  AccountFSecondTokenSymbol = 'accountFSecondToken__symbol',
+  AccountFSecondTokenTradedVolume = 'accountFSecondToken__tradedVolume',
+  AccountFSecondTokenTradedVolumeOrderbook = 'accountFSecondToken__tradedVolumeOrderbook',
+  AccountFSecondTokenTradedVolumeSwap = 'accountFSecondToken__tradedVolumeSwap',
+  AccountFAddress = 'accountF__address',
+  AccountFCreatedAt = 'accountF__createdAt',
+  AccountFId = 'accountF__id',
+  AccountFInternalId = 'accountF__internalID',
+  AccountFLastUpdatedAt = 'accountF__lastUpdatedAt',
+  AccountIda = 'accountIDA',
+  AccountIdb = 'accountIDB',
+  AccountIdc = 'accountIDC',
+  AccountIdd = 'accountIDD',
+  AccountIde = 'accountIDE',
+  AccountIdf = 'accountIDF',
   Accounts = 'accounts',
-  Amount = 'amount',
+  BindToken = 'bindToken',
+  BindTokenId = 'bindTokenID',
+  BindTokenAddress = 'bindToken__address',
+  BindTokenDecimals = 'bindToken__decimals',
+  BindTokenId = 'bindToken__id',
+  BindTokenInternalId = 'bindToken__internalID',
+  BindTokenName = 'bindToken__name',
+  BindTokenSymbol = 'bindToken__symbol',
+  BindTokenTradedVolume = 'bindToken__tradedVolume',
+  BindTokenTradedVolumeOrderbook = 'bindToken__tradedVolumeOrderbook',
+  BindTokenTradedVolumeSwap = 'bindToken__tradedVolumeSwap',
   Block = 'block',
   BlockAccountUpdateCount = 'block__accountUpdateCount',
   BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
+  BlockAuxiliaryData = 'block__auxiliaryData',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
@@ -1574,43 +2068,32 @@ export enum Add_OrderBy {
   BlockWithdrawSize = 'block__withdrawSize',
   BlockWithdrawalCount = 'block__withdrawalCount',
   Data = 'data',
-  Fee = 'fee',
-  FeeToken = 'feeToken',
-  FeeTokenId = 'feeTokenID',
-  FeeTokenAddress = 'feeToken__address',
-  FeeTokenDecimals = 'feeToken__decimals',
-  FeeTokenId = 'feeToken__id',
-  FeeTokenInternalId = 'feeToken__internalID',
-  FeeTokenName = 'feeToken__name',
-  FeeTokenSymbol = 'feeToken__symbol',
-  FeeTokenTradedVolume = 'feeToken__tradedVolume',
-  FeeTokenTradedVolumeOrderbook = 'feeToken__tradedVolumeOrderbook',
-  FeeTokenTradedVolumeSwap = 'feeToken__tradedVolumeSwap',
-  From = 'from',
   Id = 'id',
   InternalId = 'internalID',
-  StorageId = 'storageID',
-  To = 'to',
-  ToTokenId = 'toTokenID',
-  Token = 'token',
+  TokenA = 'tokenA',
+  TokenAid = 'tokenAID',
+  TokenAAddress = 'tokenA__address',
+  TokenADecimals = 'tokenA__decimals',
+  TokenAId = 'tokenA__id',
+  TokenAInternalId = 'tokenA__internalID',
+  TokenAName = 'tokenA__name',
+  TokenASymbol = 'tokenA__symbol',
+  TokenATradedVolume = 'tokenA__tradedVolume',
+  TokenATradedVolumeOrderbook = 'tokenA__tradedVolumeOrderbook',
+  TokenATradedVolumeSwap = 'tokenA__tradedVolumeSwap',
+  TokenB = 'tokenB',
+  TokenBid = 'tokenBID',
+  TokenBAddress = 'tokenB__address',
+  TokenBDecimals = 'tokenB__decimals',
+  TokenBId = 'tokenB__id',
+  TokenBInternalId = 'tokenB__internalID',
+  TokenBName = 'tokenB__name',
+  TokenBSymbol = 'tokenB__symbol',
+  TokenBTradedVolume = 'tokenB__tradedVolume',
+  TokenBTradedVolumeOrderbook = 'tokenB__tradedVolumeOrderbook',
+  TokenBTradedVolumeSwap = 'tokenB__tradedVolumeSwap',
   TokenBalances = 'tokenBalances',
-  TokenId = 'tokenID',
-  TokenAddress = 'token__address',
-  TokenDecimals = 'token__decimals',
-  TokenId = 'token__id',
-  TokenInternalId = 'token__internalID',
-  TokenName = 'token__name',
-  TokenSymbol = 'token__symbol',
-  TokenTradedVolume = 'token__tradedVolume',
-  TokenTradedVolumeOrderbook = 'token__tradedVolumeOrderbook',
-  TokenTradedVolumeSwap = 'token__tradedVolumeSwap',
-  Type = 'type',
   Typename = 'typename',
-}
-
-export enum Aggregation_Interval {
-  Day = 'day',
-  Hour = 'hour',
 }
 
 export type Block = {
@@ -1621,6 +2104,7 @@ export type Block = {
   accountUpdateSize: Scalars['Int'];
   /** Total amount of Add transactions processed on this block */
   addCount: Scalars['BigInt'];
+  auxiliaryData: Scalars['String'];
   /** Hash of the L1 Block where the L2 block was submitted */
   blockHash: Scalars['String'];
   /** L2 Block size. Represents the maximum amount of L2 transactions that it could handle. */
@@ -1721,6 +2205,26 @@ export type Block_Filter = {
   addCount_not?: InputMaybe<Scalars['BigInt']>;
   addCount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   and?: InputMaybe<Array<InputMaybe<Block_Filter>>>;
+  auxiliaryData?: InputMaybe<Scalars['String']>;
+  auxiliaryData_contains?: InputMaybe<Scalars['String']>;
+  auxiliaryData_contains_nocase?: InputMaybe<Scalars['String']>;
+  auxiliaryData_ends_with?: InputMaybe<Scalars['String']>;
+  auxiliaryData_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  auxiliaryData_gt?: InputMaybe<Scalars['String']>;
+  auxiliaryData_gte?: InputMaybe<Scalars['String']>;
+  auxiliaryData_in?: InputMaybe<Array<Scalars['String']>>;
+  auxiliaryData_lt?: InputMaybe<Scalars['String']>;
+  auxiliaryData_lte?: InputMaybe<Scalars['String']>;
+  auxiliaryData_not?: InputMaybe<Scalars['String']>;
+  auxiliaryData_not_contains?: InputMaybe<Scalars['String']>;
+  auxiliaryData_not_contains_nocase?: InputMaybe<Scalars['String']>;
+  auxiliaryData_not_ends_with?: InputMaybe<Scalars['String']>;
+  auxiliaryData_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
+  auxiliaryData_not_in?: InputMaybe<Array<Scalars['String']>>;
+  auxiliaryData_not_starts_with?: InputMaybe<Scalars['String']>;
+  auxiliaryData_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  auxiliaryData_starts_with?: InputMaybe<Scalars['String']>;
+  auxiliaryData_starts_with_nocase?: InputMaybe<Scalars['String']>;
   blockHash?: InputMaybe<Scalars['String']>;
   blockHash_contains?: InputMaybe<Scalars['String']>;
   blockHash_contains_nocase?: InputMaybe<Scalars['String']>;
@@ -2032,6 +2536,7 @@ export enum Block_OrderBy {
   AccountUpdateCount = 'accountUpdateCount',
   AccountUpdateSize = 'accountUpdateSize',
   AddCount = 'addCount',
+  AuxiliaryData = 'auxiliaryData',
   BlockHash = 'blockHash',
   BlockSize = 'blockSize',
   BlockType = 'blockType',
@@ -2068,309 +2573,6 @@ export enum Block_OrderBy {
   TxHash = 'txHash',
   WithdrawSize = 'withdrawSize',
   WithdrawalCount = 'withdrawalCount',
-}
-
-export type DataNft = Transaction &
-  TransactionNft & {
-    __typename?: 'DataNFT';
-    accountID: Scalars['Int'];
-    accounts?: Maybe<Array<Account>>;
-    block: Block;
-    creatorFeeBips: Scalars['Int'];
-    data: Scalars['String'];
-    id: Scalars['ID'];
-    /** ID represented as a BigDecimal for sorting purposes */
-    internalID: Scalars['BigDecimal'];
-    minter?: Maybe<Scalars['String']>;
-    nftID: Scalars['String'];
-    nftType: Scalars['Int'];
-    nfts: Array<NonFungibleToken>;
-    slots: Array<AccountNftSlot>;
-    tokenAddress?: Maybe<Scalars['String']>;
-    tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-    tokenID: Scalars['Int'];
-    type: Scalars['Int'];
-    /** Explicit copy of __typename to make it usable when filtering */
-    typename: TransactionType;
-  };
-
-export type DataNftAccountsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Account_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<Account_Filter>;
-};
-
-export type DataNftNftsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<NonFungibleToken_Filter>;
-};
-
-export type DataNftSlotsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountNftSlot_Filter>;
-};
-
-export type DataNftTokenBalancesArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountTokenBalance_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountTokenBalance_Filter>;
-};
-
-export type DataNft_Filter = {
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  accountID?: InputMaybe<Scalars['Int']>;
-  accountID_gt?: InputMaybe<Scalars['Int']>;
-  accountID_gte?: InputMaybe<Scalars['Int']>;
-  accountID_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountID_lt?: InputMaybe<Scalars['Int']>;
-  accountID_lte?: InputMaybe<Scalars['Int']>;
-  accountID_not?: InputMaybe<Scalars['Int']>;
-  accountID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  accounts?: InputMaybe<Array<Scalars['String']>>;
-  accounts_?: InputMaybe<Account_Filter>;
-  accounts_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  and?: InputMaybe<Array<InputMaybe<DataNft_Filter>>>;
-  block?: InputMaybe<Scalars['String']>;
-  block_?: InputMaybe<Block_Filter>;
-  block_contains?: InputMaybe<Scalars['String']>;
-  block_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_ends_with?: InputMaybe<Scalars['String']>;
-  block_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_gt?: InputMaybe<Scalars['String']>;
-  block_gte?: InputMaybe<Scalars['String']>;
-  block_in?: InputMaybe<Array<Scalars['String']>>;
-  block_lt?: InputMaybe<Scalars['String']>;
-  block_lte?: InputMaybe<Scalars['String']>;
-  block_not?: InputMaybe<Scalars['String']>;
-  block_not_contains?: InputMaybe<Scalars['String']>;
-  block_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_not_ends_with?: InputMaybe<Scalars['String']>;
-  block_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_not_in?: InputMaybe<Array<Scalars['String']>>;
-  block_not_starts_with?: InputMaybe<Scalars['String']>;
-  block_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  block_starts_with?: InputMaybe<Scalars['String']>;
-  block_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  creatorFeeBips?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_gt?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_gte?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_in?: InputMaybe<Array<Scalars['Int']>>;
-  creatorFeeBips_lt?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_lte?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_not?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  data?: InputMaybe<Scalars['String']>;
-  data_contains?: InputMaybe<Scalars['String']>;
-  data_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_ends_with?: InputMaybe<Scalars['String']>;
-  data_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_gt?: InputMaybe<Scalars['String']>;
-  data_gte?: InputMaybe<Scalars['String']>;
-  data_in?: InputMaybe<Array<Scalars['String']>>;
-  data_lt?: InputMaybe<Scalars['String']>;
-  data_lte?: InputMaybe<Scalars['String']>;
-  data_not?: InputMaybe<Scalars['String']>;
-  data_not_contains?: InputMaybe<Scalars['String']>;
-  data_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_not_ends_with?: InputMaybe<Scalars['String']>;
-  data_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_not_in?: InputMaybe<Array<Scalars['String']>>;
-  data_not_starts_with?: InputMaybe<Scalars['String']>;
-  data_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data_starts_with?: InputMaybe<Scalars['String']>;
-  data_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  internalID?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  internalID_lt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  minter?: InputMaybe<Scalars['String']>;
-  minter_contains?: InputMaybe<Scalars['String']>;
-  minter_contains_nocase?: InputMaybe<Scalars['String']>;
-  minter_ends_with?: InputMaybe<Scalars['String']>;
-  minter_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  minter_gt?: InputMaybe<Scalars['String']>;
-  minter_gte?: InputMaybe<Scalars['String']>;
-  minter_in?: InputMaybe<Array<Scalars['String']>>;
-  minter_lt?: InputMaybe<Scalars['String']>;
-  minter_lte?: InputMaybe<Scalars['String']>;
-  minter_not?: InputMaybe<Scalars['String']>;
-  minter_not_contains?: InputMaybe<Scalars['String']>;
-  minter_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  minter_not_ends_with?: InputMaybe<Scalars['String']>;
-  minter_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  minter_not_in?: InputMaybe<Array<Scalars['String']>>;
-  minter_not_starts_with?: InputMaybe<Scalars['String']>;
-  minter_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  minter_starts_with?: InputMaybe<Scalars['String']>;
-  minter_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  nftID?: InputMaybe<Scalars['String']>;
-  nftID_contains?: InputMaybe<Scalars['String']>;
-  nftID_contains_nocase?: InputMaybe<Scalars['String']>;
-  nftID_ends_with?: InputMaybe<Scalars['String']>;
-  nftID_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  nftID_gt?: InputMaybe<Scalars['String']>;
-  nftID_gte?: InputMaybe<Scalars['String']>;
-  nftID_in?: InputMaybe<Array<Scalars['String']>>;
-  nftID_lt?: InputMaybe<Scalars['String']>;
-  nftID_lte?: InputMaybe<Scalars['String']>;
-  nftID_not?: InputMaybe<Scalars['String']>;
-  nftID_not_contains?: InputMaybe<Scalars['String']>;
-  nftID_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  nftID_not_ends_with?: InputMaybe<Scalars['String']>;
-  nftID_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  nftID_not_in?: InputMaybe<Array<Scalars['String']>>;
-  nftID_not_starts_with?: InputMaybe<Scalars['String']>;
-  nftID_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  nftID_starts_with?: InputMaybe<Scalars['String']>;
-  nftID_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  nftType?: InputMaybe<Scalars['Int']>;
-  nftType_gt?: InputMaybe<Scalars['Int']>;
-  nftType_gte?: InputMaybe<Scalars['Int']>;
-  nftType_in?: InputMaybe<Array<Scalars['Int']>>;
-  nftType_lt?: InputMaybe<Scalars['Int']>;
-  nftType_lte?: InputMaybe<Scalars['Int']>;
-  nftType_not?: InputMaybe<Scalars['Int']>;
-  nftType_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  nfts?: InputMaybe<Array<Scalars['String']>>;
-  nfts_?: InputMaybe<NonFungibleToken_Filter>;
-  nfts_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  or?: InputMaybe<Array<InputMaybe<DataNft_Filter>>>;
-  slots?: InputMaybe<Array<Scalars['String']>>;
-  slots_?: InputMaybe<AccountNftSlot_Filter>;
-  slots_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  slots_not?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenAddress?: InputMaybe<Scalars['String']>;
-  tokenAddress_contains?: InputMaybe<Scalars['String']>;
-  tokenAddress_contains_nocase?: InputMaybe<Scalars['String']>;
-  tokenAddress_ends_with?: InputMaybe<Scalars['String']>;
-  tokenAddress_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenAddress_gt?: InputMaybe<Scalars['String']>;
-  tokenAddress_gte?: InputMaybe<Scalars['String']>;
-  tokenAddress_in?: InputMaybe<Array<Scalars['String']>>;
-  tokenAddress_lt?: InputMaybe<Scalars['String']>;
-  tokenAddress_lte?: InputMaybe<Scalars['String']>;
-  tokenAddress_not?: InputMaybe<Scalars['String']>;
-  tokenAddress_not_contains?: InputMaybe<Scalars['String']>;
-  tokenAddress_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  tokenAddress_not_ends_with?: InputMaybe<Scalars['String']>;
-  tokenAddress_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenAddress_not_in?: InputMaybe<Array<Scalars['String']>>;
-  tokenAddress_not_starts_with?: InputMaybe<Scalars['String']>;
-  tokenAddress_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenAddress_starts_with?: InputMaybe<Scalars['String']>;
-  tokenAddress_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenBalances?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_?: InputMaybe<AccountTokenBalance_Filter>;
-  tokenBalances_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenID?: InputMaybe<Scalars['Int']>;
-  tokenID_gt?: InputMaybe<Scalars['Int']>;
-  tokenID_gte?: InputMaybe<Scalars['Int']>;
-  tokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenID_lt?: InputMaybe<Scalars['Int']>;
-  tokenID_lte?: InputMaybe<Scalars['Int']>;
-  tokenID_not?: InputMaybe<Scalars['Int']>;
-  tokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  type?: InputMaybe<Scalars['Int']>;
-  type_gt?: InputMaybe<Scalars['Int']>;
-  type_gte?: InputMaybe<Scalars['Int']>;
-  type_in?: InputMaybe<Array<Scalars['Int']>>;
-  type_lt?: InputMaybe<Scalars['Int']>;
-  type_lte?: InputMaybe<Scalars['Int']>;
-  type_not?: InputMaybe<Scalars['Int']>;
-  type_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  typename?: InputMaybe<TransactionType>;
-  typename_in?: InputMaybe<Array<TransactionType>>;
-  typename_not?: InputMaybe<TransactionType>;
-  typename_not_in?: InputMaybe<Array<TransactionType>>;
-};
-
-export enum DataNft_OrderBy {
-  AccountId = 'accountID',
-  Accounts = 'accounts',
-  Block = 'block',
-  BlockAccountUpdateCount = 'block__accountUpdateCount',
-  BlockAccountUpdateSize = 'block__accountUpdateSize',
-  BlockAddCount = 'block__addCount',
-  BlockBlockHash = 'block__blockHash',
-  BlockBlockSize = 'block__blockSize',
-  BlockBlockType = 'block__blockType',
-  BlockBlockVersion = 'block__blockVersion',
-  BlockData = 'block__data',
-  BlockDepositCount = 'block__depositCount',
-  BlockDepositSize = 'block__depositSize',
-  BlockExchange = 'block__exchange',
-  BlockGasLimit = 'block__gasLimit',
-  BlockGasPrice = 'block__gasPrice',
-  BlockHeight = 'block__height',
-  BlockId = 'block__id',
-  BlockInternalId = 'block__internalID',
-  BlockNumConditionalTransactions = 'block__numConditionalTransactions',
-  BlockOffchainData = 'block__offchainData',
-  BlockOperatorAccountId = 'block__operatorAccountID',
-  BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeBips = 'block__protocolFeeBips',
-  BlockRemoveCount = 'block__removeCount',
-  BlockSignatureVerificationCount = 'block__signatureVerificationCount',
-  BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
-  BlockSwapCount = 'block__swapCount',
-  BlockTimestamp = 'block__timestamp',
-  BlockTransactionCount = 'block__transactionCount',
-  BlockTransferCount = 'block__transferCount',
-  BlockTxHash = 'block__txHash',
-  BlockWithdrawSize = 'block__withdrawSize',
-  BlockWithdrawalCount = 'block__withdrawalCount',
-  CreatorFeeBips = 'creatorFeeBips',
-  Data = 'data',
-  Id = 'id',
-  InternalId = 'internalID',
-  Minter = 'minter',
-  NftId = 'nftID',
-  NftType = 'nftType',
-  Nfts = 'nfts',
-  Slots = 'slots',
-  TokenAddress = 'tokenAddress',
-  TokenBalances = 'tokenBalances',
-  TokenId = 'tokenID',
-  Type = 'type',
-  Typename = 'typename',
 }
 
 export type Deposit = Transaction & {
@@ -2598,6 +2800,7 @@ export enum Deposit_OrderBy {
   BlockAccountUpdateCount = 'block__accountUpdateCount',
   BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
+  BlockAuxiliaryData = 'block__auxiliaryData',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
@@ -2726,732 +2929,6 @@ export enum Exchange_OrderBy {
   ProxyUserCount = 'proxy__userCount',
   ProxyWithdrawalCount = 'proxy__withdrawalCount',
   Tokens = 'tokens',
-}
-
-export type MintNft = Transaction &
-  TransactionNft & {
-    __typename?: 'MintNFT';
-    accounts?: Maybe<Array<Account>>;
-    amount: Scalars['BigInt'];
-    block: Block;
-    creatorFeeBips: Scalars['Int'];
-    data: Scalars['String'];
-    /** Data from the NFTData transactions that follow the mint */
-    extraData?: Maybe<Scalars['String']>;
-    fee: Scalars['BigInt'];
-    /** Token entity with information about the token used to pay the operator fees */
-    feeToken: Token;
-    feeTokenID: Scalars['Int'];
-    id: Scalars['ID'];
-    /** ID represented as a BigDecimal for sorting purposes */
-    internalID: Scalars['BigDecimal'];
-    minter: Account;
-    minterAccountID: Scalars['Int'];
-    nft: NonFungibleToken;
-    nftID: Scalars['String'];
-    nftType: Scalars['Int'];
-    nfts: Array<NonFungibleToken>;
-    receiver: Account;
-    receiverSlot: AccountNftSlot;
-    slots: Array<AccountNftSlot>;
-    storageID?: Maybe<Scalars['Int']>;
-    to?: Maybe<Scalars['String']>;
-    toAccountID?: Maybe<Scalars['Int']>;
-    toTokenID: Scalars['Int'];
-    tokenAccountID?: Maybe<Scalars['Int']>;
-    tokenAddress: Scalars['String'];
-    tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-    type: Scalars['Int'];
-    /** Explicit copy of __typename to make it usable when filtering */
-    typename: TransactionType;
-  };
-
-export type MintNftAccountsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Account_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<Account_Filter>;
-};
-
-export type MintNftNftsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<NonFungibleToken_Filter>;
-};
-
-export type MintNftSlotsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountNftSlot_Filter>;
-};
-
-export type MintNftTokenBalancesArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountTokenBalance_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountTokenBalance_Filter>;
-};
-
-export type MintNft_Filter = {
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  accounts?: InputMaybe<Array<Scalars['String']>>;
-  accounts_?: InputMaybe<Account_Filter>;
-  accounts_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  amount?: InputMaybe<Scalars['BigInt']>;
-  amount_gt?: InputMaybe<Scalars['BigInt']>;
-  amount_gte?: InputMaybe<Scalars['BigInt']>;
-  amount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  amount_lt?: InputMaybe<Scalars['BigInt']>;
-  amount_lte?: InputMaybe<Scalars['BigInt']>;
-  amount_not?: InputMaybe<Scalars['BigInt']>;
-  amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  and?: InputMaybe<Array<InputMaybe<MintNft_Filter>>>;
-  block?: InputMaybe<Scalars['String']>;
-  block_?: InputMaybe<Block_Filter>;
-  block_contains?: InputMaybe<Scalars['String']>;
-  block_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_ends_with?: InputMaybe<Scalars['String']>;
-  block_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_gt?: InputMaybe<Scalars['String']>;
-  block_gte?: InputMaybe<Scalars['String']>;
-  block_in?: InputMaybe<Array<Scalars['String']>>;
-  block_lt?: InputMaybe<Scalars['String']>;
-  block_lte?: InputMaybe<Scalars['String']>;
-  block_not?: InputMaybe<Scalars['String']>;
-  block_not_contains?: InputMaybe<Scalars['String']>;
-  block_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_not_ends_with?: InputMaybe<Scalars['String']>;
-  block_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_not_in?: InputMaybe<Array<Scalars['String']>>;
-  block_not_starts_with?: InputMaybe<Scalars['String']>;
-  block_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  block_starts_with?: InputMaybe<Scalars['String']>;
-  block_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  creatorFeeBips?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_gt?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_gte?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_in?: InputMaybe<Array<Scalars['Int']>>;
-  creatorFeeBips_lt?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_lte?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_not?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  data?: InputMaybe<Scalars['String']>;
-  data_contains?: InputMaybe<Scalars['String']>;
-  data_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_ends_with?: InputMaybe<Scalars['String']>;
-  data_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_gt?: InputMaybe<Scalars['String']>;
-  data_gte?: InputMaybe<Scalars['String']>;
-  data_in?: InputMaybe<Array<Scalars['String']>>;
-  data_lt?: InputMaybe<Scalars['String']>;
-  data_lte?: InputMaybe<Scalars['String']>;
-  data_not?: InputMaybe<Scalars['String']>;
-  data_not_contains?: InputMaybe<Scalars['String']>;
-  data_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_not_ends_with?: InputMaybe<Scalars['String']>;
-  data_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_not_in?: InputMaybe<Array<Scalars['String']>>;
-  data_not_starts_with?: InputMaybe<Scalars['String']>;
-  data_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data_starts_with?: InputMaybe<Scalars['String']>;
-  data_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  extraData?: InputMaybe<Scalars['String']>;
-  extraData_contains?: InputMaybe<Scalars['String']>;
-  extraData_contains_nocase?: InputMaybe<Scalars['String']>;
-  extraData_ends_with?: InputMaybe<Scalars['String']>;
-  extraData_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  extraData_gt?: InputMaybe<Scalars['String']>;
-  extraData_gte?: InputMaybe<Scalars['String']>;
-  extraData_in?: InputMaybe<Array<Scalars['String']>>;
-  extraData_lt?: InputMaybe<Scalars['String']>;
-  extraData_lte?: InputMaybe<Scalars['String']>;
-  extraData_not?: InputMaybe<Scalars['String']>;
-  extraData_not_contains?: InputMaybe<Scalars['String']>;
-  extraData_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  extraData_not_ends_with?: InputMaybe<Scalars['String']>;
-  extraData_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  extraData_not_in?: InputMaybe<Array<Scalars['String']>>;
-  extraData_not_starts_with?: InputMaybe<Scalars['String']>;
-  extraData_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  extraData_starts_with?: InputMaybe<Scalars['String']>;
-  extraData_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fee?: InputMaybe<Scalars['BigInt']>;
-  feeToken?: InputMaybe<Scalars['String']>;
-  feeTokenID?: InputMaybe<Scalars['Int']>;
-  feeTokenID_gt?: InputMaybe<Scalars['Int']>;
-  feeTokenID_gte?: InputMaybe<Scalars['Int']>;
-  feeTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  feeTokenID_lt?: InputMaybe<Scalars['Int']>;
-  feeTokenID_lte?: InputMaybe<Scalars['Int']>;
-  feeTokenID_not?: InputMaybe<Scalars['Int']>;
-  feeTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  feeToken_?: InputMaybe<Token_Filter>;
-  feeToken_contains?: InputMaybe<Scalars['String']>;
-  feeToken_contains_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_ends_with?: InputMaybe<Scalars['String']>;
-  feeToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_gt?: InputMaybe<Scalars['String']>;
-  feeToken_gte?: InputMaybe<Scalars['String']>;
-  feeToken_in?: InputMaybe<Array<Scalars['String']>>;
-  feeToken_lt?: InputMaybe<Scalars['String']>;
-  feeToken_lte?: InputMaybe<Scalars['String']>;
-  feeToken_not?: InputMaybe<Scalars['String']>;
-  feeToken_not_contains?: InputMaybe<Scalars['String']>;
-  feeToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_not_ends_with?: InputMaybe<Scalars['String']>;
-  feeToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_not_in?: InputMaybe<Array<Scalars['String']>>;
-  feeToken_not_starts_with?: InputMaybe<Scalars['String']>;
-  feeToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_starts_with?: InputMaybe<Scalars['String']>;
-  feeToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fee_gt?: InputMaybe<Scalars['BigInt']>;
-  fee_gte?: InputMaybe<Scalars['BigInt']>;
-  fee_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fee_lt?: InputMaybe<Scalars['BigInt']>;
-  fee_lte?: InputMaybe<Scalars['BigInt']>;
-  fee_not?: InputMaybe<Scalars['BigInt']>;
-  fee_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  internalID?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  internalID_lt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  minter?: InputMaybe<Scalars['String']>;
-  minterAccountID?: InputMaybe<Scalars['Int']>;
-  minterAccountID_gt?: InputMaybe<Scalars['Int']>;
-  minterAccountID_gte?: InputMaybe<Scalars['Int']>;
-  minterAccountID_in?: InputMaybe<Array<Scalars['Int']>>;
-  minterAccountID_lt?: InputMaybe<Scalars['Int']>;
-  minterAccountID_lte?: InputMaybe<Scalars['Int']>;
-  minterAccountID_not?: InputMaybe<Scalars['Int']>;
-  minterAccountID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  minter_?: InputMaybe<Account_Filter>;
-  minter_contains?: InputMaybe<Scalars['String']>;
-  minter_contains_nocase?: InputMaybe<Scalars['String']>;
-  minter_ends_with?: InputMaybe<Scalars['String']>;
-  minter_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  minter_gt?: InputMaybe<Scalars['String']>;
-  minter_gte?: InputMaybe<Scalars['String']>;
-  minter_in?: InputMaybe<Array<Scalars['String']>>;
-  minter_lt?: InputMaybe<Scalars['String']>;
-  minter_lte?: InputMaybe<Scalars['String']>;
-  minter_not?: InputMaybe<Scalars['String']>;
-  minter_not_contains?: InputMaybe<Scalars['String']>;
-  minter_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  minter_not_ends_with?: InputMaybe<Scalars['String']>;
-  minter_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  minter_not_in?: InputMaybe<Array<Scalars['String']>>;
-  minter_not_starts_with?: InputMaybe<Scalars['String']>;
-  minter_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  minter_starts_with?: InputMaybe<Scalars['String']>;
-  minter_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  nft?: InputMaybe<Scalars['String']>;
-  nftID?: InputMaybe<Scalars['String']>;
-  nftID_contains?: InputMaybe<Scalars['String']>;
-  nftID_contains_nocase?: InputMaybe<Scalars['String']>;
-  nftID_ends_with?: InputMaybe<Scalars['String']>;
-  nftID_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  nftID_gt?: InputMaybe<Scalars['String']>;
-  nftID_gte?: InputMaybe<Scalars['String']>;
-  nftID_in?: InputMaybe<Array<Scalars['String']>>;
-  nftID_lt?: InputMaybe<Scalars['String']>;
-  nftID_lte?: InputMaybe<Scalars['String']>;
-  nftID_not?: InputMaybe<Scalars['String']>;
-  nftID_not_contains?: InputMaybe<Scalars['String']>;
-  nftID_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  nftID_not_ends_with?: InputMaybe<Scalars['String']>;
-  nftID_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  nftID_not_in?: InputMaybe<Array<Scalars['String']>>;
-  nftID_not_starts_with?: InputMaybe<Scalars['String']>;
-  nftID_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  nftID_starts_with?: InputMaybe<Scalars['String']>;
-  nftID_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  nftType?: InputMaybe<Scalars['Int']>;
-  nftType_gt?: InputMaybe<Scalars['Int']>;
-  nftType_gte?: InputMaybe<Scalars['Int']>;
-  nftType_in?: InputMaybe<Array<Scalars['Int']>>;
-  nftType_lt?: InputMaybe<Scalars['Int']>;
-  nftType_lte?: InputMaybe<Scalars['Int']>;
-  nftType_not?: InputMaybe<Scalars['Int']>;
-  nftType_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  nft_?: InputMaybe<NonFungibleToken_Filter>;
-  nft_contains?: InputMaybe<Scalars['String']>;
-  nft_contains_nocase?: InputMaybe<Scalars['String']>;
-  nft_ends_with?: InputMaybe<Scalars['String']>;
-  nft_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  nft_gt?: InputMaybe<Scalars['String']>;
-  nft_gte?: InputMaybe<Scalars['String']>;
-  nft_in?: InputMaybe<Array<Scalars['String']>>;
-  nft_lt?: InputMaybe<Scalars['String']>;
-  nft_lte?: InputMaybe<Scalars['String']>;
-  nft_not?: InputMaybe<Scalars['String']>;
-  nft_not_contains?: InputMaybe<Scalars['String']>;
-  nft_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  nft_not_ends_with?: InputMaybe<Scalars['String']>;
-  nft_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  nft_not_in?: InputMaybe<Array<Scalars['String']>>;
-  nft_not_starts_with?: InputMaybe<Scalars['String']>;
-  nft_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  nft_starts_with?: InputMaybe<Scalars['String']>;
-  nft_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  nfts?: InputMaybe<Array<Scalars['String']>>;
-  nfts_?: InputMaybe<NonFungibleToken_Filter>;
-  nfts_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  or?: InputMaybe<Array<InputMaybe<MintNft_Filter>>>;
-  receiver?: InputMaybe<Scalars['String']>;
-  receiverSlot?: InputMaybe<Scalars['String']>;
-  receiverSlot_?: InputMaybe<AccountNftSlot_Filter>;
-  receiverSlot_contains?: InputMaybe<Scalars['String']>;
-  receiverSlot_contains_nocase?: InputMaybe<Scalars['String']>;
-  receiverSlot_ends_with?: InputMaybe<Scalars['String']>;
-  receiverSlot_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  receiverSlot_gt?: InputMaybe<Scalars['String']>;
-  receiverSlot_gte?: InputMaybe<Scalars['String']>;
-  receiverSlot_in?: InputMaybe<Array<Scalars['String']>>;
-  receiverSlot_lt?: InputMaybe<Scalars['String']>;
-  receiverSlot_lte?: InputMaybe<Scalars['String']>;
-  receiverSlot_not?: InputMaybe<Scalars['String']>;
-  receiverSlot_not_contains?: InputMaybe<Scalars['String']>;
-  receiverSlot_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  receiverSlot_not_ends_with?: InputMaybe<Scalars['String']>;
-  receiverSlot_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  receiverSlot_not_in?: InputMaybe<Array<Scalars['String']>>;
-  receiverSlot_not_starts_with?: InputMaybe<Scalars['String']>;
-  receiverSlot_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  receiverSlot_starts_with?: InputMaybe<Scalars['String']>;
-  receiverSlot_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  receiver_?: InputMaybe<Account_Filter>;
-  receiver_contains?: InputMaybe<Scalars['String']>;
-  receiver_contains_nocase?: InputMaybe<Scalars['String']>;
-  receiver_ends_with?: InputMaybe<Scalars['String']>;
-  receiver_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  receiver_gt?: InputMaybe<Scalars['String']>;
-  receiver_gte?: InputMaybe<Scalars['String']>;
-  receiver_in?: InputMaybe<Array<Scalars['String']>>;
-  receiver_lt?: InputMaybe<Scalars['String']>;
-  receiver_lte?: InputMaybe<Scalars['String']>;
-  receiver_not?: InputMaybe<Scalars['String']>;
-  receiver_not_contains?: InputMaybe<Scalars['String']>;
-  receiver_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  receiver_not_ends_with?: InputMaybe<Scalars['String']>;
-  receiver_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  receiver_not_in?: InputMaybe<Array<Scalars['String']>>;
-  receiver_not_starts_with?: InputMaybe<Scalars['String']>;
-  receiver_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  receiver_starts_with?: InputMaybe<Scalars['String']>;
-  receiver_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slots?: InputMaybe<Array<Scalars['String']>>;
-  slots_?: InputMaybe<AccountNftSlot_Filter>;
-  slots_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  slots_not?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  storageID?: InputMaybe<Scalars['Int']>;
-  storageID_gt?: InputMaybe<Scalars['Int']>;
-  storageID_gte?: InputMaybe<Scalars['Int']>;
-  storageID_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageID_lt?: InputMaybe<Scalars['Int']>;
-  storageID_lte?: InputMaybe<Scalars['Int']>;
-  storageID_not?: InputMaybe<Scalars['Int']>;
-  storageID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  to?: InputMaybe<Scalars['String']>;
-  toAccountID?: InputMaybe<Scalars['Int']>;
-  toAccountID_gt?: InputMaybe<Scalars['Int']>;
-  toAccountID_gte?: InputMaybe<Scalars['Int']>;
-  toAccountID_in?: InputMaybe<Array<Scalars['Int']>>;
-  toAccountID_lt?: InputMaybe<Scalars['Int']>;
-  toAccountID_lte?: InputMaybe<Scalars['Int']>;
-  toAccountID_not?: InputMaybe<Scalars['Int']>;
-  toAccountID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  toTokenID?: InputMaybe<Scalars['Int']>;
-  toTokenID_gt?: InputMaybe<Scalars['Int']>;
-  toTokenID_gte?: InputMaybe<Scalars['Int']>;
-  toTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  toTokenID_lt?: InputMaybe<Scalars['Int']>;
-  toTokenID_lte?: InputMaybe<Scalars['Int']>;
-  toTokenID_not?: InputMaybe<Scalars['Int']>;
-  toTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  to_contains?: InputMaybe<Scalars['String']>;
-  to_contains_nocase?: InputMaybe<Scalars['String']>;
-  to_ends_with?: InputMaybe<Scalars['String']>;
-  to_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  to_gt?: InputMaybe<Scalars['String']>;
-  to_gte?: InputMaybe<Scalars['String']>;
-  to_in?: InputMaybe<Array<Scalars['String']>>;
-  to_lt?: InputMaybe<Scalars['String']>;
-  to_lte?: InputMaybe<Scalars['String']>;
-  to_not?: InputMaybe<Scalars['String']>;
-  to_not_contains?: InputMaybe<Scalars['String']>;
-  to_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  to_not_ends_with?: InputMaybe<Scalars['String']>;
-  to_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  to_not_in?: InputMaybe<Array<Scalars['String']>>;
-  to_not_starts_with?: InputMaybe<Scalars['String']>;
-  to_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  to_starts_with?: InputMaybe<Scalars['String']>;
-  to_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenAccountID?: InputMaybe<Scalars['Int']>;
-  tokenAccountID_gt?: InputMaybe<Scalars['Int']>;
-  tokenAccountID_gte?: InputMaybe<Scalars['Int']>;
-  tokenAccountID_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenAccountID_lt?: InputMaybe<Scalars['Int']>;
-  tokenAccountID_lte?: InputMaybe<Scalars['Int']>;
-  tokenAccountID_not?: InputMaybe<Scalars['Int']>;
-  tokenAccountID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenAddress?: InputMaybe<Scalars['String']>;
-  tokenAddress_contains?: InputMaybe<Scalars['String']>;
-  tokenAddress_contains_nocase?: InputMaybe<Scalars['String']>;
-  tokenAddress_ends_with?: InputMaybe<Scalars['String']>;
-  tokenAddress_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenAddress_gt?: InputMaybe<Scalars['String']>;
-  tokenAddress_gte?: InputMaybe<Scalars['String']>;
-  tokenAddress_in?: InputMaybe<Array<Scalars['String']>>;
-  tokenAddress_lt?: InputMaybe<Scalars['String']>;
-  tokenAddress_lte?: InputMaybe<Scalars['String']>;
-  tokenAddress_not?: InputMaybe<Scalars['String']>;
-  tokenAddress_not_contains?: InputMaybe<Scalars['String']>;
-  tokenAddress_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  tokenAddress_not_ends_with?: InputMaybe<Scalars['String']>;
-  tokenAddress_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenAddress_not_in?: InputMaybe<Array<Scalars['String']>>;
-  tokenAddress_not_starts_with?: InputMaybe<Scalars['String']>;
-  tokenAddress_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenAddress_starts_with?: InputMaybe<Scalars['String']>;
-  tokenAddress_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenBalances?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_?: InputMaybe<AccountTokenBalance_Filter>;
-  tokenBalances_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  type?: InputMaybe<Scalars['Int']>;
-  type_gt?: InputMaybe<Scalars['Int']>;
-  type_gte?: InputMaybe<Scalars['Int']>;
-  type_in?: InputMaybe<Array<Scalars['Int']>>;
-  type_lt?: InputMaybe<Scalars['Int']>;
-  type_lte?: InputMaybe<Scalars['Int']>;
-  type_not?: InputMaybe<Scalars['Int']>;
-  type_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  typename?: InputMaybe<TransactionType>;
-  typename_in?: InputMaybe<Array<TransactionType>>;
-  typename_not?: InputMaybe<TransactionType>;
-  typename_not_in?: InputMaybe<Array<TransactionType>>;
-};
-
-export enum MintNft_OrderBy {
-  Accounts = 'accounts',
-  Amount = 'amount',
-  Block = 'block',
-  BlockAccountUpdateCount = 'block__accountUpdateCount',
-  BlockAccountUpdateSize = 'block__accountUpdateSize',
-  BlockAddCount = 'block__addCount',
-  BlockBlockHash = 'block__blockHash',
-  BlockBlockSize = 'block__blockSize',
-  BlockBlockType = 'block__blockType',
-  BlockBlockVersion = 'block__blockVersion',
-  BlockData = 'block__data',
-  BlockDepositCount = 'block__depositCount',
-  BlockDepositSize = 'block__depositSize',
-  BlockExchange = 'block__exchange',
-  BlockGasLimit = 'block__gasLimit',
-  BlockGasPrice = 'block__gasPrice',
-  BlockHeight = 'block__height',
-  BlockId = 'block__id',
-  BlockInternalId = 'block__internalID',
-  BlockNumConditionalTransactions = 'block__numConditionalTransactions',
-  BlockOffchainData = 'block__offchainData',
-  BlockOperatorAccountId = 'block__operatorAccountID',
-  BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeBips = 'block__protocolFeeBips',
-  BlockRemoveCount = 'block__removeCount',
-  BlockSignatureVerificationCount = 'block__signatureVerificationCount',
-  BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
-  BlockSwapCount = 'block__swapCount',
-  BlockTimestamp = 'block__timestamp',
-  BlockTransactionCount = 'block__transactionCount',
-  BlockTransferCount = 'block__transferCount',
-  BlockTxHash = 'block__txHash',
-  BlockWithdrawSize = 'block__withdrawSize',
-  BlockWithdrawalCount = 'block__withdrawalCount',
-  CreatorFeeBips = 'creatorFeeBips',
-  Data = 'data',
-  ExtraData = 'extraData',
-  Fee = 'fee',
-  FeeToken = 'feeToken',
-  FeeTokenId = 'feeTokenID',
-  FeeTokenAddress = 'feeToken__address',
-  FeeTokenDecimals = 'feeToken__decimals',
-  FeeTokenId = 'feeToken__id',
-  FeeTokenInternalId = 'feeToken__internalID',
-  FeeTokenName = 'feeToken__name',
-  FeeTokenSymbol = 'feeToken__symbol',
-  FeeTokenTradedVolume = 'feeToken__tradedVolume',
-  FeeTokenTradedVolumeOrderbook = 'feeToken__tradedVolumeOrderbook',
-  FeeTokenTradedVolumeSwap = 'feeToken__tradedVolumeSwap',
-  Id = 'id',
-  InternalId = 'internalID',
-  Minter = 'minter',
-  MinterAccountId = 'minterAccountID',
-  MinterAddress = 'minter__address',
-  MinterCreatedAt = 'minter__createdAt',
-  MinterId = 'minter__id',
-  MinterInternalId = 'minter__internalID',
-  MinterLastUpdatedAt = 'minter__lastUpdatedAt',
-  Nft = 'nft',
-  NftId = 'nftID',
-  NftType = 'nftType',
-  NftCreatorFeeBips = 'nft__creatorFeeBips',
-  NftId = 'nft__id',
-  NftMintedAt = 'nft__mintedAt',
-  NftNftId = 'nft__nftID',
-  NftNftType = 'nft__nftType',
-  NftToken = 'nft__token',
-  Nfts = 'nfts',
-  Receiver = 'receiver',
-  ReceiverSlot = 'receiverSlot',
-  ReceiverSlotBalance = 'receiverSlot__balance',
-  ReceiverSlotCreatedAt = 'receiverSlot__createdAt',
-  ReceiverSlotId = 'receiverSlot__id',
-  ReceiverSlotLastUpdatedAt = 'receiverSlot__lastUpdatedAt',
-  ReceiverAddress = 'receiver__address',
-  ReceiverCreatedAt = 'receiver__createdAt',
-  ReceiverId = 'receiver__id',
-  ReceiverInternalId = 'receiver__internalID',
-  ReceiverLastUpdatedAt = 'receiver__lastUpdatedAt',
-  Slots = 'slots',
-  StorageId = 'storageID',
-  To = 'to',
-  ToAccountId = 'toAccountID',
-  ToTokenId = 'toTokenID',
-  TokenAccountId = 'tokenAccountID',
-  TokenAddress = 'tokenAddress',
-  TokenBalances = 'tokenBalances',
-  Type = 'type',
-  Typename = 'typename',
-}
-
-export type NonFungibleToken = {
-  __typename?: 'NonFungibleToken';
-  creatorFeeBips: Scalars['Int'];
-  /** ID is the Poseidon hash reported by L2 */
-  id: Scalars['ID'];
-  /** L2 transaction internalID where the NFT was minted. Useful for sorting and filtering purposes */
-  mintedAt: Scalars['BigDecimal'];
-  /** L2 transaction where the NFT was minted */
-  mintedAtTransaction: MintNft;
-  minter: Account;
-  nftID: Scalars['String'];
-  nftType: Scalars['Int'];
-  /** List of all the AccountNFTSlot where this NFT is currently active. */
-  slots: Array<AccountNftSlot>;
-  token: Scalars['String'];
-  /** List of all the transactions that this particular NFT was a part of */
-  transactions: Array<TransactionNft>;
-};
-
-export type NonFungibleTokenSlotsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountNftSlot_Filter>;
-};
-
-export type NonFungibleTokenTransactionsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<TransactionNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<TransactionNft_Filter>;
-};
-
-export type NonFungibleToken_Filter = {
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<NonFungibleToken_Filter>>>;
-  creatorFeeBips?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_gt?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_gte?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_in?: InputMaybe<Array<Scalars['Int']>>;
-  creatorFeeBips_lt?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_lte?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_not?: InputMaybe<Scalars['Int']>;
-  creatorFeeBips_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  mintedAt?: InputMaybe<Scalars['BigDecimal']>;
-  mintedAtTransaction?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_?: InputMaybe<MintNft_Filter>;
-  mintedAtTransaction_contains?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_contains_nocase?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_ends_with?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_gt?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_gte?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_in?: InputMaybe<Array<Scalars['String']>>;
-  mintedAtTransaction_lt?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_lte?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_not?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_not_contains?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_not_ends_with?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_not_in?: InputMaybe<Array<Scalars['String']>>;
-  mintedAtTransaction_not_starts_with?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_starts_with?: InputMaybe<Scalars['String']>;
-  mintedAtTransaction_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  mintedAt_gt?: InputMaybe<Scalars['BigDecimal']>;
-  mintedAt_gte?: InputMaybe<Scalars['BigDecimal']>;
-  mintedAt_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  mintedAt_lt?: InputMaybe<Scalars['BigDecimal']>;
-  mintedAt_lte?: InputMaybe<Scalars['BigDecimal']>;
-  mintedAt_not?: InputMaybe<Scalars['BigDecimal']>;
-  mintedAt_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  minter?: InputMaybe<Scalars['String']>;
-  minter_?: InputMaybe<Account_Filter>;
-  minter_contains?: InputMaybe<Scalars['String']>;
-  minter_contains_nocase?: InputMaybe<Scalars['String']>;
-  minter_ends_with?: InputMaybe<Scalars['String']>;
-  minter_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  minter_gt?: InputMaybe<Scalars['String']>;
-  minter_gte?: InputMaybe<Scalars['String']>;
-  minter_in?: InputMaybe<Array<Scalars['String']>>;
-  minter_lt?: InputMaybe<Scalars['String']>;
-  minter_lte?: InputMaybe<Scalars['String']>;
-  minter_not?: InputMaybe<Scalars['String']>;
-  minter_not_contains?: InputMaybe<Scalars['String']>;
-  minter_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  minter_not_ends_with?: InputMaybe<Scalars['String']>;
-  minter_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  minter_not_in?: InputMaybe<Array<Scalars['String']>>;
-  minter_not_starts_with?: InputMaybe<Scalars['String']>;
-  minter_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  minter_starts_with?: InputMaybe<Scalars['String']>;
-  minter_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  nftID?: InputMaybe<Scalars['String']>;
-  nftID_contains?: InputMaybe<Scalars['String']>;
-  nftID_contains_nocase?: InputMaybe<Scalars['String']>;
-  nftID_ends_with?: InputMaybe<Scalars['String']>;
-  nftID_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  nftID_gt?: InputMaybe<Scalars['String']>;
-  nftID_gte?: InputMaybe<Scalars['String']>;
-  nftID_in?: InputMaybe<Array<Scalars['String']>>;
-  nftID_lt?: InputMaybe<Scalars['String']>;
-  nftID_lte?: InputMaybe<Scalars['String']>;
-  nftID_not?: InputMaybe<Scalars['String']>;
-  nftID_not_contains?: InputMaybe<Scalars['String']>;
-  nftID_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  nftID_not_ends_with?: InputMaybe<Scalars['String']>;
-  nftID_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  nftID_not_in?: InputMaybe<Array<Scalars['String']>>;
-  nftID_not_starts_with?: InputMaybe<Scalars['String']>;
-  nftID_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  nftID_starts_with?: InputMaybe<Scalars['String']>;
-  nftID_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  nftType?: InputMaybe<Scalars['Int']>;
-  nftType_gt?: InputMaybe<Scalars['Int']>;
-  nftType_gte?: InputMaybe<Scalars['Int']>;
-  nftType_in?: InputMaybe<Array<Scalars['Int']>>;
-  nftType_lt?: InputMaybe<Scalars['Int']>;
-  nftType_lte?: InputMaybe<Scalars['Int']>;
-  nftType_not?: InputMaybe<Scalars['Int']>;
-  nftType_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  or?: InputMaybe<Array<InputMaybe<NonFungibleToken_Filter>>>;
-  slots_?: InputMaybe<AccountNftSlot_Filter>;
-  token?: InputMaybe<Scalars['String']>;
-  token_contains?: InputMaybe<Scalars['String']>;
-  token_contains_nocase?: InputMaybe<Scalars['String']>;
-  token_ends_with?: InputMaybe<Scalars['String']>;
-  token_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  token_gt?: InputMaybe<Scalars['String']>;
-  token_gte?: InputMaybe<Scalars['String']>;
-  token_in?: InputMaybe<Array<Scalars['String']>>;
-  token_lt?: InputMaybe<Scalars['String']>;
-  token_lte?: InputMaybe<Scalars['String']>;
-  token_not?: InputMaybe<Scalars['String']>;
-  token_not_contains?: InputMaybe<Scalars['String']>;
-  token_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  token_not_ends_with?: InputMaybe<Scalars['String']>;
-  token_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  token_not_in?: InputMaybe<Array<Scalars['String']>>;
-  token_not_starts_with?: InputMaybe<Scalars['String']>;
-  token_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  token_starts_with?: InputMaybe<Scalars['String']>;
-  token_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  transactions_?: InputMaybe<TransactionNft_Filter>;
-};
-
-export enum NonFungibleToken_OrderBy {
-  CreatorFeeBips = 'creatorFeeBips',
-  Id = 'id',
-  MintedAt = 'mintedAt',
-  MintedAtTransaction = 'mintedAtTransaction',
-  MintedAtTransactionAmount = 'mintedAtTransaction__amount',
-  MintedAtTransactionCreatorFeeBips = 'mintedAtTransaction__creatorFeeBips',
-  MintedAtTransactionData = 'mintedAtTransaction__data',
-  MintedAtTransactionExtraData = 'mintedAtTransaction__extraData',
-  MintedAtTransactionFee = 'mintedAtTransaction__fee',
-  MintedAtTransactionFeeTokenId = 'mintedAtTransaction__feeTokenID',
-  MintedAtTransactionId = 'mintedAtTransaction__id',
-  MintedAtTransactionInternalId = 'mintedAtTransaction__internalID',
-  MintedAtTransactionMinterAccountId = 'mintedAtTransaction__minterAccountID',
-  MintedAtTransactionNftId = 'mintedAtTransaction__nftID',
-  MintedAtTransactionNftType = 'mintedAtTransaction__nftType',
-  MintedAtTransactionStorageId = 'mintedAtTransaction__storageID',
-  MintedAtTransactionTo = 'mintedAtTransaction__to',
-  MintedAtTransactionToAccountId = 'mintedAtTransaction__toAccountID',
-  MintedAtTransactionToTokenId = 'mintedAtTransaction__toTokenID',
-  MintedAtTransactionTokenAccountId = 'mintedAtTransaction__tokenAccountID',
-  MintedAtTransactionTokenAddress = 'mintedAtTransaction__tokenAddress',
-  MintedAtTransactionType = 'mintedAtTransaction__type',
-  MintedAtTransactionTypename = 'mintedAtTransaction__typename',
-  Minter = 'minter',
-  MinterAddress = 'minter__address',
-  MinterCreatedAt = 'minter__createdAt',
-  MinterId = 'minter__id',
-  MinterInternalId = 'minter__internalID',
-  MinterLastUpdatedAt = 'minter__lastUpdatedAt',
-  NftId = 'nftID',
-  NftType = 'nftType',
-  Slots = 'slots',
-  Token = 'token',
-  Transactions = 'transactions',
 }
 
 /** Defines the order direction, either ascending or descending */
@@ -3998,6 +3475,7 @@ export enum OrderbookTrade_OrderBy {
   BlockAccountUpdateCount = 'block__accountUpdateCount',
   BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
+  BlockAuxiliaryData = 'block__auxiliaryData',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
@@ -4099,7 +3577,6 @@ export type Pair = {
   id: Scalars['ID'];
   /** ID represented as a decimal number. Follows the same pattern but with a comma instead */
   internalID: Scalars['BigDecimal'];
-  swaps: Array<Swap>;
   token0: Token;
   /** Last price of Token 0. Denominated in Token 1 */
   token0Price: Scalars['BigInt'];
@@ -4128,14 +3605,6 @@ export type PairDailyEntitiesArgs = {
   orderDirection?: InputMaybe<OrderDirection>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PairDailyData_Filter>;
-};
-
-export type PairSwapsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Swap_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<Swap_Filter>;
 };
 
 export type PairTradesArgs = {
@@ -4666,7 +4135,6 @@ export type Pair_Filter = {
   internalID_not?: InputMaybe<Scalars['BigDecimal']>;
   internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
   or?: InputMaybe<Array<InputMaybe<Pair_Filter>>>;
-  swaps_?: InputMaybe<Swap_Filter>;
   token0?: InputMaybe<Scalars['String']>;
   token0Price?: InputMaybe<Scalars['BigInt']>;
   token0Price_gt?: InputMaybe<Scalars['BigInt']>;
@@ -4781,7 +4249,6 @@ export enum Pair_OrderBy {
   DailyEntities = 'dailyEntities',
   Id = 'id',
   InternalId = 'internalID',
-  Swaps = 'swaps',
   Token0 = 'token0',
   Token0Price = 'token0Price',
   Token0Address = 'token0__address',
@@ -4830,8 +4297,6 @@ export type ProtocolAccount = Account & {
   lastUpdatedAt: Scalars['BigDecimal'];
   /** L2 transaction that last updated the account entity */
   lastUpdatedAtTransaction: Transaction;
-  /** List of all the AccountNFTSlot entities that this account has. Those slots can be empty but will only exist if they held an NFT at some point. */
-  slots: Array<AccountNftSlot>;
   /** L2 transactions that involved this account */
   transactions: Array<Transaction>;
 };
@@ -4842,14 +4307,6 @@ export type ProtocolAccountBalancesArgs = {
   orderDirection?: InputMaybe<OrderDirection>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountTokenBalance_Filter>;
-};
-
-export type ProtocolAccountSlotsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountNftSlot_Filter>;
 };
 
 export type ProtocolAccountTransactionsArgs = {
@@ -4950,7 +4407,6 @@ export type ProtocolAccount_Filter = {
   lastUpdatedAt_not?: InputMaybe<Scalars['BigDecimal']>;
   lastUpdatedAt_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
   or?: InputMaybe<Array<InputMaybe<ProtocolAccount_Filter>>>;
-  slots_?: InputMaybe<AccountNftSlot_Filter>;
   transactions_?: InputMaybe<Transaction_Filter>;
 };
 
@@ -4971,7 +4427,6 @@ export enum ProtocolAccount_OrderBy {
   LastUpdatedAtTransactionId = 'lastUpdatedAtTransaction__id',
   LastUpdatedAtTransactionInternalId = 'lastUpdatedAtTransaction__internalID',
   LastUpdatedAtTransactionTypename = 'lastUpdatedAtTransaction__typename',
-  Slots = 'slots',
   Transactions = 'transactions',
 }
 
@@ -5185,8 +4640,6 @@ export type Query = {
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
   account?: Maybe<Account>;
-  accountNFTSlot?: Maybe<AccountNftSlot>;
-  accountNFTSlots: Array<AccountNftSlot>;
   accountTokenBalance?: Maybe<AccountTokenBalance>;
   accountTokenBalanceDailyData?: Maybe<AccountTokenBalanceDailyData>;
   accountTokenBalanceDailyDatas: Array<AccountTokenBalanceDailyData>;
@@ -5196,20 +4649,14 @@ export type Query = {
   accountUpdate?: Maybe<AccountUpdate>;
   accountUpdates: Array<AccountUpdate>;
   accounts: Array<Account>;
-  add?: Maybe<Add>;
-  adds: Array<Add>;
+  batchSpotTrade?: Maybe<BatchSpotTrade>;
+  batchSpotTrades: Array<BatchSpotTrade>;
   block?: Maybe<Block>;
   blocks: Array<Block>;
-  dataNFT?: Maybe<DataNft>;
-  dataNFTs: Array<DataNft>;
   deposit?: Maybe<Deposit>;
   deposits: Array<Deposit>;
   exchange?: Maybe<Exchange>;
   exchanges: Array<Exchange>;
-  mintNFT?: Maybe<MintNft>;
-  mintNFTs: Array<MintNft>;
-  nonFungibleToken?: Maybe<NonFungibleToken>;
-  nonFungibleTokens: Array<NonFungibleToken>;
   orderbookTrade?: Maybe<OrderbookTrade>;
   orderbookTrades: Array<OrderbookTrade>;
   pair?: Maybe<Pair>;
@@ -5222,35 +4669,21 @@ export type Query = {
   protocolAccounts: Array<ProtocolAccount>;
   proxies: Array<Proxy>;
   proxy?: Maybe<Proxy>;
-  remove?: Maybe<Remove>;
-  removes: Array<Remove>;
   signatureVerification?: Maybe<SignatureVerification>;
   signatureVerifications: Array<SignatureVerification>;
-  swap?: Maybe<Swap>;
-  swapNFT?: Maybe<SwapNft>;
-  swapNFTs: Array<SwapNft>;
-  swaps: Array<Swap>;
   token?: Maybe<Token>;
   tokenDailyData?: Maybe<TokenDailyData>;
   tokenDailyDatas: Array<TokenDailyData>;
   tokenWeeklyData?: Maybe<TokenWeeklyData>;
   tokenWeeklyDatas: Array<TokenWeeklyData>;
   tokens: Array<Token>;
-  tradeNFT?: Maybe<TradeNft>;
-  tradeNFTs: Array<TradeNft>;
   transaction?: Maybe<Transaction>;
-  transactionNFT?: Maybe<TransactionNft>;
-  transactionNFTs: Array<TransactionNft>;
   transactions: Array<Transaction>;
   transfer?: Maybe<Transfer>;
-  transferNFT?: Maybe<TransferNft>;
-  transferNFTs: Array<TransferNft>;
   transfers: Array<Transfer>;
   user?: Maybe<User>;
   users: Array<User>;
   withdrawal?: Maybe<Withdrawal>;
-  withdrawalNFT?: Maybe<WithdrawalNft>;
-  withdrawalNFTs: Array<WithdrawalNft>;
   withdrawals: Array<Withdrawal>;
 };
 
@@ -5262,22 +4695,6 @@ export type QueryAccountArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QueryAccountNftSlotArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QueryAccountNftSlotsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<AccountNftSlot_Filter>;
 };
 
 export type QueryAccountTokenBalanceArgs = {
@@ -5354,20 +4771,20 @@ export type QueryAccountsArgs = {
   where?: InputMaybe<Account_Filter>;
 };
 
-export type QueryAddArgs = {
+export type QueryBatchSpotTradeArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-export type QueryAddsArgs = {
+export type QueryBatchSpotTradesArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Add_OrderBy>;
+  orderBy?: InputMaybe<BatchSpotTrade_OrderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
   skip?: InputMaybe<Scalars['Int']>;
   subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Add_Filter>;
+  where?: InputMaybe<BatchSpotTrade_Filter>;
 };
 
 export type QueryBlockArgs = {
@@ -5384,22 +4801,6 @@ export type QueryBlocksArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<Block_Filter>;
-};
-
-export type QueryDataNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QueryDataNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<DataNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<DataNft_Filter>;
 };
 
 export type QueryDepositArgs = {
@@ -5432,38 +4833,6 @@ export type QueryExchangesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<Exchange_Filter>;
-};
-
-export type QueryMintNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QueryMintNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<MintNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<MintNft_Filter>;
-};
-
-export type QueryNonFungibleTokenArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QueryNonFungibleTokensArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<NonFungibleToken_Filter>;
 };
 
 export type QueryOrderbookTradeArgs = {
@@ -5562,22 +4931,6 @@ export type QueryProxyArgs = {
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-export type QueryRemoveArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QueryRemovesArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Remove_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Remove_Filter>;
-};
-
 export type QuerySignatureVerificationArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
@@ -5592,38 +4945,6 @@ export type QuerySignatureVerificationsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<SignatureVerification_Filter>;
-};
-
-export type QuerySwapArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QuerySwapNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QuerySwapNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<SwapNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<SwapNft_Filter>;
-};
-
-export type QuerySwapsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Swap_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Swap_Filter>;
 };
 
 export type QueryTokenArgs = {
@@ -5674,42 +4995,10 @@ export type QueryTokensArgs = {
   where?: InputMaybe<Token_Filter>;
 };
 
-export type QueryTradeNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QueryTradeNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<TradeNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<TradeNft_Filter>;
-};
-
 export type QueryTransactionArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QueryTransactionNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QueryTransactionNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<TransactionNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<TransactionNft_Filter>;
 };
 
 export type QueryTransactionsArgs = {
@@ -5726,22 +5015,6 @@ export type QueryTransferArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QueryTransferNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QueryTransferNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<TransferNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<TransferNft_Filter>;
 };
 
 export type QueryTransfersArgs = {
@@ -5776,22 +5049,6 @@ export type QueryWithdrawalArgs = {
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-export type QueryWithdrawalNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type QueryWithdrawalNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<WithdrawalNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<WithdrawalNft_Filter>;
-};
-
 export type QueryWithdrawalsArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -5801,398 +5058,6 @@ export type QueryWithdrawalsArgs = {
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<Withdrawal_Filter>;
 };
-
-export type Remove = Transaction & {
-  __typename?: 'Remove';
-  /** Account entity that triggered the removal of liquidity from the pool */
-  account: Account;
-  /** [RAW L2 DATA] Account ID for the account that sent the tokens */
-  accountFromID: Scalars['Int'];
-  /** [RAW L2 DATA] Account ID for the account that received the tokens */
-  accountToID: Scalars['Int'];
-  accounts?: Maybe<Array<Account>>;
-  /** [RAW L2 DATA] Amount transfered */
-  amount: Scalars['BigInt'];
-  block: Block;
-  data: Scalars['String'];
-  /** [RAW L2 DATA] Fee amount paid */
-  fee: Scalars['BigInt'];
-  /** Token entity with information about the token used to pay the operator fees */
-  feeToken: Token;
-  /** [RAW L2 DATA] Token ID of token used to pay the operator fees */
-  feeTokenID: Scalars['Int'];
-  /** [RAW L2 DATA] Address string of the account that sent the tokens */
-  from: Scalars['String'];
-  id: Scalars['ID'];
-  /** ID represented as a BigDecimal for sorting purposes */
-  internalID: Scalars['BigDecimal'];
-  /** [RAW L2 DATA] StorageID */
-  storageID: Scalars['Int'];
-  /** [RAW L2 DATA] Address string of the account that received the tokens */
-  to: Scalars['String'];
-  /** [RAW L2 DATA] Token ID of the token transfered. Mainly used for NFT transfers */
-  toTokenID: Scalars['Int'];
-  /** Token entity with information about the token transfered */
-  token: Token;
-  tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-  /** [RAW L2 DATA] Token ID of the token transfered */
-  tokenID: Scalars['Int'];
-  /** [RAW L2 DATA] Transfer type */
-  type: Scalars['Int'];
-  /** Explicit copy of __typename to make it usable when filtering */
-  typename: TransactionType;
-};
-
-export type RemoveAccountsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Account_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<Account_Filter>;
-};
-
-export type RemoveTokenBalancesArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountTokenBalance_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountTokenBalance_Filter>;
-};
-
-export type Remove_Filter = {
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  account?: InputMaybe<Scalars['String']>;
-  accountFromID?: InputMaybe<Scalars['Int']>;
-  accountFromID_gt?: InputMaybe<Scalars['Int']>;
-  accountFromID_gte?: InputMaybe<Scalars['Int']>;
-  accountFromID_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountFromID_lt?: InputMaybe<Scalars['Int']>;
-  accountFromID_lte?: InputMaybe<Scalars['Int']>;
-  accountFromID_not?: InputMaybe<Scalars['Int']>;
-  accountFromID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountToID?: InputMaybe<Scalars['Int']>;
-  accountToID_gt?: InputMaybe<Scalars['Int']>;
-  accountToID_gte?: InputMaybe<Scalars['Int']>;
-  accountToID_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountToID_lt?: InputMaybe<Scalars['Int']>;
-  accountToID_lte?: InputMaybe<Scalars['Int']>;
-  accountToID_not?: InputMaybe<Scalars['Int']>;
-  accountToID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  account_?: InputMaybe<Account_Filter>;
-  account_contains?: InputMaybe<Scalars['String']>;
-  account_contains_nocase?: InputMaybe<Scalars['String']>;
-  account_ends_with?: InputMaybe<Scalars['String']>;
-  account_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_gt?: InputMaybe<Scalars['String']>;
-  account_gte?: InputMaybe<Scalars['String']>;
-  account_in?: InputMaybe<Array<Scalars['String']>>;
-  account_lt?: InputMaybe<Scalars['String']>;
-  account_lte?: InputMaybe<Scalars['String']>;
-  account_not?: InputMaybe<Scalars['String']>;
-  account_not_contains?: InputMaybe<Scalars['String']>;
-  account_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  account_not_ends_with?: InputMaybe<Scalars['String']>;
-  account_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_not_in?: InputMaybe<Array<Scalars['String']>>;
-  account_not_starts_with?: InputMaybe<Scalars['String']>;
-  account_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  account_starts_with?: InputMaybe<Scalars['String']>;
-  account_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  accounts?: InputMaybe<Array<Scalars['String']>>;
-  accounts_?: InputMaybe<Account_Filter>;
-  accounts_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  amount?: InputMaybe<Scalars['BigInt']>;
-  amount_gt?: InputMaybe<Scalars['BigInt']>;
-  amount_gte?: InputMaybe<Scalars['BigInt']>;
-  amount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  amount_lt?: InputMaybe<Scalars['BigInt']>;
-  amount_lte?: InputMaybe<Scalars['BigInt']>;
-  amount_not?: InputMaybe<Scalars['BigInt']>;
-  amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  and?: InputMaybe<Array<InputMaybe<Remove_Filter>>>;
-  block?: InputMaybe<Scalars['String']>;
-  block_?: InputMaybe<Block_Filter>;
-  block_contains?: InputMaybe<Scalars['String']>;
-  block_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_ends_with?: InputMaybe<Scalars['String']>;
-  block_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_gt?: InputMaybe<Scalars['String']>;
-  block_gte?: InputMaybe<Scalars['String']>;
-  block_in?: InputMaybe<Array<Scalars['String']>>;
-  block_lt?: InputMaybe<Scalars['String']>;
-  block_lte?: InputMaybe<Scalars['String']>;
-  block_not?: InputMaybe<Scalars['String']>;
-  block_not_contains?: InputMaybe<Scalars['String']>;
-  block_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_not_ends_with?: InputMaybe<Scalars['String']>;
-  block_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_not_in?: InputMaybe<Array<Scalars['String']>>;
-  block_not_starts_with?: InputMaybe<Scalars['String']>;
-  block_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  block_starts_with?: InputMaybe<Scalars['String']>;
-  block_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data?: InputMaybe<Scalars['String']>;
-  data_contains?: InputMaybe<Scalars['String']>;
-  data_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_ends_with?: InputMaybe<Scalars['String']>;
-  data_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_gt?: InputMaybe<Scalars['String']>;
-  data_gte?: InputMaybe<Scalars['String']>;
-  data_in?: InputMaybe<Array<Scalars['String']>>;
-  data_lt?: InputMaybe<Scalars['String']>;
-  data_lte?: InputMaybe<Scalars['String']>;
-  data_not?: InputMaybe<Scalars['String']>;
-  data_not_contains?: InputMaybe<Scalars['String']>;
-  data_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_not_ends_with?: InputMaybe<Scalars['String']>;
-  data_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_not_in?: InputMaybe<Array<Scalars['String']>>;
-  data_not_starts_with?: InputMaybe<Scalars['String']>;
-  data_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data_starts_with?: InputMaybe<Scalars['String']>;
-  data_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fee?: InputMaybe<Scalars['BigInt']>;
-  feeToken?: InputMaybe<Scalars['String']>;
-  feeTokenID?: InputMaybe<Scalars['Int']>;
-  feeTokenID_gt?: InputMaybe<Scalars['Int']>;
-  feeTokenID_gte?: InputMaybe<Scalars['Int']>;
-  feeTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  feeTokenID_lt?: InputMaybe<Scalars['Int']>;
-  feeTokenID_lte?: InputMaybe<Scalars['Int']>;
-  feeTokenID_not?: InputMaybe<Scalars['Int']>;
-  feeTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  feeToken_?: InputMaybe<Token_Filter>;
-  feeToken_contains?: InputMaybe<Scalars['String']>;
-  feeToken_contains_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_ends_with?: InputMaybe<Scalars['String']>;
-  feeToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_gt?: InputMaybe<Scalars['String']>;
-  feeToken_gte?: InputMaybe<Scalars['String']>;
-  feeToken_in?: InputMaybe<Array<Scalars['String']>>;
-  feeToken_lt?: InputMaybe<Scalars['String']>;
-  feeToken_lte?: InputMaybe<Scalars['String']>;
-  feeToken_not?: InputMaybe<Scalars['String']>;
-  feeToken_not_contains?: InputMaybe<Scalars['String']>;
-  feeToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_not_ends_with?: InputMaybe<Scalars['String']>;
-  feeToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_not_in?: InputMaybe<Array<Scalars['String']>>;
-  feeToken_not_starts_with?: InputMaybe<Scalars['String']>;
-  feeToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_starts_with?: InputMaybe<Scalars['String']>;
-  feeToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fee_gt?: InputMaybe<Scalars['BigInt']>;
-  fee_gte?: InputMaybe<Scalars['BigInt']>;
-  fee_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fee_lt?: InputMaybe<Scalars['BigInt']>;
-  fee_lte?: InputMaybe<Scalars['BigInt']>;
-  fee_not?: InputMaybe<Scalars['BigInt']>;
-  fee_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  from?: InputMaybe<Scalars['String']>;
-  from_contains?: InputMaybe<Scalars['String']>;
-  from_contains_nocase?: InputMaybe<Scalars['String']>;
-  from_ends_with?: InputMaybe<Scalars['String']>;
-  from_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  from_gt?: InputMaybe<Scalars['String']>;
-  from_gte?: InputMaybe<Scalars['String']>;
-  from_in?: InputMaybe<Array<Scalars['String']>>;
-  from_lt?: InputMaybe<Scalars['String']>;
-  from_lte?: InputMaybe<Scalars['String']>;
-  from_not?: InputMaybe<Scalars['String']>;
-  from_not_contains?: InputMaybe<Scalars['String']>;
-  from_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  from_not_ends_with?: InputMaybe<Scalars['String']>;
-  from_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  from_not_in?: InputMaybe<Array<Scalars['String']>>;
-  from_not_starts_with?: InputMaybe<Scalars['String']>;
-  from_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  from_starts_with?: InputMaybe<Scalars['String']>;
-  from_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  internalID?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  internalID_lt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  or?: InputMaybe<Array<InputMaybe<Remove_Filter>>>;
-  storageID?: InputMaybe<Scalars['Int']>;
-  storageID_gt?: InputMaybe<Scalars['Int']>;
-  storageID_gte?: InputMaybe<Scalars['Int']>;
-  storageID_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageID_lt?: InputMaybe<Scalars['Int']>;
-  storageID_lte?: InputMaybe<Scalars['Int']>;
-  storageID_not?: InputMaybe<Scalars['Int']>;
-  storageID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  to?: InputMaybe<Scalars['String']>;
-  toTokenID?: InputMaybe<Scalars['Int']>;
-  toTokenID_gt?: InputMaybe<Scalars['Int']>;
-  toTokenID_gte?: InputMaybe<Scalars['Int']>;
-  toTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  toTokenID_lt?: InputMaybe<Scalars['Int']>;
-  toTokenID_lte?: InputMaybe<Scalars['Int']>;
-  toTokenID_not?: InputMaybe<Scalars['Int']>;
-  toTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  to_contains?: InputMaybe<Scalars['String']>;
-  to_contains_nocase?: InputMaybe<Scalars['String']>;
-  to_ends_with?: InputMaybe<Scalars['String']>;
-  to_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  to_gt?: InputMaybe<Scalars['String']>;
-  to_gte?: InputMaybe<Scalars['String']>;
-  to_in?: InputMaybe<Array<Scalars['String']>>;
-  to_lt?: InputMaybe<Scalars['String']>;
-  to_lte?: InputMaybe<Scalars['String']>;
-  to_not?: InputMaybe<Scalars['String']>;
-  to_not_contains?: InputMaybe<Scalars['String']>;
-  to_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  to_not_ends_with?: InputMaybe<Scalars['String']>;
-  to_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  to_not_in?: InputMaybe<Array<Scalars['String']>>;
-  to_not_starts_with?: InputMaybe<Scalars['String']>;
-  to_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  to_starts_with?: InputMaybe<Scalars['String']>;
-  to_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  token?: InputMaybe<Scalars['String']>;
-  tokenBalances?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_?: InputMaybe<AccountTokenBalance_Filter>;
-  tokenBalances_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenID?: InputMaybe<Scalars['Int']>;
-  tokenID_gt?: InputMaybe<Scalars['Int']>;
-  tokenID_gte?: InputMaybe<Scalars['Int']>;
-  tokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenID_lt?: InputMaybe<Scalars['Int']>;
-  tokenID_lte?: InputMaybe<Scalars['Int']>;
-  tokenID_not?: InputMaybe<Scalars['Int']>;
-  tokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  token_?: InputMaybe<Token_Filter>;
-  token_contains?: InputMaybe<Scalars['String']>;
-  token_contains_nocase?: InputMaybe<Scalars['String']>;
-  token_ends_with?: InputMaybe<Scalars['String']>;
-  token_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  token_gt?: InputMaybe<Scalars['String']>;
-  token_gte?: InputMaybe<Scalars['String']>;
-  token_in?: InputMaybe<Array<Scalars['String']>>;
-  token_lt?: InputMaybe<Scalars['String']>;
-  token_lte?: InputMaybe<Scalars['String']>;
-  token_not?: InputMaybe<Scalars['String']>;
-  token_not_contains?: InputMaybe<Scalars['String']>;
-  token_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  token_not_ends_with?: InputMaybe<Scalars['String']>;
-  token_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  token_not_in?: InputMaybe<Array<Scalars['String']>>;
-  token_not_starts_with?: InputMaybe<Scalars['String']>;
-  token_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  token_starts_with?: InputMaybe<Scalars['String']>;
-  token_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['Int']>;
-  type_gt?: InputMaybe<Scalars['Int']>;
-  type_gte?: InputMaybe<Scalars['Int']>;
-  type_in?: InputMaybe<Array<Scalars['Int']>>;
-  type_lt?: InputMaybe<Scalars['Int']>;
-  type_lte?: InputMaybe<Scalars['Int']>;
-  type_not?: InputMaybe<Scalars['Int']>;
-  type_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  typename?: InputMaybe<TransactionType>;
-  typename_in?: InputMaybe<Array<TransactionType>>;
-  typename_not?: InputMaybe<TransactionType>;
-  typename_not_in?: InputMaybe<Array<TransactionType>>;
-};
-
-export enum Remove_OrderBy {
-  Account = 'account',
-  AccountFromId = 'accountFromID',
-  AccountToId = 'accountToID',
-  AccountAddress = 'account__address',
-  AccountCreatedAt = 'account__createdAt',
-  AccountId = 'account__id',
-  AccountInternalId = 'account__internalID',
-  AccountLastUpdatedAt = 'account__lastUpdatedAt',
-  Accounts = 'accounts',
-  Amount = 'amount',
-  Block = 'block',
-  BlockAccountUpdateCount = 'block__accountUpdateCount',
-  BlockAccountUpdateSize = 'block__accountUpdateSize',
-  BlockAddCount = 'block__addCount',
-  BlockBlockHash = 'block__blockHash',
-  BlockBlockSize = 'block__blockSize',
-  BlockBlockType = 'block__blockType',
-  BlockBlockVersion = 'block__blockVersion',
-  BlockData = 'block__data',
-  BlockDepositCount = 'block__depositCount',
-  BlockDepositSize = 'block__depositSize',
-  BlockExchange = 'block__exchange',
-  BlockGasLimit = 'block__gasLimit',
-  BlockGasPrice = 'block__gasPrice',
-  BlockHeight = 'block__height',
-  BlockId = 'block__id',
-  BlockInternalId = 'block__internalID',
-  BlockNumConditionalTransactions = 'block__numConditionalTransactions',
-  BlockOffchainData = 'block__offchainData',
-  BlockOperatorAccountId = 'block__operatorAccountID',
-  BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeBips = 'block__protocolFeeBips',
-  BlockRemoveCount = 'block__removeCount',
-  BlockSignatureVerificationCount = 'block__signatureVerificationCount',
-  BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
-  BlockSwapCount = 'block__swapCount',
-  BlockTimestamp = 'block__timestamp',
-  BlockTransactionCount = 'block__transactionCount',
-  BlockTransferCount = 'block__transferCount',
-  BlockTxHash = 'block__txHash',
-  BlockWithdrawSize = 'block__withdrawSize',
-  BlockWithdrawalCount = 'block__withdrawalCount',
-  Data = 'data',
-  Fee = 'fee',
-  FeeToken = 'feeToken',
-  FeeTokenId = 'feeTokenID',
-  FeeTokenAddress = 'feeToken__address',
-  FeeTokenDecimals = 'feeToken__decimals',
-  FeeTokenId = 'feeToken__id',
-  FeeTokenInternalId = 'feeToken__internalID',
-  FeeTokenName = 'feeToken__name',
-  FeeTokenSymbol = 'feeToken__symbol',
-  FeeTokenTradedVolume = 'feeToken__tradedVolume',
-  FeeTokenTradedVolumeOrderbook = 'feeToken__tradedVolumeOrderbook',
-  FeeTokenTradedVolumeSwap = 'feeToken__tradedVolumeSwap',
-  From = 'from',
-  Id = 'id',
-  InternalId = 'internalID',
-  StorageId = 'storageID',
-  To = 'to',
-  ToTokenId = 'toTokenID',
-  Token = 'token',
-  TokenBalances = 'tokenBalances',
-  TokenId = 'tokenID',
-  TokenAddress = 'token__address',
-  TokenDecimals = 'token__decimals',
-  TokenId = 'token__id',
-  TokenInternalId = 'token__internalID',
-  TokenName = 'token__name',
-  TokenSymbol = 'token__symbol',
-  TokenTradedVolume = 'token__tradedVolume',
-  TokenTradedVolumeOrderbook = 'token__tradedVolumeOrderbook',
-  TokenTradedVolumeSwap = 'token__tradedVolumeSwap',
-  Type = 'type',
-  Typename = 'typename',
-}
 
 export type SignatureVerification = Transaction & {
   __typename?: 'SignatureVerification';
@@ -6395,6 +5260,7 @@ export enum SignatureVerification_OrderBy {
   BlockAccountUpdateCount = 'block__accountUpdateCount',
   BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
+  BlockAuxiliaryData = 'block__auxiliaryData',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
@@ -6437,8 +5303,6 @@ export type Subscription = {
   /** Access to subgraph metadata */
   _meta?: Maybe<_Meta_>;
   account?: Maybe<Account>;
-  accountNFTSlot?: Maybe<AccountNftSlot>;
-  accountNFTSlots: Array<AccountNftSlot>;
   accountTokenBalance?: Maybe<AccountTokenBalance>;
   accountTokenBalanceDailyData?: Maybe<AccountTokenBalanceDailyData>;
   accountTokenBalanceDailyDatas: Array<AccountTokenBalanceDailyData>;
@@ -6448,20 +5312,14 @@ export type Subscription = {
   accountUpdate?: Maybe<AccountUpdate>;
   accountUpdates: Array<AccountUpdate>;
   accounts: Array<Account>;
-  add?: Maybe<Add>;
-  adds: Array<Add>;
+  batchSpotTrade?: Maybe<BatchSpotTrade>;
+  batchSpotTrades: Array<BatchSpotTrade>;
   block?: Maybe<Block>;
   blocks: Array<Block>;
-  dataNFT?: Maybe<DataNft>;
-  dataNFTs: Array<DataNft>;
   deposit?: Maybe<Deposit>;
   deposits: Array<Deposit>;
   exchange?: Maybe<Exchange>;
   exchanges: Array<Exchange>;
-  mintNFT?: Maybe<MintNft>;
-  mintNFTs: Array<MintNft>;
-  nonFungibleToken?: Maybe<NonFungibleToken>;
-  nonFungibleTokens: Array<NonFungibleToken>;
   orderbookTrade?: Maybe<OrderbookTrade>;
   orderbookTrades: Array<OrderbookTrade>;
   pair?: Maybe<Pair>;
@@ -6474,35 +5332,21 @@ export type Subscription = {
   protocolAccounts: Array<ProtocolAccount>;
   proxies: Array<Proxy>;
   proxy?: Maybe<Proxy>;
-  remove?: Maybe<Remove>;
-  removes: Array<Remove>;
   signatureVerification?: Maybe<SignatureVerification>;
   signatureVerifications: Array<SignatureVerification>;
-  swap?: Maybe<Swap>;
-  swapNFT?: Maybe<SwapNft>;
-  swapNFTs: Array<SwapNft>;
-  swaps: Array<Swap>;
   token?: Maybe<Token>;
   tokenDailyData?: Maybe<TokenDailyData>;
   tokenDailyDatas: Array<TokenDailyData>;
   tokenWeeklyData?: Maybe<TokenWeeklyData>;
   tokenWeeklyDatas: Array<TokenWeeklyData>;
   tokens: Array<Token>;
-  tradeNFT?: Maybe<TradeNft>;
-  tradeNFTs: Array<TradeNft>;
   transaction?: Maybe<Transaction>;
-  transactionNFT?: Maybe<TransactionNft>;
-  transactionNFTs: Array<TransactionNft>;
   transactions: Array<Transaction>;
   transfer?: Maybe<Transfer>;
-  transferNFT?: Maybe<TransferNft>;
-  transferNFTs: Array<TransferNft>;
   transfers: Array<Transfer>;
   user?: Maybe<User>;
   users: Array<User>;
   withdrawal?: Maybe<Withdrawal>;
-  withdrawalNFT?: Maybe<WithdrawalNft>;
-  withdrawalNFTs: Array<WithdrawalNft>;
   withdrawals: Array<Withdrawal>;
 };
 
@@ -6514,22 +5358,6 @@ export type SubscriptionAccountArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionAccountNftSlotArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionAccountNftSlotsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<AccountNftSlot_Filter>;
 };
 
 export type SubscriptionAccountTokenBalanceArgs = {
@@ -6606,20 +5434,20 @@ export type SubscriptionAccountsArgs = {
   where?: InputMaybe<Account_Filter>;
 };
 
-export type SubscriptionAddArgs = {
+export type SubscriptionBatchSpotTradeArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-export type SubscriptionAddsArgs = {
+export type SubscriptionBatchSpotTradesArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Add_OrderBy>;
+  orderBy?: InputMaybe<BatchSpotTrade_OrderBy>;
   orderDirection?: InputMaybe<OrderDirection>;
   skip?: InputMaybe<Scalars['Int']>;
   subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Add_Filter>;
+  where?: InputMaybe<BatchSpotTrade_Filter>;
 };
 
 export type SubscriptionBlockArgs = {
@@ -6636,22 +5464,6 @@ export type SubscriptionBlocksArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<Block_Filter>;
-};
-
-export type SubscriptionDataNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionDataNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<DataNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<DataNft_Filter>;
 };
 
 export type SubscriptionDepositArgs = {
@@ -6684,38 +5496,6 @@ export type SubscriptionExchangesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<Exchange_Filter>;
-};
-
-export type SubscriptionMintNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionMintNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<MintNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<MintNft_Filter>;
-};
-
-export type SubscriptionNonFungibleTokenArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionNonFungibleTokensArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<NonFungibleToken_Filter>;
 };
 
 export type SubscriptionOrderbookTradeArgs = {
@@ -6814,22 +5594,6 @@ export type SubscriptionProxyArgs = {
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-export type SubscriptionRemoveArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionRemovesArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Remove_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Remove_Filter>;
-};
-
 export type SubscriptionSignatureVerificationArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
@@ -6844,38 +5608,6 @@ export type SubscriptionSignatureVerificationsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<SignatureVerification_Filter>;
-};
-
-export type SubscriptionSwapArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionSwapNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionSwapNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<SwapNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<SwapNft_Filter>;
-};
-
-export type SubscriptionSwapsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Swap_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Swap_Filter>;
 };
 
 export type SubscriptionTokenArgs = {
@@ -6926,42 +5658,10 @@ export type SubscriptionTokensArgs = {
   where?: InputMaybe<Token_Filter>;
 };
 
-export type SubscriptionTradeNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionTradeNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<TradeNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<TradeNft_Filter>;
-};
-
 export type SubscriptionTransactionArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionTransactionNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionTransactionNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<TransactionNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<TransactionNft_Filter>;
 };
 
 export type SubscriptionTransactionsArgs = {
@@ -6978,22 +5678,6 @@ export type SubscriptionTransferArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID'];
   subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionTransferNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionTransferNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<TransferNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<TransferNft_Filter>;
 };
 
 export type SubscriptionTransfersArgs = {
@@ -7028,22 +5712,6 @@ export type SubscriptionWithdrawalArgs = {
   subgraphError?: _SubgraphErrorPolicy_;
 };
 
-export type SubscriptionWithdrawalNftArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-export type SubscriptionWithdrawalNfTsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<WithdrawalNft_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<WithdrawalNft_Filter>;
-};
-
 export type SubscriptionWithdrawalsArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']>;
@@ -7053,1222 +5721,6 @@ export type SubscriptionWithdrawalsArgs = {
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<Withdrawal_Filter>;
 };
-
-export type Swap = Transaction & {
-  __typename?: 'Swap';
-  /** Account that swapped the tokens */
-  account: Account;
-  /** [RAW L2 DATA] Account ID of account A */
-  accountIdA: Scalars['Int'];
-  /** [RAW L2 DATA] Account ID of account B */
-  accountIdB: Scalars['Int'];
-  accounts?: Maybe<Array<Account>>;
-  block: Block;
-  data: Scalars['String'];
-  /** [RAW L2 DATA] Float encoded value for fillSA represented as an Int */
-  fFillSA: Scalars['Int'];
-  /** [RAW L2 DATA] Float encoded value for fillSB represented as an Int */
-  fFillSB: Scalars['Int'];
-  /** [RAW L2 DATA] Fee paid by Account A with Token B */
-  feeA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Fee paid by Account B with token A */
-  feeB: Scalars['BigInt'];
-  /** [RAW L2 DATA] Fee bips for order A */
-  feeBipsA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Fee bips for order B */
-  feeBipsB: Scalars['BigInt'];
-  /** [RAW L2 DATA] Order data A */
-  feeBipsHiA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Order data B */
-  feeBipsHiB: Scalars['BigInt'];
-  /** [RAW L2 DATA] Is fill amount for buy or sell for order A */
-  fillAmountBorSA: Scalars['Boolean'];
-  /** [RAW L2 DATA] Is fill amount for buy or sell for order B */
-  fillAmountBorSB: Scalars['Boolean'];
-  /** [RAW L2 DATA] Amount of token B bought by Account A */
-  fillBA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Amount of token A bought by Account B */
-  fillBB: Scalars['BigInt'];
-  /** [RAW L2 DATA] Amount of token A sold by Account A */
-  fillSA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Amount of token B sold by Account B */
-  fillSB: Scalars['BigInt'];
-  id: Scalars['ID'];
-  /** ID represented as a BigDecimal for sorting purposes */
-  internalID: Scalars['BigDecimal'];
-  /** [RAW L2 DATA] Limit mask value for order A */
-  limitMaskA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Limit mask value for order B */
-  limitMaskB: Scalars['BigInt'];
-  /** [RAW L2 DATA] Order data A */
-  orderDataA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Order data B */
-  orderDataB: Scalars['BigInt'];
-  /** Standardized Pair entity for this trade */
-  pair: Pair;
-  /** [RAW L2 DATA] Protocol fees paid by Account A */
-  protocolFeeA: Scalars['BigInt'];
-  /** [RAW L2 DATA] Protocol fees paid by Account B */
-  protocolFeeB: Scalars['BigInt'];
-  /** [RAW L2 DATA] StorageID for account A */
-  storageIdA: Scalars['Int'];
-  /** [RAW L2 DATA] StorageID for account B */
-  storageIdB: Scalars['Int'];
-  /** Token A. Supplied by Account A */
-  tokenA: Token;
-  /** Price for 1 unit of token A for this trade. Denominated in token B */
-  tokenAPrice: Scalars['BigInt'];
-  /** Token B. Supplied by Account B */
-  tokenB: Token;
-  /** Price for 1 unit of token B for this trade. Denominated in token A */
-  tokenBPrice: Scalars['BigInt'];
-  tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-  /** [RAW L2 DATA] Token ID of token bought by account A. Should coincide with tokenIDBS */
-  tokenIDAB: Scalars['Int'];
-  /** [RAW L2 DATA] Token ID of token sold by account A */
-  tokenIDAS: Scalars['Int'];
-  /** [RAW L2 DATA] Token ID of token bought by account B. Should coincide with tokenIDAS */
-  tokenIDBB: Scalars['Int'];
-  /** [RAW L2 DATA] Token ID of token sold by account B */
-  tokenIDBS: Scalars['Int'];
-  /** Explicit copy of __typename to make it usable when filtering */
-  typename: TransactionType;
-};
-
-export type SwapAccountsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Account_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<Account_Filter>;
-};
-
-export type SwapTokenBalancesArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountTokenBalance_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountTokenBalance_Filter>;
-};
-
-export type SwapNft = Transaction &
-  TransactionNft & {
-    __typename?: 'SwapNFT';
-    /** Account entity A */
-    accountA: Account;
-    /** Account entity B */
-    accountB: Account;
-    /** [RAW L2 DATA] Account ID of account A */
-    accountIdA: Scalars['Int'];
-    /** [RAW L2 DATA] Account ID of account B */
-    accountIdB: Scalars['Int'];
-    accounts?: Maybe<Array<Account>>;
-    block: Block;
-    data: Scalars['String'];
-    /** [RAW L2 DATA] Float encoded value for fillSA represented as an Int */
-    fFillSA: Scalars['Int'];
-    /** [RAW L2 DATA] Float encoded value for fillSB represented as an Int */
-    fFillSB: Scalars['Int'];
-    /** [RAW L2 DATA] Fee bips for order A */
-    feeBipsA: Scalars['BigInt'];
-    /** [RAW L2 DATA] Fee bips for order B */
-    feeBipsB: Scalars['BigInt'];
-    /** [RAW L2 DATA] Order data A */
-    feeBipsHiA: Scalars['BigInt'];
-    /** [RAW L2 DATA] Order data B */
-    feeBipsHiB: Scalars['BigInt'];
-    /** [RAW L2 DATA] Is fill amount for buy or sell for order A */
-    fillAmountBorSA: Scalars['Boolean'];
-    /** [RAW L2 DATA] Is fill amount for buy or sell for order B */
-    fillAmountBorSB: Scalars['Boolean'];
-    /** [RAW L2 DATA] Amount of token B bought by Account A */
-    fillBA: Scalars['BigInt'];
-    /** [RAW L2 DATA] Amount of token A bought by Account B */
-    fillBB: Scalars['BigInt'];
-    /** [RAW L2 DATA] Amount of token A sold by Account A */
-    fillSA: Scalars['BigInt'];
-    /** [RAW L2 DATA] Amount of token B sold by Account B */
-    fillSB: Scalars['BigInt'];
-    id: Scalars['ID'];
-    /** ID represented as a BigDecimal for sorting purposes */
-    internalID: Scalars['BigDecimal'];
-    /** [RAW L2 DATA] Limit mask value for order A */
-    limitMaskA: Scalars['BigInt'];
-    /** [RAW L2 DATA] Limit mask value for order B */
-    limitMaskB: Scalars['BigInt'];
-    nfts: Array<NonFungibleToken>;
-    /** [RAW L2 DATA] Order data A */
-    orderDataA: Scalars['BigInt'];
-    /** [RAW L2 DATA] Order data B */
-    orderDataB: Scalars['BigInt'];
-    /** Target slot of NFT B for Account A. */
-    slotABuyer: AccountNftSlot;
-    /** Original slot of NFT A for Account A. */
-    slotASeller: AccountNftSlot;
-    /** Target slot of NFT A for Account B. */
-    slotBBuyer: AccountNftSlot;
-    /** Original slot of NFT B for Account B. */
-    slotBSeller: AccountNftSlot;
-    slots: Array<AccountNftSlot>;
-    /** [RAW L2 DATA] StorageID for account A */
-    storageIdA: Scalars['Int'];
-    /** [RAW L2 DATA] StorageID for account B */
-    storageIdB: Scalars['Int'];
-    tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-    /** [RAW L2 DATA] Token ID of token bought by account A. Should coincide with tokenIDBS */
-    tokenIDAB: Scalars['Int'];
-    /** [RAW L2 DATA] Token ID of token sold by account A */
-    tokenIDAS: Scalars['Int'];
-    /** [RAW L2 DATA] Token ID of token bought by account B. Should coincide with tokenIDAS */
-    tokenIDBB: Scalars['Int'];
-    /** [RAW L2 DATA] Token ID of token sold by account B */
-    tokenIDBS: Scalars['Int'];
-    /** Explicit copy of __typename to make it usable when filtering */
-    typename: TransactionType;
-  };
-
-export type SwapNftAccountsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Account_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<Account_Filter>;
-};
-
-export type SwapNftNftsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<NonFungibleToken_Filter>;
-};
-
-export type SwapNftSlotsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountNftSlot_Filter>;
-};
-
-export type SwapNftTokenBalancesArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountTokenBalance_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountTokenBalance_Filter>;
-};
-
-export type SwapNft_Filter = {
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  accountA?: InputMaybe<Scalars['String']>;
-  accountA_?: InputMaybe<Account_Filter>;
-  accountA_contains?: InputMaybe<Scalars['String']>;
-  accountA_contains_nocase?: InputMaybe<Scalars['String']>;
-  accountA_ends_with?: InputMaybe<Scalars['String']>;
-  accountA_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  accountA_gt?: InputMaybe<Scalars['String']>;
-  accountA_gte?: InputMaybe<Scalars['String']>;
-  accountA_in?: InputMaybe<Array<Scalars['String']>>;
-  accountA_lt?: InputMaybe<Scalars['String']>;
-  accountA_lte?: InputMaybe<Scalars['String']>;
-  accountA_not?: InputMaybe<Scalars['String']>;
-  accountA_not_contains?: InputMaybe<Scalars['String']>;
-  accountA_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  accountA_not_ends_with?: InputMaybe<Scalars['String']>;
-  accountA_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  accountA_not_in?: InputMaybe<Array<Scalars['String']>>;
-  accountA_not_starts_with?: InputMaybe<Scalars['String']>;
-  accountA_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  accountA_starts_with?: InputMaybe<Scalars['String']>;
-  accountA_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  accountB?: InputMaybe<Scalars['String']>;
-  accountB_?: InputMaybe<Account_Filter>;
-  accountB_contains?: InputMaybe<Scalars['String']>;
-  accountB_contains_nocase?: InputMaybe<Scalars['String']>;
-  accountB_ends_with?: InputMaybe<Scalars['String']>;
-  accountB_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  accountB_gt?: InputMaybe<Scalars['String']>;
-  accountB_gte?: InputMaybe<Scalars['String']>;
-  accountB_in?: InputMaybe<Array<Scalars['String']>>;
-  accountB_lt?: InputMaybe<Scalars['String']>;
-  accountB_lte?: InputMaybe<Scalars['String']>;
-  accountB_not?: InputMaybe<Scalars['String']>;
-  accountB_not_contains?: InputMaybe<Scalars['String']>;
-  accountB_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  accountB_not_ends_with?: InputMaybe<Scalars['String']>;
-  accountB_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  accountB_not_in?: InputMaybe<Array<Scalars['String']>>;
-  accountB_not_starts_with?: InputMaybe<Scalars['String']>;
-  accountB_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  accountB_starts_with?: InputMaybe<Scalars['String']>;
-  accountB_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  accountIdA?: InputMaybe<Scalars['Int']>;
-  accountIdA_gt?: InputMaybe<Scalars['Int']>;
-  accountIdA_gte?: InputMaybe<Scalars['Int']>;
-  accountIdA_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountIdA_lt?: InputMaybe<Scalars['Int']>;
-  accountIdA_lte?: InputMaybe<Scalars['Int']>;
-  accountIdA_not?: InputMaybe<Scalars['Int']>;
-  accountIdA_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountIdB?: InputMaybe<Scalars['Int']>;
-  accountIdB_gt?: InputMaybe<Scalars['Int']>;
-  accountIdB_gte?: InputMaybe<Scalars['Int']>;
-  accountIdB_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountIdB_lt?: InputMaybe<Scalars['Int']>;
-  accountIdB_lte?: InputMaybe<Scalars['Int']>;
-  accountIdB_not?: InputMaybe<Scalars['Int']>;
-  accountIdB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  accounts?: InputMaybe<Array<Scalars['String']>>;
-  accounts_?: InputMaybe<Account_Filter>;
-  accounts_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  and?: InputMaybe<Array<InputMaybe<SwapNft_Filter>>>;
-  block?: InputMaybe<Scalars['String']>;
-  block_?: InputMaybe<Block_Filter>;
-  block_contains?: InputMaybe<Scalars['String']>;
-  block_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_ends_with?: InputMaybe<Scalars['String']>;
-  block_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_gt?: InputMaybe<Scalars['String']>;
-  block_gte?: InputMaybe<Scalars['String']>;
-  block_in?: InputMaybe<Array<Scalars['String']>>;
-  block_lt?: InputMaybe<Scalars['String']>;
-  block_lte?: InputMaybe<Scalars['String']>;
-  block_not?: InputMaybe<Scalars['String']>;
-  block_not_contains?: InputMaybe<Scalars['String']>;
-  block_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_not_ends_with?: InputMaybe<Scalars['String']>;
-  block_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_not_in?: InputMaybe<Array<Scalars['String']>>;
-  block_not_starts_with?: InputMaybe<Scalars['String']>;
-  block_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  block_starts_with?: InputMaybe<Scalars['String']>;
-  block_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data?: InputMaybe<Scalars['String']>;
-  data_contains?: InputMaybe<Scalars['String']>;
-  data_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_ends_with?: InputMaybe<Scalars['String']>;
-  data_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_gt?: InputMaybe<Scalars['String']>;
-  data_gte?: InputMaybe<Scalars['String']>;
-  data_in?: InputMaybe<Array<Scalars['String']>>;
-  data_lt?: InputMaybe<Scalars['String']>;
-  data_lte?: InputMaybe<Scalars['String']>;
-  data_not?: InputMaybe<Scalars['String']>;
-  data_not_contains?: InputMaybe<Scalars['String']>;
-  data_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_not_ends_with?: InputMaybe<Scalars['String']>;
-  data_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_not_in?: InputMaybe<Array<Scalars['String']>>;
-  data_not_starts_with?: InputMaybe<Scalars['String']>;
-  data_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data_starts_with?: InputMaybe<Scalars['String']>;
-  data_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fFillSA?: InputMaybe<Scalars['Int']>;
-  fFillSA_gt?: InputMaybe<Scalars['Int']>;
-  fFillSA_gte?: InputMaybe<Scalars['Int']>;
-  fFillSA_in?: InputMaybe<Array<Scalars['Int']>>;
-  fFillSA_lt?: InputMaybe<Scalars['Int']>;
-  fFillSA_lte?: InputMaybe<Scalars['Int']>;
-  fFillSA_not?: InputMaybe<Scalars['Int']>;
-  fFillSA_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  fFillSB?: InputMaybe<Scalars['Int']>;
-  fFillSB_gt?: InputMaybe<Scalars['Int']>;
-  fFillSB_gte?: InputMaybe<Scalars['Int']>;
-  fFillSB_in?: InputMaybe<Array<Scalars['Int']>>;
-  fFillSB_lt?: InputMaybe<Scalars['Int']>;
-  fFillSB_lte?: InputMaybe<Scalars['Int']>;
-  fFillSB_not?: InputMaybe<Scalars['Int']>;
-  fFillSB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  feeBipsA?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_gt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_gte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsA_lt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_lte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_not?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsB?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_gt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_gte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsB_lt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_lte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_not?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsHiA?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_gt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_gte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsHiA_lt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_lte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_not?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsHiB?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_gt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_gte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsHiB_lt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_lte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_not?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillAmountBorSA?: InputMaybe<Scalars['Boolean']>;
-  fillAmountBorSA_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  fillAmountBorSA_not?: InputMaybe<Scalars['Boolean']>;
-  fillAmountBorSA_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  fillAmountBorSB?: InputMaybe<Scalars['Boolean']>;
-  fillAmountBorSB_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  fillAmountBorSB_not?: InputMaybe<Scalars['Boolean']>;
-  fillAmountBorSB_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  fillBA?: InputMaybe<Scalars['BigInt']>;
-  fillBA_gt?: InputMaybe<Scalars['BigInt']>;
-  fillBA_gte?: InputMaybe<Scalars['BigInt']>;
-  fillBA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillBA_lt?: InputMaybe<Scalars['BigInt']>;
-  fillBA_lte?: InputMaybe<Scalars['BigInt']>;
-  fillBA_not?: InputMaybe<Scalars['BigInt']>;
-  fillBA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillBB?: InputMaybe<Scalars['BigInt']>;
-  fillBB_gt?: InputMaybe<Scalars['BigInt']>;
-  fillBB_gte?: InputMaybe<Scalars['BigInt']>;
-  fillBB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillBB_lt?: InputMaybe<Scalars['BigInt']>;
-  fillBB_lte?: InputMaybe<Scalars['BigInt']>;
-  fillBB_not?: InputMaybe<Scalars['BigInt']>;
-  fillBB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillSA?: InputMaybe<Scalars['BigInt']>;
-  fillSA_gt?: InputMaybe<Scalars['BigInt']>;
-  fillSA_gte?: InputMaybe<Scalars['BigInt']>;
-  fillSA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillSA_lt?: InputMaybe<Scalars['BigInt']>;
-  fillSA_lte?: InputMaybe<Scalars['BigInt']>;
-  fillSA_not?: InputMaybe<Scalars['BigInt']>;
-  fillSA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillSB?: InputMaybe<Scalars['BigInt']>;
-  fillSB_gt?: InputMaybe<Scalars['BigInt']>;
-  fillSB_gte?: InputMaybe<Scalars['BigInt']>;
-  fillSB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillSB_lt?: InputMaybe<Scalars['BigInt']>;
-  fillSB_lte?: InputMaybe<Scalars['BigInt']>;
-  fillSB_not?: InputMaybe<Scalars['BigInt']>;
-  fillSB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  internalID?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  internalID_lt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  limitMaskA?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_gt?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_gte?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  limitMaskA_lt?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_lte?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_not?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  limitMaskB?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_gt?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_gte?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  limitMaskB_lt?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_lte?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_not?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  nfts?: InputMaybe<Array<Scalars['String']>>;
-  nfts_?: InputMaybe<NonFungibleToken_Filter>;
-  nfts_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  or?: InputMaybe<Array<InputMaybe<SwapNft_Filter>>>;
-  orderDataA?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_gt?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_gte?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  orderDataA_lt?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_lte?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_not?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  orderDataB?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_gt?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_gte?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  orderDataB_lt?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_lte?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_not?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  slotABuyer?: InputMaybe<Scalars['String']>;
-  slotABuyer_?: InputMaybe<AccountNftSlot_Filter>;
-  slotABuyer_contains?: InputMaybe<Scalars['String']>;
-  slotABuyer_contains_nocase?: InputMaybe<Scalars['String']>;
-  slotABuyer_ends_with?: InputMaybe<Scalars['String']>;
-  slotABuyer_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slotABuyer_gt?: InputMaybe<Scalars['String']>;
-  slotABuyer_gte?: InputMaybe<Scalars['String']>;
-  slotABuyer_in?: InputMaybe<Array<Scalars['String']>>;
-  slotABuyer_lt?: InputMaybe<Scalars['String']>;
-  slotABuyer_lte?: InputMaybe<Scalars['String']>;
-  slotABuyer_not?: InputMaybe<Scalars['String']>;
-  slotABuyer_not_contains?: InputMaybe<Scalars['String']>;
-  slotABuyer_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  slotABuyer_not_ends_with?: InputMaybe<Scalars['String']>;
-  slotABuyer_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slotABuyer_not_in?: InputMaybe<Array<Scalars['String']>>;
-  slotABuyer_not_starts_with?: InputMaybe<Scalars['String']>;
-  slotABuyer_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slotABuyer_starts_with?: InputMaybe<Scalars['String']>;
-  slotABuyer_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slotASeller?: InputMaybe<Scalars['String']>;
-  slotASeller_?: InputMaybe<AccountNftSlot_Filter>;
-  slotASeller_contains?: InputMaybe<Scalars['String']>;
-  slotASeller_contains_nocase?: InputMaybe<Scalars['String']>;
-  slotASeller_ends_with?: InputMaybe<Scalars['String']>;
-  slotASeller_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slotASeller_gt?: InputMaybe<Scalars['String']>;
-  slotASeller_gte?: InputMaybe<Scalars['String']>;
-  slotASeller_in?: InputMaybe<Array<Scalars['String']>>;
-  slotASeller_lt?: InputMaybe<Scalars['String']>;
-  slotASeller_lte?: InputMaybe<Scalars['String']>;
-  slotASeller_not?: InputMaybe<Scalars['String']>;
-  slotASeller_not_contains?: InputMaybe<Scalars['String']>;
-  slotASeller_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  slotASeller_not_ends_with?: InputMaybe<Scalars['String']>;
-  slotASeller_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slotASeller_not_in?: InputMaybe<Array<Scalars['String']>>;
-  slotASeller_not_starts_with?: InputMaybe<Scalars['String']>;
-  slotASeller_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slotASeller_starts_with?: InputMaybe<Scalars['String']>;
-  slotASeller_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slotBBuyer?: InputMaybe<Scalars['String']>;
-  slotBBuyer_?: InputMaybe<AccountNftSlot_Filter>;
-  slotBBuyer_contains?: InputMaybe<Scalars['String']>;
-  slotBBuyer_contains_nocase?: InputMaybe<Scalars['String']>;
-  slotBBuyer_ends_with?: InputMaybe<Scalars['String']>;
-  slotBBuyer_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slotBBuyer_gt?: InputMaybe<Scalars['String']>;
-  slotBBuyer_gte?: InputMaybe<Scalars['String']>;
-  slotBBuyer_in?: InputMaybe<Array<Scalars['String']>>;
-  slotBBuyer_lt?: InputMaybe<Scalars['String']>;
-  slotBBuyer_lte?: InputMaybe<Scalars['String']>;
-  slotBBuyer_not?: InputMaybe<Scalars['String']>;
-  slotBBuyer_not_contains?: InputMaybe<Scalars['String']>;
-  slotBBuyer_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  slotBBuyer_not_ends_with?: InputMaybe<Scalars['String']>;
-  slotBBuyer_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slotBBuyer_not_in?: InputMaybe<Array<Scalars['String']>>;
-  slotBBuyer_not_starts_with?: InputMaybe<Scalars['String']>;
-  slotBBuyer_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slotBBuyer_starts_with?: InputMaybe<Scalars['String']>;
-  slotBBuyer_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slotBSeller?: InputMaybe<Scalars['String']>;
-  slotBSeller_?: InputMaybe<AccountNftSlot_Filter>;
-  slotBSeller_contains?: InputMaybe<Scalars['String']>;
-  slotBSeller_contains_nocase?: InputMaybe<Scalars['String']>;
-  slotBSeller_ends_with?: InputMaybe<Scalars['String']>;
-  slotBSeller_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slotBSeller_gt?: InputMaybe<Scalars['String']>;
-  slotBSeller_gte?: InputMaybe<Scalars['String']>;
-  slotBSeller_in?: InputMaybe<Array<Scalars['String']>>;
-  slotBSeller_lt?: InputMaybe<Scalars['String']>;
-  slotBSeller_lte?: InputMaybe<Scalars['String']>;
-  slotBSeller_not?: InputMaybe<Scalars['String']>;
-  slotBSeller_not_contains?: InputMaybe<Scalars['String']>;
-  slotBSeller_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  slotBSeller_not_ends_with?: InputMaybe<Scalars['String']>;
-  slotBSeller_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slotBSeller_not_in?: InputMaybe<Array<Scalars['String']>>;
-  slotBSeller_not_starts_with?: InputMaybe<Scalars['String']>;
-  slotBSeller_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slotBSeller_starts_with?: InputMaybe<Scalars['String']>;
-  slotBSeller_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slots?: InputMaybe<Array<Scalars['String']>>;
-  slots_?: InputMaybe<AccountNftSlot_Filter>;
-  slots_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  slots_not?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  storageIdA?: InputMaybe<Scalars['Int']>;
-  storageIdA_gt?: InputMaybe<Scalars['Int']>;
-  storageIdA_gte?: InputMaybe<Scalars['Int']>;
-  storageIdA_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageIdA_lt?: InputMaybe<Scalars['Int']>;
-  storageIdA_lte?: InputMaybe<Scalars['Int']>;
-  storageIdA_not?: InputMaybe<Scalars['Int']>;
-  storageIdA_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageIdB?: InputMaybe<Scalars['Int']>;
-  storageIdB_gt?: InputMaybe<Scalars['Int']>;
-  storageIdB_gte?: InputMaybe<Scalars['Int']>;
-  storageIdB_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageIdB_lt?: InputMaybe<Scalars['Int']>;
-  storageIdB_lte?: InputMaybe<Scalars['Int']>;
-  storageIdB_not?: InputMaybe<Scalars['Int']>;
-  storageIdB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenBalances?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_?: InputMaybe<AccountTokenBalance_Filter>;
-  tokenBalances_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenIDAB?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_gt?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_gte?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDAB_lt?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_lte?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_not?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDAS?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_gt?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_gte?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDAS_lt?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_lte?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_not?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDBB?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_gt?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_gte?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDBB_lt?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_lte?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_not?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDBS?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_gt?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_gte?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDBS_lt?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_lte?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_not?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  typename?: InputMaybe<TransactionType>;
-  typename_in?: InputMaybe<Array<TransactionType>>;
-  typename_not?: InputMaybe<TransactionType>;
-  typename_not_in?: InputMaybe<Array<TransactionType>>;
-};
-
-export enum SwapNft_OrderBy {
-  AccountA = 'accountA',
-  AccountAAddress = 'accountA__address',
-  AccountACreatedAt = 'accountA__createdAt',
-  AccountAId = 'accountA__id',
-  AccountAInternalId = 'accountA__internalID',
-  AccountALastUpdatedAt = 'accountA__lastUpdatedAt',
-  AccountB = 'accountB',
-  AccountBAddress = 'accountB__address',
-  AccountBCreatedAt = 'accountB__createdAt',
-  AccountBId = 'accountB__id',
-  AccountBInternalId = 'accountB__internalID',
-  AccountBLastUpdatedAt = 'accountB__lastUpdatedAt',
-  AccountIdA = 'accountIdA',
-  AccountIdB = 'accountIdB',
-  Accounts = 'accounts',
-  Block = 'block',
-  BlockAccountUpdateCount = 'block__accountUpdateCount',
-  BlockAccountUpdateSize = 'block__accountUpdateSize',
-  BlockAddCount = 'block__addCount',
-  BlockBlockHash = 'block__blockHash',
-  BlockBlockSize = 'block__blockSize',
-  BlockBlockType = 'block__blockType',
-  BlockBlockVersion = 'block__blockVersion',
-  BlockData = 'block__data',
-  BlockDepositCount = 'block__depositCount',
-  BlockDepositSize = 'block__depositSize',
-  BlockExchange = 'block__exchange',
-  BlockGasLimit = 'block__gasLimit',
-  BlockGasPrice = 'block__gasPrice',
-  BlockHeight = 'block__height',
-  BlockId = 'block__id',
-  BlockInternalId = 'block__internalID',
-  BlockNumConditionalTransactions = 'block__numConditionalTransactions',
-  BlockOffchainData = 'block__offchainData',
-  BlockOperatorAccountId = 'block__operatorAccountID',
-  BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeBips = 'block__protocolFeeBips',
-  BlockRemoveCount = 'block__removeCount',
-  BlockSignatureVerificationCount = 'block__signatureVerificationCount',
-  BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
-  BlockSwapCount = 'block__swapCount',
-  BlockTimestamp = 'block__timestamp',
-  BlockTransactionCount = 'block__transactionCount',
-  BlockTransferCount = 'block__transferCount',
-  BlockTxHash = 'block__txHash',
-  BlockWithdrawSize = 'block__withdrawSize',
-  BlockWithdrawalCount = 'block__withdrawalCount',
-  Data = 'data',
-  FFillSa = 'fFillSA',
-  FFillSb = 'fFillSB',
-  FeeBipsA = 'feeBipsA',
-  FeeBipsB = 'feeBipsB',
-  FeeBipsHiA = 'feeBipsHiA',
-  FeeBipsHiB = 'feeBipsHiB',
-  FillAmountBorSa = 'fillAmountBorSA',
-  FillAmountBorSb = 'fillAmountBorSB',
-  FillBa = 'fillBA',
-  FillBb = 'fillBB',
-  FillSa = 'fillSA',
-  FillSb = 'fillSB',
-  Id = 'id',
-  InternalId = 'internalID',
-  LimitMaskA = 'limitMaskA',
-  LimitMaskB = 'limitMaskB',
-  Nfts = 'nfts',
-  OrderDataA = 'orderDataA',
-  OrderDataB = 'orderDataB',
-  SlotABuyer = 'slotABuyer',
-  SlotABuyerBalance = 'slotABuyer__balance',
-  SlotABuyerCreatedAt = 'slotABuyer__createdAt',
-  SlotABuyerId = 'slotABuyer__id',
-  SlotABuyerLastUpdatedAt = 'slotABuyer__lastUpdatedAt',
-  SlotASeller = 'slotASeller',
-  SlotASellerBalance = 'slotASeller__balance',
-  SlotASellerCreatedAt = 'slotASeller__createdAt',
-  SlotASellerId = 'slotASeller__id',
-  SlotASellerLastUpdatedAt = 'slotASeller__lastUpdatedAt',
-  SlotBBuyer = 'slotBBuyer',
-  SlotBBuyerBalance = 'slotBBuyer__balance',
-  SlotBBuyerCreatedAt = 'slotBBuyer__createdAt',
-  SlotBBuyerId = 'slotBBuyer__id',
-  SlotBBuyerLastUpdatedAt = 'slotBBuyer__lastUpdatedAt',
-  SlotBSeller = 'slotBSeller',
-  SlotBSellerBalance = 'slotBSeller__balance',
-  SlotBSellerCreatedAt = 'slotBSeller__createdAt',
-  SlotBSellerId = 'slotBSeller__id',
-  SlotBSellerLastUpdatedAt = 'slotBSeller__lastUpdatedAt',
-  Slots = 'slots',
-  StorageIdA = 'storageIdA',
-  StorageIdB = 'storageIdB',
-  TokenBalances = 'tokenBalances',
-  TokenIdab = 'tokenIDAB',
-  TokenIdas = 'tokenIDAS',
-  TokenIdbb = 'tokenIDBB',
-  TokenIdbs = 'tokenIDBS',
-  Typename = 'typename',
-}
-
-export type Swap_Filter = {
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  account?: InputMaybe<Scalars['String']>;
-  accountIdA?: InputMaybe<Scalars['Int']>;
-  accountIdA_gt?: InputMaybe<Scalars['Int']>;
-  accountIdA_gte?: InputMaybe<Scalars['Int']>;
-  accountIdA_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountIdA_lt?: InputMaybe<Scalars['Int']>;
-  accountIdA_lte?: InputMaybe<Scalars['Int']>;
-  accountIdA_not?: InputMaybe<Scalars['Int']>;
-  accountIdA_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountIdB?: InputMaybe<Scalars['Int']>;
-  accountIdB_gt?: InputMaybe<Scalars['Int']>;
-  accountIdB_gte?: InputMaybe<Scalars['Int']>;
-  accountIdB_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountIdB_lt?: InputMaybe<Scalars['Int']>;
-  accountIdB_lte?: InputMaybe<Scalars['Int']>;
-  accountIdB_not?: InputMaybe<Scalars['Int']>;
-  accountIdB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  account_?: InputMaybe<Account_Filter>;
-  account_contains?: InputMaybe<Scalars['String']>;
-  account_contains_nocase?: InputMaybe<Scalars['String']>;
-  account_ends_with?: InputMaybe<Scalars['String']>;
-  account_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_gt?: InputMaybe<Scalars['String']>;
-  account_gte?: InputMaybe<Scalars['String']>;
-  account_in?: InputMaybe<Array<Scalars['String']>>;
-  account_lt?: InputMaybe<Scalars['String']>;
-  account_lte?: InputMaybe<Scalars['String']>;
-  account_not?: InputMaybe<Scalars['String']>;
-  account_not_contains?: InputMaybe<Scalars['String']>;
-  account_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  account_not_ends_with?: InputMaybe<Scalars['String']>;
-  account_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  account_not_in?: InputMaybe<Array<Scalars['String']>>;
-  account_not_starts_with?: InputMaybe<Scalars['String']>;
-  account_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  account_starts_with?: InputMaybe<Scalars['String']>;
-  account_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  accounts?: InputMaybe<Array<Scalars['String']>>;
-  accounts_?: InputMaybe<Account_Filter>;
-  accounts_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  and?: InputMaybe<Array<InputMaybe<Swap_Filter>>>;
-  block?: InputMaybe<Scalars['String']>;
-  block_?: InputMaybe<Block_Filter>;
-  block_contains?: InputMaybe<Scalars['String']>;
-  block_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_ends_with?: InputMaybe<Scalars['String']>;
-  block_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_gt?: InputMaybe<Scalars['String']>;
-  block_gte?: InputMaybe<Scalars['String']>;
-  block_in?: InputMaybe<Array<Scalars['String']>>;
-  block_lt?: InputMaybe<Scalars['String']>;
-  block_lte?: InputMaybe<Scalars['String']>;
-  block_not?: InputMaybe<Scalars['String']>;
-  block_not_contains?: InputMaybe<Scalars['String']>;
-  block_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_not_ends_with?: InputMaybe<Scalars['String']>;
-  block_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_not_in?: InputMaybe<Array<Scalars['String']>>;
-  block_not_starts_with?: InputMaybe<Scalars['String']>;
-  block_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  block_starts_with?: InputMaybe<Scalars['String']>;
-  block_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data?: InputMaybe<Scalars['String']>;
-  data_contains?: InputMaybe<Scalars['String']>;
-  data_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_ends_with?: InputMaybe<Scalars['String']>;
-  data_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_gt?: InputMaybe<Scalars['String']>;
-  data_gte?: InputMaybe<Scalars['String']>;
-  data_in?: InputMaybe<Array<Scalars['String']>>;
-  data_lt?: InputMaybe<Scalars['String']>;
-  data_lte?: InputMaybe<Scalars['String']>;
-  data_not?: InputMaybe<Scalars['String']>;
-  data_not_contains?: InputMaybe<Scalars['String']>;
-  data_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_not_ends_with?: InputMaybe<Scalars['String']>;
-  data_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_not_in?: InputMaybe<Array<Scalars['String']>>;
-  data_not_starts_with?: InputMaybe<Scalars['String']>;
-  data_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data_starts_with?: InputMaybe<Scalars['String']>;
-  data_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fFillSA?: InputMaybe<Scalars['Int']>;
-  fFillSA_gt?: InputMaybe<Scalars['Int']>;
-  fFillSA_gte?: InputMaybe<Scalars['Int']>;
-  fFillSA_in?: InputMaybe<Array<Scalars['Int']>>;
-  fFillSA_lt?: InputMaybe<Scalars['Int']>;
-  fFillSA_lte?: InputMaybe<Scalars['Int']>;
-  fFillSA_not?: InputMaybe<Scalars['Int']>;
-  fFillSA_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  fFillSB?: InputMaybe<Scalars['Int']>;
-  fFillSB_gt?: InputMaybe<Scalars['Int']>;
-  fFillSB_gte?: InputMaybe<Scalars['Int']>;
-  fFillSB_in?: InputMaybe<Array<Scalars['Int']>>;
-  fFillSB_lt?: InputMaybe<Scalars['Int']>;
-  fFillSB_lte?: InputMaybe<Scalars['Int']>;
-  fFillSB_not?: InputMaybe<Scalars['Int']>;
-  fFillSB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  feeA?: InputMaybe<Scalars['BigInt']>;
-  feeA_gt?: InputMaybe<Scalars['BigInt']>;
-  feeA_gte?: InputMaybe<Scalars['BigInt']>;
-  feeA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeA_lt?: InputMaybe<Scalars['BigInt']>;
-  feeA_lte?: InputMaybe<Scalars['BigInt']>;
-  feeA_not?: InputMaybe<Scalars['BigInt']>;
-  feeA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeB?: InputMaybe<Scalars['BigInt']>;
-  feeB_gt?: InputMaybe<Scalars['BigInt']>;
-  feeB_gte?: InputMaybe<Scalars['BigInt']>;
-  feeB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeB_lt?: InputMaybe<Scalars['BigInt']>;
-  feeB_lte?: InputMaybe<Scalars['BigInt']>;
-  feeB_not?: InputMaybe<Scalars['BigInt']>;
-  feeB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsA?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_gt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_gte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsA_lt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_lte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_not?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsB?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_gt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_gte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsB_lt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_lte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_not?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsHiA?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_gt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_gte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsHiA_lt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_lte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_not?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsHiB?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_gt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_gte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsHiB_lt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_lte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_not?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillAmountBorSA?: InputMaybe<Scalars['Boolean']>;
-  fillAmountBorSA_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  fillAmountBorSA_not?: InputMaybe<Scalars['Boolean']>;
-  fillAmountBorSA_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  fillAmountBorSB?: InputMaybe<Scalars['Boolean']>;
-  fillAmountBorSB_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  fillAmountBorSB_not?: InputMaybe<Scalars['Boolean']>;
-  fillAmountBorSB_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  fillBA?: InputMaybe<Scalars['BigInt']>;
-  fillBA_gt?: InputMaybe<Scalars['BigInt']>;
-  fillBA_gte?: InputMaybe<Scalars['BigInt']>;
-  fillBA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillBA_lt?: InputMaybe<Scalars['BigInt']>;
-  fillBA_lte?: InputMaybe<Scalars['BigInt']>;
-  fillBA_not?: InputMaybe<Scalars['BigInt']>;
-  fillBA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillBB?: InputMaybe<Scalars['BigInt']>;
-  fillBB_gt?: InputMaybe<Scalars['BigInt']>;
-  fillBB_gte?: InputMaybe<Scalars['BigInt']>;
-  fillBB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillBB_lt?: InputMaybe<Scalars['BigInt']>;
-  fillBB_lte?: InputMaybe<Scalars['BigInt']>;
-  fillBB_not?: InputMaybe<Scalars['BigInt']>;
-  fillBB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillSA?: InputMaybe<Scalars['BigInt']>;
-  fillSA_gt?: InputMaybe<Scalars['BigInt']>;
-  fillSA_gte?: InputMaybe<Scalars['BigInt']>;
-  fillSA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillSA_lt?: InputMaybe<Scalars['BigInt']>;
-  fillSA_lte?: InputMaybe<Scalars['BigInt']>;
-  fillSA_not?: InputMaybe<Scalars['BigInt']>;
-  fillSA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillSB?: InputMaybe<Scalars['BigInt']>;
-  fillSB_gt?: InputMaybe<Scalars['BigInt']>;
-  fillSB_gte?: InputMaybe<Scalars['BigInt']>;
-  fillSB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillSB_lt?: InputMaybe<Scalars['BigInt']>;
-  fillSB_lte?: InputMaybe<Scalars['BigInt']>;
-  fillSB_not?: InputMaybe<Scalars['BigInt']>;
-  fillSB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  internalID?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  internalID_lt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  limitMaskA?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_gt?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_gte?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  limitMaskA_lt?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_lte?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_not?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  limitMaskB?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_gt?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_gte?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  limitMaskB_lt?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_lte?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_not?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  or?: InputMaybe<Array<InputMaybe<Swap_Filter>>>;
-  orderDataA?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_gt?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_gte?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  orderDataA_lt?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_lte?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_not?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  orderDataB?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_gt?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_gte?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  orderDataB_lt?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_lte?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_not?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  pair?: InputMaybe<Scalars['String']>;
-  pair_?: InputMaybe<Pair_Filter>;
-  pair_contains?: InputMaybe<Scalars['String']>;
-  pair_contains_nocase?: InputMaybe<Scalars['String']>;
-  pair_ends_with?: InputMaybe<Scalars['String']>;
-  pair_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  pair_gt?: InputMaybe<Scalars['String']>;
-  pair_gte?: InputMaybe<Scalars['String']>;
-  pair_in?: InputMaybe<Array<Scalars['String']>>;
-  pair_lt?: InputMaybe<Scalars['String']>;
-  pair_lte?: InputMaybe<Scalars['String']>;
-  pair_not?: InputMaybe<Scalars['String']>;
-  pair_not_contains?: InputMaybe<Scalars['String']>;
-  pair_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  pair_not_ends_with?: InputMaybe<Scalars['String']>;
-  pair_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  pair_not_in?: InputMaybe<Array<Scalars['String']>>;
-  pair_not_starts_with?: InputMaybe<Scalars['String']>;
-  pair_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  pair_starts_with?: InputMaybe<Scalars['String']>;
-  pair_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  protocolFeeA?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeA_gt?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeA_gte?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  protocolFeeA_lt?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeA_lte?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeA_not?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  protocolFeeB?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeB_gt?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeB_gte?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  protocolFeeB_lt?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeB_lte?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeB_not?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  storageIdA?: InputMaybe<Scalars['Int']>;
-  storageIdA_gt?: InputMaybe<Scalars['Int']>;
-  storageIdA_gte?: InputMaybe<Scalars['Int']>;
-  storageIdA_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageIdA_lt?: InputMaybe<Scalars['Int']>;
-  storageIdA_lte?: InputMaybe<Scalars['Int']>;
-  storageIdA_not?: InputMaybe<Scalars['Int']>;
-  storageIdA_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageIdB?: InputMaybe<Scalars['Int']>;
-  storageIdB_gt?: InputMaybe<Scalars['Int']>;
-  storageIdB_gte?: InputMaybe<Scalars['Int']>;
-  storageIdB_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageIdB_lt?: InputMaybe<Scalars['Int']>;
-  storageIdB_lte?: InputMaybe<Scalars['Int']>;
-  storageIdB_not?: InputMaybe<Scalars['Int']>;
-  storageIdB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenA?: InputMaybe<Scalars['String']>;
-  tokenAPrice?: InputMaybe<Scalars['BigInt']>;
-  tokenAPrice_gt?: InputMaybe<Scalars['BigInt']>;
-  tokenAPrice_gte?: InputMaybe<Scalars['BigInt']>;
-  tokenAPrice_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  tokenAPrice_lt?: InputMaybe<Scalars['BigInt']>;
-  tokenAPrice_lte?: InputMaybe<Scalars['BigInt']>;
-  tokenAPrice_not?: InputMaybe<Scalars['BigInt']>;
-  tokenAPrice_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  tokenA_?: InputMaybe<Token_Filter>;
-  tokenA_contains?: InputMaybe<Scalars['String']>;
-  tokenA_contains_nocase?: InputMaybe<Scalars['String']>;
-  tokenA_ends_with?: InputMaybe<Scalars['String']>;
-  tokenA_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenA_gt?: InputMaybe<Scalars['String']>;
-  tokenA_gte?: InputMaybe<Scalars['String']>;
-  tokenA_in?: InputMaybe<Array<Scalars['String']>>;
-  tokenA_lt?: InputMaybe<Scalars['String']>;
-  tokenA_lte?: InputMaybe<Scalars['String']>;
-  tokenA_not?: InputMaybe<Scalars['String']>;
-  tokenA_not_contains?: InputMaybe<Scalars['String']>;
-  tokenA_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  tokenA_not_ends_with?: InputMaybe<Scalars['String']>;
-  tokenA_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenA_not_in?: InputMaybe<Array<Scalars['String']>>;
-  tokenA_not_starts_with?: InputMaybe<Scalars['String']>;
-  tokenA_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenA_starts_with?: InputMaybe<Scalars['String']>;
-  tokenA_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenB?: InputMaybe<Scalars['String']>;
-  tokenBPrice?: InputMaybe<Scalars['BigInt']>;
-  tokenBPrice_gt?: InputMaybe<Scalars['BigInt']>;
-  tokenBPrice_gte?: InputMaybe<Scalars['BigInt']>;
-  tokenBPrice_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  tokenBPrice_lt?: InputMaybe<Scalars['BigInt']>;
-  tokenBPrice_lte?: InputMaybe<Scalars['BigInt']>;
-  tokenBPrice_not?: InputMaybe<Scalars['BigInt']>;
-  tokenBPrice_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  tokenB_?: InputMaybe<Token_Filter>;
-  tokenB_contains?: InputMaybe<Scalars['String']>;
-  tokenB_contains_nocase?: InputMaybe<Scalars['String']>;
-  tokenB_ends_with?: InputMaybe<Scalars['String']>;
-  tokenB_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenB_gt?: InputMaybe<Scalars['String']>;
-  tokenB_gte?: InputMaybe<Scalars['String']>;
-  tokenB_in?: InputMaybe<Array<Scalars['String']>>;
-  tokenB_lt?: InputMaybe<Scalars['String']>;
-  tokenB_lte?: InputMaybe<Scalars['String']>;
-  tokenB_not?: InputMaybe<Scalars['String']>;
-  tokenB_not_contains?: InputMaybe<Scalars['String']>;
-  tokenB_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  tokenB_not_ends_with?: InputMaybe<Scalars['String']>;
-  tokenB_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenB_not_in?: InputMaybe<Array<Scalars['String']>>;
-  tokenB_not_starts_with?: InputMaybe<Scalars['String']>;
-  tokenB_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenB_starts_with?: InputMaybe<Scalars['String']>;
-  tokenB_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenBalances?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_?: InputMaybe<AccountTokenBalance_Filter>;
-  tokenBalances_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenIDAB?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_gt?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_gte?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDAB_lt?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_lte?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_not?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDAS?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_gt?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_gte?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDAS_lt?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_lte?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_not?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDBB?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_gt?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_gte?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDBB_lt?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_lte?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_not?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDBS?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_gt?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_gte?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDBS_lt?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_lte?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_not?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  typename?: InputMaybe<TransactionType>;
-  typename_in?: InputMaybe<Array<TransactionType>>;
-  typename_not?: InputMaybe<TransactionType>;
-  typename_not_in?: InputMaybe<Array<TransactionType>>;
-};
-
-export enum Swap_OrderBy {
-  Account = 'account',
-  AccountIdA = 'accountIdA',
-  AccountIdB = 'accountIdB',
-  AccountAddress = 'account__address',
-  AccountCreatedAt = 'account__createdAt',
-  AccountId = 'account__id',
-  AccountInternalId = 'account__internalID',
-  AccountLastUpdatedAt = 'account__lastUpdatedAt',
-  Accounts = 'accounts',
-  Block = 'block',
-  BlockAccountUpdateCount = 'block__accountUpdateCount',
-  BlockAccountUpdateSize = 'block__accountUpdateSize',
-  BlockAddCount = 'block__addCount',
-  BlockBlockHash = 'block__blockHash',
-  BlockBlockSize = 'block__blockSize',
-  BlockBlockType = 'block__blockType',
-  BlockBlockVersion = 'block__blockVersion',
-  BlockData = 'block__data',
-  BlockDepositCount = 'block__depositCount',
-  BlockDepositSize = 'block__depositSize',
-  BlockExchange = 'block__exchange',
-  BlockGasLimit = 'block__gasLimit',
-  BlockGasPrice = 'block__gasPrice',
-  BlockHeight = 'block__height',
-  BlockId = 'block__id',
-  BlockInternalId = 'block__internalID',
-  BlockNumConditionalTransactions = 'block__numConditionalTransactions',
-  BlockOffchainData = 'block__offchainData',
-  BlockOperatorAccountId = 'block__operatorAccountID',
-  BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeBips = 'block__protocolFeeBips',
-  BlockRemoveCount = 'block__removeCount',
-  BlockSignatureVerificationCount = 'block__signatureVerificationCount',
-  BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
-  BlockSwapCount = 'block__swapCount',
-  BlockTimestamp = 'block__timestamp',
-  BlockTransactionCount = 'block__transactionCount',
-  BlockTransferCount = 'block__transferCount',
-  BlockTxHash = 'block__txHash',
-  BlockWithdrawSize = 'block__withdrawSize',
-  BlockWithdrawalCount = 'block__withdrawalCount',
-  Data = 'data',
-  FFillSa = 'fFillSA',
-  FFillSb = 'fFillSB',
-  FeeA = 'feeA',
-  FeeB = 'feeB',
-  FeeBipsA = 'feeBipsA',
-  FeeBipsB = 'feeBipsB',
-  FeeBipsHiA = 'feeBipsHiA',
-  FeeBipsHiB = 'feeBipsHiB',
-  FillAmountBorSa = 'fillAmountBorSA',
-  FillAmountBorSb = 'fillAmountBorSB',
-  FillBa = 'fillBA',
-  FillBb = 'fillBB',
-  FillSa = 'fillSA',
-  FillSb = 'fillSB',
-  Id = 'id',
-  InternalId = 'internalID',
-  LimitMaskA = 'limitMaskA',
-  LimitMaskB = 'limitMaskB',
-  OrderDataA = 'orderDataA',
-  OrderDataB = 'orderDataB',
-  Pair = 'pair',
-  PairId = 'pair__id',
-  PairInternalId = 'pair__internalID',
-  PairToken0Price = 'pair__token0Price',
-  PairToken1Price = 'pair__token1Price',
-  PairTradedVolumeToken0 = 'pair__tradedVolumeToken0',
-  PairTradedVolumeToken0Orderbook = 'pair__tradedVolumeToken0Orderbook',
-  PairTradedVolumeToken0Swap = 'pair__tradedVolumeToken0Swap',
-  PairTradedVolumeToken1 = 'pair__tradedVolumeToken1',
-  PairTradedVolumeToken1Orderbook = 'pair__tradedVolumeToken1Orderbook',
-  PairTradedVolumeToken1Swap = 'pair__tradedVolumeToken1Swap',
-  ProtocolFeeA = 'protocolFeeA',
-  ProtocolFeeB = 'protocolFeeB',
-  StorageIdA = 'storageIdA',
-  StorageIdB = 'storageIdB',
-  TokenA = 'tokenA',
-  TokenAPrice = 'tokenAPrice',
-  TokenAAddress = 'tokenA__address',
-  TokenADecimals = 'tokenA__decimals',
-  TokenAId = 'tokenA__id',
-  TokenAInternalId = 'tokenA__internalID',
-  TokenAName = 'tokenA__name',
-  TokenASymbol = 'tokenA__symbol',
-  TokenATradedVolume = 'tokenA__tradedVolume',
-  TokenATradedVolumeOrderbook = 'tokenA__tradedVolumeOrderbook',
-  TokenATradedVolumeSwap = 'tokenA__tradedVolumeSwap',
-  TokenB = 'tokenB',
-  TokenBPrice = 'tokenBPrice',
-  TokenBAddress = 'tokenB__address',
-  TokenBDecimals = 'tokenB__decimals',
-  TokenBId = 'tokenB__id',
-  TokenBInternalId = 'tokenB__internalID',
-  TokenBName = 'tokenB__name',
-  TokenBSymbol = 'tokenB__symbol',
-  TokenBTradedVolume = 'tokenB__tradedVolume',
-  TokenBTradedVolumeOrderbook = 'tokenB__tradedVolumeOrderbook',
-  TokenBTradedVolumeSwap = 'tokenB__tradedVolumeSwap',
-  TokenBalances = 'tokenBalances',
-  TokenIdab = 'tokenIDAB',
-  TokenIdas = 'tokenIDAS',
-  TokenIdbb = 'tokenIDBB',
-  TokenIdbs = 'tokenIDBS',
-  Typename = 'typename',
-}
 
 export type Token = {
   __typename?: 'Token';
@@ -8699,651 +6151,6 @@ export enum Token_OrderBy {
   WeeklyEntities = 'weeklyEntities',
 }
 
-export type TradeNft = Transaction &
-  TransactionNft & {
-    __typename?: 'TradeNFT';
-    /** Account entity that bought the NFT */
-    accountBuyer: Account;
-    /** [RAW L2 DATA] Account ID of account A */
-    accountIdA: Scalars['Int'];
-    /** [RAW L2 DATA] Account ID of account B */
-    accountIdB: Scalars['Int'];
-    /** Account entity that sold the NFT */
-    accountSeller: Account;
-    accounts?: Maybe<Array<Account>>;
-    block: Block;
-    data: Scalars['String'];
-    /** [RAW L2 DATA] Float encoded value for fillSA represented as an Int */
-    fFillSA: Scalars['Int'];
-    /** [RAW L2 DATA] Float encoded value for fillSB represented as an Int */
-    fFillSB: Scalars['Int'];
-    /** [RAW L2 DATA] Fee bips for order A */
-    feeBipsA: Scalars['BigInt'];
-    /** [RAW L2 DATA] Fee bips for order B */
-    feeBipsB: Scalars['BigInt'];
-    /** [RAW L2 DATA] Order data A */
-    feeBipsHiA: Scalars['BigInt'];
-    /** [RAW L2 DATA] Order data B */
-    feeBipsHiB: Scalars['BigInt'];
-    /** [RAW L2 DATA] Fee paid by Account B with token A */
-    feeBuyer: Scalars['BigInt'];
-    /** [RAW L2 DATA] Fee paid by Account A with Token B */
-    feeSeller: Scalars['BigInt'];
-    /** [RAW L2 DATA] Is fill amount for buy or sell for order A */
-    fillAmountBorSA: Scalars['Boolean'];
-    /** [RAW L2 DATA] Is fill amount for buy or sell for order B */
-    fillAmountBorSB: Scalars['Boolean'];
-    /** [RAW L2 DATA] Amount of token B bought by Account A */
-    fillBA: Scalars['BigInt'];
-    /** [RAW L2 DATA] Amount of token A bought by Account B */
-    fillBB: Scalars['BigInt'];
-    /** [RAW L2 DATA] Amount of token A sold by Account A */
-    fillSA: Scalars['BigInt'];
-    /** [RAW L2 DATA] Amount of token B sold by Account B */
-    fillSB: Scalars['BigInt'];
-    id: Scalars['ID'];
-    /** ID represented as a BigDecimal for sorting purposes */
-    internalID: Scalars['BigDecimal'];
-    /** [RAW L2 DATA] Limit mask value for order A */
-    limitMaskA: Scalars['BigInt'];
-    /** [RAW L2 DATA] Limit mask value for order B */
-    limitMaskB: Scalars['BigInt'];
-    nfts: Array<NonFungibleToken>;
-    /** [RAW L2 DATA] Order data A */
-    orderDataA: Scalars['BigInt'];
-    /** [RAW L2 DATA] Order data B */
-    orderDataB: Scalars['BigInt'];
-    /** [RAW L2 DATA] Protocol fees paid by Account B */
-    protocolFeeBuyer: Scalars['BigInt'];
-    /** [RAW L2 DATA] Protocol fees paid by Account A */
-    protocolFeeSeller: Scalars['BigInt'];
-    /** Price paid for the NFT during this trade. Expressed as a BigInt. Denominated in units of token */
-    realizedNFTPrice: Scalars['BigInt'];
-    /** Target slot of the NFT being traded. Represents the slot where the NFT is stored once transferred to the buyer */
-    slotBuyer: AccountNftSlot;
-    /** Original slot of the NFT being traded. Represents the slot where the NFT was stored for the seller */
-    slotSeller: AccountNftSlot;
-    slots: Array<AccountNftSlot>;
-    /** [RAW L2 DATA] StorageID for account A */
-    storageIdA: Scalars['Int'];
-    /** [RAW L2 DATA] StorageID for account B */
-    storageIdB: Scalars['Int'];
-    /** Token used to pay for the NFT and fees */
-    token: Token;
-    tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-    /** [RAW L2 DATA] Token ID of token bought by account A. Should coincide with tokenIDBS */
-    tokenIDAB: Scalars['Int'];
-    /** [RAW L2 DATA] Token ID of token sold by account A */
-    tokenIDAS: Scalars['Int'];
-    /** [RAW L2 DATA] Token ID of token bought by account B. Should coincide with tokenIDAS */
-    tokenIDBB: Scalars['Int'];
-    /** [RAW L2 DATA] Token ID of token sold by account B */
-    tokenIDBS: Scalars['Int'];
-    /** Explicit copy of __typename to make it usable when filtering */
-    typename: TransactionType;
-  };
-
-export type TradeNftAccountsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Account_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<Account_Filter>;
-};
-
-export type TradeNftNftsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<NonFungibleToken_Filter>;
-};
-
-export type TradeNftSlotsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountNftSlot_Filter>;
-};
-
-export type TradeNftTokenBalancesArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountTokenBalance_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountTokenBalance_Filter>;
-};
-
-export type TradeNft_Filter = {
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  accountBuyer?: InputMaybe<Scalars['String']>;
-  accountBuyer_?: InputMaybe<Account_Filter>;
-  accountBuyer_contains?: InputMaybe<Scalars['String']>;
-  accountBuyer_contains_nocase?: InputMaybe<Scalars['String']>;
-  accountBuyer_ends_with?: InputMaybe<Scalars['String']>;
-  accountBuyer_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  accountBuyer_gt?: InputMaybe<Scalars['String']>;
-  accountBuyer_gte?: InputMaybe<Scalars['String']>;
-  accountBuyer_in?: InputMaybe<Array<Scalars['String']>>;
-  accountBuyer_lt?: InputMaybe<Scalars['String']>;
-  accountBuyer_lte?: InputMaybe<Scalars['String']>;
-  accountBuyer_not?: InputMaybe<Scalars['String']>;
-  accountBuyer_not_contains?: InputMaybe<Scalars['String']>;
-  accountBuyer_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  accountBuyer_not_ends_with?: InputMaybe<Scalars['String']>;
-  accountBuyer_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  accountBuyer_not_in?: InputMaybe<Array<Scalars['String']>>;
-  accountBuyer_not_starts_with?: InputMaybe<Scalars['String']>;
-  accountBuyer_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  accountBuyer_starts_with?: InputMaybe<Scalars['String']>;
-  accountBuyer_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  accountIdA?: InputMaybe<Scalars['Int']>;
-  accountIdA_gt?: InputMaybe<Scalars['Int']>;
-  accountIdA_gte?: InputMaybe<Scalars['Int']>;
-  accountIdA_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountIdA_lt?: InputMaybe<Scalars['Int']>;
-  accountIdA_lte?: InputMaybe<Scalars['Int']>;
-  accountIdA_not?: InputMaybe<Scalars['Int']>;
-  accountIdA_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountIdB?: InputMaybe<Scalars['Int']>;
-  accountIdB_gt?: InputMaybe<Scalars['Int']>;
-  accountIdB_gte?: InputMaybe<Scalars['Int']>;
-  accountIdB_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountIdB_lt?: InputMaybe<Scalars['Int']>;
-  accountIdB_lte?: InputMaybe<Scalars['Int']>;
-  accountIdB_not?: InputMaybe<Scalars['Int']>;
-  accountIdB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountSeller?: InputMaybe<Scalars['String']>;
-  accountSeller_?: InputMaybe<Account_Filter>;
-  accountSeller_contains?: InputMaybe<Scalars['String']>;
-  accountSeller_contains_nocase?: InputMaybe<Scalars['String']>;
-  accountSeller_ends_with?: InputMaybe<Scalars['String']>;
-  accountSeller_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  accountSeller_gt?: InputMaybe<Scalars['String']>;
-  accountSeller_gte?: InputMaybe<Scalars['String']>;
-  accountSeller_in?: InputMaybe<Array<Scalars['String']>>;
-  accountSeller_lt?: InputMaybe<Scalars['String']>;
-  accountSeller_lte?: InputMaybe<Scalars['String']>;
-  accountSeller_not?: InputMaybe<Scalars['String']>;
-  accountSeller_not_contains?: InputMaybe<Scalars['String']>;
-  accountSeller_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  accountSeller_not_ends_with?: InputMaybe<Scalars['String']>;
-  accountSeller_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  accountSeller_not_in?: InputMaybe<Array<Scalars['String']>>;
-  accountSeller_not_starts_with?: InputMaybe<Scalars['String']>;
-  accountSeller_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  accountSeller_starts_with?: InputMaybe<Scalars['String']>;
-  accountSeller_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  accounts?: InputMaybe<Array<Scalars['String']>>;
-  accounts_?: InputMaybe<Account_Filter>;
-  accounts_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  and?: InputMaybe<Array<InputMaybe<TradeNft_Filter>>>;
-  block?: InputMaybe<Scalars['String']>;
-  block_?: InputMaybe<Block_Filter>;
-  block_contains?: InputMaybe<Scalars['String']>;
-  block_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_ends_with?: InputMaybe<Scalars['String']>;
-  block_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_gt?: InputMaybe<Scalars['String']>;
-  block_gte?: InputMaybe<Scalars['String']>;
-  block_in?: InputMaybe<Array<Scalars['String']>>;
-  block_lt?: InputMaybe<Scalars['String']>;
-  block_lte?: InputMaybe<Scalars['String']>;
-  block_not?: InputMaybe<Scalars['String']>;
-  block_not_contains?: InputMaybe<Scalars['String']>;
-  block_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_not_ends_with?: InputMaybe<Scalars['String']>;
-  block_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_not_in?: InputMaybe<Array<Scalars['String']>>;
-  block_not_starts_with?: InputMaybe<Scalars['String']>;
-  block_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  block_starts_with?: InputMaybe<Scalars['String']>;
-  block_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data?: InputMaybe<Scalars['String']>;
-  data_contains?: InputMaybe<Scalars['String']>;
-  data_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_ends_with?: InputMaybe<Scalars['String']>;
-  data_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_gt?: InputMaybe<Scalars['String']>;
-  data_gte?: InputMaybe<Scalars['String']>;
-  data_in?: InputMaybe<Array<Scalars['String']>>;
-  data_lt?: InputMaybe<Scalars['String']>;
-  data_lte?: InputMaybe<Scalars['String']>;
-  data_not?: InputMaybe<Scalars['String']>;
-  data_not_contains?: InputMaybe<Scalars['String']>;
-  data_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_not_ends_with?: InputMaybe<Scalars['String']>;
-  data_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_not_in?: InputMaybe<Array<Scalars['String']>>;
-  data_not_starts_with?: InputMaybe<Scalars['String']>;
-  data_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data_starts_with?: InputMaybe<Scalars['String']>;
-  data_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fFillSA?: InputMaybe<Scalars['Int']>;
-  fFillSA_gt?: InputMaybe<Scalars['Int']>;
-  fFillSA_gte?: InputMaybe<Scalars['Int']>;
-  fFillSA_in?: InputMaybe<Array<Scalars['Int']>>;
-  fFillSA_lt?: InputMaybe<Scalars['Int']>;
-  fFillSA_lte?: InputMaybe<Scalars['Int']>;
-  fFillSA_not?: InputMaybe<Scalars['Int']>;
-  fFillSA_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  fFillSB?: InputMaybe<Scalars['Int']>;
-  fFillSB_gt?: InputMaybe<Scalars['Int']>;
-  fFillSB_gte?: InputMaybe<Scalars['Int']>;
-  fFillSB_in?: InputMaybe<Array<Scalars['Int']>>;
-  fFillSB_lt?: InputMaybe<Scalars['Int']>;
-  fFillSB_lte?: InputMaybe<Scalars['Int']>;
-  fFillSB_not?: InputMaybe<Scalars['Int']>;
-  fFillSB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  feeBipsA?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_gt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_gte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsA_lt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_lte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_not?: InputMaybe<Scalars['BigInt']>;
-  feeBipsA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsB?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_gt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_gte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsB_lt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_lte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_not?: InputMaybe<Scalars['BigInt']>;
-  feeBipsB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsHiA?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_gt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_gte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsHiA_lt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_lte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_not?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsHiB?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_gt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_gte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBipsHiB_lt?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_lte?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_not?: InputMaybe<Scalars['BigInt']>;
-  feeBipsHiB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBuyer?: InputMaybe<Scalars['BigInt']>;
-  feeBuyer_gt?: InputMaybe<Scalars['BigInt']>;
-  feeBuyer_gte?: InputMaybe<Scalars['BigInt']>;
-  feeBuyer_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeBuyer_lt?: InputMaybe<Scalars['BigInt']>;
-  feeBuyer_lte?: InputMaybe<Scalars['BigInt']>;
-  feeBuyer_not?: InputMaybe<Scalars['BigInt']>;
-  feeBuyer_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeSeller?: InputMaybe<Scalars['BigInt']>;
-  feeSeller_gt?: InputMaybe<Scalars['BigInt']>;
-  feeSeller_gte?: InputMaybe<Scalars['BigInt']>;
-  feeSeller_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  feeSeller_lt?: InputMaybe<Scalars['BigInt']>;
-  feeSeller_lte?: InputMaybe<Scalars['BigInt']>;
-  feeSeller_not?: InputMaybe<Scalars['BigInt']>;
-  feeSeller_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillAmountBorSA?: InputMaybe<Scalars['Boolean']>;
-  fillAmountBorSA_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  fillAmountBorSA_not?: InputMaybe<Scalars['Boolean']>;
-  fillAmountBorSA_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  fillAmountBorSB?: InputMaybe<Scalars['Boolean']>;
-  fillAmountBorSB_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  fillAmountBorSB_not?: InputMaybe<Scalars['Boolean']>;
-  fillAmountBorSB_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  fillBA?: InputMaybe<Scalars['BigInt']>;
-  fillBA_gt?: InputMaybe<Scalars['BigInt']>;
-  fillBA_gte?: InputMaybe<Scalars['BigInt']>;
-  fillBA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillBA_lt?: InputMaybe<Scalars['BigInt']>;
-  fillBA_lte?: InputMaybe<Scalars['BigInt']>;
-  fillBA_not?: InputMaybe<Scalars['BigInt']>;
-  fillBA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillBB?: InputMaybe<Scalars['BigInt']>;
-  fillBB_gt?: InputMaybe<Scalars['BigInt']>;
-  fillBB_gte?: InputMaybe<Scalars['BigInt']>;
-  fillBB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillBB_lt?: InputMaybe<Scalars['BigInt']>;
-  fillBB_lte?: InputMaybe<Scalars['BigInt']>;
-  fillBB_not?: InputMaybe<Scalars['BigInt']>;
-  fillBB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillSA?: InputMaybe<Scalars['BigInt']>;
-  fillSA_gt?: InputMaybe<Scalars['BigInt']>;
-  fillSA_gte?: InputMaybe<Scalars['BigInt']>;
-  fillSA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillSA_lt?: InputMaybe<Scalars['BigInt']>;
-  fillSA_lte?: InputMaybe<Scalars['BigInt']>;
-  fillSA_not?: InputMaybe<Scalars['BigInt']>;
-  fillSA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillSB?: InputMaybe<Scalars['BigInt']>;
-  fillSB_gt?: InputMaybe<Scalars['BigInt']>;
-  fillSB_gte?: InputMaybe<Scalars['BigInt']>;
-  fillSB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fillSB_lt?: InputMaybe<Scalars['BigInt']>;
-  fillSB_lte?: InputMaybe<Scalars['BigInt']>;
-  fillSB_not?: InputMaybe<Scalars['BigInt']>;
-  fillSB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  internalID?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  internalID_lt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  limitMaskA?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_gt?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_gte?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  limitMaskA_lt?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_lte?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_not?: InputMaybe<Scalars['BigInt']>;
-  limitMaskA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  limitMaskB?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_gt?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_gte?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  limitMaskB_lt?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_lte?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_not?: InputMaybe<Scalars['BigInt']>;
-  limitMaskB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  nfts?: InputMaybe<Array<Scalars['String']>>;
-  nfts_?: InputMaybe<NonFungibleToken_Filter>;
-  nfts_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  or?: InputMaybe<Array<InputMaybe<TradeNft_Filter>>>;
-  orderDataA?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_gt?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_gte?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  orderDataA_lt?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_lte?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_not?: InputMaybe<Scalars['BigInt']>;
-  orderDataA_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  orderDataB?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_gt?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_gte?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  orderDataB_lt?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_lte?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_not?: InputMaybe<Scalars['BigInt']>;
-  orderDataB_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  protocolFeeBuyer?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeBuyer_gt?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeBuyer_gte?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeBuyer_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  protocolFeeBuyer_lt?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeBuyer_lte?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeBuyer_not?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeBuyer_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  protocolFeeSeller?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeSeller_gt?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeSeller_gte?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeSeller_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  protocolFeeSeller_lt?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeSeller_lte?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeSeller_not?: InputMaybe<Scalars['BigInt']>;
-  protocolFeeSeller_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  realizedNFTPrice?: InputMaybe<Scalars['BigInt']>;
-  realizedNFTPrice_gt?: InputMaybe<Scalars['BigInt']>;
-  realizedNFTPrice_gte?: InputMaybe<Scalars['BigInt']>;
-  realizedNFTPrice_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  realizedNFTPrice_lt?: InputMaybe<Scalars['BigInt']>;
-  realizedNFTPrice_lte?: InputMaybe<Scalars['BigInt']>;
-  realizedNFTPrice_not?: InputMaybe<Scalars['BigInt']>;
-  realizedNFTPrice_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  slotBuyer?: InputMaybe<Scalars['String']>;
-  slotBuyer_?: InputMaybe<AccountNftSlot_Filter>;
-  slotBuyer_contains?: InputMaybe<Scalars['String']>;
-  slotBuyer_contains_nocase?: InputMaybe<Scalars['String']>;
-  slotBuyer_ends_with?: InputMaybe<Scalars['String']>;
-  slotBuyer_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slotBuyer_gt?: InputMaybe<Scalars['String']>;
-  slotBuyer_gte?: InputMaybe<Scalars['String']>;
-  slotBuyer_in?: InputMaybe<Array<Scalars['String']>>;
-  slotBuyer_lt?: InputMaybe<Scalars['String']>;
-  slotBuyer_lte?: InputMaybe<Scalars['String']>;
-  slotBuyer_not?: InputMaybe<Scalars['String']>;
-  slotBuyer_not_contains?: InputMaybe<Scalars['String']>;
-  slotBuyer_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  slotBuyer_not_ends_with?: InputMaybe<Scalars['String']>;
-  slotBuyer_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slotBuyer_not_in?: InputMaybe<Array<Scalars['String']>>;
-  slotBuyer_not_starts_with?: InputMaybe<Scalars['String']>;
-  slotBuyer_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slotBuyer_starts_with?: InputMaybe<Scalars['String']>;
-  slotBuyer_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slotSeller?: InputMaybe<Scalars['String']>;
-  slotSeller_?: InputMaybe<AccountNftSlot_Filter>;
-  slotSeller_contains?: InputMaybe<Scalars['String']>;
-  slotSeller_contains_nocase?: InputMaybe<Scalars['String']>;
-  slotSeller_ends_with?: InputMaybe<Scalars['String']>;
-  slotSeller_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slotSeller_gt?: InputMaybe<Scalars['String']>;
-  slotSeller_gte?: InputMaybe<Scalars['String']>;
-  slotSeller_in?: InputMaybe<Array<Scalars['String']>>;
-  slotSeller_lt?: InputMaybe<Scalars['String']>;
-  slotSeller_lte?: InputMaybe<Scalars['String']>;
-  slotSeller_not?: InputMaybe<Scalars['String']>;
-  slotSeller_not_contains?: InputMaybe<Scalars['String']>;
-  slotSeller_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  slotSeller_not_ends_with?: InputMaybe<Scalars['String']>;
-  slotSeller_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slotSeller_not_in?: InputMaybe<Array<Scalars['String']>>;
-  slotSeller_not_starts_with?: InputMaybe<Scalars['String']>;
-  slotSeller_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slotSeller_starts_with?: InputMaybe<Scalars['String']>;
-  slotSeller_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slots?: InputMaybe<Array<Scalars['String']>>;
-  slots_?: InputMaybe<AccountNftSlot_Filter>;
-  slots_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  slots_not?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  storageIdA?: InputMaybe<Scalars['Int']>;
-  storageIdA_gt?: InputMaybe<Scalars['Int']>;
-  storageIdA_gte?: InputMaybe<Scalars['Int']>;
-  storageIdA_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageIdA_lt?: InputMaybe<Scalars['Int']>;
-  storageIdA_lte?: InputMaybe<Scalars['Int']>;
-  storageIdA_not?: InputMaybe<Scalars['Int']>;
-  storageIdA_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageIdB?: InputMaybe<Scalars['Int']>;
-  storageIdB_gt?: InputMaybe<Scalars['Int']>;
-  storageIdB_gte?: InputMaybe<Scalars['Int']>;
-  storageIdB_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageIdB_lt?: InputMaybe<Scalars['Int']>;
-  storageIdB_lte?: InputMaybe<Scalars['Int']>;
-  storageIdB_not?: InputMaybe<Scalars['Int']>;
-  storageIdB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  token?: InputMaybe<Scalars['String']>;
-  tokenBalances?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_?: InputMaybe<AccountTokenBalance_Filter>;
-  tokenBalances_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenIDAB?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_gt?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_gte?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDAB_lt?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_lte?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_not?: InputMaybe<Scalars['Int']>;
-  tokenIDAB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDAS?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_gt?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_gte?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDAS_lt?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_lte?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_not?: InputMaybe<Scalars['Int']>;
-  tokenIDAS_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDBB?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_gt?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_gte?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDBB_lt?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_lte?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_not?: InputMaybe<Scalars['Int']>;
-  tokenIDBB_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDBS?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_gt?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_gte?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenIDBS_lt?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_lte?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_not?: InputMaybe<Scalars['Int']>;
-  tokenIDBS_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  token_?: InputMaybe<Token_Filter>;
-  token_contains?: InputMaybe<Scalars['String']>;
-  token_contains_nocase?: InputMaybe<Scalars['String']>;
-  token_ends_with?: InputMaybe<Scalars['String']>;
-  token_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  token_gt?: InputMaybe<Scalars['String']>;
-  token_gte?: InputMaybe<Scalars['String']>;
-  token_in?: InputMaybe<Array<Scalars['String']>>;
-  token_lt?: InputMaybe<Scalars['String']>;
-  token_lte?: InputMaybe<Scalars['String']>;
-  token_not?: InputMaybe<Scalars['String']>;
-  token_not_contains?: InputMaybe<Scalars['String']>;
-  token_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  token_not_ends_with?: InputMaybe<Scalars['String']>;
-  token_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  token_not_in?: InputMaybe<Array<Scalars['String']>>;
-  token_not_starts_with?: InputMaybe<Scalars['String']>;
-  token_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  token_starts_with?: InputMaybe<Scalars['String']>;
-  token_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  typename?: InputMaybe<TransactionType>;
-  typename_in?: InputMaybe<Array<TransactionType>>;
-  typename_not?: InputMaybe<TransactionType>;
-  typename_not_in?: InputMaybe<Array<TransactionType>>;
-};
-
-export enum TradeNft_OrderBy {
-  AccountBuyer = 'accountBuyer',
-  AccountBuyerAddress = 'accountBuyer__address',
-  AccountBuyerCreatedAt = 'accountBuyer__createdAt',
-  AccountBuyerId = 'accountBuyer__id',
-  AccountBuyerInternalId = 'accountBuyer__internalID',
-  AccountBuyerLastUpdatedAt = 'accountBuyer__lastUpdatedAt',
-  AccountIdA = 'accountIdA',
-  AccountIdB = 'accountIdB',
-  AccountSeller = 'accountSeller',
-  AccountSellerAddress = 'accountSeller__address',
-  AccountSellerCreatedAt = 'accountSeller__createdAt',
-  AccountSellerId = 'accountSeller__id',
-  AccountSellerInternalId = 'accountSeller__internalID',
-  AccountSellerLastUpdatedAt = 'accountSeller__lastUpdatedAt',
-  Accounts = 'accounts',
-  Block = 'block',
-  BlockAccountUpdateCount = 'block__accountUpdateCount',
-  BlockAccountUpdateSize = 'block__accountUpdateSize',
-  BlockAddCount = 'block__addCount',
-  BlockBlockHash = 'block__blockHash',
-  BlockBlockSize = 'block__blockSize',
-  BlockBlockType = 'block__blockType',
-  BlockBlockVersion = 'block__blockVersion',
-  BlockData = 'block__data',
-  BlockDepositCount = 'block__depositCount',
-  BlockDepositSize = 'block__depositSize',
-  BlockExchange = 'block__exchange',
-  BlockGasLimit = 'block__gasLimit',
-  BlockGasPrice = 'block__gasPrice',
-  BlockHeight = 'block__height',
-  BlockId = 'block__id',
-  BlockInternalId = 'block__internalID',
-  BlockNumConditionalTransactions = 'block__numConditionalTransactions',
-  BlockOffchainData = 'block__offchainData',
-  BlockOperatorAccountId = 'block__operatorAccountID',
-  BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeBips = 'block__protocolFeeBips',
-  BlockRemoveCount = 'block__removeCount',
-  BlockSignatureVerificationCount = 'block__signatureVerificationCount',
-  BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
-  BlockSwapCount = 'block__swapCount',
-  BlockTimestamp = 'block__timestamp',
-  BlockTransactionCount = 'block__transactionCount',
-  BlockTransferCount = 'block__transferCount',
-  BlockTxHash = 'block__txHash',
-  BlockWithdrawSize = 'block__withdrawSize',
-  BlockWithdrawalCount = 'block__withdrawalCount',
-  Data = 'data',
-  FFillSa = 'fFillSA',
-  FFillSb = 'fFillSB',
-  FeeBipsA = 'feeBipsA',
-  FeeBipsB = 'feeBipsB',
-  FeeBipsHiA = 'feeBipsHiA',
-  FeeBipsHiB = 'feeBipsHiB',
-  FeeBuyer = 'feeBuyer',
-  FeeSeller = 'feeSeller',
-  FillAmountBorSa = 'fillAmountBorSA',
-  FillAmountBorSb = 'fillAmountBorSB',
-  FillBa = 'fillBA',
-  FillBb = 'fillBB',
-  FillSa = 'fillSA',
-  FillSb = 'fillSB',
-  Id = 'id',
-  InternalId = 'internalID',
-  LimitMaskA = 'limitMaskA',
-  LimitMaskB = 'limitMaskB',
-  Nfts = 'nfts',
-  OrderDataA = 'orderDataA',
-  OrderDataB = 'orderDataB',
-  ProtocolFeeBuyer = 'protocolFeeBuyer',
-  ProtocolFeeSeller = 'protocolFeeSeller',
-  RealizedNftPrice = 'realizedNFTPrice',
-  SlotBuyer = 'slotBuyer',
-  SlotBuyerBalance = 'slotBuyer__balance',
-  SlotBuyerCreatedAt = 'slotBuyer__createdAt',
-  SlotBuyerId = 'slotBuyer__id',
-  SlotBuyerLastUpdatedAt = 'slotBuyer__lastUpdatedAt',
-  SlotSeller = 'slotSeller',
-  SlotSellerBalance = 'slotSeller__balance',
-  SlotSellerCreatedAt = 'slotSeller__createdAt',
-  SlotSellerId = 'slotSeller__id',
-  SlotSellerLastUpdatedAt = 'slotSeller__lastUpdatedAt',
-  Slots = 'slots',
-  StorageIdA = 'storageIdA',
-  StorageIdB = 'storageIdB',
-  Token = 'token',
-  TokenBalances = 'tokenBalances',
-  TokenIdab = 'tokenIDAB',
-  TokenIdas = 'tokenIDAS',
-  TokenIdbb = 'tokenIDBB',
-  TokenIdbs = 'tokenIDBS',
-  TokenAddress = 'token__address',
-  TokenDecimals = 'token__decimals',
-  TokenId = 'token__id',
-  TokenInternalId = 'token__internalID',
-  TokenName = 'token__name',
-  TokenSymbol = 'token__symbol',
-  TokenTradedVolume = 'token__tradedVolume',
-  TokenTradedVolumeOrderbook = 'token__tradedVolumeOrderbook',
-  TokenTradedVolumeSwap = 'token__tradedVolumeSwap',
-  Typename = 'typename',
-}
-
 export type Transaction = {
   accounts?: Maybe<Array<Account>>;
   /** Link to the Block entity where this Transaction took place */
@@ -9375,168 +6182,12 @@ export type TransactionTokenBalancesArgs = {
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
 
-export type TransactionNft = {
-  /** Link to the Block entity where this Transaction took place */
-  block: Block;
-  /** Hex string representation of the encoded L2 data for this Transaction */
-  data: Scalars['String'];
-  /** All transactions IDs follow the same pattern: <BLOCK ID>-<TX INDEX> */
-  id: Scalars['ID'];
-  /** ID represented as a BigDecimal for sorting purposes */
-  internalID: Scalars['BigDecimal'];
-  nfts: Array<NonFungibleToken>;
-  slots: Array<AccountNftSlot>;
-  /** Explicit copy of __typename to make it usable when filtering */
-  typename: TransactionType;
-};
-
-export type TransactionNftNftsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<NonFungibleToken_Filter>;
-};
-
-export type TransactionNftSlotsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountNftSlot_Filter>;
-};
-
-export type TransactionNft_Filter = {
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  and?: InputMaybe<Array<InputMaybe<TransactionNft_Filter>>>;
-  block?: InputMaybe<Scalars['String']>;
-  block_?: InputMaybe<Block_Filter>;
-  block_contains?: InputMaybe<Scalars['String']>;
-  block_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_ends_with?: InputMaybe<Scalars['String']>;
-  block_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_gt?: InputMaybe<Scalars['String']>;
-  block_gte?: InputMaybe<Scalars['String']>;
-  block_in?: InputMaybe<Array<Scalars['String']>>;
-  block_lt?: InputMaybe<Scalars['String']>;
-  block_lte?: InputMaybe<Scalars['String']>;
-  block_not?: InputMaybe<Scalars['String']>;
-  block_not_contains?: InputMaybe<Scalars['String']>;
-  block_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_not_ends_with?: InputMaybe<Scalars['String']>;
-  block_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_not_in?: InputMaybe<Array<Scalars['String']>>;
-  block_not_starts_with?: InputMaybe<Scalars['String']>;
-  block_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  block_starts_with?: InputMaybe<Scalars['String']>;
-  block_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data?: InputMaybe<Scalars['String']>;
-  data_contains?: InputMaybe<Scalars['String']>;
-  data_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_ends_with?: InputMaybe<Scalars['String']>;
-  data_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_gt?: InputMaybe<Scalars['String']>;
-  data_gte?: InputMaybe<Scalars['String']>;
-  data_in?: InputMaybe<Array<Scalars['String']>>;
-  data_lt?: InputMaybe<Scalars['String']>;
-  data_lte?: InputMaybe<Scalars['String']>;
-  data_not?: InputMaybe<Scalars['String']>;
-  data_not_contains?: InputMaybe<Scalars['String']>;
-  data_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_not_ends_with?: InputMaybe<Scalars['String']>;
-  data_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_not_in?: InputMaybe<Array<Scalars['String']>>;
-  data_not_starts_with?: InputMaybe<Scalars['String']>;
-  data_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data_starts_with?: InputMaybe<Scalars['String']>;
-  data_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  internalID?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  internalID_lt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  nfts?: InputMaybe<Array<Scalars['String']>>;
-  nfts_?: InputMaybe<NonFungibleToken_Filter>;
-  nfts_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  or?: InputMaybe<Array<InputMaybe<TransactionNft_Filter>>>;
-  slots?: InputMaybe<Array<Scalars['String']>>;
-  slots_?: InputMaybe<AccountNftSlot_Filter>;
-  slots_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  slots_not?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  typename?: InputMaybe<TransactionType>;
-  typename_in?: InputMaybe<Array<TransactionType>>;
-  typename_not?: InputMaybe<TransactionType>;
-  typename_not_in?: InputMaybe<Array<TransactionType>>;
-};
-
-export enum TransactionNft_OrderBy {
-  Block = 'block',
-  BlockAccountUpdateCount = 'block__accountUpdateCount',
-  BlockAccountUpdateSize = 'block__accountUpdateSize',
-  BlockAddCount = 'block__addCount',
-  BlockBlockHash = 'block__blockHash',
-  BlockBlockSize = 'block__blockSize',
-  BlockBlockType = 'block__blockType',
-  BlockBlockVersion = 'block__blockVersion',
-  BlockData = 'block__data',
-  BlockDepositCount = 'block__depositCount',
-  BlockDepositSize = 'block__depositSize',
-  BlockExchange = 'block__exchange',
-  BlockGasLimit = 'block__gasLimit',
-  BlockGasPrice = 'block__gasPrice',
-  BlockHeight = 'block__height',
-  BlockId = 'block__id',
-  BlockInternalId = 'block__internalID',
-  BlockNumConditionalTransactions = 'block__numConditionalTransactions',
-  BlockOffchainData = 'block__offchainData',
-  BlockOperatorAccountId = 'block__operatorAccountID',
-  BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeBips = 'block__protocolFeeBips',
-  BlockRemoveCount = 'block__removeCount',
-  BlockSignatureVerificationCount = 'block__signatureVerificationCount',
-  BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
-  BlockSwapCount = 'block__swapCount',
-  BlockTimestamp = 'block__timestamp',
-  BlockTransactionCount = 'block__transactionCount',
-  BlockTransferCount = 'block__transferCount',
-  BlockTxHash = 'block__txHash',
-  BlockWithdrawSize = 'block__withdrawSize',
-  BlockWithdrawalCount = 'block__withdrawalCount',
-  Data = 'data',
-  Id = 'id',
-  InternalId = 'internalID',
-  Nfts = 'nfts',
-  Slots = 'slots',
-  Typename = 'typename',
-}
-
 export enum TransactionType {
   AccountUpdate = 'AccountUpdate',
-  Add = 'Add',
+  BatchSpotTrade = 'BatchSpotTrade',
   Deposit = 'Deposit',
   OrderbookTrade = 'OrderbookTrade',
-  Remove = 'Remove',
   SignatureVerification = 'SignatureVerification',
-  Swap = 'Swap',
   Transfer = 'Transfer',
   Withdrawal = 'Withdrawal',
 }
@@ -9629,6 +6280,7 @@ export enum Transaction_OrderBy {
   BlockAccountUpdateCount = 'block__accountUpdateCount',
   BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
+  BlockAuxiliaryData = 'block__auxiliaryData',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
@@ -9722,485 +6374,6 @@ export type TransferTokenBalancesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
-
-export type TransferNft = Transaction &
-  TransactionNft & {
-    __typename?: 'TransferNFT';
-    /** [RAW L2 DATA] Account ID for the account that sent the tokens */
-    accountFromID: Scalars['Int'];
-    /** [RAW L2 DATA] Account ID for the account that received the tokens */
-    accountToID: Scalars['Int'];
-    accounts?: Maybe<Array<Account>>;
-    /** [RAW L2 DATA] Amount transfered */
-    amount: Scalars['BigInt'];
-    block: Block;
-    data: Scalars['String'];
-    /** [RAW L2 DATA] Fee amount paid */
-    fee: Scalars['BigInt'];
-    /** Token entity with information about the token used to pay the operator fees */
-    feeToken: Token;
-    /** [RAW L2 DATA] Token ID of token used to pay the operator fees */
-    feeTokenID: Scalars['Int'];
-    /** [RAW L2 DATA] Address string of the account that sent the tokens */
-    from: Scalars['String'];
-    /** Account entity that sent the tokens */
-    fromAccount: Account;
-    /** Slot entity from where the NFT is moved */
-    fromSlot: AccountNftSlot;
-    id: Scalars['ID'];
-    /** ID represented as a BigDecimal for sorting purposes */
-    internalID: Scalars['BigDecimal'];
-    nfts: Array<NonFungibleToken>;
-    slots: Array<AccountNftSlot>;
-    /** [RAW L2 DATA] StorageID */
-    storageID: Scalars['Int'];
-    /** [RAW L2 DATA] Address string of the account that received the tokens */
-    to: Scalars['String'];
-    /** Account entity that received the tokens */
-    toAccount: Account;
-    /** Slot entity to where the NFT is moved */
-    toSlot: AccountNftSlot;
-    /** [RAW L2 DATA] Token ID of the token transfered. Mainly used for NFT transfers */
-    toTokenID: Scalars['Int'];
-    tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-    /** [RAW L2 DATA] Token ID of the token transfered */
-    tokenID: Scalars['Int'];
-    /** [RAW L2 DATA] Transfer type */
-    type: Scalars['Int'];
-    /** Explicit copy of __typename to make it usable when filtering */
-    typename: TransactionType;
-  };
-
-export type TransferNftAccountsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Account_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<Account_Filter>;
-};
-
-export type TransferNftNftsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<NonFungibleToken_Filter>;
-};
-
-export type TransferNftSlotsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountNftSlot_Filter>;
-};
-
-export type TransferNftTokenBalancesArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountTokenBalance_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountTokenBalance_Filter>;
-};
-
-export type TransferNft_Filter = {
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  accountFromID?: InputMaybe<Scalars['Int']>;
-  accountFromID_gt?: InputMaybe<Scalars['Int']>;
-  accountFromID_gte?: InputMaybe<Scalars['Int']>;
-  accountFromID_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountFromID_lt?: InputMaybe<Scalars['Int']>;
-  accountFromID_lte?: InputMaybe<Scalars['Int']>;
-  accountFromID_not?: InputMaybe<Scalars['Int']>;
-  accountFromID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountToID?: InputMaybe<Scalars['Int']>;
-  accountToID_gt?: InputMaybe<Scalars['Int']>;
-  accountToID_gte?: InputMaybe<Scalars['Int']>;
-  accountToID_in?: InputMaybe<Array<Scalars['Int']>>;
-  accountToID_lt?: InputMaybe<Scalars['Int']>;
-  accountToID_lte?: InputMaybe<Scalars['Int']>;
-  accountToID_not?: InputMaybe<Scalars['Int']>;
-  accountToID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  accounts?: InputMaybe<Array<Scalars['String']>>;
-  accounts_?: InputMaybe<Account_Filter>;
-  accounts_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  amount?: InputMaybe<Scalars['BigInt']>;
-  amount_gt?: InputMaybe<Scalars['BigInt']>;
-  amount_gte?: InputMaybe<Scalars['BigInt']>;
-  amount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  amount_lt?: InputMaybe<Scalars['BigInt']>;
-  amount_lte?: InputMaybe<Scalars['BigInt']>;
-  amount_not?: InputMaybe<Scalars['BigInt']>;
-  amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  and?: InputMaybe<Array<InputMaybe<TransferNft_Filter>>>;
-  block?: InputMaybe<Scalars['String']>;
-  block_?: InputMaybe<Block_Filter>;
-  block_contains?: InputMaybe<Scalars['String']>;
-  block_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_ends_with?: InputMaybe<Scalars['String']>;
-  block_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_gt?: InputMaybe<Scalars['String']>;
-  block_gte?: InputMaybe<Scalars['String']>;
-  block_in?: InputMaybe<Array<Scalars['String']>>;
-  block_lt?: InputMaybe<Scalars['String']>;
-  block_lte?: InputMaybe<Scalars['String']>;
-  block_not?: InputMaybe<Scalars['String']>;
-  block_not_contains?: InputMaybe<Scalars['String']>;
-  block_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_not_ends_with?: InputMaybe<Scalars['String']>;
-  block_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_not_in?: InputMaybe<Array<Scalars['String']>>;
-  block_not_starts_with?: InputMaybe<Scalars['String']>;
-  block_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  block_starts_with?: InputMaybe<Scalars['String']>;
-  block_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data?: InputMaybe<Scalars['String']>;
-  data_contains?: InputMaybe<Scalars['String']>;
-  data_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_ends_with?: InputMaybe<Scalars['String']>;
-  data_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_gt?: InputMaybe<Scalars['String']>;
-  data_gte?: InputMaybe<Scalars['String']>;
-  data_in?: InputMaybe<Array<Scalars['String']>>;
-  data_lt?: InputMaybe<Scalars['String']>;
-  data_lte?: InputMaybe<Scalars['String']>;
-  data_not?: InputMaybe<Scalars['String']>;
-  data_not_contains?: InputMaybe<Scalars['String']>;
-  data_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_not_ends_with?: InputMaybe<Scalars['String']>;
-  data_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_not_in?: InputMaybe<Array<Scalars['String']>>;
-  data_not_starts_with?: InputMaybe<Scalars['String']>;
-  data_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data_starts_with?: InputMaybe<Scalars['String']>;
-  data_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fee?: InputMaybe<Scalars['BigInt']>;
-  feeToken?: InputMaybe<Scalars['String']>;
-  feeTokenID?: InputMaybe<Scalars['Int']>;
-  feeTokenID_gt?: InputMaybe<Scalars['Int']>;
-  feeTokenID_gte?: InputMaybe<Scalars['Int']>;
-  feeTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  feeTokenID_lt?: InputMaybe<Scalars['Int']>;
-  feeTokenID_lte?: InputMaybe<Scalars['Int']>;
-  feeTokenID_not?: InputMaybe<Scalars['Int']>;
-  feeTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  feeToken_?: InputMaybe<Token_Filter>;
-  feeToken_contains?: InputMaybe<Scalars['String']>;
-  feeToken_contains_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_ends_with?: InputMaybe<Scalars['String']>;
-  feeToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_gt?: InputMaybe<Scalars['String']>;
-  feeToken_gte?: InputMaybe<Scalars['String']>;
-  feeToken_in?: InputMaybe<Array<Scalars['String']>>;
-  feeToken_lt?: InputMaybe<Scalars['String']>;
-  feeToken_lte?: InputMaybe<Scalars['String']>;
-  feeToken_not?: InputMaybe<Scalars['String']>;
-  feeToken_not_contains?: InputMaybe<Scalars['String']>;
-  feeToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_not_ends_with?: InputMaybe<Scalars['String']>;
-  feeToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_not_in?: InputMaybe<Array<Scalars['String']>>;
-  feeToken_not_starts_with?: InputMaybe<Scalars['String']>;
-  feeToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_starts_with?: InputMaybe<Scalars['String']>;
-  feeToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fee_gt?: InputMaybe<Scalars['BigInt']>;
-  fee_gte?: InputMaybe<Scalars['BigInt']>;
-  fee_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fee_lt?: InputMaybe<Scalars['BigInt']>;
-  fee_lte?: InputMaybe<Scalars['BigInt']>;
-  fee_not?: InputMaybe<Scalars['BigInt']>;
-  fee_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  from?: InputMaybe<Scalars['String']>;
-  fromAccount?: InputMaybe<Scalars['String']>;
-  fromAccount_?: InputMaybe<Account_Filter>;
-  fromAccount_contains?: InputMaybe<Scalars['String']>;
-  fromAccount_contains_nocase?: InputMaybe<Scalars['String']>;
-  fromAccount_ends_with?: InputMaybe<Scalars['String']>;
-  fromAccount_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  fromAccount_gt?: InputMaybe<Scalars['String']>;
-  fromAccount_gte?: InputMaybe<Scalars['String']>;
-  fromAccount_in?: InputMaybe<Array<Scalars['String']>>;
-  fromAccount_lt?: InputMaybe<Scalars['String']>;
-  fromAccount_lte?: InputMaybe<Scalars['String']>;
-  fromAccount_not?: InputMaybe<Scalars['String']>;
-  fromAccount_not_contains?: InputMaybe<Scalars['String']>;
-  fromAccount_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  fromAccount_not_ends_with?: InputMaybe<Scalars['String']>;
-  fromAccount_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  fromAccount_not_in?: InputMaybe<Array<Scalars['String']>>;
-  fromAccount_not_starts_with?: InputMaybe<Scalars['String']>;
-  fromAccount_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fromAccount_starts_with?: InputMaybe<Scalars['String']>;
-  fromAccount_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fromSlot?: InputMaybe<Scalars['String']>;
-  fromSlot_?: InputMaybe<AccountNftSlot_Filter>;
-  fromSlot_contains?: InputMaybe<Scalars['String']>;
-  fromSlot_contains_nocase?: InputMaybe<Scalars['String']>;
-  fromSlot_ends_with?: InputMaybe<Scalars['String']>;
-  fromSlot_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  fromSlot_gt?: InputMaybe<Scalars['String']>;
-  fromSlot_gte?: InputMaybe<Scalars['String']>;
-  fromSlot_in?: InputMaybe<Array<Scalars['String']>>;
-  fromSlot_lt?: InputMaybe<Scalars['String']>;
-  fromSlot_lte?: InputMaybe<Scalars['String']>;
-  fromSlot_not?: InputMaybe<Scalars['String']>;
-  fromSlot_not_contains?: InputMaybe<Scalars['String']>;
-  fromSlot_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  fromSlot_not_ends_with?: InputMaybe<Scalars['String']>;
-  fromSlot_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  fromSlot_not_in?: InputMaybe<Array<Scalars['String']>>;
-  fromSlot_not_starts_with?: InputMaybe<Scalars['String']>;
-  fromSlot_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fromSlot_starts_with?: InputMaybe<Scalars['String']>;
-  fromSlot_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  from_contains?: InputMaybe<Scalars['String']>;
-  from_contains_nocase?: InputMaybe<Scalars['String']>;
-  from_ends_with?: InputMaybe<Scalars['String']>;
-  from_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  from_gt?: InputMaybe<Scalars['String']>;
-  from_gte?: InputMaybe<Scalars['String']>;
-  from_in?: InputMaybe<Array<Scalars['String']>>;
-  from_lt?: InputMaybe<Scalars['String']>;
-  from_lte?: InputMaybe<Scalars['String']>;
-  from_not?: InputMaybe<Scalars['String']>;
-  from_not_contains?: InputMaybe<Scalars['String']>;
-  from_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  from_not_ends_with?: InputMaybe<Scalars['String']>;
-  from_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  from_not_in?: InputMaybe<Array<Scalars['String']>>;
-  from_not_starts_with?: InputMaybe<Scalars['String']>;
-  from_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  from_starts_with?: InputMaybe<Scalars['String']>;
-  from_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  internalID?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  internalID_lt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  nfts?: InputMaybe<Array<Scalars['String']>>;
-  nfts_?: InputMaybe<NonFungibleToken_Filter>;
-  nfts_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  or?: InputMaybe<Array<InputMaybe<TransferNft_Filter>>>;
-  slots?: InputMaybe<Array<Scalars['String']>>;
-  slots_?: InputMaybe<AccountNftSlot_Filter>;
-  slots_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  slots_not?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  storageID?: InputMaybe<Scalars['Int']>;
-  storageID_gt?: InputMaybe<Scalars['Int']>;
-  storageID_gte?: InputMaybe<Scalars['Int']>;
-  storageID_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageID_lt?: InputMaybe<Scalars['Int']>;
-  storageID_lte?: InputMaybe<Scalars['Int']>;
-  storageID_not?: InputMaybe<Scalars['Int']>;
-  storageID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  to?: InputMaybe<Scalars['String']>;
-  toAccount?: InputMaybe<Scalars['String']>;
-  toAccount_?: InputMaybe<Account_Filter>;
-  toAccount_contains?: InputMaybe<Scalars['String']>;
-  toAccount_contains_nocase?: InputMaybe<Scalars['String']>;
-  toAccount_ends_with?: InputMaybe<Scalars['String']>;
-  toAccount_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  toAccount_gt?: InputMaybe<Scalars['String']>;
-  toAccount_gte?: InputMaybe<Scalars['String']>;
-  toAccount_in?: InputMaybe<Array<Scalars['String']>>;
-  toAccount_lt?: InputMaybe<Scalars['String']>;
-  toAccount_lte?: InputMaybe<Scalars['String']>;
-  toAccount_not?: InputMaybe<Scalars['String']>;
-  toAccount_not_contains?: InputMaybe<Scalars['String']>;
-  toAccount_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  toAccount_not_ends_with?: InputMaybe<Scalars['String']>;
-  toAccount_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  toAccount_not_in?: InputMaybe<Array<Scalars['String']>>;
-  toAccount_not_starts_with?: InputMaybe<Scalars['String']>;
-  toAccount_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  toAccount_starts_with?: InputMaybe<Scalars['String']>;
-  toAccount_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  toSlot?: InputMaybe<Scalars['String']>;
-  toSlot_?: InputMaybe<AccountNftSlot_Filter>;
-  toSlot_contains?: InputMaybe<Scalars['String']>;
-  toSlot_contains_nocase?: InputMaybe<Scalars['String']>;
-  toSlot_ends_with?: InputMaybe<Scalars['String']>;
-  toSlot_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  toSlot_gt?: InputMaybe<Scalars['String']>;
-  toSlot_gte?: InputMaybe<Scalars['String']>;
-  toSlot_in?: InputMaybe<Array<Scalars['String']>>;
-  toSlot_lt?: InputMaybe<Scalars['String']>;
-  toSlot_lte?: InputMaybe<Scalars['String']>;
-  toSlot_not?: InputMaybe<Scalars['String']>;
-  toSlot_not_contains?: InputMaybe<Scalars['String']>;
-  toSlot_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  toSlot_not_ends_with?: InputMaybe<Scalars['String']>;
-  toSlot_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  toSlot_not_in?: InputMaybe<Array<Scalars['String']>>;
-  toSlot_not_starts_with?: InputMaybe<Scalars['String']>;
-  toSlot_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  toSlot_starts_with?: InputMaybe<Scalars['String']>;
-  toSlot_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  toTokenID?: InputMaybe<Scalars['Int']>;
-  toTokenID_gt?: InputMaybe<Scalars['Int']>;
-  toTokenID_gte?: InputMaybe<Scalars['Int']>;
-  toTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  toTokenID_lt?: InputMaybe<Scalars['Int']>;
-  toTokenID_lte?: InputMaybe<Scalars['Int']>;
-  toTokenID_not?: InputMaybe<Scalars['Int']>;
-  toTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  to_contains?: InputMaybe<Scalars['String']>;
-  to_contains_nocase?: InputMaybe<Scalars['String']>;
-  to_ends_with?: InputMaybe<Scalars['String']>;
-  to_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  to_gt?: InputMaybe<Scalars['String']>;
-  to_gte?: InputMaybe<Scalars['String']>;
-  to_in?: InputMaybe<Array<Scalars['String']>>;
-  to_lt?: InputMaybe<Scalars['String']>;
-  to_lte?: InputMaybe<Scalars['String']>;
-  to_not?: InputMaybe<Scalars['String']>;
-  to_not_contains?: InputMaybe<Scalars['String']>;
-  to_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  to_not_ends_with?: InputMaybe<Scalars['String']>;
-  to_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  to_not_in?: InputMaybe<Array<Scalars['String']>>;
-  to_not_starts_with?: InputMaybe<Scalars['String']>;
-  to_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  to_starts_with?: InputMaybe<Scalars['String']>;
-  to_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  tokenBalances?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_?: InputMaybe<AccountTokenBalance_Filter>;
-  tokenBalances_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenID?: InputMaybe<Scalars['Int']>;
-  tokenID_gt?: InputMaybe<Scalars['Int']>;
-  tokenID_gte?: InputMaybe<Scalars['Int']>;
-  tokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenID_lt?: InputMaybe<Scalars['Int']>;
-  tokenID_lte?: InputMaybe<Scalars['Int']>;
-  tokenID_not?: InputMaybe<Scalars['Int']>;
-  tokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  type?: InputMaybe<Scalars['Int']>;
-  type_gt?: InputMaybe<Scalars['Int']>;
-  type_gte?: InputMaybe<Scalars['Int']>;
-  type_in?: InputMaybe<Array<Scalars['Int']>>;
-  type_lt?: InputMaybe<Scalars['Int']>;
-  type_lte?: InputMaybe<Scalars['Int']>;
-  type_not?: InputMaybe<Scalars['Int']>;
-  type_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  typename?: InputMaybe<TransactionType>;
-  typename_in?: InputMaybe<Array<TransactionType>>;
-  typename_not?: InputMaybe<TransactionType>;
-  typename_not_in?: InputMaybe<Array<TransactionType>>;
-};
-
-export enum TransferNft_OrderBy {
-  AccountFromId = 'accountFromID',
-  AccountToId = 'accountToID',
-  Accounts = 'accounts',
-  Amount = 'amount',
-  Block = 'block',
-  BlockAccountUpdateCount = 'block__accountUpdateCount',
-  BlockAccountUpdateSize = 'block__accountUpdateSize',
-  BlockAddCount = 'block__addCount',
-  BlockBlockHash = 'block__blockHash',
-  BlockBlockSize = 'block__blockSize',
-  BlockBlockType = 'block__blockType',
-  BlockBlockVersion = 'block__blockVersion',
-  BlockData = 'block__data',
-  BlockDepositCount = 'block__depositCount',
-  BlockDepositSize = 'block__depositSize',
-  BlockExchange = 'block__exchange',
-  BlockGasLimit = 'block__gasLimit',
-  BlockGasPrice = 'block__gasPrice',
-  BlockHeight = 'block__height',
-  BlockId = 'block__id',
-  BlockInternalId = 'block__internalID',
-  BlockNumConditionalTransactions = 'block__numConditionalTransactions',
-  BlockOffchainData = 'block__offchainData',
-  BlockOperatorAccountId = 'block__operatorAccountID',
-  BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeBips = 'block__protocolFeeBips',
-  BlockRemoveCount = 'block__removeCount',
-  BlockSignatureVerificationCount = 'block__signatureVerificationCount',
-  BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
-  BlockSwapCount = 'block__swapCount',
-  BlockTimestamp = 'block__timestamp',
-  BlockTransactionCount = 'block__transactionCount',
-  BlockTransferCount = 'block__transferCount',
-  BlockTxHash = 'block__txHash',
-  BlockWithdrawSize = 'block__withdrawSize',
-  BlockWithdrawalCount = 'block__withdrawalCount',
-  Data = 'data',
-  Fee = 'fee',
-  FeeToken = 'feeToken',
-  FeeTokenId = 'feeTokenID',
-  FeeTokenAddress = 'feeToken__address',
-  FeeTokenDecimals = 'feeToken__decimals',
-  FeeTokenId = 'feeToken__id',
-  FeeTokenInternalId = 'feeToken__internalID',
-  FeeTokenName = 'feeToken__name',
-  FeeTokenSymbol = 'feeToken__symbol',
-  FeeTokenTradedVolume = 'feeToken__tradedVolume',
-  FeeTokenTradedVolumeOrderbook = 'feeToken__tradedVolumeOrderbook',
-  FeeTokenTradedVolumeSwap = 'feeToken__tradedVolumeSwap',
-  From = 'from',
-  FromAccount = 'fromAccount',
-  FromAccountAddress = 'fromAccount__address',
-  FromAccountCreatedAt = 'fromAccount__createdAt',
-  FromAccountId = 'fromAccount__id',
-  FromAccountInternalId = 'fromAccount__internalID',
-  FromAccountLastUpdatedAt = 'fromAccount__lastUpdatedAt',
-  FromSlot = 'fromSlot',
-  FromSlotBalance = 'fromSlot__balance',
-  FromSlotCreatedAt = 'fromSlot__createdAt',
-  FromSlotId = 'fromSlot__id',
-  FromSlotLastUpdatedAt = 'fromSlot__lastUpdatedAt',
-  Id = 'id',
-  InternalId = 'internalID',
-  Nfts = 'nfts',
-  Slots = 'slots',
-  StorageId = 'storageID',
-  To = 'to',
-  ToAccount = 'toAccount',
-  ToAccountAddress = 'toAccount__address',
-  ToAccountCreatedAt = 'toAccount__createdAt',
-  ToAccountId = 'toAccount__id',
-  ToAccountInternalId = 'toAccount__internalID',
-  ToAccountLastUpdatedAt = 'toAccount__lastUpdatedAt',
-  ToSlot = 'toSlot',
-  ToSlotBalance = 'toSlot__balance',
-  ToSlotCreatedAt = 'toSlot__createdAt',
-  ToSlotId = 'toSlot__id',
-  ToSlotLastUpdatedAt = 'toSlot__lastUpdatedAt',
-  ToTokenId = 'toTokenID',
-  TokenBalances = 'tokenBalances',
-  TokenId = 'tokenID',
-  Type = 'type',
-  Typename = 'typename',
-}
 
 export type Transfer_Filter = {
   /** Filter for the block changed event. */
@@ -10489,6 +6662,7 @@ export enum Transfer_OrderBy {
   BlockAccountUpdateCount = 'block__accountUpdateCount',
   BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
+  BlockAuxiliaryData = 'block__auxiliaryData',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
@@ -10582,8 +6756,6 @@ export type User = Account & {
   lastUpdatedAtTransaction: Transaction;
   /** String representing the public key for the User */
   publicKey?: Maybe<Scalars['String']>;
-  /** List of all the AccountNFTSlot entities that this account has. Those slots can be empty but will only exist if they held an NFT at some point. */
-  slots: Array<AccountNftSlot>;
   /** L2 transactions that involved this account */
   transactions: Array<Transaction>;
 };
@@ -10594,14 +6766,6 @@ export type UserBalancesArgs = {
   orderDirection?: InputMaybe<OrderDirection>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountTokenBalance_Filter>;
-};
-
-export type UserSlotsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountNftSlot_Filter>;
 };
 
 export type UserTransactionsArgs = {
@@ -10722,7 +6886,6 @@ export type User_Filter = {
   publicKey_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   publicKey_starts_with?: InputMaybe<Scalars['String']>;
   publicKey_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slots_?: InputMaybe<AccountNftSlot_Filter>;
   transactions_?: InputMaybe<Transaction_Filter>;
 };
 
@@ -10744,7 +6907,6 @@ export enum User_OrderBy {
   LastUpdatedAtTransactionInternalId = 'lastUpdatedAtTransaction__internalID',
   LastUpdatedAtTransactionTypename = 'lastUpdatedAtTransaction__typename',
   PublicKey = 'publicKey',
-  Slots = 'slots',
   Transactions = 'transactions',
 }
 
@@ -10802,413 +6964,6 @@ export type WithdrawalTokenBalancesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AccountTokenBalance_Filter>;
 };
-
-export type WithdrawalNft = Transaction &
-  TransactionNft & {
-    __typename?: 'WithdrawalNFT';
-    accounts?: Maybe<Array<Account>>;
-    /** [RAW L2 DATA] Amount withdrawn */
-    amount: Scalars['BigInt'];
-    block: Block;
-    data: Scalars['String'];
-    /** [RAW L2 DATA] Fee amount paid */
-    fee: Scalars['BigInt'];
-    /** Token entity with information about the token used to pay the operator fees */
-    feeToken?: Maybe<Token>;
-    /** [RAW L2 DATA] Token ID of token used to pay the operator fees */
-    feeTokenID: Scalars['Int'];
-    /** [RAW L2 DATA] Address string of the account that withdrew */
-    from: Scalars['String'];
-    /** Account entity that withdrew the tokens */
-    fromAccount: Account;
-    /** [RAW L2 DATA] Account ID for the account that withdrew */
-    fromAccountID: Scalars['Int'];
-    id: Scalars['ID'];
-    /** ID represented as a BigDecimal for sorting purposes */
-    internalID: Scalars['BigDecimal'];
-    nfts: Array<NonFungibleToken>;
-    /** [RAW L2 DATA] On-chain data hash */
-    onchainDataHash: Scalars['String'];
-    /** Slot entity with information about the withdrawn NFT */
-    slot: AccountNftSlot;
-    slots: Array<AccountNftSlot>;
-    /** [RAW L2 DATA] StorageID */
-    storageID: Scalars['Int'];
-    tokenBalances?: Maybe<Array<AccountTokenBalance>>;
-    /** [RAW L2 DATA] Token ID of the withdrawn token */
-    tokenID: Scalars['Int'];
-    /** [RAW L2 DATA] Withdrawal type */
-    type: Scalars['Int'];
-    /** Explicit copy of __typename to make it usable when filtering */
-    typename: TransactionType;
-    /** Whether the withdrawal transaction is valid. Only type 3 withdrawals are invalid. */
-    valid: Scalars['Boolean'];
-  };
-
-export type WithdrawalNftAccountsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Account_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<Account_Filter>;
-};
-
-export type WithdrawalNftNftsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<NonFungibleToken_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<NonFungibleToken_Filter>;
-};
-
-export type WithdrawalNftSlotsArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountNftSlot_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountNftSlot_Filter>;
-};
-
-export type WithdrawalNftTokenBalancesArgs = {
-  first?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<AccountTokenBalance_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<AccountTokenBalance_Filter>;
-};
-
-export type WithdrawalNft_Filter = {
-  /** Filter for the block changed event. */
-  _change_block?: InputMaybe<BlockChangedFilter>;
-  accounts?: InputMaybe<Array<Scalars['String']>>;
-  accounts_?: InputMaybe<Account_Filter>;
-  accounts_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  accounts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  amount?: InputMaybe<Scalars['BigInt']>;
-  amount_gt?: InputMaybe<Scalars['BigInt']>;
-  amount_gte?: InputMaybe<Scalars['BigInt']>;
-  amount_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  amount_lt?: InputMaybe<Scalars['BigInt']>;
-  amount_lte?: InputMaybe<Scalars['BigInt']>;
-  amount_not?: InputMaybe<Scalars['BigInt']>;
-  amount_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  and?: InputMaybe<Array<InputMaybe<WithdrawalNft_Filter>>>;
-  block?: InputMaybe<Scalars['String']>;
-  block_?: InputMaybe<Block_Filter>;
-  block_contains?: InputMaybe<Scalars['String']>;
-  block_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_ends_with?: InputMaybe<Scalars['String']>;
-  block_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_gt?: InputMaybe<Scalars['String']>;
-  block_gte?: InputMaybe<Scalars['String']>;
-  block_in?: InputMaybe<Array<Scalars['String']>>;
-  block_lt?: InputMaybe<Scalars['String']>;
-  block_lte?: InputMaybe<Scalars['String']>;
-  block_not?: InputMaybe<Scalars['String']>;
-  block_not_contains?: InputMaybe<Scalars['String']>;
-  block_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  block_not_ends_with?: InputMaybe<Scalars['String']>;
-  block_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  block_not_in?: InputMaybe<Array<Scalars['String']>>;
-  block_not_starts_with?: InputMaybe<Scalars['String']>;
-  block_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  block_starts_with?: InputMaybe<Scalars['String']>;
-  block_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data?: InputMaybe<Scalars['String']>;
-  data_contains?: InputMaybe<Scalars['String']>;
-  data_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_ends_with?: InputMaybe<Scalars['String']>;
-  data_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_gt?: InputMaybe<Scalars['String']>;
-  data_gte?: InputMaybe<Scalars['String']>;
-  data_in?: InputMaybe<Array<Scalars['String']>>;
-  data_lt?: InputMaybe<Scalars['String']>;
-  data_lte?: InputMaybe<Scalars['String']>;
-  data_not?: InputMaybe<Scalars['String']>;
-  data_not_contains?: InputMaybe<Scalars['String']>;
-  data_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  data_not_ends_with?: InputMaybe<Scalars['String']>;
-  data_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  data_not_in?: InputMaybe<Array<Scalars['String']>>;
-  data_not_starts_with?: InputMaybe<Scalars['String']>;
-  data_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  data_starts_with?: InputMaybe<Scalars['String']>;
-  data_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fee?: InputMaybe<Scalars['BigInt']>;
-  feeToken?: InputMaybe<Scalars['String']>;
-  feeTokenID?: InputMaybe<Scalars['Int']>;
-  feeTokenID_gt?: InputMaybe<Scalars['Int']>;
-  feeTokenID_gte?: InputMaybe<Scalars['Int']>;
-  feeTokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  feeTokenID_lt?: InputMaybe<Scalars['Int']>;
-  feeTokenID_lte?: InputMaybe<Scalars['Int']>;
-  feeTokenID_not?: InputMaybe<Scalars['Int']>;
-  feeTokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  feeToken_?: InputMaybe<Token_Filter>;
-  feeToken_contains?: InputMaybe<Scalars['String']>;
-  feeToken_contains_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_ends_with?: InputMaybe<Scalars['String']>;
-  feeToken_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_gt?: InputMaybe<Scalars['String']>;
-  feeToken_gte?: InputMaybe<Scalars['String']>;
-  feeToken_in?: InputMaybe<Array<Scalars['String']>>;
-  feeToken_lt?: InputMaybe<Scalars['String']>;
-  feeToken_lte?: InputMaybe<Scalars['String']>;
-  feeToken_not?: InputMaybe<Scalars['String']>;
-  feeToken_not_contains?: InputMaybe<Scalars['String']>;
-  feeToken_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_not_ends_with?: InputMaybe<Scalars['String']>;
-  feeToken_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_not_in?: InputMaybe<Array<Scalars['String']>>;
-  feeToken_not_starts_with?: InputMaybe<Scalars['String']>;
-  feeToken_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  feeToken_starts_with?: InputMaybe<Scalars['String']>;
-  feeToken_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fee_gt?: InputMaybe<Scalars['BigInt']>;
-  fee_gte?: InputMaybe<Scalars['BigInt']>;
-  fee_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  fee_lt?: InputMaybe<Scalars['BigInt']>;
-  fee_lte?: InputMaybe<Scalars['BigInt']>;
-  fee_not?: InputMaybe<Scalars['BigInt']>;
-  fee_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
-  from?: InputMaybe<Scalars['String']>;
-  fromAccount?: InputMaybe<Scalars['String']>;
-  fromAccountID?: InputMaybe<Scalars['Int']>;
-  fromAccountID_gt?: InputMaybe<Scalars['Int']>;
-  fromAccountID_gte?: InputMaybe<Scalars['Int']>;
-  fromAccountID_in?: InputMaybe<Array<Scalars['Int']>>;
-  fromAccountID_lt?: InputMaybe<Scalars['Int']>;
-  fromAccountID_lte?: InputMaybe<Scalars['Int']>;
-  fromAccountID_not?: InputMaybe<Scalars['Int']>;
-  fromAccountID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  fromAccount_?: InputMaybe<Account_Filter>;
-  fromAccount_contains?: InputMaybe<Scalars['String']>;
-  fromAccount_contains_nocase?: InputMaybe<Scalars['String']>;
-  fromAccount_ends_with?: InputMaybe<Scalars['String']>;
-  fromAccount_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  fromAccount_gt?: InputMaybe<Scalars['String']>;
-  fromAccount_gte?: InputMaybe<Scalars['String']>;
-  fromAccount_in?: InputMaybe<Array<Scalars['String']>>;
-  fromAccount_lt?: InputMaybe<Scalars['String']>;
-  fromAccount_lte?: InputMaybe<Scalars['String']>;
-  fromAccount_not?: InputMaybe<Scalars['String']>;
-  fromAccount_not_contains?: InputMaybe<Scalars['String']>;
-  fromAccount_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  fromAccount_not_ends_with?: InputMaybe<Scalars['String']>;
-  fromAccount_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  fromAccount_not_in?: InputMaybe<Array<Scalars['String']>>;
-  fromAccount_not_starts_with?: InputMaybe<Scalars['String']>;
-  fromAccount_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  fromAccount_starts_with?: InputMaybe<Scalars['String']>;
-  fromAccount_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  from_contains?: InputMaybe<Scalars['String']>;
-  from_contains_nocase?: InputMaybe<Scalars['String']>;
-  from_ends_with?: InputMaybe<Scalars['String']>;
-  from_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  from_gt?: InputMaybe<Scalars['String']>;
-  from_gte?: InputMaybe<Scalars['String']>;
-  from_in?: InputMaybe<Array<Scalars['String']>>;
-  from_lt?: InputMaybe<Scalars['String']>;
-  from_lte?: InputMaybe<Scalars['String']>;
-  from_not?: InputMaybe<Scalars['String']>;
-  from_not_contains?: InputMaybe<Scalars['String']>;
-  from_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  from_not_ends_with?: InputMaybe<Scalars['String']>;
-  from_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  from_not_in?: InputMaybe<Array<Scalars['String']>>;
-  from_not_starts_with?: InputMaybe<Scalars['String']>;
-  from_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  from_starts_with?: InputMaybe<Scalars['String']>;
-  from_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  id_gt?: InputMaybe<Scalars['ID']>;
-  id_gte?: InputMaybe<Scalars['ID']>;
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  id_lt?: InputMaybe<Scalars['ID']>;
-  id_lte?: InputMaybe<Scalars['ID']>;
-  id_not?: InputMaybe<Scalars['ID']>;
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  internalID?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_gte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  internalID_lt?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_lte?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not?: InputMaybe<Scalars['BigDecimal']>;
-  internalID_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
-  nfts?: InputMaybe<Array<Scalars['String']>>;
-  nfts_?: InputMaybe<NonFungibleToken_Filter>;
-  nfts_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  nfts_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  onchainDataHash?: InputMaybe<Scalars['String']>;
-  onchainDataHash_contains?: InputMaybe<Scalars['String']>;
-  onchainDataHash_contains_nocase?: InputMaybe<Scalars['String']>;
-  onchainDataHash_ends_with?: InputMaybe<Scalars['String']>;
-  onchainDataHash_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  onchainDataHash_gt?: InputMaybe<Scalars['String']>;
-  onchainDataHash_gte?: InputMaybe<Scalars['String']>;
-  onchainDataHash_in?: InputMaybe<Array<Scalars['String']>>;
-  onchainDataHash_lt?: InputMaybe<Scalars['String']>;
-  onchainDataHash_lte?: InputMaybe<Scalars['String']>;
-  onchainDataHash_not?: InputMaybe<Scalars['String']>;
-  onchainDataHash_not_contains?: InputMaybe<Scalars['String']>;
-  onchainDataHash_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  onchainDataHash_not_ends_with?: InputMaybe<Scalars['String']>;
-  onchainDataHash_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  onchainDataHash_not_in?: InputMaybe<Array<Scalars['String']>>;
-  onchainDataHash_not_starts_with?: InputMaybe<Scalars['String']>;
-  onchainDataHash_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  onchainDataHash_starts_with?: InputMaybe<Scalars['String']>;
-  onchainDataHash_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  or?: InputMaybe<Array<InputMaybe<WithdrawalNft_Filter>>>;
-  slot?: InputMaybe<Scalars['String']>;
-  slot_?: InputMaybe<AccountNftSlot_Filter>;
-  slot_contains?: InputMaybe<Scalars['String']>;
-  slot_contains_nocase?: InputMaybe<Scalars['String']>;
-  slot_ends_with?: InputMaybe<Scalars['String']>;
-  slot_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slot_gt?: InputMaybe<Scalars['String']>;
-  slot_gte?: InputMaybe<Scalars['String']>;
-  slot_in?: InputMaybe<Array<Scalars['String']>>;
-  slot_lt?: InputMaybe<Scalars['String']>;
-  slot_lte?: InputMaybe<Scalars['String']>;
-  slot_not?: InputMaybe<Scalars['String']>;
-  slot_not_contains?: InputMaybe<Scalars['String']>;
-  slot_not_contains_nocase?: InputMaybe<Scalars['String']>;
-  slot_not_ends_with?: InputMaybe<Scalars['String']>;
-  slot_not_ends_with_nocase?: InputMaybe<Scalars['String']>;
-  slot_not_in?: InputMaybe<Array<Scalars['String']>>;
-  slot_not_starts_with?: InputMaybe<Scalars['String']>;
-  slot_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slot_starts_with?: InputMaybe<Scalars['String']>;
-  slot_starts_with_nocase?: InputMaybe<Scalars['String']>;
-  slots?: InputMaybe<Array<Scalars['String']>>;
-  slots_?: InputMaybe<AccountNftSlot_Filter>;
-  slots_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  slots_not?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  slots_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  storageID?: InputMaybe<Scalars['Int']>;
-  storageID_gt?: InputMaybe<Scalars['Int']>;
-  storageID_gte?: InputMaybe<Scalars['Int']>;
-  storageID_in?: InputMaybe<Array<Scalars['Int']>>;
-  storageID_lt?: InputMaybe<Scalars['Int']>;
-  storageID_lte?: InputMaybe<Scalars['Int']>;
-  storageID_not?: InputMaybe<Scalars['Int']>;
-  storageID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenBalances?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_?: InputMaybe<AccountTokenBalance_Filter>;
-  tokenBalances_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains?: InputMaybe<Array<Scalars['String']>>;
-  tokenBalances_not_contains_nocase?: InputMaybe<Array<Scalars['String']>>;
-  tokenID?: InputMaybe<Scalars['Int']>;
-  tokenID_gt?: InputMaybe<Scalars['Int']>;
-  tokenID_gte?: InputMaybe<Scalars['Int']>;
-  tokenID_in?: InputMaybe<Array<Scalars['Int']>>;
-  tokenID_lt?: InputMaybe<Scalars['Int']>;
-  tokenID_lte?: InputMaybe<Scalars['Int']>;
-  tokenID_not?: InputMaybe<Scalars['Int']>;
-  tokenID_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  type?: InputMaybe<Scalars['Int']>;
-  type_gt?: InputMaybe<Scalars['Int']>;
-  type_gte?: InputMaybe<Scalars['Int']>;
-  type_in?: InputMaybe<Array<Scalars['Int']>>;
-  type_lt?: InputMaybe<Scalars['Int']>;
-  type_lte?: InputMaybe<Scalars['Int']>;
-  type_not?: InputMaybe<Scalars['Int']>;
-  type_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  typename?: InputMaybe<TransactionType>;
-  typename_in?: InputMaybe<Array<TransactionType>>;
-  typename_not?: InputMaybe<TransactionType>;
-  typename_not_in?: InputMaybe<Array<TransactionType>>;
-  valid?: InputMaybe<Scalars['Boolean']>;
-  valid_in?: InputMaybe<Array<Scalars['Boolean']>>;
-  valid_not?: InputMaybe<Scalars['Boolean']>;
-  valid_not_in?: InputMaybe<Array<Scalars['Boolean']>>;
-};
-
-export enum WithdrawalNft_OrderBy {
-  Accounts = 'accounts',
-  Amount = 'amount',
-  Block = 'block',
-  BlockAccountUpdateCount = 'block__accountUpdateCount',
-  BlockAccountUpdateSize = 'block__accountUpdateSize',
-  BlockAddCount = 'block__addCount',
-  BlockBlockHash = 'block__blockHash',
-  BlockBlockSize = 'block__blockSize',
-  BlockBlockType = 'block__blockType',
-  BlockBlockVersion = 'block__blockVersion',
-  BlockData = 'block__data',
-  BlockDepositCount = 'block__depositCount',
-  BlockDepositSize = 'block__depositSize',
-  BlockExchange = 'block__exchange',
-  BlockGasLimit = 'block__gasLimit',
-  BlockGasPrice = 'block__gasPrice',
-  BlockHeight = 'block__height',
-  BlockId = 'block__id',
-  BlockInternalId = 'block__internalID',
-  BlockNumConditionalTransactions = 'block__numConditionalTransactions',
-  BlockOffchainData = 'block__offchainData',
-  BlockOperatorAccountId = 'block__operatorAccountID',
-  BlockOrderbookTradeCount = 'block__orderbookTradeCount',
-  BlockProtocolFeeBips = 'block__protocolFeeBips',
-  BlockRemoveCount = 'block__removeCount',
-  BlockSignatureVerificationCount = 'block__signatureVerificationCount',
-  BlockStoreBlockInfoOnchain = 'block__storeBlockInfoOnchain',
-  BlockSwapCount = 'block__swapCount',
-  BlockTimestamp = 'block__timestamp',
-  BlockTransactionCount = 'block__transactionCount',
-  BlockTransferCount = 'block__transferCount',
-  BlockTxHash = 'block__txHash',
-  BlockWithdrawSize = 'block__withdrawSize',
-  BlockWithdrawalCount = 'block__withdrawalCount',
-  Data = 'data',
-  Fee = 'fee',
-  FeeToken = 'feeToken',
-  FeeTokenId = 'feeTokenID',
-  FeeTokenAddress = 'feeToken__address',
-  FeeTokenDecimals = 'feeToken__decimals',
-  FeeTokenId = 'feeToken__id',
-  FeeTokenInternalId = 'feeToken__internalID',
-  FeeTokenName = 'feeToken__name',
-  FeeTokenSymbol = 'feeToken__symbol',
-  FeeTokenTradedVolume = 'feeToken__tradedVolume',
-  FeeTokenTradedVolumeOrderbook = 'feeToken__tradedVolumeOrderbook',
-  FeeTokenTradedVolumeSwap = 'feeToken__tradedVolumeSwap',
-  From = 'from',
-  FromAccount = 'fromAccount',
-  FromAccountId = 'fromAccountID',
-  FromAccountAddress = 'fromAccount__address',
-  FromAccountCreatedAt = 'fromAccount__createdAt',
-  FromAccountId = 'fromAccount__id',
-  FromAccountInternalId = 'fromAccount__internalID',
-  FromAccountLastUpdatedAt = 'fromAccount__lastUpdatedAt',
-  Id = 'id',
-  InternalId = 'internalID',
-  Nfts = 'nfts',
-  OnchainDataHash = 'onchainDataHash',
-  Slot = 'slot',
-  SlotBalance = 'slot__balance',
-  SlotCreatedAt = 'slot__createdAt',
-  SlotId = 'slot__id',
-  SlotLastUpdatedAt = 'slot__lastUpdatedAt',
-  Slots = 'slots',
-  StorageId = 'storageID',
-  TokenBalances = 'tokenBalances',
-  TokenId = 'tokenID',
-  Type = 'type',
-  Typename = 'typename',
-  Valid = 'valid',
-}
 
 export type Withdrawal_Filter = {
   /** Filter for the block changed event. */
@@ -11462,6 +7217,7 @@ export enum Withdrawal_OrderBy {
   BlockAccountUpdateCount = 'block__accountUpdateCount',
   BlockAccountUpdateSize = 'block__accountUpdateSize',
   BlockAddCount = 'block__addCount',
+  BlockAuxiliaryData = 'block__auxiliaryData',
   BlockBlockHash = 'block__blockHash',
   BlockBlockSize = 'block__blockSize',
   BlockBlockType = 'block__blockType',
@@ -11627,6 +7383,58 @@ export type OrderbookTradeFragmentFragment = {
   };
 };
 
+export type BatchSpotTradeFragmentFragment = {
+  __typename: 'BatchSpotTrade';
+  accountBFirstTokenID?: number | null;
+  accountBSecondTokenID?: number | null;
+  accountCFirstTokenID?: number | null;
+  accountCSecondTokenID?: number | null;
+  accountDFirstTokenID?: number | null;
+  accountDSecondTokenID?: number | null;
+  accountEFirstTokenID?: number | null;
+  accountESecondTokenID?: number | null;
+  accountFFirstTokenID?: number | null;
+  accountFSecondTokenID?: number | null;
+  accountAFirstTokenAmountExchange: any;
+  accountASecondTokenAmountExchange: any;
+  accountAThirdTokenAmountExchange: any;
+  accountBFirstTokenAmountExchange: any;
+  accountBSecondTokenAmountExchange: any;
+  accountCFirstTokenAmountExchange: any;
+  accountCSecondTokenAmountExchange: any;
+  accountDFirstTokenAmountExchange: any;
+  accountDSecondTokenAmountExchange: any;
+  accountEFirstTokenAmountExchange: any;
+  accountESecondTokenAmountExchange: any;
+  accountFFirstTokenAmountExchange: any;
+  accountFSecondTokenAmountExchange: any;
+  bindToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  tokenA: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  tokenB: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+  accountA:
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  accountB:
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any };
+  accountC?:
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any }
+    | null;
+  accountD?:
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any }
+    | null;
+  accountE?:
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any }
+    | null;
+  accountF?:
+    | { __typename?: 'ProtocolAccount'; id: string; address: any }
+    | { __typename?: 'User'; id: string; address: any }
+    | null;
+};
+
 export type DepositFragmentFragment = {
   __typename: 'Deposit';
   id: string;
@@ -11706,20 +7514,12 @@ export type AccountsQuery = {
         address: any;
         createdAtTransaction:
           | { __typename?: 'AccountUpdate'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'Add'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'DataNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'BatchSpotTrade'; id: string; block: { __typename?: 'Block'; timestamp: any } }
           | { __typename?: 'Deposit'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'MintNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
           | { __typename?: 'OrderbookTrade'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'Remove'; id: string; block: { __typename?: 'Block'; timestamp: any } }
           | { __typename?: 'SignatureVerification'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'Swap'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'SwapNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'TradeNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
           | { __typename?: 'Transfer'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'TransferNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'Withdrawal'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'WithdrawalNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } };
+          | { __typename?: 'Withdrawal'; id: string; block: { __typename?: 'Block'; timestamp: any } };
       }
     | {
         __typename: 'User';
@@ -11727,20 +7527,12 @@ export type AccountsQuery = {
         address: any;
         createdAtTransaction:
           | { __typename?: 'AccountUpdate'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'Add'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'DataNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
+          | { __typename?: 'BatchSpotTrade'; id: string; block: { __typename?: 'Block'; timestamp: any } }
           | { __typename?: 'Deposit'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'MintNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
           | { __typename?: 'OrderbookTrade'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'Remove'; id: string; block: { __typename?: 'Block'; timestamp: any } }
           | { __typename?: 'SignatureVerification'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'Swap'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'SwapNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'TradeNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
           | { __typename?: 'Transfer'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'TransferNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'Withdrawal'; id: string; block: { __typename?: 'Block'; timestamp: any } }
-          | { __typename?: 'WithdrawalNFT'; id: string; block: { __typename?: 'Block'; timestamp: any } };
+          | { __typename?: 'Withdrawal'; id: string; block: { __typename?: 'Block'; timestamp: any } };
       }
   >;
 };
@@ -11921,20 +7713,6 @@ export type PairQuery = {
   } | null;
 };
 
-export type PairSwapsQueryVariables = Exact<{
-  where?: InputMaybe<Swap_Filter>;
-  orderDirection?: InputMaybe<OrderDirection>;
-}>;
-
-export type PairSwapsQuery = {
-  __typename?: 'Query';
-  swaps: Array<{
-    __typename?: 'Swap';
-    internalID: any;
-    block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any };
-  }>;
-};
-
 export type PairTradesQueryVariables = Exact<{
   where?: InputMaybe<OrderbookTrade_Filter>;
   orderDirection?: InputMaybe<OrderDirection>;
@@ -11996,18 +7774,59 @@ export type TransactionsQuery = {
         feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
       }
     | {
-        __typename?: 'Add';
+        __typename: 'BatchSpotTrade';
         id: string;
         internalID: any;
         data: string;
+        accountBFirstTokenID?: number | null;
+        accountBSecondTokenID?: number | null;
+        accountCFirstTokenID?: number | null;
+        accountCSecondTokenID?: number | null;
+        accountDFirstTokenID?: number | null;
+        accountDSecondTokenID?: number | null;
+        accountEFirstTokenID?: number | null;
+        accountESecondTokenID?: number | null;
+        accountFFirstTokenID?: number | null;
+        accountFSecondTokenID?: number | null;
+        accountAFirstTokenAmountExchange: any;
+        accountASecondTokenAmountExchange: any;
+        accountAThirdTokenAmountExchange: any;
+        accountBFirstTokenAmountExchange: any;
+        accountBSecondTokenAmountExchange: any;
+        accountCFirstTokenAmountExchange: any;
+        accountCSecondTokenAmountExchange: any;
+        accountDFirstTokenAmountExchange: any;
+        accountDSecondTokenAmountExchange: any;
+        accountEFirstTokenAmountExchange: any;
+        accountESecondTokenAmountExchange: any;
+        accountFFirstTokenAmountExchange: any;
+        accountFSecondTokenAmountExchange: any;
         block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
-      }
-    | {
-        __typename?: 'DataNFT';
-        id: string;
-        internalID: any;
-        data: string;
-        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
+        bindToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        tokenA: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        tokenB: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        accountA:
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        accountB:
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        accountC?:
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any }
+          | null;
+        accountD?:
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any }
+          | null;
+        accountE?:
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any }
+          | null;
+        accountF?:
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any }
+          | null;
       }
     | {
         __typename: 'Deposit';
@@ -12020,13 +7839,6 @@ export type TransactionsQuery = {
           | { __typename?: 'ProtocolAccount'; id: string; address: any }
           | { __typename?: 'User'; id: string; address: any };
         token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
-      }
-    | {
-        __typename?: 'MintNFT';
-        id: string;
-        internalID: any;
-        data: string;
-        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
       }
     | {
         __typename: 'OrderbookTrade';
@@ -12060,13 +7872,6 @@ export type TransactionsQuery = {
         };
       }
     | {
-        __typename?: 'Remove';
-        id: string;
-        internalID: any;
-        data: string;
-        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
-      }
-    | {
         __typename: 'SignatureVerification';
         id: string;
         internalID: any;
@@ -12076,27 +7881,6 @@ export type TransactionsQuery = {
         account:
           | { __typename?: 'ProtocolAccount'; id: string; address: any }
           | { __typename?: 'User'; id: string; address: any };
-      }
-    | {
-        __typename?: 'Swap';
-        id: string;
-        internalID: any;
-        data: string;
-        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
-      }
-    | {
-        __typename?: 'SwapNFT';
-        id: string;
-        internalID: any;
-        data: string;
-        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
-      }
-    | {
-        __typename?: 'TradeNFT';
-        id: string;
-        internalID: any;
-        data: string;
-        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
       }
     | {
         __typename: 'Transfer';
@@ -12114,13 +7898,6 @@ export type TransactionsQuery = {
           | { __typename?: 'User'; id: string; address: any };
         token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
         feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
-      }
-    | {
-        __typename?: 'TransferNFT';
-        id: string;
-        internalID: any;
-        data: string;
-        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
       }
     | {
         __typename: 'Withdrawal';
@@ -12149,13 +7926,6 @@ export type TransactionsQuery = {
           decimals: number;
           address: any;
         } | null;
-      }
-    | {
-        __typename?: 'WithdrawalNFT';
-        id: string;
-        internalID: any;
-        data: string;
-        block: { __typename?: 'Block'; id: string; blockHash: string; timestamp: any; txHash: string };
       }
   >;
 };
@@ -12186,10 +7956,33 @@ export type TransactionQuery = {
         feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
       }
     | {
-        __typename?: 'Add';
+        __typename: 'BatchSpotTrade';
         id: string;
         internalID: any;
         data: string;
+        accountBFirstTokenID?: number | null;
+        accountBSecondTokenID?: number | null;
+        accountCFirstTokenID?: number | null;
+        accountCSecondTokenID?: number | null;
+        accountDFirstTokenID?: number | null;
+        accountDSecondTokenID?: number | null;
+        accountEFirstTokenID?: number | null;
+        accountESecondTokenID?: number | null;
+        accountFFirstTokenID?: number | null;
+        accountFSecondTokenID?: number | null;
+        accountAFirstTokenAmountExchange: any;
+        accountASecondTokenAmountExchange: any;
+        accountAThirdTokenAmountExchange: any;
+        accountBFirstTokenAmountExchange: any;
+        accountBSecondTokenAmountExchange: any;
+        accountCFirstTokenAmountExchange: any;
+        accountCSecondTokenAmountExchange: any;
+        accountDFirstTokenAmountExchange: any;
+        accountDSecondTokenAmountExchange: any;
+        accountEFirstTokenAmountExchange: any;
+        accountESecondTokenAmountExchange: any;
+        accountFFirstTokenAmountExchange: any;
+        accountFSecondTokenAmountExchange: any;
         block: {
           __typename?: 'Block';
           id: string;
@@ -12198,20 +7991,31 @@ export type TransactionQuery = {
           transactionCount: any;
           txHash: string;
         };
-      }
-    | {
-        __typename?: 'DataNFT';
-        id: string;
-        internalID: any;
-        data: string;
-        block: {
-          __typename?: 'Block';
-          id: string;
-          blockHash: string;
-          timestamp: any;
-          transactionCount: any;
-          txHash: string;
-        };
+        bindToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        tokenA: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        tokenB: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
+        accountA:
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        accountB:
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any };
+        accountC?:
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any }
+          | null;
+        accountD?:
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any }
+          | null;
+        accountE?:
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any }
+          | null;
+        accountF?:
+          | { __typename?: 'ProtocolAccount'; id: string; address: any }
+          | { __typename?: 'User'; id: string; address: any }
+          | null;
       }
     | {
         __typename: 'Deposit';
@@ -12231,20 +8035,6 @@ export type TransactionQuery = {
           | { __typename?: 'ProtocolAccount'; id: string; address: any }
           | { __typename?: 'User'; id: string; address: any };
         token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
-      }
-    | {
-        __typename?: 'MintNFT';
-        id: string;
-        internalID: any;
-        data: string;
-        block: {
-          __typename?: 'Block';
-          id: string;
-          blockHash: string;
-          timestamp: any;
-          transactionCount: any;
-          txHash: string;
-        };
       }
     | {
         __typename: 'OrderbookTrade';
@@ -12285,20 +8075,6 @@ export type TransactionQuery = {
         };
       }
     | {
-        __typename?: 'Remove';
-        id: string;
-        internalID: any;
-        data: string;
-        block: {
-          __typename?: 'Block';
-          id: string;
-          blockHash: string;
-          timestamp: any;
-          transactionCount: any;
-          txHash: string;
-        };
-      }
-    | {
         __typename: 'SignatureVerification';
         id: string;
         internalID: any;
@@ -12315,48 +8091,6 @@ export type TransactionQuery = {
         account:
           | { __typename?: 'ProtocolAccount'; id: string; address: any }
           | { __typename?: 'User'; id: string; address: any };
-      }
-    | {
-        __typename?: 'Swap';
-        id: string;
-        internalID: any;
-        data: string;
-        block: {
-          __typename?: 'Block';
-          id: string;
-          blockHash: string;
-          timestamp: any;
-          transactionCount: any;
-          txHash: string;
-        };
-      }
-    | {
-        __typename?: 'SwapNFT';
-        id: string;
-        internalID: any;
-        data: string;
-        block: {
-          __typename?: 'Block';
-          id: string;
-          blockHash: string;
-          timestamp: any;
-          transactionCount: any;
-          txHash: string;
-        };
-      }
-    | {
-        __typename?: 'TradeNFT';
-        id: string;
-        internalID: any;
-        data: string;
-        block: {
-          __typename?: 'Block';
-          id: string;
-          blockHash: string;
-          timestamp: any;
-          transactionCount: any;
-          txHash: string;
-        };
       }
     | {
         __typename: 'Transfer';
@@ -12381,20 +8115,6 @@ export type TransactionQuery = {
           | { __typename?: 'User'; id: string; address: any };
         token: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
         feeToken: { __typename?: 'Token'; id: string; name: string; symbol: string; decimals: number; address: any };
-      }
-    | {
-        __typename?: 'TransferNFT';
-        id: string;
-        internalID: any;
-        data: string;
-        block: {
-          __typename?: 'Block';
-          id: string;
-          blockHash: string;
-          timestamp: any;
-          transactionCount: any;
-          txHash: string;
-        };
       }
     | {
         __typename: 'Withdrawal';
@@ -12430,20 +8150,6 @@ export type TransactionQuery = {
           decimals: number;
           address: any;
         } | null;
-      }
-    | {
-        __typename?: 'WithdrawalNFT';
-        id: string;
-        internalID: any;
-        data: string;
-        block: {
-          __typename?: 'Block';
-          id: string;
-          blockHash: string;
-          timestamp: any;
-          transactionCount: any;
-          txHash: string;
-        };
       }
     | null;
 };
@@ -12533,6 +8239,63 @@ export const OrderbookTradeFragmentFragmentDoc = gql`
   }
   ${AccountFragmentFragmentDoc}
   ${TokenFragmentFragmentDoc}
+`;
+export const BatchSpotTradeFragmentFragmentDoc = gql`
+  fragment BatchSpotTradeFragment on BatchSpotTrade {
+    bindToken {
+      ...TokenFragment
+    }
+    tokenA {
+      ...TokenFragment
+    }
+    tokenB {
+      ...TokenFragment
+    }
+    accountA {
+      ...AccountFragment
+    }
+    accountB {
+      ...AccountFragment
+    }
+    accountC {
+      ...AccountFragment
+    }
+    accountD {
+      ...AccountFragment
+    }
+    accountE {
+      ...AccountFragment
+    }
+    accountF {
+      ...AccountFragment
+    }
+    accountBFirstTokenID
+    accountBSecondTokenID
+    accountCFirstTokenID
+    accountCSecondTokenID
+    accountDFirstTokenID
+    accountDSecondTokenID
+    accountEFirstTokenID
+    accountESecondTokenID
+    accountFFirstTokenID
+    accountFSecondTokenID
+    accountAFirstTokenAmountExchange
+    accountASecondTokenAmountExchange
+    accountAThirdTokenAmountExchange
+    accountBFirstTokenAmountExchange
+    accountBSecondTokenAmountExchange
+    accountCFirstTokenAmountExchange
+    accountCSecondTokenAmountExchange
+    accountDFirstTokenAmountExchange
+    accountDSecondTokenAmountExchange
+    accountEFirstTokenAmountExchange
+    accountESecondTokenAmountExchange
+    accountFFirstTokenAmountExchange
+    accountFSecondTokenAmountExchange
+    __typename
+  }
+  ${TokenFragmentFragmentDoc}
+  ${AccountFragmentFragmentDoc}
 `;
 export const DepositFragmentFragmentDoc = gql`
   fragment DepositFragment on Deposit {
@@ -12995,52 +8758,6 @@ export type PairQueryResult = Apollo.QueryResult<PairQuery, PairQueryVariables>;
 export function refetchPairQuery(variables: PairQueryVariables) {
   return { query: PairDocument, variables: variables };
 }
-export const PairSwapsDocument = gql`
-  query pairSwaps($where: Swap_filter, $orderDirection: OrderDirection) {
-    swaps(first: 10, orderDirection: $orderDirection, orderBy: internalID, where: $where) {
-      block {
-        id
-        blockHash
-        timestamp
-      }
-      internalID
-    }
-  }
-`;
-
-/**
- * __usePairSwapsQuery__
- *
- * To run a query within a React component, call `usePairSwapsQuery` and pass it any options that fit your needs.
- * When your component renders, `usePairSwapsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = usePairSwapsQuery({
- *   variables: {
- *      where: // value for 'where'
- *      orderDirection: // value for 'orderDirection'
- *   },
- * });
- */
-export function usePairSwapsQuery(baseOptions?: Apollo.QueryHookOptions<PairSwapsQuery, PairSwapsQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<PairSwapsQuery, PairSwapsQueryVariables>(PairSwapsDocument, options);
-}
-export function usePairSwapsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<PairSwapsQuery, PairSwapsQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<PairSwapsQuery, PairSwapsQueryVariables>(PairSwapsDocument, options);
-}
-export type PairSwapsQueryHookResult = ReturnType<typeof usePairSwapsQuery>;
-export type PairSwapsLazyQueryHookResult = ReturnType<typeof usePairSwapsLazyQuery>;
-export type PairSwapsQueryResult = Apollo.QueryResult<PairSwapsQuery, PairSwapsQueryVariables>;
-export function refetchPairSwapsQuery(variables?: PairSwapsQueryVariables) {
-  return { query: PairSwapsDocument, variables: variables };
-}
 export const PairTradesDocument = gql`
   query pairTrades($where: OrderbookTrade_filter, $orderDirection: OrderDirection) {
     orderbookTrades(first: 10, orderDirection: $orderDirection, orderBy: internalID, where: $where) {
@@ -13112,6 +8829,7 @@ export const TransactionsDocument = gql`
       ...TransferFragment
       ...AccountUpdateFragment
       ...SignatureVerificationFragment
+      ...BatchSpotTradeFragment
     }
   }
   ${OrderbookTradeFragmentFragmentDoc}
@@ -13120,6 +8838,7 @@ export const TransactionsDocument = gql`
   ${TransferFragmentFragmentDoc}
   ${AccountUpdateFragmentFragmentDoc}
   ${SignatureVerificationFragmentFragmentDoc}
+  ${BatchSpotTradeFragmentFragmentDoc}
 `;
 
 /**
@@ -13178,6 +8897,7 @@ export const TransactionDocument = gql`
       ...TransferFragment
       ...AccountUpdateFragment
       ...SignatureVerificationFragment
+      ...BatchSpotTradeFragment
     }
   }
   ${OrderbookTradeFragmentFragmentDoc}
@@ -13186,6 +8906,7 @@ export const TransactionDocument = gql`
   ${TransferFragmentFragmentDoc}
   ${AccountUpdateFragmentFragmentDoc}
   ${SignatureVerificationFragmentFragmentDoc}
+  ${BatchSpotTradeFragmentFragmentDoc}
 `;
 
 /**

@@ -8,6 +8,7 @@ import {
   token,
   transfer,
   withdrawal,
+  batchSpotTrade
 } from '../fragments';
 
 export const FETCH_TXS = gql`
@@ -34,6 +35,7 @@ export const FETCH_TXS = gql`
       ...TransferFragment
       ...AccountUpdateFragment
       ...SignatureVerificationFragment
+      ...BatchSpotTradeFragment
 
     }
   }
@@ -46,6 +48,7 @@ export const FETCH_TXS = gql`
   ${transfer}
   ${accountUpdate}
   ${signatureVerification}
+  ${batchSpotTrade}
 `;
 
 export const FETCH_TX = gql`
@@ -68,6 +71,7 @@ export const FETCH_TX = gql`
       ...TransferFragment
       ...AccountUpdateFragment
       ...SignatureVerificationFragment
+      ...BatchSpotTradeFragment
     }
   }
 
@@ -79,6 +83,7 @@ export const FETCH_TX = gql`
   ${transfer}
   ${accountUpdate}
   ${signatureVerification}
+  ${batchSpotTrade}
 `;
 
 export const FETCH_TX_CONFIRMATION = gql`

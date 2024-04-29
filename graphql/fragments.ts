@@ -73,6 +73,63 @@ export const orderbookTrade = gql`
   }
 `;
 
+export const batchSpotTrade = gql`
+  fragment BatchSpotTradeFragment on BatchSpotTrade {
+    bindToken {
+      ...TokenFragment
+    }
+    tokenA {
+      ...TokenFragment
+    }
+    tokenB {
+      ...TokenFragment
+    }
+    accountA {
+      ...AccountFragment
+    }
+    accountB {
+      ...AccountFragment
+    }
+    accountC {
+      ...AccountFragment
+    }
+    accountD {
+      ...AccountFragment
+    }
+    accountE {
+      ...AccountFragment
+    }
+    accountF {
+      ...AccountFragment
+    }
+    accountBFirstTokenID
+    accountBSecondTokenID
+    accountCFirstTokenID
+    accountCSecondTokenID
+    accountDFirstTokenID
+    accountDSecondTokenID
+    accountEFirstTokenID
+    accountESecondTokenID
+    accountFFirstTokenID
+    accountFSecondTokenID
+    accountAFirstTokenAmountExchange
+    accountASecondTokenAmountExchange
+    accountAThirdTokenAmountExchange
+    accountBFirstTokenAmountExchange
+    accountBSecondTokenAmountExchange
+    accountCFirstTokenAmountExchange
+    accountCSecondTokenAmountExchange
+    accountDFirstTokenAmountExchange
+    accountDSecondTokenAmountExchange
+    accountEFirstTokenAmountExchange
+    accountESecondTokenAmountExchange
+    accountFFirstTokenAmountExchange
+    accountFSecondTokenAmountExchange
+    __typename
+  }
+`;
+
+
 export const deposit = gql`
   fragment DepositFragment on Deposit {
     id

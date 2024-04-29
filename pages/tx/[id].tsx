@@ -10,6 +10,7 @@ import SignatureVerification from '../../components/transactionDetail/SignatureV
 import OrderbookTrade from '../../components/transactionDetail/OrderbookTrade';
 import PendingTx from '../../components/transactionDetail/PendingTx';
 import NoTransactionFound from '../../components/transactionDetail/NoTransactionFound';
+import BatchSpotTrade  from '../../components/transactionDetail/BatchSpotTrade';
 import { useTransactionQuery } from '../../generated/loopringExplorer';
 import { useTransaction } from '../../hooks/useTransaction';
 
@@ -32,6 +33,8 @@ const TransactionRaw: React.FC<{ txId: string, data, loading }> = ({ txId, data,
         return <AccountUpdate transaction={data.transaction} />;
       case 'SignatureVerification':
         return <SignatureVerification transaction={data.transaction} />;
+      case 'BatchSpotTrade':
+        return <BatchSpotTrade transaction={data.transaction} />;
       default:
         return type;
     }

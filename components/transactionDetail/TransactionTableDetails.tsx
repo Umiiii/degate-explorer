@@ -164,6 +164,10 @@ export const getCSVTransactionDetailFields = (tx, account) => {
       return [makeCSVLink(tx.minter), makeCSVLink(tx.receiver), '', '', '', '', '', makeCSVTokenAmount(tx.fee, tx.feeToken)];
     case 'DataNFT':
       return ['', '', '', '', '', '', '', ''];
+    case 'BatchSpotTrade':
+      return [
+        '', '', '', '', '', '', '', ''
+      ];
     default:
       return ['', '', '', '', '', '', '', ''];
   }
@@ -344,7 +348,7 @@ const TransactionTableDetails: React.FC<{
           </td>
         </>
       );
-    case 'AmmUpdate':
+    case 'BatchSpotTrade':
       return (
         <>
           <td className={cellClassName}></td>

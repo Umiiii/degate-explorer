@@ -85,21 +85,6 @@ export const FETCH_PAIR = gql`
 
 `;
 
-export const FETCH_PAIR_SWAPS = gql`
-  query pairSwaps($where: Swap_filter, $orderDirection: OrderDirection) {
-    swaps(first: 10, orderDirection: $orderDirection, orderBy: internalID, where: $where) {
-      block {
-        id
-        blockHash
-        timestamp
-      }
-      internalID
-
-    }
-  }
-
-`;
-
 export const FETCH_PAIR_TRADES = gql`
   query pairTrades($where: OrderbookTrade_filter, $orderDirection: OrderDirection) {
     orderbookTrades(first: 10, orderDirection: $orderDirection, orderBy: internalID, where: $where) {

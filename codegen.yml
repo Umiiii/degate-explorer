@@ -2,7 +2,7 @@ overwrite: true
 generates:
   generated/loopringExplorer.ts:
     #schema: ['https://api.thegraph.com/subgraphs/name/loopring/loopring']
-    schema: ['https://api.studio.thegraph.com/query/52085/degate-mainnet/v0.0.119']
+    schema: ['https://api.studio.thegraph.com/query/52085/degate-mainnet/v0.0.139']
     #schema: ['http://localhost:8000/subgraphs/name/degate/degate-mainnet']
     documents:
       - ./hooks/useAccounts.ts
