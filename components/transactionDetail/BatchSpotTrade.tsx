@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-
 import AppLink from "../AppLink";
 import getDateString from "../../utils/getDateString";
 import getTokenAmount from "../../utils/getTokenAmount";
@@ -507,8 +506,9 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
       </div>
     </div>
       </td>
-    </>
     
+    </>
+   
   );
   
 };
