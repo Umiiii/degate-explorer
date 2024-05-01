@@ -257,13 +257,13 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
               <td className="px-4 py-3 text-right text-sm font-medium">
                   {parseInt(accountAFirstTokenAmountExchange) >0 &&(<div className="text-green-500">+{getTokenAmount(accountAFirstTokenAmountExchange, tokenA.decimals)}</div>)}
                   {parseInt(accountAFirstTokenAmountExchange) <0 &&(<div className="text-red-500">{getTokenAmount(accountAFirstTokenAmountExchange, tokenA.decimals)}</div>)}
-                  {parseInt(accountAFirstTokenAmountExchange) === 0 &&(<div className="text-gray-500">0</div>)}
+                  {/* {parseInt(accountAFirstTokenAmountExchange) === 0 &&(<div className="text-gray-500">0</div>)} */}
 
               </td>
               <td className="px-4 py-3 text-right text-sm font-medium">
               {parseInt(accountASecondTokenAmountExchange) >0 &&(<div className="text-green-500">+{getTokenAmount(accountASecondTokenAmountExchange, tokenB.decimals)}</div>)}
               {parseInt(accountASecondTokenAmountExchange) <0 &&(<div className="text-red-500">{getTokenAmount(accountASecondTokenAmountExchange, tokenB.decimals)}</div>)}
-              {parseInt(accountASecondTokenAmountExchange) === 0 &&(<div className="text-gray-500">0</div>)}
+              {/* {parseInt(accountASecondTokenAmountExchange) === 0 &&(<div className="text-gray-500">0</div>)} */}
               </td>
               <td className="px-4 py-3 text-right text-sm font-medium ">
               {parseInt(accountAThirdTokenAmountExchange) >0 &&(<div className="text-green-500">+{getTokenAmount(accountAThirdTokenAmountExchange, bindToken.decimals)}</div>)}

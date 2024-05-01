@@ -18,6 +18,19 @@ const makeCSVTokenAmount = (amount, token) => {
   return `${getTokenAmount(amount, token.decimals).toFixed(6)} ${token.symbol}`;
 };
 
+export function renderTokenAmount(amount: string, decimals: number, symbol: string, match: boolean = true) {
+  if (!match) {
+    return '';
+  }
+  const parsedAmount = parseInt(amount);
+  const colorClass = amount[0] != '-' ? 'text-green-500' : 'text-red-500';
+  return parsedAmount !== 0 && (
+    <div className={colorClass}>
+      {getTokenAmount(parsedAmount, decimals)} {symbol}
+    </div>
+  );
+}
+
 export const getCSVTransactionDetailFields = (tx, account) => {
   switch (tx.__typename) {
     case 'Add':
@@ -353,10 +366,77 @@ const TransactionTableDetails: React.FC<{
         <>
           <td className={cellClassName}></td>
           <td className={cellClassName}></td>
-          <td className={cellClassName}></td>
+          <td className={cellClassName}>
+            {tx.accountA.id === account && (
+              <div>
+                {renderTokenAmount(tx.accountAFirstTokenAmountExchange, tx.tokenA.decimals, tx.tokenA.symbol)}
+                {renderTokenAmount(tx.accountASecondTokenAmountExchange, tx.tokenB.decimals, tx.tokenB.symbol)}
+                {renderTokenAmount(tx.accountAThirdTokenAmountExchange, tx.bindToken.decimals, tx.bindToken.symbol)}
+              </div>
+            )}
+
+{tx.accountB.id === account && (
+              <div>
+                {renderTokenAmount(tx.accountBFirstTokenAmountExchange, tx.tokenA.decimals, tx.tokenA.symbol, tx.accountBFirstTokenID == tx.tokenA.id)}
+                {renderTokenAmount(tx.accountBFirstTokenAmountExchange, tx.tokenB.decimals, tx.tokenB.symbol, tx.accountBFirstTokenID == tx.tokenB.id)}
+                {renderTokenAmount(tx.accountBFirstTokenAmountExchange, tx.bindToken.decimals, tx.bindToken.symbol, tx.accountBFirstTokenID == tx.bindToken.id)}
+              
+                {renderTokenAmount(tx.accountBSecondTokenAmountExchange, tx.tokenA.decimals, tx.tokenA.symbol, tx.accountBSecondTokenID == tx.tokenA.id)}
+                {renderTokenAmount(tx.accountBSecondTokenAmountExchange, tx.tokenB.decimals, tx.tokenB.symbol, tx.accountBSecondTokenID == tx.tokenB.id)}
+                {renderTokenAmount(tx.accountBSecondTokenAmountExchange, tx.bindToken.decimals, tx.bindToken.symbol, tx.accountBSecondTokenID == tx.bindToken.id)}
+              </div>
+            )}
+
+            {tx.accountC.id === account && (
+              <div>
+                {renderTokenAmount(tx.accountCFirstTokenAmountExchange, tx.tokenA.decimals, tx.tokenA.symbol, tx.accountCFirstTokenID == tx.tokenA.id)}
+                {renderTokenAmount(tx.accountCFirstTokenAmountExchange, tx.tokenB.decimals, tx.tokenB.symbol, tx.accountCFirstTokenID == tx.tokenB.id)}
+                {renderTokenAmount(tx.accountCFirstTokenAmountExchange, tx.bindToken.decimals, tx.bindToken.symbol, tx.accountCFirstTokenID == tx.bindToken.id)}
+              
+                {renderTokenAmount(tx.accountCSecondTokenAmountExchange, tx.tokenA.decimals, tx.tokenA.symbol, tx.accountCSecondTokenID == tx.tokenA.id)}
+                {renderTokenAmount(tx.accountCSecondTokenAmountExchange, tx.tokenB.decimals, tx.tokenB.symbol, tx.accountCSecondTokenID == tx.tokenB.id)}
+                {renderTokenAmount(tx.accountCSecondTokenAmountExchange, tx.bindToken.decimals, tx.bindToken.symbol, tx.accountCSecondTokenID == tx.bindToken.id)}
+              </div>
+              )}
+              {tx.accountD.id === account && (
+                <div>
+                  {renderTokenAmount(tx.accountDFirstTokenAmountExchange, tx.tokenA.decimals, tx.tokenA.symbol, tx.accountDFirstTokenID == tx.tokenA.id)}
+                  {renderTokenAmount(tx.accountDFirstTokenAmountExchange, tx.tokenB.decimals, tx.tokenB.symbol, tx.accountDFirstTokenID == tx.tokenB.id)}
+                  {renderTokenAmount(tx.accountDFirstTokenAmountExchange, tx.bindToken.decimals, tx.bindToken.symbol, tx.accountDFirstTokenID == tx.bindToken.id)}
+
+                  {renderTokenAmount(tx.accountDSecondTokenAmountExchange, tx.tokenA.decimals, tx.tokenA.symbol, tx.accountDSecondTokenID == tx.tokenA.id)}
+                  {renderTokenAmount(tx.accountDSecondTokenAmountExchange, tx.tokenB.decimals, tx.tokenB.symbol, tx.accountDSecondTokenID == tx.tokenB.id)}
+                  {renderTokenAmount(tx.accountDSecondTokenAmountExchange, tx.bindToken.decimals, tx.bindToken.symbol, tx.accountDSecondTokenID == tx.bindToken.id)}
+                </div>
+                )}
+                {tx.accountE.id === account && (
+                  <div>
+                    {renderTokenAmount(tx.accountEFirstTokenAmountExchange, tx.tokenA.decimals, tx.tokenA.symbol, tx.accountEFirstTokenID == tx.tokenA.id)}
+                    {renderTokenAmount(tx.accountEFirstTokenAmountExchange, tx.tokenB.decimals, tx.tokenB.symbol, tx.accountEFirstTokenID == tx.tokenB.id)}
+                    {renderTokenAmount(tx.accountEFirstTokenAmountExchange, tx.bindToken.decimals, tx.bindToken.symbol, tx.accountEFirstTokenID == tx.bindToken.id)}
+
+                    {renderTokenAmount(tx.accountESecondTokenAmountExchange, tx.tokenA.decimals, tx.tokenA.symbol, tx.accountESecondTokenID == tx.tokenA.id)}
+                    {renderTokenAmount(tx.accountESecondTokenAmountExchange, tx.tokenB.decimals, tx.tokenB.symbol, tx.accountESecondTokenID == tx.tokenB.id)}
+                    {renderTokenAmount(tx.accountESecondTokenAmountExchange, tx.bindToken.decimals, tx.bindToken.symbol, tx.accountESecondTokenID == tx.bindToken.id)}
+                  </div>
+                )}
+                {tx.accountF.id === account && (
+                  <div>
+                    {renderTokenAmount(tx.accountFFirstTokenAmountExchange, tx.tokenA.decimals, tx.tokenA.symbol, tx.accountFFirstTokenID == tx.tokenA.id)}
+                    {renderTokenAmount(tx.accountFFirstTokenAmountExchange, tx.tokenB.decimals, tx.tokenB.symbol, tx.accountFFirstTokenID == tx.tokenB.id)}
+                    {renderTokenAmount(tx.accountFFirstTokenAmountExchange, tx.bindToken.decimals, tx.bindToken.symbol, tx.accountFFirstTokenID == tx.bindToken.id)}
+
+                    {renderTokenAmount(tx.accountFSecondTokenAmountExchange, tx.tokenA.decimals, tx.tokenA.symbol, tx.accountFSecondTokenID == tx.tokenA.id)}
+                    {renderTokenAmount(tx.accountFSecondTokenAmountExchange, tx.tokenB.decimals, tx.tokenB.symbol, tx.accountFSecondTokenID == tx.tokenB.id)}
+                    {renderTokenAmount(tx.accountFSecondTokenAmountExchange, tx.bindToken.decimals, tx.bindToken.symbol, tx.accountFSecondTokenID == tx.bindToken.id)}
+                  </div>
+                )}
+          </td>
           <td className={cellClassName}></td>
         </>
       );
+
+
     case 'SignatureVerification':
       return (
         <>

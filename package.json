@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.2",
+    "@download/blockies": "^1.0.3",
     "@types/lodash": "^4.14.194",
     "ethereum-checksum-address": "^0.0.7",
     "ethers": "^5.4.6",
