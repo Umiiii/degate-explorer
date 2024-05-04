@@ -17,8 +17,13 @@
   "dependencies": {
     "@apollo/client": "^3.6.2",
     "@download/blockies": "^1.0.3",
+    "@types/d3-sankey": "^0.12.4",
+    "@types/d3-shape": "^3.1.6",
     "@types/lodash": "^4.14.194",
+    "@vercel/analytics": "^1.2.2",
+    "d3": "^7.9.0",
     "d3-sankey": "^0.12.3",
+    "d3-shape": "^3.2.0",
     "ethereum-checksum-address": "^0.0.7",
     "ethers": "^5.4.6",
     "graphql": "^16.4.0",

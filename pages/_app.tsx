@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { ApolloProvider } from '@apollo/client';
 import Link from 'next/link';
-
+import { Analytics } from '@vercel/analytics/react'
 import SearchForm from '../components/SearchForm';
 import '../styles/globals.scss';
 import DarkModeToggle from '../components/DarkModeToggle';
@@ -43,19 +43,21 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <ApolloProvider client={apolloClient}>
+
       <ConsentContextProvider>
+      <Analytics />
         <main className="w-screen h-screen text-loopring-gray dark:text-loopring-dark-gray overflow-x-hidden">
           <Head>
             <title>Degate Layer2 Explorer</title>
             <link rel="icon" href="/favicon.png" />
-              <script async src="https://www.googletagmanager.com/gtag/js?id=G-030VYCVBNK"></script>
+              <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2XBBHN2H4"></script>
               <script>
                 {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
               
-                gtag('config', 'G-030VYCVBNK');
+                gtag('config', 'G-T2XBBHN2H4');
                 `}
               </script>
           </Head>
@@ -138,6 +140,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         </main>
       </ConsentContextProvider>
     </ApolloProvider>
+    
   );
 };
 
