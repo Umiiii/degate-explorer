@@ -21,6 +21,7 @@
     "@types/d3-shape": "^3.1.6",
     "@types/lodash": "^4.14.194",
     "@vercel/analytics": "^1.2.2",
+    "@vercel/speed-insights": "^1.0.10",
     "d3": "^7.9.0",
     "d3-sankey": "^0.12.3",
     "d3-shape": "^3.2.0",

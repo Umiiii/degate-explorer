@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { Analytics } from '@vercel/analytics/react'
 import SearchForm from '../components/SearchForm';
 import '../styles/globals.scss';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import DarkModeToggle from '../components/DarkModeToggle';
 import ConsentContextProvider from '../components/ConsentContextProvider';
 import apolloClient from '../graphql';
@@ -46,6 +47,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
       <ConsentContextProvider>
       <Analytics />
+      <SpeedInsights />
         <main className="w-screen h-screen text-loopring-gray dark:text-loopring-dark-gray overflow-x-hidden">
           <Head>
             <title>Degate Layer2 Explorer</title>
