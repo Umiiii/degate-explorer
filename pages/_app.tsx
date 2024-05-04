@@ -40,7 +40,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
     setDarkMode((val) => !val);
     setShowNav(false);
   };
-
+  
   return (
     <ApolloProvider client={apolloClient}>
 
@@ -55,10 +55,10 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
                 {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-              
-                gtag('config', 'G-T2XBBHN2H4');
-                `}
+                gtag(String.fromCharCode(106,115), new Date());`}
+                {/* gtag('config', 'G-T2XBBHN2H4'); */}
+                gtag(String.fromCharCode(99,111,110,102,105,103), String.fromCharCode(71,45,84,50,88,66,66,72,78,50,72,52));
+                
               </script>
           </Head>
           <header className="bg-white w-screen px-4 py-2 dark:bg-loopring-dark-background">
