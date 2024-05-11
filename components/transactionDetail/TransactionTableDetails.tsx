@@ -79,7 +79,7 @@ export function getUniqueAccountToTxData(tx : any, accountId: string) {
 
 export function getTokenAmountByTokenId(tokenId: string, targetId: string, amount: string) {
   if (tokenId == targetId) {
-    return amount;
+    return parseInt(amount);
   }
   return 0;
 }
@@ -95,29 +95,44 @@ export function getTokenAmountDeltaData(tx: any) {
     delta[2].tokenAmount += parseInt(tx.accountAThirdTokenAmountExchange);
   }
   if (tx.accountB != null) {
-    delta[0].tokenAmount += parseInt(tx.accountBFirstTokenAmountExchange);
-    delta[1].tokenAmount += parseInt(tx.accountBSecondTokenAmountExchange);
-    delta[2].tokenAmount += parseInt(tx.accountBThirdTokenAmountExchange);
+    delta[0].tokenAmount += getTokenAmountByTokenId(tx.accountBFirstTokenID, tx.tokenA.id, tx.accountBFirstTokenAmountExchange);
+    delta[1].tokenAmount += getTokenAmountByTokenId(tx.accountBFirstTokenID, tx.tokenB.id, tx.accountBFirstTokenAmountExchange);
+    delta[2].tokenAmount += getTokenAmountByTokenId(tx.accountBFirstTokenID, tx.bindToken.id, tx.accountBFirstTokenAmountExchange);
+    delta[0].tokenAmount += getTokenAmountByTokenId(tx.accountBSecondTokenID, tx.tokenA.id, tx.accountBSecondTokenAmountExchange);
+    delta[1].tokenAmount += getTokenAmountByTokenId(tx.accountBSecondTokenID, tx.tokenB.id, tx.accountBSecondTokenAmountExchange);
+    delta[2].tokenAmount += getTokenAmountByTokenId(tx.accountBSecondTokenID, tx.bindToken.id, tx.accountBSecondTokenAmountExchange);
   }
   if (tx.accountC != null) {
-    delta[0].tokenAmount += parseInt(tx.accountCFirstTokenAmountExchange);
-    delta[1].tokenAmount += parseInt(tx.accountCSecondTokenAmountExchange);
-    delta[2].tokenAmount += parseInt(tx.accountCThirdTokenAmountExchange);
+    delta[0].tokenAmount += getTokenAmountByTokenId(tx.accountCFirstTokenID, tx.tokenA.id, tx.accountCFirstTokenAmountExchange);
+    delta[1].tokenAmount += getTokenAmountByTokenId(tx.accountCFirstTokenID, tx.tokenB.id, tx.accountCFirstTokenAmountExchange);
+    delta[2].tokenAmount += getTokenAmountByTokenId(tx.accountCFirstTokenID, tx.bindToken.id, tx.accountCFirstTokenAmountExchange);
+    delta[0].tokenAmount += getTokenAmountByTokenId(tx.accountCSecondTokenID, tx.tokenA.id, tx.accountCSecondTokenAmountExchange);
+    delta[1].tokenAmount += getTokenAmountByTokenId(tx.accountCSecondTokenID, tx.tokenB.id, tx.accountCSecondTokenAmountExchange);
+    delta[2].tokenAmount += getTokenAmountByTokenId(tx.accountCSecondTokenID, tx.bindToken.id, tx.accountCSecondTokenAmountExchange);
   }
   if (tx.accountD != null) {
-    delta[0].tokenAmount += parseInt(tx.accountDFirstTokenAmountExchange);
-    delta[1].tokenAmount += parseInt(tx.accountDSecondTokenAmountExchange);
-    delta[2].tokenAmount += parseInt(tx.accountDThirdTokenAmountExchange);
+   delta[0].tokenAmount += getTokenAmountByTokenId(tx.accountDFirstTokenID, tx.tokenA.id, tx.accountDFirstTokenAmountExchange);
+    delta[1].tokenAmount += getTokenAmountByTokenId(tx.accountDFirstTokenID, tx.tokenB.id, tx.accountDFirstTokenAmountExchange);
+    delta[2].tokenAmount += getTokenAmountByTokenId(tx.accountDFirstTokenID, tx.bindToken.id, tx.accountDFirstTokenAmountExchange);
+    delta[0].tokenAmount += getTokenAmountByTokenId(tx.accountDSecondTokenID, tx.tokenA.id, tx.accountDSecondTokenAmountExchange);
+    delta[1].tokenAmount += getTokenAmountByTokenId(tx.accountDSecondTokenID, tx.tokenB.id, tx.accountDSecondTokenAmountExchange);
+    delta[2].tokenAmount += getTokenAmountByTokenId(tx.accountDSecondTokenID, tx.bindToken.id, tx.accountDSecondTokenAmountExchange);
   }
   if (tx.accountE != null) {
-    delta[0].tokenAmount += parseInt(tx.accountEFirstTokenAmountExchange);
-    delta[1].tokenAmount += parseInt(tx.accountESecondTokenAmountExchange);
-    delta[2].tokenAmount += parseInt(tx.accountEThirdTokenAmountExchange);
+   delta[0].tokenAmount += getTokenAmountByTokenId(tx.accountEFirstTokenID, tx.tokenA.id, tx.accountEFirstTokenAmountExchange);
+    delta[1].tokenAmount += getTokenAmountByTokenId(tx.accountEFirstTokenID, tx.tokenB.id, tx.accountEFirstTokenAmountExchange);
+    delta[2].tokenAmount += getTokenAmountByTokenId(tx.accountEFirstTokenID, tx.bindToken.id, tx.accountEFirstTokenAmountExchange);
+    delta[0].tokenAmount += getTokenAmountByTokenId(tx.accountESecondTokenID, tx.tokenA.id, tx.accountESecondTokenAmountExchange);
+    delta[1].tokenAmount += getTokenAmountByTokenId(tx.accountESecondTokenID, tx.tokenB.id, tx.accountESecondTokenAmountExchange);
+    delta[2].tokenAmount += getTokenAmountByTokenId(tx.accountESecondTokenID, tx.bindToken.id, tx.accountESecondTokenAmountExchange);
   }
   if (tx.accountF != null) {
-    delta[0].tokenAmount += parseInt(tx.accountFFirstTokenAmountExchange);
-    delta[1].tokenAmount += parseInt(tx.accountFSecondTokenAmountExchange);
-    delta[2].tokenAmount += parseInt(tx.accountFThirdTokenAmountExchange);
+   delta[0].tokenAmount += getTokenAmountByTokenId(tx.accountFFirstTokenID, tx.tokenA.id, tx.accountFFirstTokenAmountExchange);
+    delta[1].tokenAmount += getTokenAmountByTokenId(tx.accountFFirstTokenID, tx.tokenB.id, tx.accountFFirstTokenAmountExchange);
+    delta[2].tokenAmount += getTokenAmountByTokenId(tx.accountFFirstTokenID, tx.bindToken.id, tx.accountFFirstTokenAmountExchange);
+    delta[0].tokenAmount += getTokenAmountByTokenId(tx.accountFSecondTokenID, tx.tokenA.id, tx.accountFSecondTokenAmountExchange);
+    delta[1].tokenAmount += getTokenAmountByTokenId(tx.accountFSecondTokenID, tx.tokenB.id, tx.accountFSecondTokenAmountExchange);
+    delta[2].tokenAmount += getTokenAmountByTokenId(tx.accountFSecondTokenID, tx.bindToken.id, tx.accountFSecondTokenAmountExchange);
   }
 
   return <div>
