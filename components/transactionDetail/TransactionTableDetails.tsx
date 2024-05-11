@@ -565,7 +565,14 @@ const TransactionTableDetails: React.FC<{
         </>
       );
     default:
-      return {type};
+      return (
+        <>
+          <td className={cellClassName}></td>
+          <td className={cellClassName}></td>
+          <td className={cellClassName}></td>
+          <td className={cellClassName}></td>
+        </>
+      );
   }
 };
 
