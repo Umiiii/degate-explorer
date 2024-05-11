@@ -82,7 +82,7 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
         <td>Batch Spot Trade</td>
       </tr>
       <tr className="border dark:border-loopring-dark-darkBlue">
-        <td className="p-2">Account 1</td>
+        <td className="p-2">Account A</td>
         <td>
           <AppLink
             path="account"
@@ -101,7 +101,7 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
         </td>
       </tr>
       <tr className="border dark:border-loopring-dark-darkBlue">
-        <td className="p-2">Account 2</td>
+        <td className="p-2">Account B</td>
         <td>
           <AppLink
             path="account"
@@ -121,7 +121,7 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
       </tr>
       {accountC.id > 0 && (
       <tr className="border dark:border-loopring-dark-darkBlue">
-        <td className="p-2">Account 3</td>
+        <td className="p-2">Account C</td>
         <td>
           <AppLink
             path="account"
@@ -141,7 +141,7 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
       </tr>)}
       {accountD.id > 0 && (
       <tr className="border dark:border-loopring-dark-darkBlue">
-        <td className="p-2">Account 4</td>
+        <td className="p-2">Account D</td>
         <td>
           <AppLink
             path="account"
@@ -161,7 +161,7 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
       </tr>)}
       {accountE.id > 0 && (
       <tr className="border dark:border-loopring-dark-darkBlue">
-        <td className="p-2">Account 5</td>
+        <td className="p-2">Account E</td>
         <td>
           <AppLink
             path="account"
@@ -182,7 +182,7 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
       )}
       {accountF.id > 0 && (
       <tr className="border dark:border-loopring-dark-darkBlue">
-        <td className="p-2">Account 6</td>
+        <td className="p-2">Account F</td>
         <td>
           <AppLink
             path="account"
@@ -245,10 +245,8 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
                 <span className="hidden lg:block">
                   {accountA.address || accountA.id}
                 </span>
-                <span className="lg:hidden">
-                  {accountA.address
-                    ? getTrimmedTxHash(accountA.address, 10, true)
-                    : accountA.id}
+                <span className="">
+                  Account {accountA.id}
                 </span>
               </AppLink>
               </td>
@@ -278,10 +276,8 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
                 <span className="hidden lg:block">
                   {accountB.address || accountB.id}
                 </span>
-                <span className="lg:hidden">
-                  {accountB.address
-                    ? getTrimmedTxHash(accountB.address, 10, true)
-                    : accountA.id}
+                <span className="">
+                  Account {accountB.id}
                 </span>
               </AppLink>
               </td>
@@ -323,10 +319,8 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
                 <span className="hidden lg:block">
                   {accountC.address || accountC.id}
                 </span>
-                <span className="lg:hidden">
-                  {accountC.address
-                    ? getTrimmedTxHash(accountC.address, 10, true)
-                    : accountC.id}
+                <span className="">
+                 Account {accountC.id}
                 </span>
               </AppLink></td>
               <td className="px-4 py-3 text-right text-sm font-medium">
@@ -369,10 +363,8 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
                 <span className="hidden lg:block">
                   {accountD.address || accountD.id}
                 </span>
-                <span className="lg:hidden">
-                  {accountD.address
-                    ? getTrimmedTxHash(accountD.address, 10, true)
-                    : accountD.id}
+                <span className="">
+                   Account {accountD.id}
                 </span>
               </AppLink></td>
               <td className="px-4 py-3 text-right text-sm font-medium">
@@ -416,10 +408,8 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
                   <span className="hidden lg:block">
                     {accountE.address || accountE.id}
                   </span>
-                  <span className="lg:hidden">
-                    {accountE.address
-                      ? getTrimmedTxHash(accountE.address, 10, true)
-                      : accountE.id}
+                  <span className="">
+                    Account {accountE.id}
                   </span>
                 </AppLink></td>
                 <td className="px-4 py-3 text-right text-sm font-medium">
@@ -463,10 +453,8 @@ const BatchSpotTrade: React.FC<IBatchSpotTradeProps> = ({
                   <span className="hidden lg:block">
                     {accountF.address || accountF.id}
                   </span>
-                  <span className="lg:hidden">
-                    {accountF.address
-                      ? getTrimmedTxHash(accountF.address, 10, true)
-                      : accountF.id}
+                  <span className="">
+                    Account {accountF.id}
                   </span>
                 </AppLink></td>
                 <td className="px-4 py-3 text-right text-sm font-medium">
