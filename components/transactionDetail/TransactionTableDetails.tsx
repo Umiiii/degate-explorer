@@ -31,6 +31,102 @@ export function renderTokenAmount(amount: string, decimals: number, symbol: stri
   );
 }
 
+export function getUniqueAccount(tx: any) {
+  var uniqueAccounts = [];
+  if (tx.accountA != null && !uniqueAccounts.includes(tx.accountA.id)) {
+    uniqueAccounts.push(tx.accountA.id);
+  }
+  if (tx.accountB != null && !uniqueAccounts.includes(tx.accountB.id)) {
+    uniqueAccounts.push(tx.accountB.id);
+  }
+  if (tx.accountC != null && !uniqueAccounts.includes(tx.accountC.id)) {
+    uniqueAccounts.push(tx.accountC.id);
+  }
+  if (tx.accountD != null && !uniqueAccounts.includes(tx.accountD.id)) {
+    uniqueAccounts.push(tx.accountD.id);
+  }
+  if (tx.accountE != null && !uniqueAccounts.includes(tx.accountE.id)) {
+    uniqueAccounts.push(tx.accountE.id);
+  }
+  return uniqueAccounts;
+}
+
+export function getUniqueAccountFromTxData(tx : any, accountId: string) {
+  var accounts = getUniqueAccount(tx);
+  if (accounts.length == 0) {
+    return <div></div>;
+  }
+  var ele = [];
+  for (var i = 0; i < accounts.length; i++) {
+    if (accounts[i] == 0) {continue}
+    if (accounts[i] == accountId) {
+      ele.push(<div>Account {accounts[i]}</div>);
+    } else {
+    ele.push(<div><AppLink path="account" accountId={accounts[i]}>
+      Account {accounts[i]}
+      
+    </AppLink></div>);
+    }
+  }
+  return <div>
+    {ele}
+  </div> 
+}
+
+export function getUniqueAccountToTxData(tx : any, accountId: string) {
+  return <div></div>;
+}
+
+export function getTokenAmountByTokenId(tokenId: string, targetId: string, amount: string) {
+  if (tokenId == targetId) {
+    return amount;
+  }
+  return 0;
+}
+
+export function getTokenAmountDeltaData(tx: any) {
+  var delta = [{"tokenAmount": 0, "token": tx.tokenA, "decimals": tx.tokenA.decimals}, 
+  {"tokenAmount": 0, "token": tx.tokenB, "decimals": tx.tokenB.decimals}, 
+  {"tokenAmount": 0, "token": tx.bindToken, "decimals": tx.bindToken.decimals}];
+  console.log(delta);
+  if (tx.accountA != null) {
+    delta[0].tokenAmount += parseInt(tx.accountAFirstTokenAmountExchange);
+    delta[1].tokenAmount += parseInt(tx.accountASecondTokenAmountExchange);
+    delta[2].tokenAmount += parseInt(tx.accountAThirdTokenAmountExchange);
+  }
+  if (tx.accountB != null) {
+    delta[0].tokenAmount += parseInt(tx.accountBFirstTokenAmountExchange);
+    delta[1].tokenAmount += parseInt(tx.accountBSecondTokenAmountExchange);
+    delta[2].tokenAmount += parseInt(tx.accountBThirdTokenAmountExchange);
+  }
+  if (tx.accountC != null) {
+    delta[0].tokenAmount += parseInt(tx.accountCFirstTokenAmountExchange);
+    delta[1].tokenAmount += parseInt(tx.accountCSecondTokenAmountExchange);
+    delta[2].tokenAmount += parseInt(tx.accountCThirdTokenAmountExchange);
+  }
+  if (tx.accountD != null) {
+    delta[0].tokenAmount += parseInt(tx.accountDFirstTokenAmountExchange);
+    delta[1].tokenAmount += parseInt(tx.accountDSecondTokenAmountExchange);
+    delta[2].tokenAmount += parseInt(tx.accountDThirdTokenAmountExchange);
+  }
+  if (tx.accountE != null) {
+    delta[0].tokenAmount += parseInt(tx.accountEFirstTokenAmountExchange);
+    delta[1].tokenAmount += parseInt(tx.accountESecondTokenAmountExchange);
+    delta[2].tokenAmount += parseInt(tx.accountEThirdTokenAmountExchange);
+  }
+  if (tx.accountF != null) {
+    delta[0].tokenAmount += parseInt(tx.accountFFirstTokenAmountExchange);
+    delta[1].tokenAmount += parseInt(tx.accountFSecondTokenAmountExchange);
+    delta[2].tokenAmount += parseInt(tx.accountFThirdTokenAmountExchange);
+  }
+
+  return <div>
+    <div>{getTokenAmount(delta[0].tokenAmount, delta[0].token.decimals)} {delta[0].token.symbol}</div>
+    <div>{getTokenAmount(delta[1].tokenAmount, delta[1].token.decimals)} {delta[1].token.symbol}</div>
+    <div>{getTokenAmount(delta[2].tokenAmount, delta[2].token.decimals)} {delta[2].token.symbol}</div>
+  </div>;
+}
+
 export const getCSVTransactionDetailFields = (tx, account) => {
   switch (tx.__typename) {
     case 'Add':
@@ -364,9 +460,26 @@ const TransactionTableDetails: React.FC<{
     case 'BatchSpotTrade':
       return (
         <>
-          <td className={cellClassName}></td>
-          <td className={cellClassName}></td>
+          <td className={cellClassName}> 
+          <div>
+            {getUniqueAccountFromTxData(tx, account)}
+          </div>
+
+          </td>
+          
           <td className={cellClassName}>
+
+          <div>
+            {getUniqueAccountToTxData(tx, account)}
+          </div>
+          </td>
+          <td className={cellClassName}>
+            {account === 'none' && (
+              <div>
+              {getTokenAmountDeltaData(tx)}
+              </div>
+            )}
+
             {tx.accountA.id === account && (
               <div>
                 {renderTokenAmount(tx.accountAFirstTokenAmountExchange, tx.tokenA.decimals, tx.tokenA.symbol)}
@@ -431,6 +544,7 @@ const TransactionTableDetails: React.FC<{
                     {renderTokenAmount(tx.accountFSecondTokenAmountExchange, tx.bindToken.decimals, tx.bindToken.symbol, tx.accountFSecondTokenID == tx.bindToken.id)}
                   </div>
                 )}
+          
           </td>
           <td className={cellClassName}></td>
         </>
@@ -450,117 +564,8 @@ const TransactionTableDetails: React.FC<{
           <td className={cellClassName}></td>
         </>
       );
-    case 'TradeNFT':
-      return (
-        <>
-          <td className={cellClassName}>
-            <AppLink path="account" accountId={tx.accountSeller.id}>
-              {getTrimmedTxHash(tx.accountSeller.address, 10, true)}
-            </AppLink>
-          </td>
-          <td className={cellClassName}>
-            <AppLink path="account" accountId={tx.accountBuyer.id}>
-              {getTrimmedTxHash(tx.accountBuyer.address, 10, true)}
-            </AppLink>
-          </td>
-          <td className={cellClassName}>
-            {getTokenAmount(tx.realizedNFTPrice, tx.token.decimals)} {tx.token.symbol}
-          </td>
-          <td className={cellClassName}>
-            {account === 'none'
-              ? `${getTokenAmount(parseInt(tx.feeBuyer) + parseInt(tx.feeSeller), tx.token.decimals)}`
-              : tx.accountSeller.id === account
-                ? `${getTokenAmount(tx.feeSeller, tx.token.decimals)}`
-                : `${getTokenAmount(tx.feeBuyer, tx.token.decimals)}`
-            } {tx.token.symbol}
-          </td>
-        </>
-      );
-    case 'SwapNFT':
-      return (
-        <>
-          <td className={cellClassName}>
-            <AppLink path="account" accountId={tx.accountA.id}>
-              {getTrimmedTxHash(tx.accountA.address, 10, true)}
-            </AppLink>
-          </td>
-          <td className={cellClassName}>
-            <AppLink path="account" accountId={tx.accountB.id}>
-              {getTrimmedTxHash(tx.accountB.address, 10, true)}
-            </AppLink>
-          </td>
-          <td className={cellClassName}></td>
-          <td className={cellClassName}></td>
-        </>
-      );
-    case 'WithdrawalNFT':
-      return (
-        <>
-          <td className={cellClassName}>
-            <AppLink path="account" accountId={tx.fromAccount.id}>
-              {getTrimmedTxHash(tx.fromAccount.address, 10, true)}
-            </AppLink>
-          </td>
-          <td className={cellClassName}>
-            <AppLink path="account" accountId={tx.fromAccount.id} address={tx.fromAccount.address} isExplorerLink>
-              {getTrimmedTxHash(tx.fromAccount.address, 10, true)}
-            </AppLink>
-          </td>
-          <td className={cellClassName}></td>
-          <td className={cellClassName}>
-            {getTokenAmount(tx.fee, tx.withdrawalNFTFeeToken.decimals)} {tx.withdrawalNFTFeeToken.symbol}
-          </td>
-        </>
-      );
-    case 'TransferNFT':
-      return (
-        <>
-          <td className={cellClassName}>
-            <AppLink path="account" accountId={tx.fromAccount.id}>
-              {getTrimmedTxHash(tx.fromAccount.address, 10, true)}
-            </AppLink>
-          </td>
-          <td className={cellClassName}>
-            <AppLink path="account" accountId={tx.toAccount.id}>
-              {getTrimmedTxHash(tx.toAccount.address, 10, true)}
-            </AppLink>
-          </td>
-          <td className={cellClassName}></td>
-          <td className={cellClassName}>
-            {getTokenAmount(tx.fee, tx.feeToken.decimals)} {tx.feeToken.symbol}
-          </td>
-        </>
-      );
-    case 'MintNFT':
-      return (
-        <>
-          <td className={cellClassName}>
-            <AppLink path="account" accountId={tx.minter.id}>
-              {getTrimmedTxHash(tx.minter.address, 10, true)}
-            </AppLink>
-          </td>
-          <td className={cellClassName}>
-            <AppLink path="account" accountId={tx.receiver.id}>
-              {getTrimmedTxHash(tx.receiver.address, 10, true)}
-            </AppLink>
-          </td>
-          <td className={cellClassName}></td>
-          <td className={cellClassName}>
-            {getTokenAmount(tx.fee, tx.feeToken.decimals)} {tx.feeToken.symbol}
-          </td>
-        </>
-      );
-    case 'DataNFT':
-      return (
-        <>
-          <td className={cellClassName}></td>
-          <td className={cellClassName}></td>
-          <td className={cellClassName}></td>
-          <td className={cellClassName}></td>
-        </>
-      );
     default:
-      return null;
+      return {type};
   }
 };
 

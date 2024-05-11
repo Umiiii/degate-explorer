@@ -1,5 +1,9 @@
 const getTokenAmount = (balance, decimals) => {
-  return balance / Math.pow(10, decimals);
+  var result = balance / Math.pow(10, decimals);
+  if (Number.isNaN(result)) {
+    return 0;
+  }
+  return result;
 };
 
 export default getTokenAmount;
