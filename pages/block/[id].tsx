@@ -84,6 +84,7 @@ const Block: React.FC<{}> = () => {
       {data && data.block && (
         <div className="p-4">
           <Transactions
+            blockIDFilter={blockId as string}
             title={<h2 className="text-2xl font-semibold">Transactions in block #{blockId}</h2>}
           />
         </div>
