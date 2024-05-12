@@ -10,7 +10,7 @@ interface Props {
 }
 
 const AccountTokenBalances: React.FC<Props> = ({ accountId }) => {
-  const TOTAL_COUNT = 10;
+  const TOTAL_COUNT = 50;
   const { data: tokensData, isLoading } = useTokens();
 
   const { data, fetchMore, error, loading } = useAccountTokenBalancesQuery({
@@ -36,7 +36,7 @@ const AccountTokenBalances: React.FC<Props> = ({ accountId }) => {
   }
 
   const accountTokenBalancesWithSymbol = data.accountTokenBalances
-  //  .filter(({ balance }) => balance != 0)
+    .filter(({ balance }) => balance != 0)
     .map((accountTokenBalance) => {
       const { token } = accountTokenBalance;
       if (token.name && token.symbol) {
