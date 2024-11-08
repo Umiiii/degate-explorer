@@ -61,6 +61,14 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
                 
               </script>
           </Head>
+          
+          <div className="bg-yellow-100 dark:bg-yellow-800 px-4 py-2 text-center">
+            <p className="text-yellow-800 dark:text-yellow-100 text-sm">
+              ⚠️ This is not an official explorer and all data is parsed from on-chain data only. Results are not guaranteed to be accurate. 
+              The official Degate explorer is <a href="https://dgscan.io" target="_blank" rel="noopener noreferrer" className="underline font-bold">dgscan.io</a>
+            </p>
+          </div>
+
           <header className="bg-white w-screen px-4 py-2 dark:bg-loopring-dark-background">
             <div className="container h-full w-full lg:w-11/12 m-auto flex md:items-center justify-between">
               <Link href="/">
