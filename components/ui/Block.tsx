@@ -50,7 +50,7 @@ block,
     },
     title: {
       fontSize: '16px',
-      fontWeight: 'bold',
+      fontWeight: 700,
       textAlign: 'center',
     },
     text: {
@@ -62,7 +62,7 @@ block,
     btcAmount: {
       margin: '5px 0',
       fontSize: '20px',
-      fontWeight: 'bold',
+      fontWeight: 700,
     },
     transactionCount: {
       fontSize: '13px',
@@ -78,6 +78,7 @@ block,
       marginTop: 'auto',
       display: 'flex',
       textAlign: 'center',
+      justifyContent: 'center',
       gap: '5px',
     
     }
