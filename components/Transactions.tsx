@@ -200,7 +200,7 @@ const Transactions: React.FC<{
               <th className="p-2 whitespace-nowrap">To</th>
               <th className="p-2 whitespace-nowrap">Amount</th>
               <th className="p-2 whitespace-nowrap">{account === 'none' ? 'Total Fee' : 'Fee'}</th>
-              <th className="p-2 whitespace-nowrap">Verified</th>
+              <th className="p-2 whitespace-nowrap">Verified At</th>
             </tr>
           </thead>
           <tbody className="text-center">

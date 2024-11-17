@@ -66,7 +66,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
             <p className="text-yellow-800 dark:text-yellow-100 text-sm">
               ⚠️ This is not an official explorer and all data is parsed from on-chain data only. Results are not guaranteed to be accurate. 
               The official Degate explorer is <a href="https://dgscan.io" target="_blank" rel="noopener noreferrer" className="underline font-bold">dgscan.io</a>
-              <br>known issue: withdrawal amount is not processeed correctly (always zero)</br>
+              <br />known issue: withdrawal amount is not processeed correctly (always zero)
             </p>
             
           </div>
