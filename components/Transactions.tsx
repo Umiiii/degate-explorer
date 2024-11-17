@@ -214,7 +214,13 @@ const Transactions: React.FC<{
                       </AppLink>
                     </td>
                     <td className="p-2 border-b dark:border-loopring-dark-darkBlue whitespace-nowrap dark:text-white">
-                      {getTransactionType(tx.__typename)}
+                      {tx.__typename === 'Transfer' &&
+                        tx.fromAccount.address === '0x1ab76ff327fde5409bb29428283220e7e811a3bd'
+                          ? 'Crosschain Deposit'
+                          : tx.__typename === 'Transfer' &&
+                            tx.toAccount.address === '0x1ab76ff327fde5409bb29428283220e7e811a3bd'
+                          ? 'Crosschain Withdrawal'
+                          : getTransactionType(tx.__typename)}
                     </td>
                     <TransactionTableDetails
                       tx={tx}

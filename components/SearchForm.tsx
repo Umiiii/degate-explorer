@@ -25,21 +25,35 @@ const SearchForm: React.FC<{ className?: string }> = ({ className }) => {
 
   return (
     <form
-      className={`h-full flex-col lg:flex-row justify-between items-center ${className}`}
+      className={`w-full max-w-6xl mx-auto h-full flex items-center relative ${className}`}
       onSubmit={search}
     >
       <input
         type="text"
         name="query"
-        className="h-10 w-full lg:w-auto flex-1 rounded-xl px-3 py-3 lg:py-0 placeholder-loopring-lightBlue placeholder-opacity-70"
-        placeholder="Search for block, tx, account ID, Collection Address"
+        className="w-full bg-transparent border-b-2 border-gray-300 focus:border-loopring-darkBlue dark:border-gray-600 dark:focus:border-loopring-dark-blue transition-colors duration-300 outline-none px-6 py-4 pr-12 text-xl"
+        placeholder="Search Block, Tx, AccountID ..."
         onFocus={() => router.prefetch("/search")}
       />
       <button
         type="submit"
-        className="bg-loopring-darkBlue mt-4 lg:mt-0 py-1 px-10 ml-2 rounded-xl text-white h-10 dark:bg-loopring-dark-blue"
+        className="absolute right-4 text-gray-500 hover:text-loopring-darkBlue dark:hover:text-loopring-dark-blue transition-colors duration-300"
+        aria-label="Search"
       >
-        Search
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-7 w-7"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
       </button>
     </form>
   );

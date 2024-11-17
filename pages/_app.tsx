@@ -12,7 +12,8 @@ import DarkModeToggle from '../components/DarkModeToggle';
 import ConsentContextProvider from '../components/ConsentContextProvider';
 import apolloClient from '../graphql';
 import APISourceToggle from '../components/APISourceToggle';
-
+import AnimeObjectFactory from '../components/AnimeObjectFactory';
+import { motion } from 'framer-motion'
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
   const [showNav, setShowNav] = React.useState(false);
@@ -40,6 +41,16 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
     setDarkMode((val) => !val);
     setShowNav(false);
   };
+
+
+  const [currentBlock, setCurrentBlock] = React.useState(1)
+  const totalBlocks = 5
+  
+    const getBlockStyle = (blockNumber: number) => {
+      if (blockNumber < currentBlock) return 'bg-blue-500 text-white' // Past block
+      if (blockNumber === currentBlock) return 'bg-green-500 text-white' // Current block
+      return 'bg-gray-300 border-2 border-dashed border-gray-500 text-gray-700' // Future block
+    }
   
   return (
     <ApolloProvider client={apolloClient}>
@@ -76,14 +87,17 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
               <Link href="/">
                 <a className="h-full flex items-center w-3/6 cursor-pointer">
                   <Image
-                    src={darkMode ? '/logo.png' : '/logo.png'}
+                    src={darkMode ? '/logo_dark.svg' : '/logo_dark.svg'}
                     width="100"
-                    height="100"
+                    height="50"
                     className="h-full"
                     alt="Loopring Logo"
-                  />
+                  />   <span className="ml-2 text-xl font-semibold">
+                  zkRollup Explorer
+                </span>
                 </a>
               </Link>
+           
               {showNav && (
                 <div
                   className="fixed bg-black bg-opacity-30 h-full w-full top-0 left-0 lg:hidden"
@@ -133,11 +147,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           </header>
           <div className="w-full min-h-page dark:bg-loopring-dark-background">
             {isHomePage ? (
-              <div className="px-10 py-8 bg-loopring-blue pb-20 dark:bg-loopring-dark-darkBlue">
-                <div className="lg:w-11/12 m-auto">
-                  <h1 className="text-4xl text-white">Degate zkRollup Explorer</h1>
+              <div className="px-10 py-8 bg-loopring-blue pb-20 dark:bg-loopring-dark-background">
+                <div className="lg:w-24/12 m-auto">
                   <SearchForm className="flex md:w-3/5 mt-4" />
                 </div>
+
               </div>
             ) : (
               <div className="px-4 lg:px-10 py-1 bg-loopring-blue dark:bg-loopring-dark-darkBlue">
@@ -145,6 +159,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
                 <div className="clear-right" />
               </div>
             )}
+        
             <Component {...pageProps} />
           </div>
         </main>

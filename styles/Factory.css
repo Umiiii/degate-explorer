@@ -1,0 +1,60 @@
+
+.anime-object-factory {
+    background: #4a3f3a;
+    height: 1px;
+    width: 1px;
+}
+
+.factory {
+    background: #4a3f3a;
+    min-height: 400px
+}
+
+.factory--block {
+    background: #f0f0f0;
+    display: none;
+    font-size: 18px;
+    min-height: 200px;
+    padding: 30px 0 25px
+}
+
+.factory--block ul {
+    padding-left: 0
+}
+
+.factory--block ul li {
+    list-style-type: none
+}
+
+.factory--genesis {
+    background: 0 0;
+    color: #fff;
+    display: none;
+    font-size: 1px;
+    min-height: 200px;
+    padding: 30px 0 25px
+}
+
+.factory--genesis ul {
+    padding-left: 0
+}
+
+.factory--genesis ul li {
+    list-style-type: none
+}
+.gear-box-container {
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 62%;
+    position: relative;
+    vertical-align: middle;
+    width: 100%;
+    opacity: 0
+}
+
+.gear-box,.mining-robots {
+    display: inline-block;
+    left: 0;
+    position: absolute;
+    top: 0
+}

@@ -5,9 +5,10 @@ import { GetServerSideProps } from 'next';
 import client from '../graphql';
 import { FETCH_NETWORK_STATS } from '../graphql/queries/home';
 
-import Blocks from '../components/Blocks';
+import BlockChain from '../components/BlockChain';
 import Pairs from '../components/Pairs';
 import Transactions from '../components/Transactions';
+import TransactionBlock from '../components/ui/Block';
 import NetworkStats from '../components/NetworkStats';
 import { useNetworkStatsQuery } from '../generated/loopringExplorer';
 
@@ -34,8 +35,10 @@ export default function Home({ networkStats }) {
     <div className="mt-10 w-11/12 m-auto">
       <NetworkStats networkStats={networkStats ?? networkStatsData} />
       <div className="w-full mt-8 flex flex-col justify-between">
-        <h2 className="text-2xl font-bold p-2 text-loopring-blue dark:text-loopring-dark-gray">Latest Blocks</h2>
-        <Blocks isPaginated={false} blocksCount={10} />
+        <h2 className="text-2xl font-bold p-2 mb-8 text-loopring-blue dark:text-loopring-dark-gray">Latest Blocks</h2>
+        <div className="mt-2">
+        <BlockChain  blocksCount={10} />
+        </div>
         <Link href="/blocks">
           <a className="bg-loopring-darkBlue dark:bg-loopring-dark-blue text-white text-center block rounded-lg py-2 px-6 w-2/3 lg:w-auto m-auto lg:mx-0 mt-5 lg:self-end">
             View More Blocks

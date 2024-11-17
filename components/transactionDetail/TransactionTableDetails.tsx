@@ -23,8 +23,9 @@ export function renderTokenAmount(amount: string, decimals: number, symbol: stri
     return '';
   }
   const parsedAmount = parseInt(amount);
+  console.log("parse amount",parsedAmount, "amount", amount);
   const colorClass = amount[0] != '-' ? 'text-green-500' : 'text-red-500';
-  return parsedAmount !== 0 && (
+  return parsedAmount != 0 && (
     <div className={colorClass}>
       {getTokenAmount(parsedAmount, decimals)} {symbol}
     </div>
@@ -88,7 +89,6 @@ export function getTokenAmountDeltaData(tx: any) {
   var delta = [{"tokenAmount": 0, "token": tx.tokenA, "decimals": tx.tokenA.decimals}, 
   {"tokenAmount": 0, "token": tx.tokenB, "decimals": tx.tokenB.decimals}, 
   {"tokenAmount": 0, "token": tx.bindToken, "decimals": tx.bindToken.decimals}];
-  console.log(delta);
   if (tx.accountA != null) {
     delta[0].tokenAmount += parseInt(tx.accountAFirstTokenAmountExchange);
     delta[1].tokenAmount += parseInt(tx.accountASecondTokenAmountExchange);
@@ -136,10 +136,16 @@ export function getTokenAmountDeltaData(tx: any) {
   }
 
   return <div>
+  {delta[0].tokenAmount !== 0 && 
     <div>{getTokenAmount(delta[0].tokenAmount, delta[0].token.decimals)} {delta[0].token.symbol}</div>
+  }
+  {delta[1].tokenAmount !== 0 && 
     <div>{getTokenAmount(delta[1].tokenAmount, delta[1].token.decimals)} {delta[1].token.symbol}</div>
+  }
+  {delta[2].tokenAmount !== 0 && 
     <div>{getTokenAmount(delta[2].tokenAmount, delta[2].token.decimals)} {delta[2].token.symbol}</div>
-  </div>;
+  }
+</div>;
 }
 
 export const getCSVTransactionDetailFields = (tx, account) => {
@@ -429,7 +435,8 @@ const TransactionTableDetails: React.FC<{
             </AppLink>
           </td>
           <td className={cellClassName}>
-            {getTokenAmount(tx.amount, tx.withdrawalToken.decimals).toFixed(4)} {tx.withdrawalToken.symbol}
+       
+            ??? {tx.withdrawalToken.symbol}
           </td>
           <td className={cellClassName}>
             {getTokenAmount(tx.fee, tx.withdrawalFeeToken.decimals)} {tx.withdrawalFeeToken.symbol}
@@ -475,26 +482,31 @@ const TransactionTableDetails: React.FC<{
     case 'BatchSpotTrade':
       return (
         <>
-          <td className={cellClassName}> 
+          <td className={cellClassName} colSpan={2}> 
           <div>
             {getUniqueAccountFromTxData(tx, account)}
           </div>
-
+{/* 
           </td>
           
-          <td className={cellClassName}>
+          <td className={cellClassName}> */}
 
           <div>
             {getUniqueAccountToTxData(tx, account)}
           </div>
           </td>
-          <td className={cellClassName}>
-            {account === 'none' && (
+          {account === 'none' && (
+              <td className={cellClassName} colSpan={2}>
               <div>
               {getTokenAmountDeltaData(tx)}
               </div>
+              </td>
             )}
-
+          {account !== 'none' && (
+          
+        
+          <td className={cellClassName} colSpan={2}>
+           
             {tx.accountA.id === account && (
               <div>
                 {renderTokenAmount(tx.accountAFirstTokenAmountExchange, tx.tokenA.decimals, tx.tokenA.symbol)}
@@ -561,7 +573,9 @@ const TransactionTableDetails: React.FC<{
                 )}
           
           </td>
-          <td className={cellClassName}></td>
+            )}
+            
+       
         </>
       );
 
