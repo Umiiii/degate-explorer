@@ -12,7 +12,7 @@ import DarkModeToggle from '../components/DarkModeToggle';
 import ConsentContextProvider from '../components/ConsentContextProvider';
 import apolloClient from '../graphql';
 import APISourceToggle from '../components/APISourceToggle';
-import AnimeObjectFactory from '../components/AnimeObjectFactory';
+// import AnimeObjectFactory from '../components/AnimeObjectFactory';
 import { motion } from 'framer-motion'
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();

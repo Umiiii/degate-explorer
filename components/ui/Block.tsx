@@ -51,13 +51,13 @@ block,
     title: {
       fontSize: '16px',
       fontWeight: 700,
-      textAlign: 'center',
+      textAlign: 'center'  as const,
     },
     text: {
       margin: '0',
       fontSize: '16px',
       color: 'rgba(255, 255, 255, 0.8)',
-      textAlign: 'center',
+      textAlign: 'center'  as const,
     },
     btcAmount: {
       margin: '5px 0',
@@ -71,14 +71,14 @@ block,
     timeStamp: {
       fontSize: '11px',
       color: 'rgba(255, 255, 255, 0.7)',
-      textAlign: 'center',
+      textAlign: 'center'  as const,
     },
     operatorName: {
       fontSize: '12px',
       marginTop: 'auto',
       display: 'flex',
-      textAlign: 'center',
-      justifyContent: 'center',
+      textAlign: 'center'  as const,
+      justifyContent: 'center'  as const,
       gap: '5px',
     
     }
